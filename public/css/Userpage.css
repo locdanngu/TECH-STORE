@@ -1,0 +1,295 @@
+p{
+    margin: 0 !important;
+}
+
+
+.body{
+    background-color: #242424;
+    display: flex;
+    /* height: 100em; */
+}
+
+
+.leftbody{
+width: 20%;
+background-color: #2D2D2D;
+padding: 1em;
+display: flex;
+flex-direction: column;
+align-items: center;
+height: 100vh;
+position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.rightbody{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    padding: 2em;
+}
+
+.headright{
+    display: flex;
+    justify-content: space-between;
+}
+
+.bi-cart{
+    color: #FFFFFF;
+    margin-right: 2em;
+    margin-left: 2em;
+    font-size: 1.5em;
+}
+
+.bi-bell{
+    color: #FFFFFF;
+    font-size: 1.5em;
+}
+
+.btn:hover{
+    opacity: 0.7;
+}
+
+.lefthead{
+    width: 50%;
+}
+
+.righthead{
+    display: flex;
+    align-items: center;
+}
+
+.search{
+    padding-left: 1em;
+    height: 3em;
+    border-radius: 0.75em;
+    border: 0;
+    color: #FFFFFF;
+    background-color: #5F5F5F;
+    width: 70%;
+}
+
+::placeholder { /* chạy tốt trên Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #FFFFFF;
+    opacity: 1; /* Firefox */
+}
+
+.linkus{
+    color: #8A8A8A;
+    text-decoration: none;
+    display: flex;
+    justify-content: left;
+    cursor: pointer;
+    width: 100%;
+    align-items: center;
+    padding: 0 2em 0 2em;
+    margin-top: 1em;
+    height: 3em;
+    transition: 0.5s ease;
+}
+
+.linkus:hover{
+background-color: #3b3b3b;
+}
+
+.fixtxt{
+    margin-left: 2em !important;
+    
+   
+}
+
+.content{
+    color: #FFFFFF;
+    font-size: 2em;
+    margin-top: 1em !important;
+}
+
+.btnlink{
+    transition: 0.5s ease;
+}
+
+.btnlink:hover{
+    opacity: 0.7;
+}
+
+.morefoot{
+    padding: 1em 10% 1em 10% ;
+    border-top: 0.5px solid #CBCBCB;
+    background-color: #3b3b3b;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer{
+    width: 100%;
+    display: flex;
+    /* margin-top: 10em; */
+    background-color: #3b3b3b;
+    justify-content: space-between;
+    padding: 2em 10% 2em 10%;
+    border-top: 0.5px solid #CBCBCB;
+}
+
+.headfoot{
+    color: #FFFFFF;
+    font-size: 1.75em;
+    font-weight: 100;
+}
+
+.bodyfoot{
+    color: #FFFFFF;
+    font-weight: 100;
+    text-decoration: none;
+    display: flex;
+}
+
+.fix{
+    display: flex;
+}
+
+.bi.bi-facebook{
+    margin-right: 1em;
+}
+
+.bodyfoot.link:hover{
+    opacity: 0.7;
+}
+
+.bodyright{
+    margin-top: 3em;
+    width: 30%;
+    display: flex;
+    
+}
+
+.loc{
+    display: flex;
+    width: 5em;
+    align-items: center;
+    height: 2em;
+    justify-content: center;
+    text-decoration: none;
+    background-color: #FFFFFF;
+    color: #242424;
+    padding: .5em 1em .5 1em;
+    border: 0.5px solid #DA00FE;
+    border-radius: 0.5em;
+    margin-right: 2em;
+    transition: 0.5s ease;
+}
+
+.loc:hover{
+    background-color: #DA00FE;
+    color: #FFFFFF;
+}
+
+.loc.active{
+    background-color: #DA00FE;
+    color: #FFFFFF;
+}
+
+.allmonhang{
+    margin-top: 3em;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.imgsp{
+    width: 100%;
+    height: 10em;
+}
+
+.linkus.active {
+    background-color: #3b3b3b;
+}
+
+.monhang{
+    background-color: #2D2D2D;
+    padding: 1em;
+    width: 25%;
+    margin-right: 6em;
+    border-radius: 0.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 3em;
+    transition: 0.5s ease-in-out;
+}
+
+.monhang:hover{
+    transform: scale(1.1);
+}
+
+.namesp{
+    color: #FFFFFF;
+    text-align: center;
+    height: 3em;
+    font-size: 1.25em;
+    margin: 1em 0 .25em 0 !important;
+}
+
+.namehangsp{
+    color: #CBCBCB;
+}
+
+
+.price{
+    color: #DA00FE;
+    margin: 1em 0 1em 0 !important;
+    font-weight: bold;
+}
+
+a{
+    text-decoration: none !important;
+}
+
+.addtocart:hover{
+    color: #DA00FE;
+}
+
+.phantrang{
+    display: flex;
+    justify-content: center;
+    
+}
+
+.numpt{
+    margin: 0 2em 0 2em;
+    border: 0.5px solid #DA00FE;
+    color: #DA00FE;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3em;
+    height: 3em;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    transition: 0.75s ease;
+    font-weight: bold;
+}
+
+.numpt:hover{
+    color: #FFFFFF;
+    background-color: #DA00FE;
+}
+
+.dropdown-menu{
+    /* left: -500% !important;  */
+    transform: none !important;
+    inset: 0px 3em 0px auto !important;
+    height: fit-content;
+    width: 30em;
+}
+
+.dropdown-item{
+    height: 4em !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.avataruser{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}

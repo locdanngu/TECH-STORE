@@ -1,0 +1,170 @@
+p{
+    margin: 0 !important;
+}
+
+.navbar{
+    padding: .5em 7.5% .5em 7.5% !important;
+    background-color: #CBCBCB !important;
+}
+
+.container-fluid{
+    display: flex !important;
+    justify-content: space-between !important;
+}
+
+.navbar-collapse{
+    flex-grow: unset !important;
+}
+
+.btn-login{
+    margin-right: 1em;
+}
+
+.btn-login,.btn-signup{
+    border-radius: 0.25em;
+    padding: .5em;
+    border: 0;
+    width: 5em;
+    text-decoration: none;
+    text-align: center;
+    color: #FFFFFF;
+    background-color: #A100ED;
+}
+
+.btn-login:hover,.btn-signup:hover{
+    background-color: #2D2D2D;
+    transition: 0.75s ease-out;
+    border: 0.5px solid #A100ED;
+}
+
+.headbody{
+    text-transform: uppercase;
+    font-size: 4.5em;
+    text-align: center;
+    font-weight: bold;
+    color: #FFFFFF;
+    line-height: 1em;
+}
+
+.bodybody{
+    text-align: center;
+    font-size: 4em;
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.footbody{
+    text-align: center;
+    padding: 0 25% 0 25%;
+    color: #FFFFFF;
+}
+
+.body{
+    width: 100%;
+    padding: 0 25% 0 25% ;
+    margin-top: 10em;
+}
+
+body{
+    background-color: #2D2D2D !important;
+}
+
+.sample{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20em;
+    padding-left: 10%;
+    padding-right: 10%;
+    
+}
+
+.imgsample{
+    border-radius: 1em;
+    width: 60%;
+}
+
+.btn{
+    margin-top: 2em;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.btn2{
+    color: #FFFFFF;
+    padding: 0.5em 2em 0.5em 2em;
+    border: 1px solid #ff0000;
+    background-color: transparent;
+    margin: 0.25em;
+    font-weight: bold;
+    border-radius: 0.25em;
+    transition: 0.75s ease-in;
+}
+
+.btn2:hover{
+    background-color: #FFFFFF;
+    color: #ff0000;
+}
+
+.mieuta{
+    width: 38%;
+    text-align: right;
+    font-size: 1.5em;
+    color: #FFFFFF;
+}
+
+.footer{
+    width: 100%;
+    display: flex;
+    margin-top: 10em;
+    justify-content: space-between;
+    padding: 2em 10% 2em 10%;
+    border-top: 0.5px solid #CBCBCB;
+}
+
+.headfoot{
+    color: #FFFFFF;
+    font-size: 1.75em;
+    font-weight: 100;
+}
+
+.bodyfoot{
+    color: #FFFFFF;
+    font-weight: 100;
+    text-decoration: none;
+    display: flex;
+}
+
+.fix{
+    display: flex;
+}
+
+.bi.bi-facebook{
+    margin-right: 1em;
+}
+
+.bodyfoot.link:hover{
+    opacity: 0.7;
+}
+
+.morefoot{
+    padding: 1em 10% 1em 10% ;
+    border-top: 0.5px solid #CBCBCB;
+    display: flex;
+    justify-content: space-between;
+}
+
+.mieuta2{
+    margin-left: 1em !important;
+    width: 100%;
+    text-align: left;
+    font-size: 1.5em;
+    color: #FFFFFF;
+    margin-bottom: 1em !important;
+}
+
+
+.fixcl{
+    color: #ff0000;
+}
+
