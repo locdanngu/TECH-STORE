@@ -36,5 +36,5 @@ Route::get('/Profileuserpage', function () {
 
 Route::get('/Userpage', [ProductController::class, 'showData'])->name('user.page');
 
-Route::get('/Userpage/category/{idcategory}', [ProductController::class, 'getCategory'])->name('userpage.category');
+Route::get('/Userpage?idcategory={idcategory}', [ProductController::class, 'getCategory'])->name('userpage.category');
 
