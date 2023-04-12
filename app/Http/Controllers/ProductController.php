@@ -17,7 +17,7 @@ class ProductController extends Controller
         return view('Userpage', ['products' => $products, 'category' => $category]);
     }
 
-    public function getCategory(Request $request, $idcategory)
+    public function getCategory($idcategory)
     {
         // // Lấy giá trị của tham số 'idcategory' từ URL
         // $idcategory = $request->input('idcategory');
