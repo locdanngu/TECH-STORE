@@ -24,7 +24,7 @@
             </a>
             <p class="content">CATEGORY</p>
             <!-- Kiểm tra xem đã chọn category chưa , chưa thì active để đổi background color -->
-            <div class="linkus active"  data-url="0">
+            <div class="linkus active" data-url="0">
                 <i class="bi bi-list-ul"></i>
                 <p class="fixtxt">All product</p>
             </div>
@@ -100,6 +100,7 @@
         $(".linkus").on("click", function() {
             // Lấy giá trị từ thuộc tính "data-value" của div đang được click
             var idcategory = $(this).data('url'); // Lấy giá trị của thuộc tính data-url của thẻ div
+            var idprice = $('.loc.active').data('url');
             // Xóa class "active" trên tất cả các div có class "btn"
             $(".linkus").removeClass("active");
             // Thêm class "active" vào div được click
@@ -107,7 +108,7 @@
             // Gửi dữ liệu lên server sử dụng Ajax
             $.ajax({
                 type: 'POST',
-                url: '/Userpage/' + idcategory, // Thay đổi URL tại đây
+                url: '/Userpage/' + idcategory + '/' + idprice, // Thay đổi URL tại đây
                 data: {
                     // idcategory: idcategory // Truyền giá trị của categoryId lên server
                     _token: '{{ csrf_token() }}',
@@ -129,12 +130,13 @@
 
     $(document).ready(function() {
         $(".loc").on("click", function() {
-            var idprice= $(this).data('url'); 
+            var idprice = $(this).data('url');
+            var idcategory = $('.linkus.active').data('url');
             $(".loc").removeClass("active");
             $(this).addClass("active");
             $.ajax({
                 type: 'POST',
-                url: '/Userpage/' + idprice, 
+                url: '/Userpage/' + idcategory + '/' + idprice,
                 data: {
                     _token: '{{ csrf_token() }}',
                 },
@@ -142,11 +144,33 @@
                     var html = response.html;
                     $('.allmonhang').html(html);
                 },
-                error: function(xhr, status, error) {
-                }
+                error: function(xhr, status, error) {}
             });
         });
     });
+
+
+    // Lắng nghe sự kiện nhập vào ô tìm kiếm
+    // $('.search').on('input', function() {
+    //     var search = $(this).val();
+    //     var idcategory = $('.linkus.active').data('url');
+    //     var idprice = $('.loc.active').data('url');
+    //     if (search.trim() == '') {
+    //         search = '';
+    //     } 
+    //     $.ajax({
+    //         type: 'POST',
+    //         url: '/Userpage/' + idcategory + '/' + idprice + '/' + search,
+    //         data: {
+    //             _token: '{{ csrf_token() }}',
+    //         },
+    //         success: function(response) {
+    //             var html = response.html;
+    //             $('.allmonhang').html(html);
+    //         },
+    //         error: function(xhr, status, error) {}
+    //     });
+    // });
     </script>
 </body>
 

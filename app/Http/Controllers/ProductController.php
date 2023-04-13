@@ -17,27 +17,23 @@ class ProductController extends Controller
         return view('Userpage', ['products' => $products, 'category' => $category]);
     }
 
-    public function ajaxRequest($idcategory)
+    public function ajaxRequest($idcategory,$idprice)
     {
         $category = Category::all();
-        if($idcategory >0){
-            $products = Product::where('idcategory', $idcategory)->orderBy('price', 'asc')->get();
-        }else{
-            $products = Product::orderBy('price', 'asc')->get();
-        }
 
-        // if($idcategory >0 && $idprice==0){          //chọn hãng chưa chọn giá
-        //     $products = Product::where('idcategory', $idcategory)->orderBy('price', 'asc')->get();
-        // }
-        // if($idcategory ==0 && $idprice==0){   //chưa chọn hãng chưa chọn giá
-        //     $products = Product::orderBy('price', 'asc')->get();
-        // }
-        // if($idcategory >0 && $idprice==1){    //chọn hãng và chọn giá
-        //     $products = Product::where('idcategory', $idcategory)->orderBy('price', 'desc')->get();
-        // }
-        // if($idcategory ==0 && $idprice==1){   //chưa chọn hãng nhưng chọn giá
-        //     $products = Product::orderBy('price', 'desc')->get();
-        // }
+        if($idcategory >0 && $idprice==0){          //chọn hãng chưa chọn giá
+            $products = Product::where('idcategory', $idcategory)->orderBy('price', 'asc')->get();
+        }
+        if($idcategory ==0 && $idprice==0){   //chưa chọn hãng chưa chọn giá
+            $products = Product::orderBy('price', 'asc')->get();
+            // $products = Product::where('nameproduct', 'like', '%'.$search.'%')->orderBy('price', 'asc')->get();
+        }
+        if($idcategory >0 && $idprice==1){    //chọn hãng và chọn giá
+            $products = Product::where('idcategory', $idcategory)->orderBy('price', 'desc')->get();
+        }
+        if($idcategory ==0 && $idprice==1){   //chưa chọn hãng nhưng chọn giá
+            $products = Product::orderBy('price', 'desc')->get();
+        }
         $html = '';
         foreach ($products as $product) {
             $html .= '<div class="monhang">';
