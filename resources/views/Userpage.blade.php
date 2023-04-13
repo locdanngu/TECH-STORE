@@ -12,7 +12,10 @@
 <body>
     <div class="body">
         <div class="leftbody">
-            <a href="{{ route('user.page') }}"><img src="/images/logo.png"></a>
+            <div class="linkus2">
+                <i class="bi bi-arrow-bar-left"></i>
+                <p class="fixtxt">Hide Menu</p>
+            </div>
             <!-- <p class="content">USER</p> -->
             <a class="linkus" href="{{ route('profileuser.page') }}">
                 <i class="bi bi-person"></i>
@@ -38,10 +41,12 @@
         </div>
         <div class="rightbody">
             <div class="headright">
+                <a href="{{ route('user.page') }}"><img src="/images/logo.png"></a>
                 <div class="lefthead">
                     <input class="search" type="text" placeholder="Search">
                 </div>
                 <div class="righthead">
+                    <i class="bi bi-arrow-bar-right"></i>
                     <div class="dropdown">
                         <button class="btn" type="button" data-bs-toggle="dropdown">
                             <i class="bi bi-bell"></i>
@@ -70,17 +75,19 @@
                     <p class="namesp">{{ $product->nameproduct }}</p>
                     <p class="namehangsp">{{ $product->category->namecategory }}</p>
                     <p class="price">${{ $product->price }}</p>
-                    <!-- <p class="price">${{ $product->idcategory }}</p> -->
                     <a href="" class="addtocart"><i class="bi bi-plus-circle"></i> Add to cart</a>
                 </div>
                 @endforeach
+                <!-- <div class="null">
+                    <p class="nulltxt">No matching products.</p>
+                </div> -->
             </div>
-            <div class="phantrang">
+            <!-- <div class="phantrang">
                 <a class="numpt" href="">1</a>
                 <a class="numpt" href="">2</a>
                 <a class="numpt" href="">3</a>
                 <a class="numpt" href="">4</a>
-            </div>
+            </div> -->
         </div>
     </div>
     @extends('layouts.Foot')
@@ -133,7 +140,7 @@
     });
 
     $(".linkus, .loc").on("click", function() {
-        $(".search").val("");      //khi bấm 1 trong 2 nút thì giá trong ô input đc reset
+        $(".search").val(""); //khi bấm 1 trong 2 nút thì giá trong ô input đc reset
     });
 
     //Lắng nghe sự kiện nhập vào ô tìm kiếm
@@ -157,6 +164,42 @@
             },
             error: function(xhr, status, error) {}
         });
+    });
+
+    $(".linkus2").on("click", function() {
+        $(".leftbody,.linkus,.linkus2").css({
+            "padding": "0",
+            "visibility": "hidden",
+            "width": "0",
+            "transition": "width 2s ease"
+        });
+        $(".rightbody").css({
+            "width": "100%"
+        });
+        $(".bi-arrow-bar-right").css({
+            "visibility": "visible",
+        });
+    });
+
+    $(".bi-arrow-bar-right").on("click", function() {
+        $(".leftbody, .linkus, .linkus2").css({
+            "width": "",
+            "transition": "visibility 1.5s ease",
+            "transition": "width 1.5s ease"
+        });
+        $(".rightbody").css({
+            "width": ""
+        });
+        $(".bi-arrow-bar-right").css({
+            "visibility": "",
+        });
+
+        setTimeout(function() {
+            $(".leftbody, .linkus, .linkus2").css({
+                "padding": "",
+                "visibility": "",
+            });
+        }, 1000); // 1.5 giây
     });
     </script>
 </body>

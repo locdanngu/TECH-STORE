@@ -43,9 +43,20 @@ position: sticky;
     font-size: 1.5em;
 }
 
-.bi-bell{
+.bi-bell,.bi-arrow-bar-right{
     color: #FFFFFF;
     font-size: 1.5em;
+}
+
+.bi-arrow-bar-right{
+    cursor: pointer;
+    margin-right: 2em;
+    margin-left: 2em;
+    visibility: hidden;
+}
+
+.bi-arrow-bar-right:hover{
+    opacity: 0.7;
 }
 
 .btn:hover{
@@ -54,6 +65,9 @@ position: sticky;
 
 .lefthead{
     width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .righthead{
@@ -62,6 +76,7 @@ position: sticky;
 }
 
 .search{
+    margin-left: 2em;
     padding-left: 1em;
     height: 3em;
     border-radius: 0.75em;
@@ -76,7 +91,7 @@ position: sticky;
     opacity: 1; /* Firefox */
 }
 
-.linkus{
+.linkus,.linkus2{
     color: #8A8A8A;
     text-decoration: none;
     display: flex;
@@ -90,7 +105,7 @@ position: sticky;
     transition: 0.5s ease;
 }
 
-.linkus:hover{
+.linkus:hover,.linkus2:hover{
 background-color: #3b3b3b;
 }
 
@@ -161,6 +176,7 @@ background-color: #3b3b3b;
     margin-top: 3em;
     width: 30%;
     display: flex;
+    margin-left: 4%;
     
 }
 
@@ -210,7 +226,8 @@ background-color: #3b3b3b;
     background-color: #2D2D2D;
     padding: 1em;
     width: 25%;
-    margin-right: 6vw;
+    margin-left: 4%;
+    margin-right: 4%;
     border-radius: 0.5em;
     display: flex;
     flex-direction: column;
@@ -294,4 +311,17 @@ a{
     width: 50px;
     height: 50px;
     border-radius: 50%;
+}
+
+.null{
+    width: 100%;
+}
+
+.nulltxt{
+    color: #5F5F5F;
+    font-size: 3em;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10% !important;
+
 }

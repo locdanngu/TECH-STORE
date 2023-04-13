@@ -20,14 +20,12 @@ class ProductController extends Controller
     public function ajaxRequest($idcategory,$idprice,$search = null)
     {
         $category = Category::all();
-
         // if($idcategory >0 && $idprice==0 && $search !=null){          //chọn hãng chưa chọn giá nhưng nhập
         //     $products = Product::where('nameproduct', 'like', '%'.$search.'%')->where('idcategory', $idcategory)->orderBy('price', 'asc')->get();
         // }
         // if($idcategory >0 && $idprice==0 && $search ==null){          //chọn hãng chưa chọn giá nhưng chưa nhập
         //     $products = Product::where('idcategory', $idcategory)->orderBy('price', 'asc')->get();
         // }
-
 
         // if($idcategory ==0 && $idprice==0 && $search !=null){   //chưa chọn hãng chưa chọn giá nhưng nhập
         //     // $products = Product::orderBy('price', 'asc')->get();
@@ -38,15 +36,12 @@ class ProductController extends Controller
         //     $products = Product::orderBy('price', 'asc')->get();
         // }
 
-
-
         // if($idcategory >0 && $idprice>0 && $search !=null){    //chọn hãng và chọn giá
         //     $products = Product::where('nameproduct', 'like', '%'.$search.'%')->where('idcategory', $idcategory)->orderBy('price', 'desc')->get();
         // }
         // if($idcategory >0 && $idprice>0 && $search ==null){
         //     $products = Product::where('idcategory', $idcategory)->orderBy('price', 'desc')->get();
         // }
-
 
         // if($idcategory ==0 && $idprice>0 && $search !=null){   //chưa chọn hãng nhưng chọn giá
         //     $products = Product::where('nameproduct', 'like', '%'.$search.'%')->orderBy('price', 'desc')->get();
@@ -86,15 +81,22 @@ class ProductController extends Controller
         }
 
         $html = '';
-        foreach ($products as $product) {
-            $html .= '<div class="monhang">';
-            $html .= '<a href=""><img src="' . $product->image . '" class="imgsp"></a>';
-            $html .= '<p class="namesp">' . $product->nameproduct . '</p>';
-            $html .= '<p class="namehangsp">' . $product->category->namecategory . '</p>';
-            $html .= '<p class="price">$' . $product->price . '</p>';
-            $html .= '<a href="" class="addtocart"><i class="bi bi-plus-circle"></i> Add to cart</a>';
+        if(count($products)){               //kiểm tra xem product có chứa gì đó không(vì biến đã đc khởi tạo nên ko dùng isset đc)
+            foreach ($products as $product) {
+                $html .= '<div class="monhang">';
+                $html .= '<a href=""><img src="' . $product->image . '" class="imgsp"></a>';
+                $html .= '<p class="namesp">' . $product->nameproduct . '</p>';
+                $html .= '<p class="namehangsp">' . $product->category->namecategory . '</p>';
+                $html .= '<p class="price">$' . $product->price . '</p>';
+                $html .= '<a href="" class="addtocart"><i class="bi bi-plus-circle"></i> Add to cart</a>';
+                $html .= '</div>';
+            }
+        }else{
+            $html .= '<div class="null">';
+            $html .= '<p class="nulltxt">No matching products.</p>';
             $html .= '</div>';
         }
+        
         return response()->json(['html' => $html]);
     }
 
