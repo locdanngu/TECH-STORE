@@ -105,35 +105,18 @@
             $(".linkus").removeClass("active");
             // Thêm class "active" vào div được click
             $(this).addClass("active");
-            // Gửi dữ liệu lên server sử dụng Ajax
-            $.ajax({
-                type: 'POST',
-                url: '/Userpage/' + idcategory + '/' + idprice, // Thay đổi URL tại đây
-                data: {
-                    // idcategory: idcategory // Truyền giá trị của categoryId lên server
-                    _token: '{{ csrf_token() }}',
-                },
-                success: function(response) {
-                    // Xử lý kết quả trả về từ server
-                    // Ví dụ:
-                    var html = response.html;
-
-                    // Cập nhật nội dung vào class 'allmonhang'
-                    $('.allmonhang').html(html);
-                },
-                error: function(xhr, status, error) {
-                    // Xử lý lỗi nếu có
-                }
-            });
+            updateProductList(idcategory, idprice);
         });
-    });
 
-    $(document).ready(function() {
         $(".loc").on("click", function() {
             var idprice = $(this).data('url');
             var idcategory = $('.linkus.active').data('url');
             $(".loc").removeClass("active");
             $(this).addClass("active");
+            updateProductList(idcategory, idprice);
+        });
+
+        function updateProductList(idcategory, idprice) {
             $.ajax({
                 type: 'POST',
                 url: '/Userpage/' + idcategory + '/' + idprice,
@@ -146,31 +129,35 @@
                 },
                 error: function(xhr, status, error) {}
             });
-        });
+        }
     });
 
+    $(".linkus, .loc").on("click", function() {
+        $(".search").val("");      //khi bấm 1 trong 2 nút thì giá trong ô input đc reset
+    });
 
-    // Lắng nghe sự kiện nhập vào ô tìm kiếm
-    // $('.search').on('input', function() {
-    //     var search = $(this).val();
-    //     var idcategory = $('.linkus.active').data('url');
-    //     var idprice = $('.loc.active').data('url');
-    //     if (search.trim() == '') {
-    //         search = '';
-    //     } 
-    //     $.ajax({
-    //         type: 'POST',
-    //         url: '/Userpage/' + idcategory + '/' + idprice + '/' + search,
-    //         data: {
-    //             _token: '{{ csrf_token() }}',
-    //         },
-    //         success: function(response) {
-    //             var html = response.html;
-    //             $('.allmonhang').html(html);
-    //         },
-    //         error: function(xhr, status, error) {}
-    //     });
-    // });
+    //Lắng nghe sự kiện nhập vào ô tìm kiếm
+    $('.search').on('input', function() {
+        var search = $(this).val();
+        var idcategory = $('.linkus.active').data('url');
+        var idprice = $('.loc.active').data('url');
+        // if (!search) {
+        //     search = '';
+        // } 
+
+        $.ajax({
+            type: 'POST',
+            url: '/Userpage/' + idcategory + '/' + idprice + '/' + search,
+            data: {
+                _token: '{{ csrf_token() }}',
+            },
+            success: function(response) {
+                var html = response.html;
+                $('.allmonhang').html(html);
+            },
+            error: function(xhr, status, error) {}
+        });
+    });
     </script>
 </body>
 

@@ -17,23 +17,74 @@ class ProductController extends Controller
         return view('Userpage', ['products' => $products, 'category' => $category]);
     }
 
-    public function ajaxRequest($idcategory,$idprice)
+    public function ajaxRequest($idcategory,$idprice,$search = null)
     {
         $category = Category::all();
 
-        if($idcategory >0 && $idprice==0){          //chọn hãng chưa chọn giá
-            $products = Product::where('idcategory', $idcategory)->orderBy('price', 'asc')->get();
+        // if($idcategory >0 && $idprice==0 && $search !=null){          //chọn hãng chưa chọn giá nhưng nhập
+        //     $products = Product::where('nameproduct', 'like', '%'.$search.'%')->where('idcategory', $idcategory)->orderBy('price', 'asc')->get();
+        // }
+        // if($idcategory >0 && $idprice==0 && $search ==null){          //chọn hãng chưa chọn giá nhưng chưa nhập
+        //     $products = Product::where('idcategory', $idcategory)->orderBy('price', 'asc')->get();
+        // }
+
+
+        // if($idcategory ==0 && $idprice==0 && $search !=null){   //chưa chọn hãng chưa chọn giá nhưng nhập
+        //     // $products = Product::orderBy('price', 'asc')->get();
+        //     $products = Product::where('nameproduct', 'like', '%'.$search.'%')->orderBy('price', 'asc')->get();
+        // }
+        // if($idcategory ==0 && $idprice==0 && $search == null){   //chưa chọn hãng chưa chọn giá chưa nhập
+        //     // $products = Product::orderBy('price', 'asc')->get();
+        //     $products = Product::orderBy('price', 'asc')->get();
+        // }
+
+
+
+        // if($idcategory >0 && $idprice>0 && $search !=null){    //chọn hãng và chọn giá
+        //     $products = Product::where('nameproduct', 'like', '%'.$search.'%')->where('idcategory', $idcategory)->orderBy('price', 'desc')->get();
+        // }
+        // if($idcategory >0 && $idprice>0 && $search ==null){
+        //     $products = Product::where('idcategory', $idcategory)->orderBy('price', 'desc')->get();
+        // }
+
+
+        // if($idcategory ==0 && $idprice>0 && $search !=null){   //chưa chọn hãng nhưng chọn giá
+        //     $products = Product::where('nameproduct', 'like', '%'.$search.'%')->orderBy('price', 'desc')->get();
+        // }
+        // if($idcategory ==0 && $idprice>0 && $search ==null){   //chưa chọn hãng nhưng chọn giá
+        //     $products = Product::orderBy('price', 'desc')->get();
+        // }
+
+        if($idcategory==0){
+            if($idprice==0){
+                if($search ==null){
+                    $products = Product::orderBy('price', 'asc')->get();
+                }else{
+                    $products = Product::where('nameproduct', 'like', '%'.$search.'%')->orderBy('price', 'asc')->get();
+                }
+            }else{
+                if($search ==null){
+                    $products = Product::orderBy('price', 'desc')->get();
+                }else{
+                    $products = Product::where('nameproduct', 'like', '%'.$search.'%')->orderBy('price', 'desc')->get();
+                }
+            }
+        }else{
+            if($idprice==0){
+                if($search ==null){
+                    $products = Product::where('idcategory', $idcategory)->orderBy('price', 'asc')->get();
+                }else{
+                    $products = Product::where('nameproduct', 'like', '%'.$search.'%')->where('idcategory', $idcategory)->orderBy('price', 'asc')->get();
+                }
+            }else{
+                if($search ==null){
+                    $products = Product::where('idcategory', $idcategory)->orderBy('price', 'desc')->get();            
+                }else{
+                    $products = Product::where('nameproduct', 'like', '%'.$search.'%')->where('idcategory', $idcategory)->orderBy('price', 'desc')->get();
+                }
+            }
         }
-        if($idcategory ==0 && $idprice==0){   //chưa chọn hãng chưa chọn giá
-            $products = Product::orderBy('price', 'asc')->get();
-            // $products = Product::where('nameproduct', 'like', '%'.$search.'%')->orderBy('price', 'asc')->get();
-        }
-        if($idcategory >0 && $idprice>0){    //chọn hãng và chọn giá
-            $products = Product::where('idcategory', $idcategory)->orderBy('price', 'desc')->get();
-        }
-        if($idcategory ==0 && $idprice>0){   //chưa chọn hãng nhưng chọn giá
-            $products = Product::orderBy('price', 'desc')->get();
-        }
+
         $html = '';
         foreach ($products as $product) {
             $html .= '<div class="monhang">';
