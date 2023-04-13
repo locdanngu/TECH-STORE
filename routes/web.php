@@ -1,6 +1,6 @@
 <?php
 use App\Http\Controllers\ProductController;
-
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,6 +38,9 @@ Route::get('/Userpage', [ProductController::class, 'showData'])->name('user.page
 
 
 Route::post('/Userpage/{idcategory}/{idprice}/{search?}', [ProductController::class, 'ajaxRequest'])->name('product.ajaxRequest');
+
+
+Route::post('/login', [LoginController::class, 'login'])->name('login');
 
 
 

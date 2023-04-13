@@ -20,7 +20,8 @@
     </nav>
 
 
-    <form action="POST" action="" class="box1">
+    <form method="POST" action="{{ route('login') }}" class="box1">
+        @csrf
         <p class="tieudebox1">LOGIN TO STORE</p>
         <label>Email or phone(*): </label>
         <input type="text" required class="inputbox1">
