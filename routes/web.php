@@ -40,6 +40,15 @@ Route::get('/Userpage/category/{idcategory}', [ProductController::class, 'getCat
 
 
 
+
+
+
+
+
+
+
+
+
 Route::get('/test', function () {
     return view('test');
 })->name('test');

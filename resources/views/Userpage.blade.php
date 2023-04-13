@@ -2,9 +2,11 @@
 <html lang="en">
 
 <head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     @extends('layouts.Link')
     <link rel="stylesheet" href="/css/Userpage.css">
     <title>User Page</title>
+
 </head>
 
 <body>
@@ -22,17 +24,16 @@
             </a>
             <p class="content">CATEGORY</p>
             <!-- Kiểm tra xem đã chọn category chưa , chưa thì active để đổi background color -->
-            <a class="linkus {{ isset($idcategory) ? '' : 'active' }}" href="{{ route('user.page') }}">
+            <div class="linkus">
                 <i class="bi bi-list-ul"></i>
                 <p class="fixtxt">All product</p>
-            </a>
+            </div>
             @foreach($category as $category)
             <!--Kiểm tra xem category có tồn tại không, nếu chưa chọn thì ko thêm active, Nếu đã chọn category thì thêm active vào -->
-            <a class="linkus {{ isset($idcategory) && $idcategory == $category->idcategory ? 'active' : '' }}"
-                href="{{ route('userpage.category', ['idcategory' => $category->idcategory]) }}">
+            <div class="linkus">
                 <i class="{{ $category->iconcategory }}"></i>
                 <p class="fixtxt">{{ $category->namecategory }}</p>
-            </a>
+            </div>
             @endforeach
         </div>
         <div class="rightbody">
@@ -91,6 +92,16 @@
             item.addEventListener('click', function(event) {
                 event.stopPropagation();
             });
+        });
+    });
+
+    $(document).ready(function() {
+        $(".linkus").on("click", function() {
+            // Xóa lớp 'active' từ tất cả các nút
+            $(".linkus").removeClass("active");
+
+            // Thêm lớp 'active' vào nút được bấm
+            $(this).addClass("active");
         });
     });
     </script>
