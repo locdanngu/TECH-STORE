@@ -28,10 +28,10 @@ class ProductController extends Controller
             $products = Product::orderBy('price', 'asc')->get();
             // $products = Product::where('nameproduct', 'like', '%'.$search.'%')->orderBy('price', 'asc')->get();
         }
-        if($idcategory >0 && $idprice==1){    //chọn hãng và chọn giá
+        if($idcategory >0 && $idprice>0){    //chọn hãng và chọn giá
             $products = Product::where('idcategory', $idcategory)->orderBy('price', 'desc')->get();
         }
-        if($idcategory ==0 && $idprice==1){   //chưa chọn hãng nhưng chọn giá
+        if($idcategory ==0 && $idprice>0){   //chưa chọn hãng nhưng chọn giá
             $products = Product::orderBy('price', 'desc')->get();
         }
         $html = '';
