@@ -24,13 +24,13 @@
             </a>
             <p class="content">CATEGORY</p>
             <!-- Kiểm tra xem đã chọn category chưa , chưa thì active để đổi background color -->
-            <div class="linkus">
+            <div class="linkus active"  data-url="0">
                 <i class="bi bi-list-ul"></i>
                 <p class="fixtxt">All product</p>
             </div>
             @foreach($category as $category)
             <!--Kiểm tra xem category có tồn tại không, nếu chưa chọn thì ko thêm active, Nếu đã chọn category thì thêm active vào -->
-            <div class="linkus">
+            <div class="linkus" data-url="{{ $category->idcategory }}">
                 <i class="{{ $category->iconcategory }}"></i>
                 <p class="fixtxt">{{ $category->namecategory }}</p>
             </div>
@@ -60,8 +60,8 @@
             </div>
             <div class="bodyright">
                 <!-- <a href="" class="loc active">All</a> -->
-                <a href="" class="loc active">Price <i class="bi bi-arrow-up"></i></a>
-                <a href="" class="loc">Price <i class="bi bi-arrow-down"></i></a>
+                <div href="" class="loc active" data-url="0">Price <i class="bi bi-arrow-up"></i></div>
+                <div href="" class="loc" data-url="1">Price <i class="bi bi-arrow-down"></i></div>
             </div>
             <div class="allmonhang">
                 @foreach($products as $product)
@@ -96,12 +96,55 @@
     });
 
     $(document).ready(function() {
+        // Lắng nghe sự kiện click trên các div có class "linkus" để lọc sản phẩm theo category
         $(".linkus").on("click", function() {
-            // Xóa lớp 'active' từ tất cả các nút
+            // Lấy giá trị từ thuộc tính "data-value" của div đang được click
+            var idcategory = $(this).data('url'); // Lấy giá trị của thuộc tính data-url của thẻ div
+            // Xóa class "active" trên tất cả các div có class "btn"
             $(".linkus").removeClass("active");
-
-            // Thêm lớp 'active' vào nút được bấm
+            // Thêm class "active" vào div được click
             $(this).addClass("active");
+            // Gửi dữ liệu lên server sử dụng Ajax
+            $.ajax({
+                type: 'POST',
+                url: '/Userpage/' + idcategory, // Thay đổi URL tại đây
+                data: {
+                    // idcategory: idcategory // Truyền giá trị của categoryId lên server
+                    _token: '{{ csrf_token() }}',
+                },
+                success: function(response) {
+                    // Xử lý kết quả trả về từ server
+                    // Ví dụ:
+                    var html = response.html;
+
+                    // Cập nhật nội dung vào class 'allmonhang'
+                    $('.allmonhang').html(html);
+                },
+                error: function(xhr, status, error) {
+                    // Xử lý lỗi nếu có
+                }
+            });
+        });
+    });
+
+    $(document).ready(function() {
+        $(".loc").on("click", function() {
+            var idprice= $(this).data('url'); 
+            $(".loc").removeClass("active");
+            $(this).addClass("active");
+            $.ajax({
+                type: 'POST',
+                url: '/Userpage/' + idprice, 
+                data: {
+                    _token: '{{ csrf_token() }}',
+                },
+                success: function(response) {
+                    var html = response.html;
+                    $('.allmonhang').html(html);
+                },
+                error: function(xhr, status, error) {
+                }
+            });
         });
     });
     </script>

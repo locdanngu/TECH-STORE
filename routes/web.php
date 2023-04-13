@@ -36,9 +36,8 @@ Route::get('/Profileuserpage', function () {
 
 Route::get('/Userpage', [ProductController::class, 'showData'])->name('user.page');
 
-Route::get('/Userpage/category/{idcategory}', [ProductController::class, 'getCategory'])->name('userpage.category');
 
-
+Route::post('/Userpage/{idcategory}', [ProductController::class, 'ajaxRequest'])->name('product.ajaxRequest');
 
 
 
