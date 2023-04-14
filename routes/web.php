@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,9 +23,9 @@ Route::get('/Loginpage', function () {
     return view('Loginpage');
 })->name('login.page');
 
-Route::get('/Signuppage', function () {
-    return view('Signuppage');
-})->name('signup.page');
+// Route::get('/Signuppage', function () {
+//     return view('Signuppage');
+// })->name('signup.page');
 
 Route::get('/Forgotpage', function () {
     return view('Forgotpage');
@@ -42,6 +43,9 @@ Route::post('/Userpage/{idcategory}/{idprice}/{search?}', [ProductController::cl
 
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 
+
+Route::get('/Signuppage', [RegisterController::class, 'create'])->name('signup.page');
+Route::post('/register', [RegisterController::class, 'store'])->name('register');
 
 
 
