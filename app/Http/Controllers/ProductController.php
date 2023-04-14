@@ -10,15 +10,15 @@ class ProductController extends Controller
 {
     public function showData()
     {
-
+        $user = Auth::user();
+        // dd($user);
         // Lấy danh sách sản phẩm từ cơ sở dữ liệu
         $products = Product::orderBy('price', 'asc')->get();
         $category = Category::all();
 
         // Trả về view "Userpage.blade.php" với dữ liệu sản phẩm và thông tin người dùng
-        return view('Userpage')
-            ->with('products', $products)
-            ->with('category', $category);
+        return view('Userpage', ['user' => $user, 'products' => $products, 'category' => $category]);
+
     }
 
     public function ajaxRequest($idcategory,$idprice,$search = null)

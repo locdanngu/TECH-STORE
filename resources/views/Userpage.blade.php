@@ -19,7 +19,7 @@
             <!-- <p class="content">USER</p> -->
             <a class="linkus" href="{{ route('profileuser.page') }}">
                 <i class="bi bi-person"></i>
-                <p class="fixtxt">Profile</p>
+                <p class="fixtxt">{{ $user->email }}</p>
             </a>
             <a class="linkus">
                 <i class="bi bi-box-arrow-in-left"></i>
@@ -59,7 +59,7 @@
                     </div>
                     <!-- <a href="" class="btnlink"><i class="bi bi-bell"></i></a> -->
                     <a href="" class="btnlink"><i class="bi bi-cart"></i></a>
-                    <img src="/images/sample2.png" class="avataruser">
+                    <img src="{{ $user->avatar }}" class="avataruser">
                 </div>
 
             </div>

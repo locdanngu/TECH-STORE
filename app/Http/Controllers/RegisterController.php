@@ -23,16 +23,13 @@ class RegisterController extends Controller
         ]);
 
         // Lưu thông tin người dùng vào session
-        session()->put('user', $user);
+        // session()->put('user', $user);
 
-        // Đăng nhập người dùng mới đăng ký
+        // // Đăng nhập người dùng mới đăng ký
         Auth::login($user);
 
-        // Lấy thông tin người dùng từ session đã lưu
-        $user_info = session()->get('user');
-
         // Chuyển hướng sang trang Userpage, truyền thông tin người dùng qua biến user
-        return redirect()->route('user.page', ['user' => $user_info]);
+        return redirect()->route('user.page');
 
 
     }
