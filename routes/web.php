@@ -35,6 +35,8 @@ Route::get('/Profileuserpage', function () {
     return view('Profileuserpage');
 })->name('profileuser.page');
 
+// Route::post('/Userpage', [ProductController::class, 'showUser'])->name('user.page');
+
 Route::get('/Userpage', [ProductController::class, 'showData'])->name('user.page');
 
 

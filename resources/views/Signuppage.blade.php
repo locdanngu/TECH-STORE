@@ -20,7 +20,7 @@
     </nav>
 
 
-    <form action="{{ route('register') }}" method="POST" class="box1">
+    <form method="POST" action="{{ route('register') }}" class="box1">
         @csrf
         <p class="tieudebox1">SIGN UP</p>
         <label>Email(*): </label>

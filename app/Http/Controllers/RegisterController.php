@@ -14,18 +14,29 @@ class RegisterController extends Controller
 
     public function store(Request $request){
         $input = $request->all();
-        // dd($input);
-        User::create([
+        $user = User::create([
             'email' => $input['email'],
             'phone' => $input['phone'],
             'name' => $input['name'],
             'password' => Hash::make($input['password']),
             'avatar' => '/images/avatar.png',
         ]);
-        
-        return redirect()->route('user.page');
+
+        // Lưu thông tin người dùng vào session
+        session()->put('user', $user);
+
+        // Đăng nhập người dùng mới đăng ký
+        Auth::login($user);
+
+        // Lấy thông tin người dùng từ session đã lưu
+        $user_info = session()->get('user');
+
+        // Chuyển hướng sang trang Userpage, truyền thông tin người dùng qua biến user
+        return redirect()->route('user.page', ['user' => $user_info]);
+
 
     }
+    
 
 
 
