@@ -184,7 +184,7 @@
     $(".bi-arrow-bar-right").on("click", function() {
         $(".leftbody, .linkus, .linkus2").css({
             "width": "",
-            "transition": "visibility 1.5s ease",
+            // "transition": "visibility 1.5s ease",
             "transition": "width 1.5s ease"
         });
         $(".rightbody").css({
