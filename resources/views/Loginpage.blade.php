@@ -30,6 +30,9 @@
         @error('email')
         <p class="error">{{ $message }}</p>
         @enderror
+        @error('error')
+        <p class="error">{{ $message }}</p>
+        @enderror
         <div class="botofinput">
             <div class="rmb">
                 <input type="checkbox" class="ckbx">

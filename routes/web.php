@@ -3,6 +3,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\ProfileuserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,10 +35,11 @@ Route::get('/Forgotpage', function () {
     return view('Forgotpage');
 })->name('forgot.page');
 
-Route::get('/Profileuserpage', function () {
-    return view('Profileuserpage');
-})->name('profileuser.page');
+// Route::get('/Profileuserpage', function () {
+//     return view('Profileuserpage');
+// })->name('profileuser.page');
 
+Route::get('/Profileuserpage', [ProfileuserController::class, 'showProfileuser'])->name('profileuser.page'); 
 
 
 Route::get('/Userpage', [ProductController::class, 'showData'])->name('user.page');             //route chuyển hướng sau khi đăng kí

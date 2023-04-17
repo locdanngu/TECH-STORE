@@ -21,7 +21,7 @@ class ProductController extends Controller
         return view('Userpage', ['user' => $user, 'products' => $products, 'category' => $category]);
 
         } else {
-            return redirect()->route('login.page')->with('error', 'Bạn cần đăng nhập tài khoản để truy cập trang này!');
+            return redirect()->route('login.page')->withErrors(['error' => 'You need to log in first!']);
         }
     }
 
