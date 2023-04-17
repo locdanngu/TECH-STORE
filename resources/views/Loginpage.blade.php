@@ -24,9 +24,12 @@
         @csrf
         <p class="tieudebox1">LOGIN TO STORE</p>
         <label>Email or phone(*): </label>
-        <input type="text" required class="inputbox1" name="email">
+        <input type="text" required class="inputbox1" name="email" value="{{ old('email') }}">
         <label>Password(*): </label>
         <input type="password" required class="inputbox1" name="password">
+        @error('email')
+        <p class="error">{{ $message }}</p>
+        @enderror
         <div class="botofinput">
             <div class="rmb">
                 <input type="checkbox" class="ckbx">

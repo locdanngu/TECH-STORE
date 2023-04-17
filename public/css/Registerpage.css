@@ -37,7 +37,10 @@ p{
     border: 0.5px solid #A100ED;
 }
 
-
+.error{
+    color: #ff0000;
+    
+}
 
 .body{
     width: 100%;

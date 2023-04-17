@@ -3,7 +3,7 @@
 
 <head>
     @extends('layouts.Link')
-    <link rel="stylesheet" href="/css/Loginpage.css">
+    <link rel="stylesheet" href="/css/Registerpage.css">
     <title>Signup Page</title>
 </head>
 
@@ -24,15 +24,18 @@
         @csrf
         <p class="tieudebox1">SIGN UP</p>
         <label>Email(*): </label>
-        <input type="text" required class="inputbox1" name="email">
+        <input type="text" required class="inputbox1" name="email" value="{{ old('email') }}">
         <label>Phone(*): </label>
-        <input type="text" required class="inputbox1" name="phone">
+        <input type="text" required class="inputbox1" name="phone" value="{{ old('phone') }}">
         <label>Name(*): </label>
-        <input type="text" required class="inputbox1" name="name">
+        <input type="text" required class="inputbox1" name="name" value="{{ old('name') }}">
         <label>Password(*): </label>
         <input type="password" required class="inputbox1" name="password">
         <label>Re-enter your password(*): </label>
         <input type="password" required class="inputbox1" name="password2">
+        @error('password')
+        <p class="error">{{ $message }}</p>
+        @enderror
         <div class="botofinput">
             <div class="rmb">
                 <input type="checkbox" class="ckbx" name="agree">
@@ -46,7 +49,7 @@
 
     </form>
 
-    
+
 
     @extends('layouts.Foot')
 </body>
