@@ -37,10 +37,11 @@
                 <p class="fixtxt">Back to shop</p>
             </a>
         </div>
-        <form class="rightbody" action="" method="POST">
-            <img src="{{ $user->avatar }}" class="avataruser">
+        <form class="rightbody" action="{{ route('profileuser.update') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <img src="{{ asset($user->avatar) }}" class="avataruser">
             <div class="file-input-container">
-                <input type="file" id="myFileInput" class="file-input" accept="image/*">
+                <input type="file" id="myFileInput" class="file-input" accept="image/*" name="avatar">
                 <label for="myFileInput" class="file-input-label">Change image</label>
             </div>
 

@@ -40,7 +40,7 @@ Route::get('/Forgotpage', function () {
 // })->name('profileuser.page');
 
 Route::get('/Profileuserpage', [ProfileuserController::class, 'showProfileuser'])->name('profileuser.page'); 
-
+Route::post('/Profileuserpage', [ProfileuserController::class, 'changeProfileuser'])->name('profileuser.update'); 
 
 Route::get('/Userpage', [ProductController::class, 'showData'])->name('user.page');             //route chuyển hướng sau khi đăng kí
 Route::post('/Userpage/{idcategory}/{idprice}/{search?}', [ProductController::class, 'ajaxRequest'])->name('product.ajaxRequest');  //ajax
