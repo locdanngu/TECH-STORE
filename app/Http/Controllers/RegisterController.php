@@ -9,7 +9,11 @@ use Hash;
 class RegisterController extends Controller
 {
     public function create(){
-        return view('/Signuppage');
+        if (Auth::check()) {
+            return redirect()->route('user.page');
+        }else{
+            return view('/Signuppage');
+        }
     }
 
     public function store(Request $request){

@@ -21,7 +21,7 @@
                 <i class="bi bi-person"></i>
                 <p class="fixtxt">{{ $user->email }}</p>
             </a>
-            <a class="linkus">
+            <a class="linkus" href="{{ route('logout') }}">
                 <i class="bi bi-box-arrow-in-left"></i>
                 <p class="fixtxt">Logout</p>
             </a>
@@ -201,6 +201,8 @@
             });
         }, 1000); // 1.5 giây
     });
+
+    
     </script>
 </body>
 

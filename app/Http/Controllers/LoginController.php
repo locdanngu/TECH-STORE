@@ -7,6 +7,16 @@ use App\Models\User;
 
 class LoginController extends Controller
 {
+    public function loginform(Request $request){
+        if (Auth::check()) {
+            return redirect()->route('user.page');
+        }else{
+            return view('Loginpage');
+        }
+    }
+
+
+
     public function login(Request $request)
     {
         // Kiểm tra tính hợp lệ của đầu vào
