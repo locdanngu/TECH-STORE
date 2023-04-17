@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     @extends('layouts.Link')
     <link rel="stylesheet" href="/css/Profileuserpage.css">
     <title>Profile User Page</title>
@@ -39,7 +40,7 @@
         </div>
         <form class="rightbody" action="{{ route('profileuser.update') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <img src="{{ asset($user->avatar) }}" class="avataruser">
+            <img id="preview" src="{{ asset($user->avatar) }}" class="avataruser">
             <div class="file-input-container">
                 <input type="file" id="myFileInput" class="file-input" accept="image/*" name="avatar">
                 <label for="myFileInput" class="file-input-label">Change image</label>
@@ -66,7 +67,19 @@
     </div>
     @extends('layouts.Foot')
     <script>
-
+    function previewFile(input) {
+        var file = $("input[type=file]").get(0).files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                $("#preview").attr("src", reader.result);
+            }
+            reader.readAsDataURL(file);
+        }
+    }
+    $("input[type=file]").change(function() {
+        previewFile(this);
+    });
     </script>
 </body>
 
