@@ -24,7 +24,7 @@ Route::get('/', function () {
 //     return view('Loginpage');
 // })->name('login.page');
 
-Route::get('/Loginpage', [LoginController::class, 'loginform'])->name('login.page');        //hiển thị form đăng nhập
+
 
 // Route::get('/Signuppage', function () {
 //     return view('Signuppage');
@@ -41,18 +41,18 @@ Route::get('/Profileuserpage', function () {
 
 
 Route::get('/Userpage', [ProductController::class, 'showData'])->name('user.page');             //route chuyển hướng sau khi đăng kí
-
-
 Route::post('/Userpage/{idcategory}/{idprice}/{search?}', [ProductController::class, 'ajaxRequest'])->name('product.ajaxRequest');  //ajax
 
 
 Route::post('/login', [LoginController::class, 'login'])->name('login');        //route xử lí đăng nhập
+Route::get('/Loginpage', [LoginController::class, 'loginform'])->name('login.page');        //hiển thị form đăng nhập
 
 
 Route::get('/Signuppage', [RegisterController::class, 'create'])->name('signup.page');          //route view trang đăng kí
 Route::post('/register', [RegisterController::class, 'store'])->name('register');               //route xử lí đăng kí
 
-Route::get('/logout', [LogoutController::class, 'logOut'])->name('logout');
+
+Route::get('/logout', [LogoutController::class, 'logOut'])->name('logout');         //route xử lí đăng xuất
 
 
 
