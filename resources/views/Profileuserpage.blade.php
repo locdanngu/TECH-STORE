@@ -38,7 +38,7 @@
             </a>
         </div>
         <form class="rightbody" action="" method="POST">
-            <img src="/images/sample2.png" class="avataruser">
+            <img src="{{ $user->avatar }}" class="avataruser">
             <div class="file-input-container">
                 <input type="file" id="myFileInput" class="file-input" accept="image/*">
                 <label for="myFileInput" class="file-input-label">Change image</label>
@@ -46,15 +46,15 @@
 
             <div class="phantuuser">
                 <p class="namephantu">Email: </p>
-                <p class="namephantu">19T1021119@husc.edu.vn</p>
+                <p class="namephantu">{{ $user->email }}</p>
             </div>
             <div class="phantuuser">
                 <p class="namephantu">Phone: </p>
-                <input type="text" class="nhapttuser" value="+84977481545" name="phone">
+                <input type="text" class="nhapttuser" value="{{ $user->phone }}" name="phone">
             </div>
             <div class="phantuuser">
                 <p class="namephantu">Name: </p>
-                <input type="text" class="nhapttuser" value="Trần Văn Lộc" name="name">
+                <input type="text" class="nhapttuser" value="{{ $user->name }}" name="name">
             </div>
             <div class="phantuuser">
                 <p class="namephantu fix">Name: </p>
