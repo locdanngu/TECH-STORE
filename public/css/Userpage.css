@@ -325,3 +325,24 @@ a{
     margin-top: 10% !important;
 
 }
+
+
+
+.phantrang {
+    margin-top: 1em;
+  }
+  
+  .phantrang .page-link {
+    background-color: #fff;
+    color: #333;
+    margin-right: 1em;
+    border-radius: 50%;
+    font-weight: bold;
+    padding: 0.5em 1em;
+    transition: 0.5s ease;
+  }
+  
+  .phantrang .page-link:hover {
+    background-color: #eee;
+  }
+  

@@ -82,12 +82,10 @@
                     <p class="nulltxt">No matching products.</p>
                 </div> -->
             </div>
-            <!-- <div class="phantrang">
-                <a class="numpt" href="">1</a>
-                <a class="numpt" href="">2</a>
-                <a class="numpt" href="">3</a>
-                <a class="numpt" href="">4</a>
-            </div> -->
+            <div class="phantrang">
+                {{ $products->links('pagination::bootstrap-4') }}
+            </div>
+
         </div>
     </div>
     @extends('layouts.Foot')
@@ -201,8 +199,6 @@
             });
         }, 1000); // 1.5 giây
     });
-
-    
     </script>
 </body>
 

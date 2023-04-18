@@ -14,8 +14,11 @@ class ProductController extends Controller
             $user = Auth::user();
             // dd($user);
             // Lấy danh sách sản phẩm từ cơ sở dữ liệu
-            $products = Product::orderBy('price', 'asc')->get();
+            // $products = Product::orderBy('price', 'asc')->get();
+            // $category = Category::all();
+            $products = Product::orderBy('price', 'asc')->paginate(6);
             $category = Category::all();
+
 
             // Trả về view "Userpage.blade.php" với dữ liệu sản phẩm và thông tin người dùng
         return view('Userpage', ['user' => $user, 'products' => $products, 'category' => $category]);
