@@ -23,7 +23,7 @@
     <form method="POST" action="{{ route('login') }}" class="box1">
         @csrf
         <p class="tieudebox1">LOGIN TO STORE</p>
-        <label>Email or phone(*): </label>
+        <label>Email(*): </label>
         <input type="text" required class="inputbox1" name="email" value="{{ old('email') }}">
         <label>Password(*): </label>
         <input type="password" required class="inputbox1" name="password">
@@ -35,8 +35,12 @@
         @enderror
         <div class="botofinput">
             <div class="rmb">
-                <input type="checkbox" class="ckbx">
-                <p class="rmbtxt">Remember me</p>
+                <!-- <input type="checkbox" class="ckbx">
+                <p class="rmbtxt">Remember me</p> -->
+                <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} class="ckbx">
+                <label for="remember" class="fixlabel">
+                    {{ __('Remember me') }}
+                </label>
             </div>
             <a href="{{ route('forgot.page') }}">Forgot password?</a>
         </div>
