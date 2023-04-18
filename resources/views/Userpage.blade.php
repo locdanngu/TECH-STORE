@@ -58,7 +58,7 @@
                         </ul>
                     </div>
                     <!-- <a href="" class="btnlink"><i class="bi bi-bell"></i></a> -->
-                    <a href="" class="btnlink"><i class="bi bi-cart"></i></a>
+                    <a  href="{{ route('cart.page') }}" class="btnlink"><i class="bi bi-cart"></i></a>
                     <img src="{{ $user->avatar }}" class="avataruser">
                 </div>
 

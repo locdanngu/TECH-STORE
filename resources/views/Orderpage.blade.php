@@ -4,8 +4,8 @@
 <head>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     @extends('layouts.Link')
-    <link rel="stylesheet" href="/css/Cartpage.css">
-    <title>My Cart</title>
+    <link rel="stylesheet" href="/css/Orderpage.css">
+    <title>My Purchase Order</title>
 </head>
 
 <body>
@@ -21,11 +21,11 @@
                 <i class="bi bi-lock"></i>
                 <p class="fixtxt">Change Password</p>
             </a>
-            <a class="linkus active" href="{{ route('cart.page') }}">
+            <a class="linkus" href="{{ route('cart.page') }}">
                 <i class="bi bi-cart"></i>
                 <p class="fixtxt">My Cart</p>
             </a>
-            <a class="linkus" href="{{ route('order.page') }}">
+            <a class="linkus active" href="{{ route('order.page') }}">
                 <i class="bi bi-list-ul"></i>
                 <p class="fixtxt">My Purchase order</p>
             </a>

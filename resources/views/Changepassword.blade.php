@@ -25,7 +25,7 @@
                 <i class="bi bi-cart"></i>
                 <p class="fixtxt">My Cart</p>
             </a>
-            <a class="linkus">
+            <a class="linkus" href="{{ route('order.page') }}">
                 <i class="bi bi-list-ul"></i>
                 <p class="fixtxt">My Purchase order</p>
             </a>
