@@ -123,18 +123,23 @@
 
         function updateProductList(idcategory, idprice) {
             $.ajax({
-                type: 'POST',
+                type: 'GET',
                 url: '/Userpage/' + idcategory + '/' + idprice,
                 data: {
                     _token: '{{ csrf_token() }}',
                 },
+                dataType: 'json',
                 success: function(response) {
                     var html = response.html;
+                    var htmlPagination = response.htmlPagination;
                     $('.allmonhang').html(html);
+                    $('.phantrang').html(htmlPagination);
                 },
                 error: function(xhr, status, error) {}
             });
         }
+
+
     });
 
     $(".linkus, .loc").on("click", function() {
