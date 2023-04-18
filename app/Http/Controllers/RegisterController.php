@@ -28,6 +28,7 @@ class RegisterController extends Controller
                 'name' => $input['name'],
                 'password' => Hash::make($input['password']),
                 'avatar' => '/images/avatar.png',
+                'role' => 'customer',
             ]);
     
             // Lưu thông tin người dùng vào session
