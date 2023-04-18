@@ -21,23 +21,9 @@ Route::get('/', function () {
     return view('Homepage');
 })->name('home.page');
 
-// Route::get('/Loginpage', function () {
-//     return view('Loginpage');
-// })->name('login.page');
-
-
-
-// Route::get('/Signuppage', function () {
-//     return view('Signuppage');
-// })->name('signup.page');
-
 Route::get('/Forgotpage', function () {
     return view('Forgotpage');
 })->name('forgot.page');
-
-// Route::get('/Profileuserpage', function () {
-//     return view('Profileuserpage');
-// })->name('profileuser.page');
 
 Route::get('/Profileuserpage', [ProfileuserController::class, 'showProfileuser'])->name('profileuser.page');        //view thông tin user
 Route::post('/Profileuserpage', [ProfileuserController::class, 'changeProfileuser'])->name('profileuser.update');   //thay đổi thông tin user
@@ -46,7 +32,6 @@ Route::post('/Changepassword', [ProfileuserController::class, 'changePassWord'])
 Route::get('/Cartuserpage', [ProfileuserController::class, 'viewCart'])->name('cart.page');     //view giỏ hàng
 
 Route::get('/Mypurchasepage', [ProfileuserController::class, 'viewOrder'])->name('order.page');     //view lịch sử mua hàng
-
 
 
 
@@ -69,7 +54,3 @@ Route::get('/logout', [LogoutController::class, 'logOut'])->name('logout');     
 
 
 
-
-Route::get('/test', function () {
-    return view('test');
-})->name('test');
