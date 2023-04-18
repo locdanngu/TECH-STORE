@@ -14,10 +14,10 @@ class ProductController extends Controller
             $user = Auth::user();
             // dd($user);
             // Lấy danh sách sản phẩm từ cơ sở dữ liệu
-            // $products = Product::orderBy('price', 'asc')->get();
-            // $category = Category::all();
-            $products = Product::orderBy('price', 'asc')->paginate(6);
+            $products = Product::orderBy('price', 'asc')->get();
             $category = Category::all();
+            // $products = Product::orderBy('price', 'asc')->paginate(6);
+            // $category = Category::all();
 
 
             // Trả về view "Userpage.blade.php" với dữ liệu sản phẩm và thông tin người dùng
@@ -61,89 +61,39 @@ class ProductController extends Controller
         //     $products = Product::orderBy('price', 'desc')->get();
         // }
 
-        // if($idcategory==0){
-        //     if($idprice==0){
-        //         if($search ==null){
-        //             $products = Product::orderBy('price', 'asc')->get();
-        //         }else{
-        //             $products = Product::where('nameproduct', 'like', '%'.$search.'%')->orderBy('price', 'asc')->get();
-        //         }
-        //     }else{
-        //         if($search ==null){
-        //             $products = Product::orderBy('price', 'desc')->get();
-        //         }else{
-        //             $products = Product::where('nameproduct', 'like', '%'.$search.'%')->orderBy('price', 'desc')->get();
-        //         }
-        //     }
-        // }else{
-        //     if($idprice==0){
-        //         if($search ==null){
-        //             $products = Product::where('idcategory', $idcategory)->orderBy('price', 'asc')->get();
-        //         }else{
-        //             $products = Product::where('nameproduct', 'like', '%'.$search.'%')->where('idcategory', $idcategory)->orderBy('price', 'asc')->get();
-        //         }
-        //     }else{
-        //         if($search ==null){
-        //             $products = Product::where('idcategory', $idcategory)->orderBy('price', 'desc')->get();            
-        //         }else{
-        //             $products = Product::where('nameproduct', 'like', '%'.$search.'%')->where('idcategory', $idcategory)->orderBy('price', 'desc')->get();
-        //         }
-        //     }
-        // }
-
-        // $html = '';
-        // if(count($products)){               //kiểm tra xem product có chứa gì đó không(vì biến đã đc khởi tạo nên ko dùng isset đc)
-        //     foreach ($products as $product) {
-        //         $html .= '<div class="monhang">';
-        //         $html .= '<a href=""><img src="' . $product->image . '" class="imgsp"></a>';
-        //         $html .= '<p class="namesp">' . $product->nameproduct . '</p>';
-        //         $html .= '<p class="namehangsp">' . $product->category->namecategory . '</p>';
-        //         $html .= '<p class="price">$' . $product->price . '</p>';
-        //         $html .= '<a href="" class="addtocart"><i class="bi bi-plus-circle"></i> Add to cart</a>';
-        //         $html .= '</div>';
-        //     }
-        // }else{
-        //     $html .= '<div class="null">';
-        //     $html .= '<p class="nulltxt">No matching products.</p>';
-        //     $html .= '</div>';
-        // }
-        
-        // return response()->json(['html' => $html]);
-
-        if ($idcategory == 0) {
-            if ($idprice == 0) {
-                if ($search == null) {
-                    $products = Product::orderBy('price', 'asc')->paginate(6);
-                } else {
-                    $products = Product::where('nameproduct', 'like', '%'.$search.'%')->orderBy('price', 'asc')->paginate(6);
+        if($idcategory==0){
+            if($idprice==0){
+                if($search ==null){
+                    $products = Product::orderBy('price', 'asc')->get();
+                }else{
+                    $products = Product::where('nameproduct', 'like', '%'.$search.'%')->orderBy('price', 'asc')->get();
                 }
-            } else {
-                if ($search == null) {
-                    $products = Product::orderBy('price', 'desc')->paginate(6);
-                } else {
-                    $products = Product::where('nameproduct', 'like', '%'.$search.'%')->orderBy('price', 'desc')->paginate(6);
+            }else{
+                if($search ==null){
+                    $products = Product::orderBy('price', 'desc')->get();
+                }else{
+                    $products = Product::where('nameproduct', 'like', '%'.$search.'%')->orderBy('price', 'desc')->get();
                 }
             }
-        } else {
-            if ($idprice == 0) {
-                if ($search == null) {
-                    $products = Product::where('idcategory', $idcategory)->orderBy('price', 'asc')->paginate(6);
-                } else {
-                    $products = Product::where('nameproduct', 'like', '%'.$search.'%')->where('idcategory', $idcategory)->orderBy('price', 'asc')->paginate(6);
+        }else{
+            if($idprice==0){
+                if($search ==null){
+                    $products = Product::where('idcategory', $idcategory)->orderBy('price', 'asc')->get();
+                }else{
+                    $products = Product::where('nameproduct', 'like', '%'.$search.'%')->where('idcategory', $idcategory)->orderBy('price', 'asc')->get();
                 }
-            } else {
-                if ($search == null) {
-                    $products = Product::where('idcategory', $idcategory)->orderBy('price', 'desc')->paginate(6);
-                } else {
-                    $products = Product::where('nameproduct', 'like', '%'.$search.'%')->where('idcategory', $idcategory)->orderBy('price', 'desc')->paginate(6);
+            }else{
+                if($search ==null){
+                    $products = Product::where('idcategory', $idcategory)->orderBy('price', 'desc')->get();            
+                }else{
+                    $products = Product::where('nameproduct', 'like', '%'.$search.'%')->where('idcategory', $idcategory)->orderBy('price', 'desc')->get();
                 }
             }
         }
-        
-        $html = '';
-        $htmlPagination = $products->links('pagination::bootstrap-4')->toHtml();
 
-        if (count($products)) {
+        $html = '';
+       
+        if(count($products)){               //kiểm tra xem product có chứa gì đó không(vì biến đã đc khởi tạo nên ko dùng isset đc)
             foreach ($products as $product) {
                 $html .= '<div class="monhang">';
                 $html .= '<a href=""><img src="' . $product->image . '" class="imgsp"></a>';
@@ -153,18 +103,13 @@ class ProductController extends Controller
                 $html .= '<a href="" class="addtocart"><i class="bi bi-plus-circle"></i> Add to cart</a>';
                 $html .= '</div>';
             }
-        } else {
+        }else{
             $html .= '<div class="null">';
             $html .= '<p class="nulltxt">No matching products.</p>';
             $html .= '</div>';
         }
         
-        
-
-
-        return response()->json(['html' => $html, 'htmlPagination' => $htmlPagination]);
-
-        
+        return response()->json(['html' => $html]);
     }
 
 

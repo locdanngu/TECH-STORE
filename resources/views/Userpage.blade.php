@@ -71,19 +71,24 @@
             <div class="allmonhang">
                 @foreach($products as $product)
                 <div class="monhang">
-                    <a href=""><img src="{{ $product->image }}" class="imgsp"></a>
+                    <a href="#" class="popup-link" data-popup="#popup-{{ $product->id }}"><img
+                            src="{{ $product->image }}" class="imgsp"></a>
                     <p class="namesp">{{ $product->nameproduct }}</p>
                     <p class="namehangsp">{{ $product->category->namecategory }}</p>
                     <p class="price">${{ $product->price }}</p>
                     <a href="" class="addtocart"><i class="bi bi-plus-circle"></i> Add to cart</a>
                 </div>
+                <div class="popup" id="popup-{{ $product->id }}">
+                    <div class="popup-content">
+                        <h2>{{ $product->nameproduct }}</h2>
+                        <img src="{{ $product->image }}" class="imgsp">
+                        <p>{{ $product->review }}</p>
+                        <p class="price">${{ $product->price }}</p>
+                        <a href="" class="addtocart"><i class="bi bi-plus-circle"></i> Add to cart</a>
+                        <a href="#" class="close-popup"><i class="bi bi-x-circle"></i> Close</a>
+                    </div>
+                </div>
                 @endforeach
-                <!-- <div class="null">
-                    <p class="nulltxt">No matching products.</p>
-                </div> -->
-            </div>
-            <div class="phantrang">
-                {{ $products->links('pagination::bootstrap-4') }}
             </div>
 
         </div>
@@ -123,7 +128,7 @@
 
         function updateProductList(idcategory, idprice) {
             $.ajax({
-                type: 'GET',
+                type: 'POST',
                 url: '/Userpage/' + idcategory + '/' + idprice,
                 data: {
                     _token: '{{ csrf_token() }}',
@@ -131,9 +136,7 @@
                 dataType: 'json',
                 success: function(response) {
                     var html = response.html;
-                    var htmlPagination = response.htmlPagination;
                     $('.allmonhang').html(html);
-                    $('.phantrang').html(htmlPagination);
                 },
                 error: function(xhr, status, error) {}
             });
@@ -203,6 +206,28 @@
                 "visibility": "",
             });
         }, 1000); // 1.5 giây
+    });
+
+
+    $(document).ready(function() {
+        // Hiển thị popup khi click vào ảnh
+        $('.popup-link').on('click', function(e) {
+            e.preventDefault();
+            var popup_id = $(this).attr('data-popup');
+            $(popup_id).fadeIn();
+        });
+
+        // Ẩn popup khi click vào nút đóng
+        $('.close-popup').on('click', function(e) {
+            e.preventDefault();
+            $(this).closest('.popup').fadeOut();
+        });
+
+        // Ẩn popup khi click vào vùng ngoài popup
+        $('.popup').on('click', function(e) {
+            if (e.target !== this) return;
+            $(this).fadeOut();
+        });
     });
     </script>
 </body>

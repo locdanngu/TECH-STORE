@@ -48,7 +48,7 @@ Route::post('/Changepassword', [ProfileuserController::class, 'changePassWord'])
 
 
 Route::get('/Userpage', [ProductController::class, 'showData'])->name('user.page');             //route chuyển hướng sau khi đăng kí
-Route::get('/Userpage/{idcategory}/{idprice}/{search?}', [ProductController::class, 'ajaxRequest'])->name('product.ajaxRequest');  //ajax
+Route::post('/Userpage/{idcategory}/{idprice}/{search?}', [ProductController::class, 'ajaxRequest'])->name('product.ajaxRequest');  //ajax
 
 
 Route::post('/login', [LoginController::class, 'login'])->name('login');        //route xử lí đăng nhập
