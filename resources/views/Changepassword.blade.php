@@ -17,7 +17,7 @@
                 <i class="bi bi-person"></i>
                 <p class="fixtxt">Profile</p>
             </a>
-            <a class="linkus" href="{{ route('changepassword.page') }}">
+            <a class="linkus active" href="{{ route('changepassword.page') }}">
                 <i class="bi bi-lock"></i>
                 <p class="fixtxt">Change Password</p>
             </a>
