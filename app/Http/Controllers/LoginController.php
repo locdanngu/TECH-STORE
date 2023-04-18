@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Str;                                         //2 thư viện dùng để lưu tài khoản
+use Illuminate\Support\Facades\Cookie;                              //vào Cookies
 
 class LoginController extends Controller
 {
@@ -33,7 +33,7 @@ class LoginController extends Controller
         if (Auth::attempt($credentials, $request->remember)) {
             // Nếu đăng nhập thành công, chuyển hướng đến trang người dùng
             // return redirect()->intended('/Userpage');
-            if ($request->remember) {
+            if ($request->remember) {                   //kiểm tra xem có bấm nút remember chưa
                 auth()->user()->remember_token = Str::random(60);
                 auth()->user()->save();
                 Cookie::queue('remember_token', auth()->user()->remember_token, 1440);

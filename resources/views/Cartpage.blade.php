@@ -38,11 +38,39 @@
                 <p class="fixtxt">Back to shop</p>
             </a>
         </div>
-        
+        <div class="rightbody">
+            <div class="headright">
+                <div class="sotien">
+                    <p class="txtblc">Account balance: <span id="balance" style="font-weight:bold">******</span></p>
+                    <i class="bi bi-eye-slash" id="eye1"></i>
+                    <i class="bi bi-eye" id="eye2"></i>
+                </div>
+                <button class="naptien">Recharge</button>
+            </div>
+
+
+        </div>
     </div>
     @extends('layouts.Foot')
     <script>
+    $(document).ready(function() {
+        var isHidden = true;
+        var balance = '10000.00$';
 
+        $('#eye1, #eye2').click(function() {
+            if (isHidden) {
+                $("#eye2").hide();
+                $("#eye1").show();
+                $('#balance').text(balance);
+                isHidden = false;
+            } else {
+                $("#eye1").hide();
+                $("#eye2").show();
+                $('#balance').text('******');
+                isHidden = true;
+            }
+        });
+    });
     </script>
 </body>
 

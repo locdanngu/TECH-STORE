@@ -26,8 +26,8 @@ p {
     display: flex;
     flex-direction: column;
     width: 80%;
-    align-items: center;
-    padding: 4em;
+    /* align-items: center; */
+    padding: 2em 3em 2em 3em;
 }
 
 
@@ -121,3 +121,48 @@ p {
     background-color: #3b3b3b;
 }
 
+.sotien{
+    display: flex;
+    justify-content: space-between;
+    width: 25%;
+}
+
+.txtblc{
+    color: #FFFFFF;
+}
+
+.bi-eye-slash,.bi-eye{
+    color: #FFFFFF;
+    cursor: pointer;
+    /* transition: 0.5s ease; */
+}
+
+.bi-eye-slash{
+    display: none;
+}
+
+.bi-eye-slash.active{
+    display: block;
+}
+
+    
+
+.headright{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.naptien{
+    border-radius: .25em;
+    border: 0;
+    background-color: #A100ED;
+    padding: 0.5em 1em 0.5em 1em;
+    color: #FFFFFF;
+    transition: 0.75s ease;
+}
+
+.naptien:hover{
+    background-color: #2D2D2D;
+    border: 0.5px solid #A100ED;
+}
