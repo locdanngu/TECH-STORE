@@ -361,7 +361,7 @@ a {
     flex-direction: column;
     transform: translate(5%, 5%);
     width: 90%;
-    overflow-y:scroll;
+    /* overflow-y:scroll; */
     border-radius: 5px;
 }
 
