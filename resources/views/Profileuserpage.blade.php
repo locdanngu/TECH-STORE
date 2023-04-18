@@ -21,7 +21,7 @@
                 <i class="bi bi-lock"></i>
                 <p class="fixtxt">Change Password</p>
             </a>
-            <a class="linkus">
+            <a class="linkus" href="{{ route('cart.page') }}">
                 <i class="bi bi-cart"></i>
                 <p class="fixtxt">My Cart</p>
             </a>
