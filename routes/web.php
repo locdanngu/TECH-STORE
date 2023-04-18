@@ -39,8 +39,13 @@ Route::get('/Forgotpage', function () {
 //     return view('Profileuserpage');
 // })->name('profileuser.page');
 
-Route::get('/Profileuserpage', [ProfileuserController::class, 'showProfileuser'])->name('profileuser.page'); 
-Route::post('/Profileuserpage', [ProfileuserController::class, 'changeProfileuser'])->name('profileuser.update'); 
+Route::get('/Profileuserpage', [ProfileuserController::class, 'showProfileuser'])->name('profileuser.page');        //view thông tin user
+Route::post('/Profileuserpage', [ProfileuserController::class, 'changeProfileuser'])->name('profileuser.update');   //thay đổi thông tin user
+Route::get('/Changepassword', [ProfileuserController::class, 'viewChangePassWord'])->name('changepassword.page');  //view đổi mk
+Route::post('/Changepassword', [ProfileuserController::class, 'changePassWord'])->name('changepassword.update');  //route thay mk
+
+
+
 
 Route::get('/Userpage', [ProductController::class, 'showData'])->name('user.page');             //route chuyển hướng sau khi đăng kí
 Route::post('/Userpage/{idcategory}/{idprice}/{search?}', [ProductController::class, 'ajaxRequest'])->name('product.ajaxRequest');  //ajax

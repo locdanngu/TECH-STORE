@@ -4,8 +4,8 @@
 <head>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     @extends('layouts.Link')
-    <link rel="stylesheet" href="/css/Profileuserpage.css">
-    <title>Profile User Page</title>
+    <link rel="stylesheet" href="/css/Changepassword.css">
+    <title>Change password</title>
 </head>
 
 <body>
@@ -13,7 +13,7 @@
         <div class="leftbody">
             <a href="{{ route('user.page') }}"><img src="/images/logo.png"></a>
             <p class="content">USER</p>
-            <a class="linkus active" href="{{ route('profileuser.page') }}">
+            <a class="linkus" href="{{ route('profileuser.page') }}">
                 <i class="bi bi-person"></i>
                 <p class="fixtxt">Profile</p>
             </a>
@@ -38,48 +38,45 @@
                 <p class="fixtxt">Back to shop</p>
             </a>
         </div>
-        <form class="rightbody" action="{{ route('profileuser.update') }}" method="POST" enctype="multipart/form-data">
+        <form action="" method="POST" class="rightbody">
             @csrf
-            <img id="preview" src="{{ asset($user->avatar) }}" class="avataruser">
-            <div class="file-input-container">
-                <input type="file" id="myFileInput" class="file-input" accept="image/*" name="avatar">
-                <label for="myFileInput" class="file-input-label">Change image</label>
-            </div>
-
+            <p class="contentform">CHANGE PASSWORD</p>
             <div class="phantuuser">
-                <p class="namephantu">Email: </p>
-                <p class="namephantu">{{ $user->email }}</p>
+                <p class="namephantu">Password: </p>
+                <input type="password" class="nhapttuser" name="oldpassword" required>
             </div>
             <div class="phantuuser">
-                <p class="namephantu">Phone: </p>
-                <input type="text" class="nhapttuser" value="{{ $user->phone }}" name="phone">
+                <p class="namephantu">New Password: </p>
+                <input type="password" class="nhapttuser" name="newpassword" required>
             </div>
             <div class="phantuuser">
-                <p class="namephantu">Name: </p>
-                <input type="text" class="nhapttuser" value="{{ $user->name }}" name="name">
+                <p class="namephantu">Re-Enter Password: </p>
+                <input type="password" class="nhapttuser" name="newpassword2" required>
             </div>
+            @error('oldpassword')
+            <p class="error">{{ $message }}</p>
+            @enderror
+            @error('oldnewpassword')
+            <p class="error">{{ $message }}</p>
+            @enderror
+            @error('newpassword')
+            <p class="error">{{ $message }}</p>
+            @enderror
+            @error('success')
+            <p class="error">{{ $message }}</p>
+            @enderror
+            @error('unsuccess')
+            <p class="error">{{ $message }}</p>
+            @enderror
             <div class="phantuuser">
                 <p class="namephantu fix">Name: </p>
                 <input class="savebtn" type="submit" value="Save">
             </div>
-
         </form>
     </div>
     @extends('layouts.Foot')
     <script>
-    function previewFile(input) {
-        var file = $("input[type=file]").get(0).files[0];
-        if (file) {
-            var reader = new FileReader();
-            reader.onload = function() {
-                $("#preview").attr("src", reader.result);
-            }
-            reader.readAsDataURL(file);
-        }
-    }
-    $("input[type=file]").change(function() {
-        previewFile(this);
-    });
+
     </script>
 </body>
 
