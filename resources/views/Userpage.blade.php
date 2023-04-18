@@ -71,25 +71,29 @@
             <div class="allmonhang">
                 @foreach($products as $product)
                 <div class="monhang">
-                    <a href="#" class="popup-link" data-popup="#popup-{{ $product->id }}"><img
-                            src="{{ $product->image }}" class="imgsp"></a>
+                    <a href="#" class="popup-link" data-popup="#popup-{{ $product->idproduct }}">
+                        <img src="{{ $product->image }}" class="imgsp">
+                    </a>
                     <p class="namesp">{{ $product->nameproduct }}</p>
                     <p class="namehangsp">{{ $product->category->namecategory }}</p>
                     <p class="price">${{ $product->price }}</p>
                     <a href="" class="addtocart"><i class="bi bi-plus-circle"></i> Add to cart</a>
                 </div>
-                <div class="popup" id="popup-{{ $product->id }}">
+                <div id="popup-{{ $product->idproduct }}" class="popup">
                     <div class="popup-content">
-                        <h2>{{ $product->nameproduct }}</h2>
-                        <img src="{{ $product->image }}" class="imgsp">
-                        <p>{{ $product->review }}</p>
+                        <a href="#" class="close-popup"><i class="bi bi-x-circle"></i> Close</a>
+                        <p class="price">{{ $product->nameproduct }}</p>
+                        <img src="{{ $product->image }}" class="imgsp2">
+                        <p class="review">{{ $product->review }}</p>
                         <p class="price">${{ $product->price }}</p>
                         <a href="" class="addtocart"><i class="bi bi-plus-circle"></i> Add to cart</a>
-                        <a href="#" class="close-popup"><i class="bi bi-x-circle"></i> Close</a>
                     </div>
                 </div>
                 @endforeach
             </div>
+
+
+
 
         </div>
     </div>
@@ -209,25 +213,24 @@
     });
 
 
-    $(document).ready(function() {
-        // Hiển thị popup khi click vào ảnh
-        $('.popup-link').on('click', function(e) {
-            e.preventDefault();
-            var popup_id = $(this).attr('data-popup');
-            $(popup_id).fadeIn();
-        });
+    // Gán sự kiện click cho phần tử có class "popup-link"
+    $(document).on('click', '.popup-link', function(e) {
+        e.preventDefault();
+        var popupId = $(this).data('popup');
+        $(popupId).fadeIn();
+    });
 
-        // Ẩn popup khi click vào nút đóng
-        $('.close-popup').on('click', function(e) {
-            e.preventDefault();
-            $(this).closest('.popup').fadeOut();
-        });
+    // Gán sự kiện click cho phần tử có class "close-popup"
+    $(document).on('click', '.close-popup', function(e) {
+        e.preventDefault();
+        $(this).closest('.popup').fadeOut();
+    });
 
-        // Ẩn popup khi click vào vùng ngoài popup
-        $('.popup').on('click', function(e) {
-            if (e.target !== this) return;
-            $(this).fadeOut();
-        });
+    // Đóng popup khi bấm ngoài popup-content
+    $(document).on('click', '.popup, .close-popup', function(event) {
+        if ($(event.target).is('.popup, .close-popup') && !$(event.target).closest('.popup-content').length) {
+            $('.popup').fadeOut();
+        }
     });
     </script>
 </body>

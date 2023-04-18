@@ -1,81 +1,81 @@
-p{
+p {
     margin: 0 !important;
 }
 
 
-.body{
+.body {
     background-color: #242424;
     display: flex;
-    
+
     /* height: 100em; */
 }
 
 
-.leftbody{
-width: 20%;
-background-color: #2D2D2D;
-padding: 1em;
-display: flex;
-flex-direction: column;
-align-items: center;
-height: 100vh;
-position: sticky;
-  top: 0;
-  z-index: 999;
+.leftbody {
+    width: 20%;
+    background-color: #2D2D2D;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    z-index: 999;
 }
 
-.rightbody{
+.rightbody {
     display: flex;
     flex-direction: column;
     width: 80%;
     padding: 2em;
 }
 
-.headright{
+.headright {
     display: flex;
     justify-content: space-between;
 }
 
-.bi-cart{
+.bi-cart {
     color: #FFFFFF;
     margin-right: 2em;
     margin-left: 2em;
     font-size: 1.5em;
 }
 
-.bi-bell,.bi-arrow-bar-right{
+.bi-bell, .bi-arrow-bar-right {
     color: #FFFFFF;
     font-size: 1.5em;
 }
 
-.bi-arrow-bar-right{
+.bi-arrow-bar-right {
     cursor: pointer;
     margin-right: 2em;
     margin-left: 2em;
     visibility: hidden;
 }
 
-.bi-arrow-bar-right:hover{
+.bi-arrow-bar-right:hover {
     opacity: 0.7;
 }
 
-.btn:hover{
+.btn:hover {
     opacity: 0.7;
 }
 
-.lefthead{
+.lefthead {
     width: 50%;
     height: 100%;
     display: flex;
     align-items: center;
 }
 
-.righthead{
+.righthead {
     display: flex;
     align-items: center;
 }
 
-.search{
+.search {
     margin-left: 2em;
     padding-left: 1em;
     height: 3em;
@@ -86,12 +86,14 @@ position: sticky;
     width: 70%;
 }
 
-::placeholder { /* chạy tốt trên Chrome, Firefox, Opera, Safari 10.1+ */
+::placeholder {
+    /* chạy tốt trên Chrome, Firefox, Opera, Safari 10.1+ */
     color: #FFFFFF;
-    opacity: 1; /* Firefox */
+    opacity: 1;
+    /* Firefox */
 }
 
-.linkus,.linkus2{
+.linkus, .linkus2 {
     color: #8A8A8A;
     text-decoration: none;
     display: flex;
@@ -105,39 +107,39 @@ position: sticky;
     transition: 0.5s ease;
 }
 
-.linkus:hover,.linkus2:hover{
-background-color: #3b3b3b;
+.linkus:hover, .linkus2:hover {
+    background-color: #3b3b3b;
 }
 
-.fixtxt{
+.fixtxt {
     margin-left: 2em !important;
-    
-   
+
+
 }
 
-.content{
+.content {
     color: #FFFFFF;
     font-size: 2em;
     margin-top: 1em !important;
 }
 
-.btnlink{
+.btnlink {
     transition: 0.5s ease;
 }
 
-.btnlink:hover{
+.btnlink:hover {
     opacity: 0.7;
 }
 
-.morefoot{
-    padding: 1em 10% 1em 10% ;
+.morefoot {
+    padding: 1em 10% 1em 10%;
     border-top: 0.5px solid #CBCBCB;
     background-color: #3b3b3b;
     display: flex;
     justify-content: space-between;
 }
 
-.footer{
+.footer {
     width: 100%;
     display: flex;
     /* margin-top: 10em; */
@@ -147,40 +149,40 @@ background-color: #3b3b3b;
     border-top: 0.5px solid #CBCBCB;
 }
 
-.headfoot{
+.headfoot {
     color: #FFFFFF;
     font-size: 1.75em;
     font-weight: 100;
 }
 
-.bodyfoot{
+.bodyfoot {
     color: #FFFFFF;
     font-weight: 100;
     text-decoration: none;
     display: flex;
 }
 
-.fix{
+.fix {
     display: flex;
 }
 
-.bi.bi-facebook{
+.bi.bi-facebook {
     margin-right: 1em;
 }
 
-.bodyfoot.link:hover{
+.bodyfoot.link:hover {
     opacity: 0.7;
 }
 
-.bodyright{
+.bodyright {
     margin-top: 3em;
     width: 30%;
     display: flex;
     margin-left: 4%;
-    
+
 }
 
-.loc{
+.loc {
     display: flex;
     width: 5em;
     align-items: center;
@@ -197,23 +199,23 @@ background-color: #3b3b3b;
     transition: 0.5s ease;
 }
 
-.loc:hover{
+.loc:hover {
     background-color: #DA00FE;
     color: #FFFFFF;
 }
 
-.loc.active{
+.loc.active {
     background-color: #DA00FE;
     color: #FFFFFF;
 }
 
-.allmonhang{
+.allmonhang {
     margin-top: 3em;
     display: flex;
     flex-wrap: wrap;
 }
 
-.imgsp{
+.imgsp {
     width: 100%;
     height: 10em;
 }
@@ -222,7 +224,7 @@ background-color: #3b3b3b;
     background-color: #3b3b3b;
 }
 
-.monhang{
+.monhang {
     background-color: #2D2D2D;
     padding: 1em;
     width: 25%;
@@ -236,11 +238,11 @@ background-color: #3b3b3b;
     transition: 0.5s ease-in-out;
 }
 
-.monhang:hover{
+.monhang:hover {
     transform: scale(1.1);
 }
 
-.namesp{
+.namesp {
     color: #FFFFFF;
     text-align: center;
     height: 3em;
@@ -248,32 +250,32 @@ background-color: #3b3b3b;
     margin: 1em 0 .25em 0 !important;
 }
 
-.namehangsp{
+.namehangsp {
     color: #CBCBCB;
 }
 
 
-.price{
+.price {
     color: #DA00FE;
     margin: 1em 0 1em 0 !important;
     font-weight: bold;
 }
 
-a{
+a {
     text-decoration: none !important;
 }
 
-.addtocart:hover{
+.addtocart:hover {
     color: #DA00FE;
 }
 
-.phantrang{
+.phantrang {
     display: flex;
     justify-content: center;
-    
+
 }
 
-.numpt{
+.numpt {
     margin: 0 2em 0 2em;
     border: 0.5px solid #DA00FE;
     color: #DA00FE;
@@ -288,12 +290,12 @@ a{
     font-weight: bold;
 }
 
-.numpt:hover{
+.numpt:hover {
     color: #FFFFFF;
     background-color: #DA00FE;
 }
 
-.dropdown-menu{
+.dropdown-menu {
     /* left: -500% !important;  */
     transform: none !important;
     inset: 0px 3em 0px auto !important;
@@ -301,23 +303,23 @@ a{
     width: 30em;
 }
 
-.dropdown-item{
+.dropdown-item {
     height: 4em !important;
     display: flex !important;
     align-items: center !important;
 }
 
-.avataruser{
+.avataruser {
     width: 50px;
     height: 50px;
     border-radius: 50%;
 }
 
-.null{
+.null {
     width: 100%;
 }
 
-.nulltxt{
+.nulltxt {
     color: #5F5F5F;
     font-size: 3em;
     font-weight: bold;
@@ -338,16 +340,37 @@ a{
     justify-content: center;
     align-items: center;
     z-index: 9999;
-  }
-  
-  .popup-content {
-    background-color: white;
-    padding: 20px;
-    max-width: 500px;
-    max-height: 500px;
-    overflow-y: auto;
-    border-radius: 5px;
-  }
-  
+}
 
-  
+.close-popup{
+    align-self: flex-end;
+}
+
+.close-popup:hover{
+    color: #DA00FE;
+}
+
+.popup-content {
+    background-color: #242424;
+    padding: 20px;
+    /* max-width: 70%;
+    max-height: 70%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transform: translate(5%, 5%);
+    width: 90%;
+    overflow-y:scroll;
+    border-radius: 5px;
+}
+
+.imgsp2{
+    padding: 0 2em 0 2em;
+    width: 20%;
+
+}
+
+.review {
+    color: #FFFFFF;
+}
