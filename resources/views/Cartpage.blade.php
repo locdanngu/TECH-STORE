@@ -77,7 +77,8 @@
                         <td class="fixcenter">{{ $cart_item->price }}</td>
                         <td class="fixcenter">
                             <input aria-label="quantity" class="input-qty" max="99" min="1" name="quantity"
-                                type="number" id="quantity-input" value="{{ $cart_item->quatifier }}">
+                                type="number" id="quantity-input-{{ $cart_item->idproduct }}"
+                                value="{{ $cart_item->quatifier }}">
                         </td>
                         <td class="fixcenter">{{ number_format($cart_item->quatifier * $cart_item->price, 2) }}</td>
                         @php
@@ -150,8 +151,9 @@
         // Tính lại giá trị khi checkbox được chọn hoặc bỏ chọn
     });
 
+    
     function updateCart(idproduct) {
-        var quantityValue = document.getElementById("quantity-input").value;
+        var quantityValue = document.getElementById("quantity-input-" + idproduct).value;
         window.location.href = "{{ route('cart.update', ['idproduct' => ':idproduct', 'quatifier' => ':quantity']) }}"
             .replace(':idproduct', idproduct).replace(':quantity', quantityValue);
     }
