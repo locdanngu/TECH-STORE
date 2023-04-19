@@ -82,9 +82,11 @@ class ProfileuserController extends Controller
     {
         if (Auth::check()) {
             $user = Auth::user();
-        return view('Cartpage', ['user' => $user]);
-
-        } else {
+            // $cart = Cart::where('iduser', $user->id)->firstOrCreate(['iduser' => $user->id]);
+            // $cartProducts = $cart->products;
+            return view('Cartpage', ['user' => $user]);
+        }
+         else {
             return redirect()->route('login.page')->withErrors(['error' => 'You need to log in first!']);
         }
     }

@@ -60,6 +60,8 @@
                     </tr>
                 </thead>
                 <tbody>
+                
+                
                     <tr class="space"></tr>
                     <tr>
                         <td class="fixcenter"><input type="checkbox" class="cbxcon"></td>
@@ -73,66 +75,7 @@
                         <td class="fixcenter"><button class="btnsave">Update</button></td>
                     </tr>
                     <tr class="space"></tr>
-                    <tr>
-                        <td class="fixcenter"><input type="checkbox" class="cbxcon"></td>
-                        <th scope="row" class="fixcenter">2</th>
-                        <td><img src="/images/logo.png" class="imgsp"></td>
-                        <td class="fixcenter">Keyboard Gaming</td>
-                        <td class="fixcenter"><input aria-label="quantity" class="input-qty" max="99" min="1"
-                                name="quantity" type="number" value="1">
-                        </td>
-                        <td class="fixcenter">100.00$</td>
-                        <td class="fixcenter"><button class="btnsave">Update</button></td>
-                    </tr>
-                    <tr class="space"></tr>
-                    <tr>
-                        <td class="fixcenter"><input type="checkbox" class="cbxcon"></td>
-                        <th scope="row" class="fixcenter">3</th>
-                        <td><img src="/images/logo.png" class="imgsp"></td>
-                        <td class="fixcenter">Keyboard Gaming</td>
-                        <td class="fixcenter"><input aria-label="quantity" class="input-qty" max="99" min="1"
-                                name="quantity" type="number" value="1">
-                        </td>
-                        <td class="fixcenter">100.00$</td>
-                        <td class="fixcenter"><button class="btnsave">Update</button></td>
-                    </tr>
-                    <tr class="space"></tr>
-                    <tr>
-                        <td class="fixcenter"><input type="checkbox" class="cbxcon"></td>
-                        <th scope="row" class="fixcenter">3</th>
-                        <td><img src="/images/logo.png" class="imgsp"></td>
-                        <td class="fixcenter">Keyboard Gaming</td>
-                        <td class="fixcenter"><input aria-label="quantity" class="input-qty" max="99" min="1"
-                                name="quantity" type="number" value="1">
-                        </td>
-                        <td class="fixcenter">100.00$</td>
-                        <td class="fixcenter"><button class="btnsave">Update</button></td>
-                    </tr>
-                    <tr class="space"></tr>
-                    <tr>
-                        <td class="fixcenter"><input type="checkbox" class="cbxcon"></td>
-                        <th scope="row" class="fixcenter">3</th>
-                        <td><img src="/images/logo.png" class="imgsp"></td>
-                        <td class="fixcenter">Keyboard Gaming</td>
-                        <td class="fixcenter"><input aria-label="quantity" class="input-qty" max="99" min="1"
-                                name="quantity" type="number" value="1">
-                        </td>
-                        <td class="fixcenter">100.00$</td>
-                        <td class="fixcenter"><button class="btnsave">Update</button></td>
-                    </tr>
-                    <tr class="space"></tr>
-                    <tr>
-                        <td class="fixcenter"><input type="checkbox" class="cbxcon"></td>
-                        <th scope="row" class="fixcenter">3</th>
-                        <td><img src="/images/logo.png" class="imgsp"></td>
-                        <td class="fixcenter">Keyboard Gaming</td>
-                        <td class="fixcenter"><input aria-label="quantity" class="input-qty" max="99" min="1"
-                                name="quantity" type="number" value="1">
-                        </td>
-                        <td class="fixcenter">100.00$</td>
-                        <td class="fixcenter"><button class="btnsave">Update</button></td>
-                    </tr>
-                    <tr class="space"></tr>
+                    
                 </tbody>
             </table>
             <div class="footright">

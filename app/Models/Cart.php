@@ -11,5 +11,15 @@ class Cart extends Model
     protected $primaryKey = ['idproduct' , 'id']; // Tên trường khóa chính
     protected $fillable = ['quatifier']; // Các trường trong bảng có thể được gán giá trị
 
-    
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'idproduct');
+    }
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'iduser');
+    }
+
 }
