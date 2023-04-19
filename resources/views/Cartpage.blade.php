@@ -63,35 +63,37 @@
                 <tbody>
                     @php
                     $total_price = 0;
+                    $total_product = 0;
                     @endphp
-                    @foreach($cart_items as $cart_items)
+                    @foreach($cart_items as $cart_item)
                     <tr class="space"></tr>
                     <tr>
-                        <td class="fixcenter"><input type="checkbox" name="cart_items[]" value="{{ $cart_items->id }}"
-                                class="cbxcon" @if($cart_items->selected) checked @endif></td>
-                        <th scope="row" class="fixcenter">{{ $loop->iteration }}</th>
-                        <td><img src="{{ $cart_items->image }}" class="imgsp"></td>
-                        <td class="fixcenter">{{ $cart_items->nameproduct }}</td>
-                        <td class="fixcenter">{{ $cart_items->price }}</td>
-                        <td class="fixcenter"><input aria-label="quantity" class="input-qty" max="99" min="1"
-                                name="quantity" type="number" value="{{ $cart_items->quatifier }}">
+                        <td class="fixcenter">
+                            <input type="checkbox" name="cart_item[]" value="{{ $cart_item->id }}" class="cbxcon">
                         </td>
-                        <td class="fixcenter">{{ number_format($cart_items->quatifier * $cart_items->price, 2) }}</td>
+                        <th scope="row" class="fixcenter">{{ $loop->iteration }}</th>
+                        <td><img src="{{ $cart_item->image }}" class="imgsp"></td>
+                        <td class="fixcenter">{{ $cart_item->nameproduct }}</td>
+                        <td class="fixcenter">{{ $cart_item->price }}</td>
+                        <td class="fixcenter">
+                            <input aria-label="quantity" class="input-qty" max="99" min="1" name="quantity"
+                                type="number" id="quantity-input" value="{{ $cart_item->quatifier }}">
+                        </td>
+                        <td class="fixcenter">{{ number_format($cart_item->quatifier * $cart_item->price, 2) }}</td>
                         @php
-                        
-                        $total_price += $cart_items->quatifier * $cart_items->price;
-                        
+                        $total_price += $cart_item->quatifier * $cart_item->price;
+                        $total_product += 1;
                         @endphp
                         <td class="fixcenter">
                             <div class="fixflex">
-                                <a class="btnsave" href="">Update</a>
+                                <a class="btnsave" href="#" onclick="updateCart({{ $cart_item->idproduct }})">Update</a>
                                 <p class="fixmar">|</p>
                                 <a class="btnsave" href="">Delete</a>
                             </div>
                         </td>
                     </tr>
-                    <tr class="space"></tr>
                     @endforeach
+
                 </tbody>
             </table>
             <div class="footright">
@@ -101,7 +103,7 @@
                 </div>
                 <button class="btnpay">Delete All</button>
                 <div class="pay">
-                    <p class="txtsp" id="cbxsl2">Product(0):</p>
+                    <p class="txtsp" id="cbxsl2">Product({{$total_product}}):</p>
                     <p class="txtsp">{{ number_format($total_price, 2) }}$</p>
                     <button class="btnpay">Payment</button>
                 </div>
@@ -136,16 +138,23 @@
             $('.cbxcon').prop('checked', $(this).prop('checked'));
             const count = $('.cbxcon:checked').length;
             $('#cbxsl').text("Select(" + count + ")");
-            $('#cbxsl2').text("Product(" + count + ")");
+            // $('#cbxsl2').text("Product(" + count + ")");
         });
 
         // Đếm số sản phẩm được chọn
         $('.cbxcon').click(function() {
             const count = $('.cbxcon:checked').length;
             $('#cbxsl').text("Select(" + count + ")");
-            $('#cbxsl2').text("Product(" + count + ")");
+            // $('#cbxsl2').text("Product(" + count + ")");
         });
+        // Tính lại giá trị khi checkbox được chọn hoặc bỏ chọn
     });
+
+    function updateCart(idproduct) {
+        var quantityValue = document.getElementById("quantity-input").value;
+        window.location.href = "{{ route('cart.update', ['idproduct' => ':idproduct', 'quatifier' => ':quantity']) }}"
+            .replace(':idproduct', idproduct).replace(':quantity', quantityValue);
+    }
     </script>
 </body>
 

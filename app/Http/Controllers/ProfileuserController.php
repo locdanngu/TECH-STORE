@@ -95,6 +95,19 @@ class ProfileuserController extends Controller
         }
     }
 
+    public function updateCart(Request $request, $idproduct, $quatifier)
+    {
+        if (Auth::check()) {
+            dd($quatifier);
+            $user = Auth::user();
+            Cart::where('idproduct', $idproduct)->where('id', $user->id)->update(['quatifier' => $quatifier]);
+            return back();
+        }
+         else {
+            return redirect()->route('login.page')->withErrors(['error' => 'You need to log in first!']);
+        }
+    }
+
 
 
 

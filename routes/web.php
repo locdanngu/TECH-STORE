@@ -30,6 +30,10 @@ Route::post('/Profileuserpage', [ProfileuserController::class, 'changeProfileuse
 Route::get('/Changepassword', [ProfileuserController::class, 'viewChangePassWord'])->name('changepassword.page');  //view đổi mk
 Route::post('/Changepassword', [ProfileuserController::class, 'changePassWord'])->name('changepassword.update');  //route thay mk
 Route::get('/Cartuserpage', [ProfileuserController::class, 'viewCart'])->name('cart.page');     //view giỏ hàng
+Route::get('/Cartuserpage/{idproduct}/{quatifier}', [ProfileuserController::class, 'updateCart'])->name('cart.update');
+
+
+
 
 Route::get('/Mypurchasepage', [ProfileuserController::class, 'viewOrder'])->name('order.page');     //view lịch sử mua hàng
 
