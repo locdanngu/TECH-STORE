@@ -149,6 +149,7 @@ p {
 
 .headright{
     align-items: center;
+    margin-bottom: 2em;
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -166,4 +167,77 @@ p {
 .naptien:hover{
     background-color: #2D2D2D;
     border: 0.5px solid #A100ED;
+}
+
+table{
+    text-align: center;
+    
+}
+
+th,td{
+    border-width: var(--bs-border-width) !important;
+  
+}
+
+.fixcenter{
+    vertical-align: middle;
+}
+
+.input-qty{
+    width: 2em;
+    font-size: 2em;
+}
+
+.imgsp{
+    height: fit-content;
+}
+
+
+.btnsave{
+    background-color: transparent;
+    color: #FFFFFF;
+    border: 0;
+    padding: 1em;
+    font-weight: bold;
+}
+
+.btnsave:hover{
+    background-color: #3b3b3b;
+    /* color: ; */
+}
+
+.space{
+    height: 2em;
+}
+
+.footright{
+    background-color: #3b3b3b;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2em;
+    position: sticky;
+    z-index: 999;
+    bottom: 0;
+}
+
+
+.pay{
+    display: flex;
+    align-items: center;
+}
+
+.txtsp{
+    color: #FFFFFF;
+    font-weight: bold;
+    margin-right: 2em !important;
+
+}
+
+.btnpay{
+    padding: 0.5em 1em 0.5em 1em;
+    border: 0;
+    border-radius: 0.25em;
+    font-weight: bold;
 }

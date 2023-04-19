@@ -47,8 +47,107 @@
                 </div>
                 <button class="naptien">Recharge</button>
             </div>
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col"><input type="checkbox" id="myCheckbox"></th>
+                        <th scope="col">#</th>
+                        <th scope="col">Sample</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Price</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="space"></tr>
+                    <tr>
+                        <td class="fixcenter"><input type="checkbox" class="cbxcon"></td>
+                        <th scope="row" class="fixcenter">1</th>
+                        <td><img src="/images/logo.png" class="imgsp"></td>
+                        <td class="fixcenter">Keyboard Gaming</td>
+                        <td class="fixcenter"><input aria-label="quantity" class="input-qty" max="99" min="1"
+                                name="quantity" type="number" value="1">
+                        </td>
+                        <td class="fixcenter">100.00$</td>
+                        <td class="fixcenter"><button class="btnsave">Update</button></td>
+                    </tr>
+                    <tr class="space"></tr>
+                    <tr>
+                        <td class="fixcenter"><input type="checkbox" class="cbxcon"></td>
+                        <th scope="row" class="fixcenter">2</th>
+                        <td><img src="/images/logo.png" class="imgsp"></td>
+                        <td class="fixcenter">Keyboard Gaming</td>
+                        <td class="fixcenter"><input aria-label="quantity" class="input-qty" max="99" min="1"
+                                name="quantity" type="number" value="1">
+                        </td>
+                        <td class="fixcenter">100.00$</td>
+                        <td class="fixcenter"><button class="btnsave">Update</button></td>
+                    </tr>
+                    <tr class="space"></tr>
+                    <tr>
+                        <td class="fixcenter"><input type="checkbox" class="cbxcon"></td>
+                        <th scope="row" class="fixcenter">3</th>
+                        <td><img src="/images/logo.png" class="imgsp"></td>
+                        <td class="fixcenter">Keyboard Gaming</td>
+                        <td class="fixcenter"><input aria-label="quantity" class="input-qty" max="99" min="1"
+                                name="quantity" type="number" value="1">
+                        </td>
+                        <td class="fixcenter">100.00$</td>
+                        <td class="fixcenter"><button class="btnsave">Update</button></td>
+                    </tr>
+                    <tr class="space"></tr>
+                    <tr>
+                        <td class="fixcenter"><input type="checkbox" class="cbxcon"></td>
+                        <th scope="row" class="fixcenter">3</th>
+                        <td><img src="/images/logo.png" class="imgsp"></td>
+                        <td class="fixcenter">Keyboard Gaming</td>
+                        <td class="fixcenter"><input aria-label="quantity" class="input-qty" max="99" min="1"
+                                name="quantity" type="number" value="1">
+                        </td>
+                        <td class="fixcenter">100.00$</td>
+                        <td class="fixcenter"><button class="btnsave">Update</button></td>
+                    </tr>
+                    <tr class="space"></tr>
+                    <tr>
+                        <td class="fixcenter"><input type="checkbox" class="cbxcon"></td>
+                        <th scope="row" class="fixcenter">3</th>
+                        <td><img src="/images/logo.png" class="imgsp"></td>
+                        <td class="fixcenter">Keyboard Gaming</td>
+                        <td class="fixcenter"><input aria-label="quantity" class="input-qty" max="99" min="1"
+                                name="quantity" type="number" value="1">
+                        </td>
+                        <td class="fixcenter">100.00$</td>
+                        <td class="fixcenter"><button class="btnsave">Update</button></td>
+                    </tr>
+                    <tr class="space"></tr>
+                    <tr>
+                        <td class="fixcenter"><input type="checkbox" class="cbxcon"></td>
+                        <th scope="row" class="fixcenter">3</th>
+                        <td><img src="/images/logo.png" class="imgsp"></td>
+                        <td class="fixcenter">Keyboard Gaming</td>
+                        <td class="fixcenter"><input aria-label="quantity" class="input-qty" max="99" min="1"
+                                name="quantity" type="number" value="1">
+                        </td>
+                        <td class="fixcenter">100.00$</td>
+                        <td class="fixcenter"><button class="btnsave">Update</button></td>
+                    </tr>
+                    <tr class="space"></tr>
+                </tbody>
+            </table>
+            <div class="footright">
+                <div class="pay">
+                    <p class="txtsp" id="cbxsl">Select(0)</p>
+                    <button class="btnpay">Deselect</button>
+                </div>
+                <button class="btnpay">Delete All</button>
+                <div class="pay">
+                    <p class="txtsp">Product():</p>
+                    <p class="txtsp">100$</p>
+                    <button class="btnpay">Payment</button>
+                </div>
 
-
+            </div>
         </div>
     </div>
     @extends('layouts.Foot')
@@ -69,6 +168,21 @@
                 $('#balance').text('******');
                 isHidden = true;
             }
+        });
+    });
+
+    $(document).ready(function() {
+        // Chọn tất cả sản phẩm
+        $('#myCheckbox').click(function() {
+            $('.cbxcon').prop('checked', $(this).prop('checked'));
+            const count = $('.cbxcon:checked').length;
+            $('#cbxsl').text("Select(" + count + ")");
+        });
+
+        // Đếm số sản phẩm được chọn
+        $('.cbxcon').click(function() {
+            const count = $('.cbxcon:checked').length;
+            $('#cbxsl').text("Select(" + count + ")");
         });
     });
     </script>
