@@ -31,7 +31,7 @@ Route::get('/Changepassword', [ProfileuserController::class, 'viewChangePassWord
 Route::post('/Changepassword', [ProfileuserController::class, 'changePassWord'])->name('changepassword.update');  //route thay mk
 Route::get('/Cartuserpage', [ProfileuserController::class, 'viewCart'])->name('cart.page');     //view giỏ hàng
 Route::get('/Cartuserpage/{idproduct}/{quatifier}', [ProfileuserController::class, 'updateCart'])->name('cart.update');
-
+Route::get('/Cartuserpage/{idproduct}', [ProfileuserController::class, 'deleteCart'])->name('cart.delete');
 
 
 

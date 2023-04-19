@@ -69,7 +69,7 @@
                     <tr class="space"></tr>
                     <tr>
                         <td class="fixcenter">
-                            <input type="checkbox" name="cart_item[]" value="{{ $cart_item->id }}" class="cbxcon">
+                            <input type="checkbox" name="cart_item[]" value="{{ $cart_item->idproduct }}" class="cbxcon">
                         </td>
                         <th scope="row" class="fixcenter">{{ $loop->iteration }}</th>
                         <td><img src="{{ $cart_item->image }}" class="imgsp"></td>
@@ -89,7 +89,7 @@
                             <div class="fixflex">
                                 <a class="btnsave" href="#" onclick="updateCart({{ $cart_item->idproduct }})">Update</a>
                                 <p class="fixmar">|</p>
-                                <a class="btnsave" href="">Delete</a>
+                                <a class="btnsave" href="{{ route('cart.delete', ['idproduct' => $cart_item->idproduct]) }}">Delete</a>
                             </div>
                         </td>
                     </tr>
@@ -151,7 +151,7 @@
         // Tính lại giá trị khi checkbox được chọn hoặc bỏ chọn
     });
 
-    
+
     function updateCart(idproduct) {
         var quantityValue = document.getElementById("quantity-input-" + idproduct).value;
         window.location.href = "{{ route('cart.update', ['idproduct' => ':idproduct', 'quatifier' => ':quantity']) }}"

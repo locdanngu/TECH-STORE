@@ -113,7 +113,8 @@ class ProfileuserController extends Controller
         if (Auth::check()) {
             // dd($quatifier);
             $user = Auth::user();
-            // Cart::where('idproduct', $idproduct)->where('id', $user->id)->update(['quatifier' => $quatifier]);
+            // dd($idproduct);
+            Cart::where('idproduct', $idproduct)->where('id', $user->id)->delete();
             return back();
         }
          else {
