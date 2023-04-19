@@ -181,6 +181,15 @@ th,td{
 
 .fixcenter{
     vertical-align: middle;
+    
+}
+
+.fixmar{
+    margin: 0 1em !important;
+}
+
+.fixflex{
+    display: flex;
 }
 
 .input-qty{
@@ -194,15 +203,16 @@ th,td{
 
 
 .btnsave{
-    background-color: transparent;
+    
     color: #FFFFFF;
-    border: 0;
-    padding: 1em;
+    
+    
+    text-decoration: none;
     font-weight: bold;
 }
 
 .btnsave:hover{
-    background-color: #3b3b3b;
+    color: #A100ED;
     /* color: ; */
 }
 
