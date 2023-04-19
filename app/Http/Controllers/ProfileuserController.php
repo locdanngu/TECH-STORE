@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Http\Request;
+use App\Models\Product;
+use App\Models\Cart;
 use Hash;
 class ProfileuserController extends Controller
 {
@@ -82,9 +84,11 @@ class ProfileuserController extends Controller
     {
         if (Auth::check()) {
             $user = Auth::user();
-            // $cart = Cart::where('iduser', $user->id)->firstOrCreate(['iduser' => $user->id]);
-            // $cartProducts = $cart->products;
-            return view('Cartpage', ['user' => $user]);
+            $cart_items = Product::join('cart', 'product.idproduct', '=', 'cart.idproduct')
+                        ->where('cart.id', $user->id)
+                        ->select('product.idproduct', 'product.nameproduct', 'product.price', 'cart.quatifier', 'product.image')
+                        ->get();
+            return view('Cartpage', ['user' => $user, 'cart_items' => $cart_items]);
         }
          else {
             return redirect()->route('login.page')->withErrors(['error' => 'You need to log in first!']);

@@ -54,28 +54,36 @@
                         <th scope="col">#</th>
                         <th scope="col">Sample</th>
                         <th scope="col">Name</th>
+                        <th scope="col">Unit price</th>
                         <th scope="col">Quantity</th>
-                        <th scope="col">Price</th>
+                        <th scope="col">total price</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
-                
-                
+                    @php
+                    $total_quatifier = 0;
+                    @endphp
+                    @foreach($cart_items as $cart_items)
                     <tr class="space"></tr>
                     <tr>
-                        <td class="fixcenter"><input type="checkbox" class="cbxcon"></td>
-                        <th scope="row" class="fixcenter">1</th>
-                        <td><img src="/images/logo.png" class="imgsp"></td>
-                        <td class="fixcenter">Keyboard Gaming</td>
+                        <td class="fixcenter"><input type="checkbox" class="cbxcon"
+                                value="{{ $cart_items->idproduct }}"></td>
+                        <th scope="row" class="fixcenter">{{ $loop->iteration }}</th>
+                        <td><img src="{{ $cart_items->image }}" class="imgsp"></td>
+                        <td class="fixcenter">{{ $cart_items->nameproduct }}</td>
+                        <td class="fixcenter">{{ $cart_items->price }}</td>
                         <td class="fixcenter"><input aria-label="quantity" class="input-qty" max="99" min="1"
-                                name="quantity" type="number" value="1">
+                                name="quantity" type="number" value="{{ $cart_items->quatifier }}">
                         </td>
-                        <td class="fixcenter">100.00$</td>
+                        <td class="fixcenter">{{ number_format($cart_items->quatifier * $cart_items->price, 2) }}</td>
                         <td class="fixcenter"><button class="btnsave">Update</button></td>
                     </tr>
                     <tr class="space"></tr>
-                    
+                    @php
+                    $total_quatifier += $cart_items->quatifier;
+                    @endphp
+                    @endforeach
                 </tbody>
             </table>
             <div class="footright">
@@ -85,7 +93,7 @@
                 </div>
                 <button class="btnpay">Delete All</button>
                 <div class="pay">
-                    <p class="txtsp">Product():</p>
+                    <p class="txtsp">Product({{ $total_quatifier }}):</p>
                     <p class="txtsp">100$</p>
                     <button class="btnpay">Payment</button>
                 </div>
