@@ -9,6 +9,11 @@ p {
     /* height: 100em; */
 }
 
+.smallavatar{
+    border-radius: 50%;
+    width: 60%;
+}
+
 .leftbody {
     width: 20%;
     background-color: #2D2D2D;

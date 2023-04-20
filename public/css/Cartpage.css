@@ -279,3 +279,8 @@ th,td{
 .btnsave3:hover{
     color: #A100ED;
 }
+
+.smallavatar{
+    border-radius: 50%;
+    width: 60%;
+}

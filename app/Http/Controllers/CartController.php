@@ -131,7 +131,7 @@ class CartController extends Controller
             $user = Auth::user();
             $cart_items = Product::join('cart', 'product.idproduct', '=', 'cart.idproduct')
                         ->where('cart.id', $user->id)
-                        ->where('status', 1)
+                        ->where('status', '!=', 0)
                         ->select('product.idproduct', 'product.nameproduct', 'product.price', 'cart.quatifier', 'product.image', 'cart.status')
                         ->get();
             return view('Orderpage', ['user' => $user, 'cart_items' => $cart_items]);

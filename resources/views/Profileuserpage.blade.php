@@ -13,6 +13,7 @@
         <div class="leftbody">
             <a href="{{ route('user.page') }}"><img src="/images/logo.png"></a>
             <p class="content">USER</p>
+            <img src=" {{ $user->avatar }}" class="smallavatar">
             <a class="linkus active" href="{{ route('profileuser.page') }}">
                 <i class="bi bi-person"></i>
                 <p class="fixtxt">Profile</p>
@@ -29,13 +30,13 @@
                 <i class="bi bi-list-ul"></i>
                 <p class="fixtxt">My Purchase order</p>
             </a>
-            <a class="linkus" href="{{ route('logout') }}">
-                <i class="bi bi-box-arrow-in-left"></i>
-                <p class="fixtxt">Logout</p>
-            </a>
             <a class="linkus" href="{{ route('user.page') }}">
                 <i class="bi bi-arrow-90deg-left"></i>
                 <p class="fixtxt">Back to shop</p>
+            </a>
+            <a class="linkus" href="{{ route('logout') }}">
+                <i class="bi bi-box-arrow-in-left"></i>
+                <p class="fixtxt">Logout</p>
             </a>
         </div>
         <form class="rightbody" action="{{ route('profileuser.update') }}" method="POST" enctype="multipart/form-data">
