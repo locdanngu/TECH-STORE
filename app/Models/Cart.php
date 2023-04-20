@@ -7,9 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cart extends Model
 {
-    protected $table = 'cart'; // Tên bảng trong CSDL
-    protected $primaryKey = ['idproduct' , 'id']; // Tên trường khóa chính
-    protected $fillable = ['quatifier']; // Các trường trong bảng có thể được gán giá trị
+    use HasFactory;
+
+    protected $table = 'cart';
+    protected $primaryKey = ['idproduct', 'id'];
+    public $incrementing = false;
+    protected $keyType = 'string';
+    protected $fillable = ['quatifier'];
     public $timestamps = true;
 
     public function product()
@@ -17,10 +21,8 @@ class Cart extends Model
         return $this->belongsTo(Product::class, 'idproduct');
     }
 
-
     public function user()
     {
-        return $this->belongsTo(User::class, 'iduser');
+        return $this->belongsTo(User::class, 'id');
     }
-
 }
