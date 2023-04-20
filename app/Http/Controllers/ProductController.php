@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Category;
-use App\Models\Cart;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -17,12 +17,13 @@ class ProductController extends Controller
             // Lấy danh sách sản phẩm từ cơ sở dữ liệu
             $products = Product::orderBy('price', 'asc')->get();
             $category = Category::all();
+            $notification = Notification::where('id', $user->id)->orderBy('price', 'desc')->get();
             // $products = Product::orderBy('price', 'asc')->paginate(6);
             // $category = Category::all();
             
 
             // Trả về view "Userpage.blade.php" với dữ liệu sản phẩm và thông tin người dùng
-        return view('Userpage', ['user' => $user, 'products' => $products, 'category' => $category]);
+        return view('Userpage', ['user' => $user, 'products' => $products, 'category' => $category, 'notification' => $notification]);
 
         } else {
             return redirect()->route('login.page')->withErrors(['error' => 'You need to log in first!']);

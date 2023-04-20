@@ -10,6 +10,7 @@ class Notification extends Model
     protected $table = 'notification'; // Tên bảng trong CSDL
     protected $primaryKey = 'idnotification'; // Tên trường khóa chính
     protected $fillable = ['id','notification']; // Các trường trong bảng có thể được gán giá trị
+    public $timestamps = true;
     
     // Định nghĩa quan hệ một-nhiều (one-to-many) với mô hình (model) Product
     public function user()
