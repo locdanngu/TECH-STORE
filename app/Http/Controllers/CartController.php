@@ -32,7 +32,7 @@ class CartController extends Controller
         if (Auth::check()) {
             // dd($quatifier);
             $user = Auth::user();
-            Cart::where('idproduct', $idproduct)->where('id', $user->id)->update(['quatifier' => $quatifier]);
+            Cart::where('idproduct', $idproduct)->where('id', $user->id)->where('status', 0)->update(['quatifier' => $quatifier]);
             return back();
         }
          else {
@@ -46,7 +46,7 @@ class CartController extends Controller
             // dd($quatifier);
             $user = Auth::user();
             // dd($idproduct);
-            Cart::where('idproduct', $idproduct)->where('id', $user->id)->delete();
+            Cart::where('idproduct', $idproduct)->where('status', 0)->where('id', $user->id)->delete();
             return back();
         }
          else {
@@ -98,7 +98,7 @@ class CartController extends Controller
         if (Auth::check()) {
             // dd($quatifier);
             $user = Auth::user();
-            Cart::where('id', $user->id)->delete();
+            Cart::where('id', $user->id)->where('status', 0)->delete();
             return back();
         }
          else {
@@ -112,7 +112,7 @@ class CartController extends Controller
             // dd($quatifier);
             $user = Auth::user();
             $totalPrice = $request->input('pay');
-            Cart::where('id', $user->id)->update(['status' => 1]);
+            Cart::where('id', $user->id)->where('status', 0)->update(['status' => 1]);
             $user = User::findOrFail($user->id);
             $user->balance -= $totalPrice;
             $user->save();
@@ -123,7 +123,7 @@ class CartController extends Controller
         }
     }
 
-    public function viewPurchase()
+    public function viewOrder()
     {
         if (Auth::check()) {
             $user = Auth::user();
@@ -132,7 +132,7 @@ class CartController extends Controller
                         ->where('status', 1)
                         ->select('product.idproduct', 'product.nameproduct', 'product.price', 'cart.quatifier', 'product.image', 'cart.status')
                         ->get();
-            return view('Cartpage', ['user' => $user, 'cart_items' => $cart_items]);
+            return view('Orderpage', ['user' => $user, 'cart_items' => $cart_items]);
         }
          else {
             return redirect()->route('login.page')->withErrors(['error' => 'You need to log in first!']);

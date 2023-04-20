@@ -38,7 +38,49 @@
                 <p class="fixtxt">Back to shop</p>
             </a>
         </div>
-        
+        <div class="rightbody">
+            <!-- <div class="headright">
+                <div class="sotien">
+                    <p class="txtblc">Account balance: <span id="balance" style="font-weight:bold">******</span></p>
+                    <i class="bi bi-eye-slash" id="eye1"></i>
+                    <i class="bi bi-eye" id="eye2"></i>
+                </div>
+                <a href="{{ route('user.page') }}" class="naptien2">More Product</a>
+                <button class="naptien">Recharge</button>
+            </div> -->
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <!-- <th scope="col"><input type="checkbox" id="myCheckbox"></th> -->
+                        <th scope="col">#</th>
+                        <th scope="col">Sample</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Unit price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">total price</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($cart_items as $cart_item)
+                    <tr class="space"></tr>
+                    <tr>
+                        <!-- <td class="fixcenter">
+                            <input type="checkbox" name="cart_item[]" value="{{ $cart_item->idproduct }}"
+                                class="cbxcon">
+                        </td> -->
+                        <th scope="row" class="fixcenter">{{ $loop->iteration }}</th>
+                        <td><img src="{{ $cart_item->image }}" class="imgsp"></td>
+                        <td class="fixcenter">{{ $cart_item->nameproduct }}</td>
+                        <td class="fixcenter">{{ $cart_item->price }}</td>
+                        <td class="fixcenter">{{ $cart_item->quatifier }}</td>
+                        <td class="fixcenter">{{ number_format($cart_item->quatifier * $cart_item->price, 2) }}</td>
+                        <td class="fixcenter">{{ $cart_item->status == 1 ? 'Waiting' : ($cart_item->nameproduct == 2 ? 'Accept' : 'Finish') }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
     @extends('layouts.Foot')
     <script>

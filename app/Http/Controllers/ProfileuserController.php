@@ -80,16 +80,16 @@ class ProfileuserController extends Controller
     }
 
 
-    public function viewOrder()
-    {
-        if (Auth::check()) {
-            $user = Auth::user();
-        return view('Orderpage', ['user' => $user]);
+    // public function viewOrder()
+    // {
+    //     if (Auth::check()) {
+    //         $user = Auth::user();
+    //     return view('Orderpage', ['user' => $user]);
 
-        } else {
-            return redirect()->route('login.page')->withErrors(['error' => 'You need to log in first!']);
-        }
-    }
+    //     } else {
+    //         return redirect()->route('login.page')->withErrors(['error' => 'You need to log in first!']);
+    //     }
+    // }
 
 
     

@@ -40,7 +40,7 @@ Route::delete('/Cartuserpage/deleteall', [CartController::class, 'deleteAll'])->
 Route::post('/Cartuserpage/pay', [CartController::class, 'pay'])->name('cart.pay');
 
 
-Route::get('/Mypurchasepage', [ProfileuserController::class, 'viewOrder'])->name('order.page');     //view lịch sử mua hàng
+Route::get('/Mypurchasepage', [CartController::class, 'viewOrder'])->name('order.page');     //view lịch sử mua hàng
 
 
 

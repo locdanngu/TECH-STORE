@@ -26,8 +26,8 @@ p {
     display: flex;
     flex-direction: column;
     width: 80%;
-    align-items: center;
-    padding: 4em;
+    /* align-items: center; */
+    padding: 2em 3em 2em 3em;
 }
 
 
@@ -119,5 +119,153 @@ p {
 
 .linkus.active {
     background-color: #3b3b3b;
+}
+
+.sotien{
+    display: flex;
+    justify-content: space-between;
+    width: 25%;
+}
+
+.txtblc{
+    color: #FFFFFF;
+}
+
+.bi-eye-slash,.bi-eye{
+    color: #FFFFFF;
+    cursor: pointer;
+    /* transition: 0.5s ease; */
+}
+
+.bi-eye-slash{
+    display: none;
+}
+
+.bi-eye-slash.active{
+    display: block;
+}
+
+
+
+.headright{
+    align-items: center;
+    margin-bottom: 2em;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.naptien{
+    border-radius: .25em;
+    border: 0;
+    background-color: #A100ED;
+    padding: 0.5em 1em 0.5em 1em;
+    color: #FFFFFF;
+    transition: 0.75s ease;
+}
+
+.naptien:hover{
+    background-color: #2D2D2D;
+    border: 0.5px solid #A100ED;
+}
+
+table{
+    text-align: center;
+    
+}
+
+th,td{
+    border-width: var(--bs-border-width) !important;
+  
+}
+
+.fixcenter{
+    vertical-align: middle;
+    
+}
+
+.fixmar{
+    margin: 0 1em !important;
+}
+
+.fixflex{
+    display: flex;
+}
+
+.input-qty{
+    width: 2em;
+    font-size: 2em;
+}
+
+.imgsp{
+    width: 20em;
+}
+
+
+.btnsave,.btnsave2{
+    
+    color: #FFFFFF;
+    
+    
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btnsave:hover{
+    color: #A100ED;
+    /* color: ; */
+}
+
+.space{
+    height: 2em;
+}
+
+.footright{
+    background-color: #3b3b3b;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2em;
+    position: sticky;
+    z-index: 999;
+    bottom: 0;
+}
+
+
+.pay{
+    display: flex;
+    align-items: center;
+}
+
+.txtsp{
+    color: #FFFFFF;
+    font-weight: bold;
+    margin-right: 2em !important;
+
+}
+
+.btnpay{
+    padding: 0.5em 1em 0.5em 1em;
+    border: 0;
+    border-radius: 0.25em;
+    font-weight: bold;
+}
+
+.naptien2{
+    /* font-weight: 800; */
+    color: #FFFFFF;
+    text-decoration: none;
+    border: 0.5px solid #A100ED;
+    border-radius: 0.25em;
+    padding: .5em 1em;
+    background-color: #8A8A8A;
+    transition: 0.5s ease;
+}
+
+.naptien2:hover{
+    background-color: #A100ED;
+    border: 0.5px solid #FFFFFF;
+
 }
 
