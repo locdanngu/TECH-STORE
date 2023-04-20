@@ -13,7 +13,7 @@ class Cart extends Model
     protected $primaryKey = ['idproduct', 'id'];
     public $incrementing = false;
     protected $keyType = 'string';
-    protected $fillable = ['quatifier'];
+    protected $fillable = ['quatifier', 'status'];
     public $timestamps = true;
 
     public function product()

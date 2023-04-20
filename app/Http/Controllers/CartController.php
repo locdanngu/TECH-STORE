@@ -80,7 +80,7 @@ class CartController extends Controller
             // Set the value of the idproduct and id fields
             $cartItem->idproduct = $idproduct;
             $cartItem->id = $user->id;
-    
+            $cartItem->status = 0;
             // Save the cart item to the database
             $cartItem->save();
             return redirect()->route('cart.page');

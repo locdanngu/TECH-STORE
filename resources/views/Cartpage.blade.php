@@ -51,7 +51,7 @@
             <table class="table table-dark">
                 <thead>
                     <tr>
-                        <th scope="col"><input type="checkbox" id="myCheckbox"></th>
+                        <!-- <th scope="col"><input type="checkbox" id="myCheckbox"></th> -->
                         <th scope="col">#</th>
                         <th scope="col">Sample</th>
                         <th scope="col">Name</th>
@@ -69,10 +69,10 @@
                     @foreach($cart_items as $cart_item)
                     <tr class="space"></tr>
                     <tr>
-                        <td class="fixcenter">
+                        <!-- <td class="fixcenter">
                             <input type="checkbox" name="cart_item[]" value="{{ $cart_item->idproduct }}"
                                 class="cbxcon">
-                        </td>
+                        </td> -->
                         <th scope="row" class="fixcenter">{{ $loop->iteration }}</th>
                         <td><img src="{{ $cart_item->image }}" class="imgsp"></td>
                         <td class="fixcenter">{{ $cart_item->nameproduct }}</td>
@@ -100,10 +100,10 @@
                 </tbody>
             </table>
             <div class="footright">
-                <div class="pay">
+                <!-- <div class="pay">
                     <p class="txtsp" id="cbxsl">Select(0)</p>
                     <button class="btnpay">Deselect</button>
-                </div>
+                </div> -->
                 <form action="{{ route('deleteall') }}" method="POST">
                     @csrf
                     @method('DELETE')
@@ -138,23 +138,23 @@
         });
     });
 
-    $(document).ready(function() {
-        // Chọn tất cả sản phẩm
-        $('#myCheckbox').click(function() {
-            $('.cbxcon').prop('checked', $(this).prop('checked'));
-            const count = $('.cbxcon:checked').length;
-            $('#cbxsl').text("Select(" + count + ")");
-            // $('#cbxsl2').text("Product(" + count + ")");
-        });
+    // $(document).ready(function() {
+    //     // Chọn tất cả sản phẩm
+    //     $('#myCheckbox').click(function() {
+    //         $('.cbxcon').prop('checked', $(this).prop('checked'));
+    //         const count = $('.cbxcon:checked').length;
+    //         $('#cbxsl').text("Select(" + count + ")");
+    //         // $('#cbxsl2').text("Product(" + count + ")");
+    //     });
 
-        // Đếm số sản phẩm được chọn
-        $('.cbxcon').click(function() {
-            const count = $('.cbxcon:checked').length;
-            $('#cbxsl').text("Select(" + count + ")");
-            // $('#cbxsl2').text("Product(" + count + ")");
-        });
-        // Tính lại giá trị khi checkbox được chọn hoặc bỏ chọn
-    });
+    //     // Đếm số sản phẩm được chọn
+    //     $('.cbxcon').click(function() {
+    //         const count = $('.cbxcon:checked').length;
+    //         $('#cbxsl').text("Select(" + count + ")");
+    //         // $('#cbxsl2').text("Product(" + count + ")");
+    //     });
+    //     // Tính lại giá trị khi checkbox được chọn hoặc bỏ chọn
+    // });
 
 
     function updateCart(idproduct) {
