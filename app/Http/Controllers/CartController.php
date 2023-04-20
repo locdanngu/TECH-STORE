@@ -16,40 +16,45 @@ class CartController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function add($idproduct)
-{
-    // Check if user is logged in
-    if (!Auth::check()) {
-        return redirect()->route('login')->withErrors(['error' => 'You need to log in first!']);
+    {
+        // Check if user is logged in
+        if (Auth::check()) {
+            $user = Auth::user();
+
+            // Find product with matching id
+            $product = Product::findOrFail($idproduct);
+            // dd($idproduct);
+            // Find or create cart item
+            $cartItem = Cart::firstOrNew([
+                'idproduct' => $idproduct,
+                'id' => $user->id
+            ]);
+    
+            // If the cart item already exists, increment its quantity
+            if ($cartItem->exists) {
+                // $cartItem->quatifier++;
+                return back();
+            } else {
+                $cartItem->quatifier = 1;
+            }
+    
+            // Set the value of the idproduct and id fields
+            $cartItem->idproduct = $idproduct;
+            $cartItem->id = $user->id;
+    
+            // Save the cart item to the database
+            $cartItem->save();
+            return back();
+            
+        }else {
+            return redirect()->route('login.page')->withErrors(['error' => 'You need to log in first!']);
+        }
+
+        
+
+
+        
     }
-
-    $user = Auth::user();
-
-    // Find product with matching id
-    $product = Product::findOrFail($idproduct);
-    // dd($idproduct);
-    // Find or create cart item
-    $cartItem = Cart::firstOrNew([
-        'idproduct' => $idproduct,
-        'id' => $user->id
-    ]);
-
-    // If the cart item already exists, increment its quantity
-    if ($cartItem->exists) {
-        $cartItem->quatifier++;
-    } else {
-        $cartItem->quatifier = 1;
-    }
-
-    // Set the value of the idproduct and id fields
-    $cartItem->idproduct = $idproduct;
-    $cartItem->id = $user->id;
-
-    // Save the cart item to the database
-    $cartItem->save();
-
-
-    return back();
-}
 
 
 

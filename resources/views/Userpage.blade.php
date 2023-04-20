@@ -88,17 +88,15 @@
                         <p class="review">{{ $product->review }}</p>
                         <p class="price">${{ $product->price }}</p>
                         <a href="{{ route('cart.add', ['idproduct' => $product->idproduct]) }}" class="addtocart"><i
-                            class="bi bi-plus-circle"></i> Add to cart</a>
+                                class="bi bi-plus-circle"></i> Add to cart</a>
                     </div>
                 </div>
                 @endforeach
             </div>
-
-
-
-
         </div>
     </div>
+    
+
     @extends('layouts.Foot')
     <script>
     //ngăn chặn việc đóng dropdown khi chỉ bấm vào phần tử bên trong
