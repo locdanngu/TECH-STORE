@@ -55,6 +55,8 @@
                             <li class="dropdown-item dropdown-item-ignore-close">Dropdown item</li>
                             <li class="dropdown-item dropdown-item-ignore-close">Dropdown item</li>
                             <li class="dropdown-item dropdown-item-ignore-close">Dropdown item</li>
+                            <li class="dropdown-item dropdown-item-ignore-close">Dropdown item</li>
+                            <li class="dropdown-item dropdown-item-ignore-close">Dropdown item</li>
                         </ul>
                     </div>
                     <!-- <a href="" class="btnlink"><i class="bi bi-bell"></i></a> -->
