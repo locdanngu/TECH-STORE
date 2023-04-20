@@ -132,7 +132,7 @@ class CartController extends Controller
             foreach ($cartItems as $cartItem) {
                 $notification = new Notification;
                 $notification->id = $user->id;
-                $notification->notification = 'Your order for product '.$cartItem->idproduct.' is waiting for confirmation';
+                $notification->notification = 'Your order for product '.$cartItem->nameproduct.'x'.$cartItem->quatifier.' is waiting for confirmation';
                 $notification->save();
             }
             Cart::where('id', $user->id)->where('status', 0)->update(['status' => 1]);
