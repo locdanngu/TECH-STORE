@@ -45,6 +45,7 @@
                     <i class="bi bi-eye-slash" id="eye1"></i>
                     <i class="bi bi-eye" id="eye2"></i>
                 </div>
+                <a href="{{ route('user.page') }}" class="naptien2">More Product</a>
                 <button class="naptien">Recharge</button>
             </div>
             <table class="table table-dark">

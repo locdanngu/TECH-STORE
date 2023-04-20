@@ -251,3 +251,20 @@ th,td{
     border-radius: 0.25em;
     font-weight: bold;
 }
+
+.naptien2{
+    /* font-weight: 800; */
+    color: #FFFFFF;
+    text-decoration: none;
+    border: 0.5px solid #A100ED;
+    border-radius: 0.25em;
+    padding: .5em 1em;
+    background-color: #8A8A8A;
+    transition: 0.5s ease;
+}
+
+.naptien2:hover{
+    background-color: #A100ED;
+    border: 0.5px solid #FFFFFF;
+
+}
