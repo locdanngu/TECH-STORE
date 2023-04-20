@@ -100,16 +100,16 @@ class ProductController extends Controller
                 $html .= '<p class="namesp">' . $product->nameproduct . '</p>';
                 $html .= '<p class="namehangsp">' . $product->category->namecategory . '</p>';
                 $html .= '<p class="price">$' . $product->price . '</p>';
-                $html .= '<a href="" class="addtocart"><i class="bi bi-plus-circle"></i> Add to cart</a>';
+                $html .= '<a href="' . route('cart.add', ['idproduct' => $product->idproduct]) . '" class="addtocart"><i class="bi bi-plus-circle"></i> Add to cart</a>';
                 $html .= '</div>';
                 $html .= '<div id="popup-' . $product->idproduct . '" class="popup">';
                 $html .= '<div class="popup-content">';
-                $html .= '<a href="#" class="close-popup"><i class="bi bi-x-circle"></i> Close</a>';
+                $html .= '<a href="' . route('cart.add', ['idproduct' => $product->idproduct]) . '" class="addtocart"><i class="bi bi-plus-circle"></i> Add to cart</a>';
                 $html .= '<p class="price">' . $product->nameproduct . '</p>';
                 $html .= '<img src="' . $product->image . '" class="imgsp2">';
                 $html .= '<p class="review">' . $product->review . '</p>';
                 $html .= '<p class="price">$' . $product->price . '</p>';
-                $html .= '<a href="" class="addtocart"><i class="bi bi-plus-circle"></i> Add to cart</a>';
+                $html .= '<a href="' . route('cart.add', ['idproduct' => $product->idproduct]) . '" class="addtocart"><i class="bi bi-plus-circle"></i> Add to cart</a>';
                 $html .= '</div>';
                 $html .= '</div>';
             }
