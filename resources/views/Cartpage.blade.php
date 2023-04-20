@@ -73,53 +73,56 @@
                             <input type="checkbox" name="cart_item[]" value="{{ $cart_item->idproduct }}"
                                 class="cbxcon">
                         </td> -->
-                        <th scope="row" class="fixcenter">{{ $loop->iteration }}</th>
-                        <td><img src="{{ $cart_item->image }}" class="imgsp"></td>
-                        <td class="fixcenter">{{ $cart_item->nameproduct }}</td>
-                        <td class="fixcenter">{{ $cart_item->price }}</td>
-                        <td class="fixcenter">
-                            <input aria-label="quantity" class="input-qty" max="99" min="1" name="quantity"
-                                type="number" id="quantity-input-{{ $cart_item->idproduct }}"
-                                value="{{ $cart_item->quatifier }}">
-                        </td>
-                        <td class="fixcenter">{{ number_format($cart_item->quatifier * $cart_item->price, 2) }}</td>
-                        @php
-                        $total_price += $cart_item->quatifier * $cart_item->price;
-                        $total_product += 1;
-                        @endphp
-                        <td class="fixcenter">
-                            <div class="fixflex">
-                                <a class="btnsave" href="#" onclick="updateCart({{ $cart_item->idproduct }})">Update</a>
-                                <p class="fixmar">|</p>
-                                <a class="btnsave"
-                                    href="{{ route('cart.delete', ['idproduct' => $cart_item->idproduct]) }}">Delete</a>
-                            </div>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            <div class="footright">
-                <!-- <div class="pay">
+                        <form method="POST" action="{{ route('cart.update') }}">
+                            @csrf
+                            <th scope="row" class="fixcenter">{{ $loop->iteration }}</th>
+                            <td><img src="{{ $cart_item->image }}" class="imgsp"></td>
+                            <td class="fixcenter">{{ $cart_item->nameproduct }}</td>
+                            <td class="fixcenter">{{ $cart_item->price }}</td>
+                            <input type="hidden" name="idproduct" value="{{ $cart_item->idproduct }}">
+                            <td class="fixcenter">
+                                <input aria-label="quantity" class="input-qty" max="99" min="1" name="quantity"
+                                    type="number" value="{{ $cart_item->quatifier }}">
+                            </td>
+                            <td class="fixcenter">{{ number_format($cart_item->quatifier * $cart_item->price, 2) }}</td>
+                            @php
+                            $total_price += $cart_item->quatifier * $cart_item->price;
+                            $total_product += 1;
+                            @endphp
+                            <td class="fixcenter">
+                                <div class="fixflex">
+                                    <button class="btnsave3">Update</button>
+                        </form>
+                        <p class="fixmar">|</p>
+                        <a class="btnsave"
+                            href="{{ route('cart.delete', ['idproduct' => $cart_item->idproduct]) }}">Delete</a>
+        </div>
+        </td>
+        </tr>
+        @endforeach
+        </tbody>
+        </table>
+        <div class="footright">
+            <!-- <div class="pay">
                     <p class="txtsp" id="cbxsl">Select(0)</p>
                     <button class="btnpay">Deselect</button>
                 </div> -->
-                <form action="{{ route('deleteall') }}" method="POST">
+            <form action="{{ route('deleteall') }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button class="btnpay">Delete All</button>
+            </form>
+            <div class="pay">
+                <p class="txtsp" id="cbxsl2">Product({{$total_product}}):</p>
+                <p class="txtsp">{{ number_format($total_price, 2) }}$</p>
+                <form action="{{ route('cart.pay') }}" method="POST">
                     @csrf
-                    @method('DELETE')
-                    <button class="btnpay">Delete All</button>
+                    <input type="hidden" value="{{$total_price}}" name="pay">
+                    <button class="btnpay" type="submit">Payment</button>
                 </form>
-                <div class="pay">
-                    <p class="txtsp" id="cbxsl2">Product({{$total_product}}):</p>
-                    <p class="txtsp">{{ number_format($total_price, 2) }}$</p>
-                    <form action="{{ route('cart.pay') }}" method="POST">
-                        @csrf
-                        <input type="hidden" value="{{$total_price}}" name="pay">
-                        <button class="btnpay" type="submit">Payment</button>
-                    </form>
-                </div>
             </div>
         </div>
+    </div>
     </div>
     @extends('layouts.Foot')
     <script>
@@ -167,11 +170,11 @@
     // });
 
 
-    function updateCart(idproduct) {
-        var quantityValue = document.getElementById("quantity-input-" + idproduct).value;
-        window.location.href = "{{ route('cart.update', ['idproduct' => ':idproduct', 'quatifier' => ':quantity']) }}"
-            .replace(':idproduct', idproduct).replace(':quantity', quantityValue);
-    }
+    // function updateCart(idproduct) {
+    //     var quantityValue = document.getElementById("quantity-input-" + idproduct).value;
+    //     window.location.href = "{{ route('cart.update', ['idproduct' => ':idproduct', 'quatifier' => ':quantity']) }}"
+    //         .replace(':idproduct', idproduct).replace(':quantity', quantityValue);
+    // }
     </script>
 </body>
 

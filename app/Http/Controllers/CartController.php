@@ -27,12 +27,14 @@ class CartController extends Controller
         }
     }
 
-    public function updateCart(Request $request, $idproduct, $quatifier)
+    public function updateCart(Request $request)
     {
         if (Auth::check()) {
-            // dd($quatifier);
+            $idproduct = $request->input('idproduct');
+            $quantity = $request->input('quantity');
+            // dd($idproduct,$quantity);
             $user = Auth::user();
-            Cart::where('idproduct', $idproduct)->where('id', $user->id)->where('status', 0)->update(['quatifier' => $quatifier]);
+            Cart::where('idproduct', $idproduct)->where('id', $user->id)->where('status', 0)->update(['quatifier' => $quantity]);
             return back();
         }
          else {

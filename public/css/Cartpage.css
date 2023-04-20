@@ -269,3 +269,13 @@ th,td{
 
 }
 
+.btnsave3{
+    background-color: transparent;
+    color: #FFFFFF;
+    font-weight: bold;
+    border: 0;
+}
+
+.btnsave3:hover{
+    color: #A100ED;
+}
