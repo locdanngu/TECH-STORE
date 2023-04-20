@@ -130,15 +130,12 @@ class CartController extends Controller
             $cartItems = Cart::where('id', $user->id)->where('status', 0)->get();
 
             foreach ($cartItems as $cartItem) {
-                $cartItem->status = 1;
-                $cartItem->save();
-
                 $notification = new Notification;
                 $notification->id = $user->id;
                 $notification->notification = 'Your order for product '.$cartItem->idproduct.' is waiting for confirmation';
                 $notification->save();
             }
-
+            Cart::where('id', $user->id)->where('status', 0)->update(['status' => 1]);
             $user = User::findOrFail($user->id);
             $user->balance -= $totalPrice;
             $user->save();
