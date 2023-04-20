@@ -70,7 +70,8 @@
                     <tr class="space"></tr>
                     <tr>
                         <td class="fixcenter">
-                            <input type="checkbox" name="cart_item[]" value="{{ $cart_item->idproduct }}" class="cbxcon">
+                            <input type="checkbox" name="cart_item[]" value="{{ $cart_item->idproduct }}"
+                                class="cbxcon">
                         </td>
                         <th scope="row" class="fixcenter">{{ $loop->iteration }}</th>
                         <td><img src="{{ $cart_item->image }}" class="imgsp"></td>
@@ -90,12 +91,12 @@
                             <div class="fixflex">
                                 <a class="btnsave" href="#" onclick="updateCart({{ $cart_item->idproduct }})">Update</a>
                                 <p class="fixmar">|</p>
-                                <a class="btnsave" href="{{ route('cart.delete', ['idproduct' => $cart_item->idproduct]) }}">Delete</a>
+                                <a class="btnsave"
+                                    href="{{ route('cart.delete', ['idproduct' => $cart_item->idproduct]) }}">Delete</a>
                             </div>
                         </td>
                     </tr>
                     @endforeach
-
                 </tbody>
             </table>
             <div class="footright">
@@ -103,13 +104,16 @@
                     <p class="txtsp" id="cbxsl">Select(0)</p>
                     <button class="btnpay">Deselect</button>
                 </div>
-                <button class="btnpay">Delete All</button>
+                <form action="{{ route('deleteall') }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btnpay">Delete All</button>
+                </form>
                 <div class="pay">
                     <p class="txtsp" id="cbxsl2">Product({{$total_product}}):</p>
                     <p class="txtsp">{{ number_format($total_price, 2) }}$</p>
                     <button class="btnpay">Payment</button>
                 </div>
-
             </div>
         </div>
     </div>
@@ -117,13 +121,13 @@
     <script>
     $(document).ready(function() {
         var isHidden = true;
-        var balance = '10000.00$';
+        var balance = {{ $user->balance }};
 
         $('#eye1, #eye2').click(function() {
             if (isHidden) {
                 $("#eye2").hide();
                 $("#eye1").show();
-                $('#balance').text(balance);
+                $('#balance').text(balance.toLocaleString('en-US', {minimumFractionDigits: 2}) + '$');
                 isHidden = false;
             } else {
                 $("#eye1").hide();

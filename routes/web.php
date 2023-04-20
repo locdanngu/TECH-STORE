@@ -35,7 +35,8 @@ Route::post('/Changepassword', [ProfileuserController::class, 'changePassWord'])
 Route::get('/Cartuserpage', [CartController::class, 'viewCart'])->name('cart.page');     //view giỏ hàng
 Route::get('/Cartuserpage/{idproduct}/{quatifier}', [CartController::class, 'updateCart'])->name('cart.update');
 Route::get('/Cartuserpage/{idproduct}', [CartController::class, 'deleteCart'])->name('cart.delete');
-Route::get('/cart/add/{idproduct}', [CartController::class, 'add'])->name('cart.add');      
+Route::get('/cart/add/{idproduct}', [CartController::class, 'add'])->name('cart.add');     
+Route::delete('/Cartuserpage/deleteall', [CartController::class, 'deleteAll'])->name('deleteall');
 
 
 Route::get('/Mypurchasepage', [ProfileuserController::class, 'viewOrder'])->name('order.page');     //view lịch sử mua hàng

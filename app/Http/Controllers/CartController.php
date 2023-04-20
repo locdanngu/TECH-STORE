@@ -90,6 +90,17 @@ class CartController extends Controller
         }
     }
 
-
+    public function deleteAll()
+    {
+        if (Auth::check()) {
+            // dd($quatifier);
+            $user = Auth::user();
+            Cart::where('id', $user->id)->delete();
+            return back();
+        }
+         else {
+            return redirect()->route('login.page')->withErrors(['error' => 'You need to log in first!']);
+        }
+    }
 
 }
