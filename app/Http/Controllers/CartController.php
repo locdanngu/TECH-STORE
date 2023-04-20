@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Cart;
+use App\Models\User;
 use App\Models\Product;
 
 class CartController extends Controller
@@ -16,6 +17,7 @@ class CartController extends Controller
             $user = Auth::user();
             $cart_items = Product::join('cart', 'product.idproduct', '=', 'cart.idproduct')
                         ->where('cart.id', $user->id)
+                        ->where('status', 0)
                         ->select('product.idproduct', 'product.nameproduct', 'product.price', 'cart.quatifier', 'product.image')
                         ->get();
             return view('Cartpage', ['user' => $user, 'cart_items' => $cart_items]);
@@ -66,7 +68,8 @@ class CartController extends Controller
             // Find or create cart item
             $cartItem = Cart::firstOrNew([
                 'idproduct' => $idproduct,
-                'id' => $user->id
+                'id' => $user->id,
+                'status' => 0
             ]);
     
             // If the cart item already exists, increment its quantity
@@ -102,5 +105,39 @@ class CartController extends Controller
             return redirect()->route('login.page')->withErrors(['error' => 'You need to log in first!']);
         }
     }
+
+    public function pay(Request $request)
+    {
+        if (Auth::check()) {
+            // dd($quatifier);
+            $user = Auth::user();
+            $totalPrice = $request->input('pay');
+            Cart::where('id', $user->id)->update(['status' => 1]);
+            $user = User::findOrFail($user->id);
+            $user->balance -= $totalPrice;
+            $user->save();
+            return redirect()->route('order.page');
+        }
+         else {
+            return redirect()->route('login.page')->withErrors(['error' => 'You need to log in first!']);
+        }
+    }
+
+    public function viewPurchase()
+    {
+        if (Auth::check()) {
+            $user = Auth::user();
+            $cart_items = Product::join('cart', 'product.idproduct', '=', 'cart.idproduct')
+                        ->where('cart.id', $user->id)
+                        ->where('status', 1)
+                        ->select('product.idproduct', 'product.nameproduct', 'product.price', 'cart.quatifier', 'product.image', 'cart.status')
+                        ->get();
+            return view('Cartpage', ['user' => $user, 'cart_items' => $cart_items]);
+        }
+         else {
+            return redirect()->route('login.page')->withErrors(['error' => 'You need to log in first!']);
+        }
+    }
+
 
 }

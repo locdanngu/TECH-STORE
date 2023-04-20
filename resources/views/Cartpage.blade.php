@@ -112,7 +112,11 @@
                 <div class="pay">
                     <p class="txtsp" id="cbxsl2">Product({{$total_product}}):</p>
                     <p class="txtsp">{{ number_format($total_price, 2) }}$</p>
-                    <button class="btnpay">Payment</button>
+                    <form action="{{ route('cart.pay') }}" method="POST">
+                        @csrf
+                        <input type="hidden" value="{{$total_price}}" name="pay">
+                        <button class="btnpay" type="submit">Payment</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -121,13 +125,19 @@
     <script>
     $(document).ready(function() {
         var isHidden = true;
-        var balance = {{ $user->balance }};
+        var balance = {
+            {
+                $user - > balance
+            }
+        };
 
         $('#eye1, #eye2').click(function() {
             if (isHidden) {
                 $("#eye2").hide();
                 $("#eye1").show();
-                $('#balance').text(balance.toLocaleString('en-US', {minimumFractionDigits: 2}) + '$');
+                $('#balance').text(balance.toLocaleString('en-US', {
+                    minimumFractionDigits: 2
+                }) + '$');
                 isHidden = false;
             } else {
                 $("#eye1").hide();

@@ -37,6 +37,7 @@ Route::get('/Cartuserpage/{idproduct}/{quatifier}', [CartController::class, 'upd
 Route::get('/Cartuserpage/{idproduct}', [CartController::class, 'deleteCart'])->name('cart.delete');
 Route::get('/cart/add/{idproduct}', [CartController::class, 'add'])->name('cart.add');     
 Route::delete('/Cartuserpage/deleteall', [CartController::class, 'deleteAll'])->name('deleteall');
+Route::post('/Cartuserpage/pay', [CartController::class, 'pay'])->name('cart.pay');
 
 
 Route::get('/Mypurchasepage', [ProfileuserController::class, 'viewOrder'])->name('order.page');     //view lịch sử mua hàng
