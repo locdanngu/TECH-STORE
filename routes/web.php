@@ -30,10 +30,11 @@ Route::get('/Profileuserpage', [ProfileuserController::class, 'showProfileuser']
 Route::post('/Profileuserpage', [ProfileuserController::class, 'changeProfileuser'])->name('profileuser.update');   //thay đổi thông tin user
 Route::get('/Changepassword', [ProfileuserController::class, 'viewChangePassWord'])->name('changepassword.page');  //view đổi mk
 Route::post('/Changepassword', [ProfileuserController::class, 'changePassWord'])->name('changepassword.update');  //route thay mk
-Route::get('/Cartuserpage', [ProfileuserController::class, 'viewCart'])->name('cart.page');     //view giỏ hàng
-Route::get('/Cartuserpage/{idproduct}/{quatifier}', [ProfileuserController::class, 'updateCart'])->name('cart.update');
-Route::get('/Cartuserpage/{idproduct}', [ProfileuserController::class, 'deleteCart'])->name('cart.delete');
 
+
+Route::get('/Cartuserpage', [CartController::class, 'viewCart'])->name('cart.page');     //view giỏ hàng
+Route::get('/Cartuserpage/{idproduct}/{quatifier}', [CartController::class, 'updateCart'])->name('cart.update');
+Route::get('/Cartuserpage/{idproduct}', [CartController::class, 'deleteCart'])->name('cart.delete');
 Route::get('/cart/add/{idproduct}', [CartController::class, 'add'])->name('cart.add');      
 
 

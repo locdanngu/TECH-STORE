@@ -9,12 +9,51 @@ use App\Models\Product;
 
 class CartController extends Controller
 {
-    /**
-     * Add product to cart.
-     *
-     * @param  int  $idproduct
-     * @return \Illuminate\Http\Response
-     */
+    
+    public function viewCart()
+    {
+        if (Auth::check()) {
+            $user = Auth::user();
+            $cart_items = Product::join('cart', 'product.idproduct', '=', 'cart.idproduct')
+                        ->where('cart.id', $user->id)
+                        ->select('product.idproduct', 'product.nameproduct', 'product.price', 'cart.quatifier', 'product.image')
+                        ->get();
+            return view('Cartpage', ['user' => $user, 'cart_items' => $cart_items]);
+        }
+         else {
+            return redirect()->route('login.page')->withErrors(['error' => 'You need to log in first!']);
+        }
+    }
+
+    public function updateCart(Request $request, $idproduct, $quatifier)
+    {
+        if (Auth::check()) {
+            // dd($quatifier);
+            $user = Auth::user();
+            Cart::where('idproduct', $idproduct)->where('id', $user->id)->update(['quatifier' => $quatifier]);
+            return back();
+        }
+         else {
+            return redirect()->route('login.page')->withErrors(['error' => 'You need to log in first!']);
+        }
+    }
+
+    public function deleteCart(Request $request, $idproduct)
+    {
+        if (Auth::check()) {
+            // dd($quatifier);
+            $user = Auth::user();
+            // dd($idproduct);
+            Cart::where('idproduct', $idproduct)->where('id', $user->id)->delete();
+            return back();
+        }
+         else {
+            return redirect()->route('login.page')->withErrors(['error' => 'You need to log in first!']);
+        }
+    }
+
+
+
     public function add($idproduct)
     {
         // Check if user is logged in
@@ -44,16 +83,11 @@ class CartController extends Controller
     
             // Save the cart item to the database
             $cartItem->save();
-            return back();
+            return redirect()->route('cart.page');
             
         }else {
             return redirect()->route('login.page')->withErrors(['error' => 'You need to log in first!']);
         }
-
-        
-
-
-        
     }
 
 
