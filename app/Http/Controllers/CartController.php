@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Cart;
 use App\Models\User;
+use App\Models\Notification;
 use App\Models\Product;
 
 class CartController extends Controller
@@ -114,10 +115,27 @@ class CartController extends Controller
             // dd($quatifier);
             $user = Auth::user();
             $totalPrice = $request->input('pay');
-            Cart::where('id', $user->id)->where('status', 0)->update(['status' => 1]);
-            $user = User::findOrFail($user->id);
-            $user->balance -= $totalPrice;
-            $user->save();
+
+            // Cart::where('id', $user->id)->where('status', 0)->update(['status' => 1]);
+            $cartItems = Cart::where('id', $user->id)->where('status', 0)->get();
+            foreach ($cartItems as $cartItem) {
+                $cartItem->status = 1;
+                $cartItem->save();
+                $notification = new Notification;
+                $notification->id = $user->id;
+                $notification->notification = 'Your order for product '.$cartItem->idproduct.' is waiting for confirmation';
+                $notification->nameproduct = $cartItem->nameproduct;
+                $notification->quatifier = $cartItem->quatifier;
+                $notification->quatifier = $cartItem->quatifier;
+                $notification->save();
+            }
+            // $user = User::findOrFail($user->id);
+            // $user->balance -= $totalPrice;
+            // $user->save();
+            // $notification = new Notification;
+            // $notification->id = $user->id;
+            // $notification->notification = 'Your order is waiting for confirmation';
+            // $notification->save();
             return redirect()->route('order.page');
         }
          else {
