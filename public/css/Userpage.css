@@ -176,7 +176,7 @@ p {
 
 .bodyright {
     margin-top: 3em;
-    width: 30%;
+    width: 50%;
     display: flex;
     margin-left: 4%;
 
@@ -373,4 +373,8 @@ a {
 
 .review {
     color: #FFFFFF;
+}
+
+.error{
+    color: red;
 }

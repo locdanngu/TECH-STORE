@@ -67,6 +67,9 @@
                 <!-- <a href="" class="loc active">All</a> -->
                 <div href="" class="loc active" data-url="0">Price <i class="bi bi-arrow-up"></i></div>
                 <div href="" class="loc" data-url="1">Price <i class="bi bi-arrow-down"></i></div>
+                @error('fail')
+                <p class="error">{{ $message }}</p>
+                @enderror
             </div>
             <div class="allmonhang">
                 @foreach($products as $product)
@@ -95,7 +98,7 @@
             </div>
         </div>
     </div>
-    
+
 
     @extends('layouts.Foot')
     <script>

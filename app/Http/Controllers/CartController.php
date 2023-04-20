@@ -72,7 +72,7 @@ class CartController extends Controller
             // If the cart item already exists, increment its quantity
             if ($cartItem->exists) {
                 // $cartItem->quatifier++;
-                return back();
+                return redirect()->back()->withErrors(['fail' => 'Product is already in the cart']);
             } else {
                 $cartItem->quatifier = 1;
             }
