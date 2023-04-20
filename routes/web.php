@@ -4,6 +4,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ProfileuserController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +34,7 @@ Route::get('/Cartuserpage', [ProfileuserController::class, 'viewCart'])->name('c
 Route::get('/Cartuserpage/{idproduct}/{quatifier}', [ProfileuserController::class, 'updateCart'])->name('cart.update');
 Route::get('/Cartuserpage/{idproduct}', [ProfileuserController::class, 'deleteCart'])->name('cart.delete');
 
+Route::get('/cart/add/{idproduct}', [CartController::class, 'add'])->name('cart.add');      
 
 
 Route::get('/Mypurchasepage', [ProfileuserController::class, 'viewOrder'])->name('order.page');     //view lịch sử mua hàng

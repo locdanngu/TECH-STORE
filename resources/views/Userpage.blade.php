@@ -58,7 +58,7 @@
                         </ul>
                     </div>
                     <!-- <a href="" class="btnlink"><i class="bi bi-bell"></i></a> -->
-                    <a  href="{{ route('cart.page') }}" class="btnlink"><i class="bi bi-cart"></i></a>
+                    <a href="{{ route('cart.page') }}" class="btnlink"><i class="bi bi-cart"></i></a>
                     <img src="{{ $user->avatar }}" class="avataruser">
                 </div>
 
@@ -77,7 +77,8 @@
                     <p class="namesp">{{ $product->nameproduct }}</p>
                     <p class="namehangsp">{{ $product->category->namecategory }}</p>
                     <p class="price">${{ $product->price }}</p>
-                    <a href="" class="addtocart"><i class="bi bi-plus-circle"></i> Add to cart</a>
+                    <a href="{{ route('cart.add', ['idproduct' => $product->idproduct]) }}" class="addtocart"><i
+                            class="bi bi-plus-circle"></i> Add to cart</a>
                 </div>
                 <div id="popup-{{ $product->idproduct }}" class="popup">
                     <div class="popup-content">
@@ -86,7 +87,8 @@
                         <img src="{{ $product->image }}" class="imgsp2">
                         <p class="review">{{ $product->review }}</p>
                         <p class="price">${{ $product->price }}</p>
-                        <a href="" class="addtocart"><i class="bi bi-plus-circle"></i> Add to cart</a>
+                        <a href="{{ route('cart.add', ['idproduct' => $product->idproduct]) }}" class="addtocart"><i
+                            class="bi bi-plus-circle"></i> Add to cart</a>
                     </div>
                 </div>
                 @endforeach
