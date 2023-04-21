@@ -64,6 +64,3 @@ Route::get('/Loginadmin', [AdminController::class, 'viewLoginAdmin'])->name('adm
 Route::get('/logoutadmin', [AdminController::class, 'logOutAdmin'])->name('logout.admin');
 
 
-Route::get('/Adminlayout', function () {
-    return view('Adminlayout');
-})->name('layout');

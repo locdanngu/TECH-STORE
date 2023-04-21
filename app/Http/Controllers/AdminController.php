@@ -14,9 +14,10 @@ class AdminController extends Controller
 
     public function viewLoginAdmin()
     {
-        // return view('Admin');
+        // return view('Loginadmin');
+        $user = Auth::user();
         if (Auth::check() && Auth::user()->role === 'admin') {
-            return view('Admin');
+            return view('Admin', ['user' => $user]);
         } else {
             return view('Loginadmin');
         }
