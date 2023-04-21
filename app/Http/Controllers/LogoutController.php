@@ -13,7 +13,7 @@ class LogoutController extends Controller
     //     return redirect()->route('login.page');
         
     // }
-    public function logout(Request $request)
+    public function logOut(Request $request)
     {
         Auth::logout();
         $request->session()->invalidate();

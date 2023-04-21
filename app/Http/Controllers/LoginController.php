@@ -40,7 +40,7 @@ class LoginController extends Controller
                     auth()->user()->save();
                     Cookie::queue('remember_token', auth()->user()->remember_token, 1440);
                 }
-                return redirect()->route('admin.page');
+                return redirect()->route('user.page');
             } else {
                 // Nếu vai trò không phải customer, đăng xuất và chuyển hướng đến trang đăng nhập với thông báo lỗi
                 Auth::logout();

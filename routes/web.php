@@ -61,4 +61,4 @@ Route::get('/logout', [LogoutController::class, 'logOut'])->name('logout');     
 Route::get('/Admin', [AdminController::class, 'viewAdmin'])->middleware('admin')->name('admin.page');             //route chuyển hướng sau khi đăng nhập admin
 Route::post('/Loginadmin', [AdminController::class, 'loginAdmin'])->name('admin.login');        //xử lí đăng nhập admin
 Route::get('/Loginadmin', [AdminController::class, 'viewLoginAdmin'])->name('admin.loginpage');             //route form đăng nhập admin
-
+Route::get('/logoutadmin', [LogoutController::class, 'logOutAdmin'])->name('logoutadmin');
