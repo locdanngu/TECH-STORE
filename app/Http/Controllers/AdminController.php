@@ -8,7 +8,8 @@ class AdminController extends Controller
 {
     public function viewAdmin()
     {   
-        return view('Admin');
+        $user = Auth::user();
+        return view('Admin', ['user' => $user]);
     }
 
     public function viewLoginAdmin()
@@ -61,6 +62,6 @@ class AdminController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/LoginAdmin');
+        return redirect('/Loginadmin');
     }
 }
