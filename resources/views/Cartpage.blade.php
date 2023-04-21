@@ -131,7 +131,8 @@
     $(document).ready(function() {
         var isHidden = true;
         var balance = {{ $user->balance }};
-
+        $("#eye1").show();
+        $("#eye2").hide();
         $('#eye1, #eye2').click(function() {
             if (isHidden) {
                 $("#eye2").show();
@@ -145,12 +146,13 @@
                 isHidden = true;
             }
         });
-    });
+    });                  //đề phòng trường hợp format lại HTML trong php
     
     // $(document).ready(function() {
     //     var isHidden = true;
     //     var balance = {{ $user->balance }};
-
+    //     $("#eye1").show();
+    //     $("#eye2").hide();
     //     $('#eye1, #eye2').click(function() {
     //         if (isHidden) {
     //             $("#eye2").show();
