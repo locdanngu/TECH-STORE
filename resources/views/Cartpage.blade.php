@@ -131,17 +131,17 @@
     $(document).ready(function() {
         var isHidden = true;
         var balance = {{ $user->balance }};
-        $("#eye1").show();
-        $("#eye2").hide();
+        $("#eye2").show();
+        $("#eye1").hide();
         $('#eye1, #eye2').click(function() {
             if (isHidden) {
-                $("#eye2").show();
-                $("#eye1").hide();
+                $("#eye1").show();
+                $("#eye2").hide();
                 $('#balance').text(balance.toLocaleString('en-US', {minimumFractionDigits: 2}) + '$');
                 isHidden = false;
             } else {
-                $("#eye1").show();
-                $("#eye2").hide();
+                $("#eye2").show();
+                $("#eye1").hide();
                 $('#balance').text('******');
                 isHidden = true;
             }
