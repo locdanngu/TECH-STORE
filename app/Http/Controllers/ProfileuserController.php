@@ -11,7 +11,7 @@ class ProfileuserController extends Controller
 {
     public function showProfileuser()
     {
-        if (Auth::check()) {
+        if (Auth::check() && Auth::user()->role === 'customer') {
             $user = Auth::user();
         return view('Profileuserpage', ['user' => $user]);
 
@@ -41,7 +41,7 @@ class ProfileuserController extends Controller
 
     public function viewChangePassWord()
     {
-        if (Auth::check()) {
+        if (Auth::check() && Auth::user()->role === 'customer') {
             $user = Auth::user();
         return view('Changepassword', ['user' => $user]);
 

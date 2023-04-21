@@ -43,7 +43,6 @@ Route::post('/Cartuserpage/pay', [CartController::class, 'pay'])->name('cart.pay
 Route::get('/Mypurchasepage', [CartController::class, 'viewOrder'])->name('order.page');     //view lịch sử mua hàng
 
 
-
 Route::get('/Userpage', [ProductController::class, 'showData'])->name('user.page');             //route chuyển hướng sau khi đăng kí
 Route::post('/Userpage/{idcategory}/{idprice}/{search?}', [ProductController::class, 'ajaxRequest'])->name('product.ajaxRequest');  //ajax
 
@@ -57,6 +56,8 @@ Route::post('/register', [RegisterController::class, 'store'])->name('register')
 
 
 Route::get('/logout', [LogoutController::class, 'logOut'])->name('logout');         //route xử lí đăng xuất
+
+
 
 
 

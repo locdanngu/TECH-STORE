@@ -11,7 +11,7 @@ class ProductController extends Controller
 {
     public function showData()
     {
-        if (Auth::check()) {
+        if (Auth::check() && Auth::user()->role === 'customer') {
             $user = Auth::user();
             // dd($user);
             // Lấy danh sách sản phẩm từ cơ sở dữ liệu

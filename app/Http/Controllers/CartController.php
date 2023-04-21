@@ -14,7 +14,7 @@ class CartController extends Controller
     
     public function viewCart()
     {
-        if (Auth::check()) {
+        if (Auth::check() && Auth::user()->role === 'customer') {
             $user = Auth::user();
             $cart_items = Product::join('cart', 'product.idproduct', '=', 'cart.idproduct')
                         ->where('cart.id', $user->id)
@@ -30,7 +30,7 @@ class CartController extends Controller
 
     public function updateCart(Request $request)
     {
-        if (Auth::check()) {
+        if (Auth::check() && Auth::user()->role === 'customer') {
             $idproduct = $request->input('idproduct');
             $quantity = $request->input('quantity');
             // dd($idproduct,$quantity);
@@ -45,7 +45,7 @@ class CartController extends Controller
 
     public function deleteCart(Request $request, $idproduct)
     {
-        if (Auth::check()) {
+        if (Auth::check() && Auth::user()->role === 'customer') {
             // dd($quatifier);
             $user = Auth::user();
             // dd($idproduct);
@@ -62,7 +62,7 @@ class CartController extends Controller
     public function add($idproduct)
     {
         // Check if user is logged in
-        if (Auth::check()) {
+        if (Auth::check() && Auth::user()->role === 'customer') {
             $user = Auth::user();
 
             // Find product with matching id
@@ -98,7 +98,7 @@ class CartController extends Controller
 
     public function deleteAll()
     {
-        if (Auth::check()) {
+        if (Auth::check() && Auth::user()->role === 'customer') {
             // dd($quatifier);
             $user = Auth::user();
             Cart::where('id', $user->id)->where('status', 0)->delete();
@@ -111,7 +111,7 @@ class CartController extends Controller
 
     public function pay(Request $request)
     {
-        if (Auth::check()) {
+        if (Auth::check() && Auth::user()->role === 'customer') {
             // // dd($quatifier);
             // $user = Auth::user();
             // $totalPrice = $request->input('pay');
@@ -152,7 +152,7 @@ class CartController extends Controller
 
     public function viewOrder()
     {
-        if (Auth::check()) {
+        if (Auth::check() && Auth::user()->role === 'customer') {
             $user = Auth::user();
             $cart_items = Product::join('cart', 'product.idproduct', '=', 'cart.idproduct')
                         ->where('cart.id', $user->id)

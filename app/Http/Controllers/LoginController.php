@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Cookie;                              //vào Cooki
 class LoginController extends Controller
 {
     public function loginform(Request $request){
-        if (Auth::check()) {
+        if (Auth::check() && Auth::user()->role === 'customer') {
             return redirect()->route('user.page');
         }else{
             return view('Loginpage');

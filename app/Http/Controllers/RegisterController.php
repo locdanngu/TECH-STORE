@@ -9,7 +9,7 @@ use Hash;
 class RegisterController extends Controller
 {
     public function create(){
-        if (Auth::check()) {
+        if (Auth::check() && Auth::user()->role === 'customer') {
             return redirect()->route('user.page');
         }else{
             return view('/Signuppage');
