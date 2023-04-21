@@ -1,10 +1,7 @@
 <?php
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\LogoutController;
-use App\Http\Controllers\ProfileuserController;
-use App\Http\Controllers\CartController;
+namespace App\Http\Controllers;
+
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -61,6 +58,6 @@ Route::get('/logout', [LogoutController::class, 'logOut'])->name('logout');     
 
 
 
-
+Route::get('/Admin', [AdminController::class, 'viewAdmin'])->name('admin.page');             //route chuyển hướng sau khi đăng kí
 
 
