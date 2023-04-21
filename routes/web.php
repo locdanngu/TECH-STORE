@@ -58,6 +58,6 @@ Route::get('/logout', [LogoutController::class, 'logOut'])->name('logout');     
 
 
 
-Route::get('/Admin', [AdminController::class, 'viewAdmin'])->name('admin.page');             //route chuyển hướng sau khi đăng kí
-
+Route::get('/Admin', [AdminController::class, 'viewAdmin'])->name('admin.page');             //route chuyển hướng sau khi đăng nhập admin
+Route::get('/Loginadmin', [AdminController::class, 'viewLoginAdmin'])->name('admin.loginpage');             //route form đăng nhập admin
 

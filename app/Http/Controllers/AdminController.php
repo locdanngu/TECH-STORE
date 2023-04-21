@@ -30,4 +30,13 @@ class AdminController extends Controller
         // }
         return view('Admin');
     }
+
+    public function viewLoginAdmin()
+    {
+        if (Auth::check() && Auth::user()->role === 'admin') {
+            return view('Admin');
+        }else{
+            return view('Loginadmin');
+        }
+    }
 }
