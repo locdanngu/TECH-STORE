@@ -182,6 +182,18 @@ p {
 
 }
 
+.tonkho{
+    margin-top: 1em;
+    font-size: 0.75em;
+    color: #FFFFFF;
+}
+
+.tonkho2{
+    font-size: 1em;
+    color: #FFFFFF;
+    margin-bottom: 1em;
+}
+
 .noti{
     width: 3em;
     margin-right: 1em;

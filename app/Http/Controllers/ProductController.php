@@ -106,6 +106,7 @@ class ProductController extends Controller
                 $html .= '<p class="namehangsp">' . $product->category->namecategory . '</p>';
                 $html .= '<p class="price">$' . $product->price . '</p>';
                 $html .= '<a href="' . route('cart.add', ['idproduct' => $product->idproduct]) . '" class="addtocart"><i class="bi bi-plus-circle"></i> Add to cart</a>';
+                $html .= '<span class="tonkho">Available:'. $product->inventoryquantity .'</span>';
                 $html .= '</div>';
                 $html .= '<div id="popup-' . $product->idproduct . '" class="popup">';
                 $html .= '<div class="popup-content">';
@@ -114,6 +115,7 @@ class ProductController extends Controller
                 $html .= '<img src="' . $product->image . '" class="imgsp2">';
                 $html .= '<p class="review">' . $product->review . '</p>';
                 $html .= '<p class="price">$' . $product->price . '</p>';
+                $html .= '<span class="tonkho2">Available:'. $product->inventoryquantity .'</span>';
                 $html .= '<a href="' . route('cart.add', ['idproduct' => $product->idproduct]) . '" class="addtocart"><i class="bi bi-plus-circle"></i> Add to cart</a>';
                 $html .= '</div>';
                 $html .= '</div>';

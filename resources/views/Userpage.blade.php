@@ -86,6 +86,7 @@
                     <p class="price">${{ $product->price }}</p>
                     <a href="{{ route('cart.add', ['idproduct' => $product->idproduct]) }}" class="addtocart"><i
                             class="bi bi-plus-circle"></i> Add to cart</a>
+                    <span class="tonkho">Available: {{ $product->inventoryquantity}}</span>
                 </div>
                 <div id="popup-{{ $product->idproduct }}" class="popup">
                     <div class="popup-content">
@@ -94,6 +95,7 @@
                         <img src="{{ $product->image }}" class="imgsp2">
                         <p class="review">{{ $product->review }}</p>
                         <p class="price">${{ $product->price }}</p>
+                        <span class="tonkho2">Available: {{ $product->inventoryquantity}}</span>
                         <a href="{{ route('cart.add', ['idproduct' => $product->idproduct]) }}" class="addtocart"><i
                                 class="bi bi-plus-circle"></i> Add to cart</a>
                     </div>
