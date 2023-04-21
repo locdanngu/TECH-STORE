@@ -17,7 +17,10 @@ class ProductController extends Controller
             // Lấy danh sách sản phẩm từ cơ sở dữ liệu
             $products = Product::orderBy('price', 'asc')->get();
             $category = Category::all();
-            $notification = Notification::where('id', $user->id)->orderBy('idnotification', 'desc')->get();
+            $notification = Notification::where('id', $user->id)
+                             ->orderBy('idnotification', 'desc')
+                             ->limit(5)
+                             ->get();
             // $products = Product::orderBy('price', 'asc')->paginate(6);
             // $category = Category::all();
             

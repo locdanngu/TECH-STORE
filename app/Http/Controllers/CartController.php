@@ -128,11 +128,15 @@ class CartController extends Controller
             $totalPrice = $request->input('pay');
 
             $cartItems = Cart::where('id', $user->id)->where('status', 0)->get();
-
+            // dd($cartItems);
             foreach ($cartItems as $cartItem) {
                 $notification = new Notification;
                 $notification->id = $user->id;
-                $notification->notification = 'Your order for product '.$cartItem->nameproduct.'x'.$cartItem->quatifier.' is waiting for confirmation';
+                $productName = Product::select('nameproduct')->where('idproduct', $cartItem->idproduct)->first()->nameproduct;
+                $image = Product::select('image')->where('idproduct', $cartItem->idproduct)->first()->image;
+                $notification->notification = 'Your order for product "' . $productName . '" x' . $cartItem->quatifier . ' is waiting for confirmation';
+                $notification->image = $image;
+                // dd($notification);
                 $notification->save();
             }
             Cart::where('id', $user->id)->where('status', 0)->update(['status' => 1]);

@@ -52,11 +52,13 @@
                             <i class="bi bi-bell"></i>
                         </button>
                         <ul class="dropdown-menu">
-                            <li class="dropdown-item dropdown-item-ignore-close">Dropdown item</li>
-                            <li class="dropdown-item dropdown-item-ignore-close">Dropdown item</li>
-                            <li class="dropdown-item dropdown-item-ignore-close">Dropdown item</li>
-                            <li class="dropdown-item dropdown-item-ignore-close">Dropdown item</li>
-                            <li class="dropdown-item dropdown-item-ignore-close">Dropdown item</li>
+                        @foreach($notification as $notification)
+                            <li class="dropdown-item dropdown-item-ignore-close">
+                                <img src="{{ $notification->image }}" class="noti">
+                                <span style="font-weight: 500">{{ $notification->notification }}</span>
+                            </li>
+                        @endforeach
+                            
                         </ul>
                     </div>
                     <!-- <a href="" class="btnlink"><i class="bi bi-bell"></i></a> -->
