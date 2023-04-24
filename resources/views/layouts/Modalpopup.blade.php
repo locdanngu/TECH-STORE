@@ -164,6 +164,39 @@
 </div>
 
 
+
+<!-- Delete Modal category-->
+<div class="modal fade" id="deleteModalcategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form method="POST" action="{{ route('admin.deletecategory') }}" class="modal-content">
+            @csrf
+            <input type="hidden" name="idcategory" value="">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Category?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">ID Category</span>
+                    <span name="idcategory" style="display: flex;align-items: center;margin-left: 2em;"></span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Name Category</span>
+                    <span name="namecategory" style="display: flex;align-items: center;margin-left: 2em;"></span>
+                </div>
+                <span style="color:red">Warning, deleting will cause the system to encounter errors!</span>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-danger">Delete</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 <!-- Add Modal product-->
 <div class="modal fade" id="addModalproduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">

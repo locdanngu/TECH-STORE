@@ -370,10 +370,14 @@
                                     <td>{{ $category->namecategory }}</td>
                                     <td><i class="{{ $category->iconcategory }}"></i></td>
                                     <td><button class="buttonfix" data-toggle="modal" data-target="#updateModalcategory"
-                                            data-category-name="{{ $category->namecategory }}" data-category-id="{{ $category->idcategory }}"><i
+                                            data-category-name="{{ $category->namecategory }}"
+                                            data-category-id="{{ $category->idcategory }}"><i
                                                 class="bi bi-pencil-square"></i> Change</button>
                                     </td>
-                                    <td><button class="buttonfix"><i class="bi bi-trash"></i> Delete</button></td>
+                                    <td><button class="buttonfix" data-toggle="modal" data-target="#deleteModalcategory"
+                                            data-category-name="{{ $category->namecategory }}"
+                                            data-category-id="{{ $category->idcategory }}"><i class="bi bi-trash"></i>
+                                            Delete</button></td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -443,6 +447,16 @@
             // Gán giá trị categoryId vào trường ẩn trong form
             modal.find('input[name="namecategory"]').val(categoryName);
             modal.find('input[name="idcategory"]').val(categoryId);
+        });
+
+        $('#deleteModalcategory').on('shown.bs.modal', function(event) {
+            var button = $(event.relatedTarget); // Nút "Change" được nhấn
+            var categoryName = button.data('category-name'); // Lấy giá trị data-category-id
+            var categoryId = button.data('category-id'); // Lấy giá trị data-category-id
+            var modal = $(this);
+            modal.find('input[name="idcategory"]').val(categoryId);
+            modal.find('span[name="namecategory"]').text(categoryName);
+            modal.find('span[name="idcategory"]').text(categoryId);
         });
     });
     </script>

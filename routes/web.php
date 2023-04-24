@@ -68,3 +68,4 @@ Route::get('/Admin/Order', [AdminController::class, 'viewOrder'])->middleware('a
 Route::get('/Admin/History', [AdminController::class, 'viewHistory'])->middleware('admin')->name('admin.history'); 
 Route::post('/Admin/Addcategory', [AdminController::class, 'addCategory'])->middleware('admin')->name('admin.addcategory');  
 Route::post('/Admin/Updatecategory', [AdminController::class, 'updateCategory'])->middleware('admin')->name('admin.updatecategory');  
+Route::post('/Admin/Deletecategory', [AdminController::class, 'deleteCategory'])->middleware('admin')->name('admin.deletecategory');  

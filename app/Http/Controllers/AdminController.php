@@ -124,4 +124,14 @@ class AdminController extends Controller
         $category->save();
         return back();
     }
+
+    public function deleteCategory(Request $request)
+    {   
+        $input = $request->all();
+        // dd($input);
+        $category = Category::find($input['idcategory']);
+        $category->delete();
+        // dd($category);
+        return back();
+    }
 }
