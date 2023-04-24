@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Product;
+use App\Models\Category;
+use App\Models\Cart;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -72,14 +75,16 @@ class AdminController extends Controller
     public function viewCategory()
     {   
         $user = Auth::user();
-        return view('Category', ['user' => $user]);
+        $category = Category::orderBy('idcategory', 'asc')->get();
+        return view('Category', ['user' => $user, 'category' => $category]);
     }
 
 
     public function viewProduct()
     {   
         $user = Auth::user();
-        return view('Product', ['user' => $user]);
+        $products = Product::orderBy('idproduct', 'asc')->get();
+        return view('Product', ['user' => $user, 'products' => $products]);
     }
 
     public function viewOrder()

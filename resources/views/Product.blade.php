@@ -21,7 +21,7 @@
     <!-- {{ asset('bootstrap/') }} -->
     <!-- Custom styles for this template-->
     <link href="{{ asset('bootstrap/css/sb-admin-2.min.css') }}" rel="stylesheet">
-
+    <link rel="stylesheet" href="/css/Product.css">
 </head>
 
 <body id="page-top">

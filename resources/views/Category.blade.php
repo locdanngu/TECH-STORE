@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>Admin Category</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <title>Admin Categories</title>
 
     <!-- Custom fonts for this template-->
     <!-- icon -->
@@ -21,7 +21,7 @@
     <!-- {{ asset('bootstrap/') }} -->
     <!-- Custom styles for this template-->
     <link href="{{ asset('bootstrap/css/sb-admin-2.min.css') }}" rel="stylesheet">
-
+    <link rel="stylesheet" href="/css/Category.css">
 </head>
 
 <body id="page-top">
@@ -86,7 +86,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Categories:</h6>
                         <a class="collapse-item" href="{{ route('admin.category') }}">List Categories</a>
-                       
+
                     </div>
                 </div>
             </li>
@@ -110,12 +110,12 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Order User:</h6>
                         <a class="collapse-item" href="{{ route('admin.order') }}">Order List</a>
-                        
+
                     </div>
                 </div>
             </li>
 
-           
+
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -125,7 +125,7 @@
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
-            
+
 
         </ul>
         <!-- End of Sidebar -->
@@ -341,7 +341,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Categories</h1>
                         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
                     </div>
@@ -350,7 +350,27 @@
                     <div class="row">
 
                         <!-- Earnings (Monthly) Card Example -->
-                        
+                        <table class="table table-striped">
+                            <thead>
+                                <th>Id Category</th>
+                                <th>Name Category</th>
+                                <th>Icon</th>
+                                <th></th>
+                                <th></th>
+                            </thead>
+                            <tbody>
+                                @foreach($category as $category)
+                                <tr>
+                                    <td>{{ $category->idcategory }}</td>
+                                    <td>{{ $category->namecategory }}</td>
+                                    <td><i class="{{ $category->iconcategory }}"></i></td>
+                                    <td><button>Change</button></td>
+                                    <td><button>Delete</button></td>
+                                </tr>
+                                @endforeach
+                               
+                            </tbody>
+                        </table>
 
 
 
@@ -375,8 +395,8 @@
 
 
 
-                        
-                        
+
+
                     </div>
 
                 </div>
