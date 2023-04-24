@@ -210,5 +210,46 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+    public function findProduct(Request $request)
+    {   
+        $search = $request->input('search');
+        // $category = Category::all();
+        if(!$search || !is_string($search)){
+            // Nếu không có giá trị search hoặc không phải chuỗi thì trả về tất cả bản ghi
+            $products = Product::all();
+        } else {
+            // Nếu có giá trị search và là chuỗi thì truy vấn với điều kiện
+            $products = Product::where('nameproduct', 'like', '%'.$search.'%')->get();
+        }
+        // dd($category);
+        $html = '';
+        foreach($products as $product) {
+            $html .= '<tr>';
+            $html .= '<td>' . $product->idproduct . '</td>';
+            $html .= '<td>' . $product->nameproduct . '</td>';
+            $html .= '<td>' . $product->price . '</td>';
+            $html .= '<td>' . $product->inventoryquantity . '</td>';
+            $html .= '<td><img src="' . $product->image . '" class="imgproduct"></td>';
+            $html .= '<td>' . $product->review . '</td>';
+            $html .= '<td><button class="buttonfix" data-toggle="modal" data-target="#updateModalproduct"
+                        data-product-name="' . $product->nameproduct . '"
+                        data-product-id="' . $product->idproduct . '"
+                        data-product-price="' . $product->price . '"
+                        data-product-quantity="' . $product->inventoryquantity . '"
+                        data-product-review="' . $product->review . '"><i
+                            class="bi bi-pencil-square"></i> Change</button>
+                </td>';
+            $html .= '<td><button class="buttonfix" data-toggle="modal" data-target="#deleteModalproduct"
+                        data-product-name="' . $product->nameproduct . '"
+                        data-product-id="' . $product->idproduct . '"
+                        data-product-price="' . $product->price . '"
+                        data-product-quantity="' . $product->inventoryquantity . '"
+                        data-product-namecategory="' . $product->category->namecategory . '"
+                        data-product-review="' . $product->review . '"><i class="bi bi-trash"></i>
+                        Delete</button></td>';
+            $html .= '</tr>';
+        }
 
+        return response()->json(['html' => $html]);
+    }
 }

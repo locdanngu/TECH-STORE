@@ -345,7 +345,7 @@
                         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
                         <input type="text" class="form-control" placeholder="Find Product" aria-label="Username"
-                            aria-describedby="addon-wrapping">
+                            aria-describedby="addon-wrapping" id="search">
                         <button type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off"
                             id="Popupadd" data-toggle="modal" data-target="#addModalproduct">+
                             Add</button>
@@ -366,7 +366,7 @@
                                 <th></th>
                                 <th></th>
                             </thead>
-                            <tbody>
+                            <tbody class="capnhat">
                                 @foreach($products as $products)
                                 <tr>
                                     <td>{{ $products->idproduct }}</td>
@@ -477,6 +477,23 @@
             modal.find('span[name="namecategory"]').text(productNamecategory);
             modal.find('span[name="quantity"]').text(productQuantity);
             modal.find('span[name="review"]').text(productReview);
+        });
+    });
+
+    $('#search').on('input', function() {
+        var search = $(this).val();
+        $.ajax({
+            type: 'POST',
+            url: '{{ route("admin.findproduct") }}',
+            data: {
+                _token: '{{ csrf_token() }}',
+                search: search
+            },
+            success: function(response) {
+                var html = response.html;
+                $('.capnhat').html(html);
+            },
+            error: function(xhr, status, error) {}
         });
     });
     </script>
