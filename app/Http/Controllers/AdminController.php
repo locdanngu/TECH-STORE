@@ -90,12 +90,16 @@ class AdminController extends Controller
     public function viewOrder()
     {   
         $user = Auth::user();
-        return view('Order', ['user' => $user]);
+        $products = Product::orderBy('price', 'asc')->get();
+        $cart = Cart::where('status', 1)->orderBy('updated_at', 'asc')->get();
+        return view('Order', ['user' => $user, 'products' => $products, 'cart' => $cart]);
     }
 
     public function viewHistory()
     {   
         $user = Auth::user();
-        return view('History', ['user' => $user]);
+        $products = Product::orderBy('price', 'asc')->get();
+        $cart = Cart::where('status', 2)->orderBy('updated_at', 'asc')->get();
+        return view('History', ['user' => $user, 'products' => $products, 'cart' => $cart]);
     }
 }

@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <title>Admin Order</title>
 
     <!-- Custom fonts for this template-->
@@ -86,7 +86,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Categories:</h6>
                         <a class="collapse-item" href="{{ route('admin.category') }}">List Categories</a>
-                        <a class="collapse-item" href="{{ route('admin.history') }}">Shipping history</a>
+
                     </div>
                 </div>
             </li>
@@ -110,7 +110,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Order User:</h6>
                         <a class="collapse-item" href="{{ route('admin.order') }}">Order List</a>
-                        
+                        <a class="collapse-item" href="{{ route('admin.history') }}">Shipping history</a>
                     </div>
                 </div>
             </li>
@@ -344,7 +344,7 @@
                         <h1 class="h3 mb-0 text-gray-800">Order</h1>
                         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off">+ Add</button>
+                        <!-- <button type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off">+ Add</button> -->
                     </div>
 
                     <!-- Content Row -->
@@ -353,20 +353,30 @@
                         <!-- Earnings (Monthly) Card Example -->
                         <table class="table table-striped">
                             <thead>
-                                <th>Id Category</th>
-                                <th>Name Category</th>
-                                <th>Icon</th>
+                                <th>Id Product</th>
+                                <th>Name Product</th>
+                                <th>Id User</th>
+                                <th>Quatifier</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Time</th>
+                                <th>Status</th>
                                 <th></th>
                                 <th></th>
                             </thead>
                             <tbody>
-                                @foreach($category as $category)
+                                @foreach($cart as $cart)
                                 <tr>
-                                    <td>{{ $category->idcategory }}</td>
-                                    <td>{{ $category->namecategory }}</td>
-                                    <td><i class="{{ $category->iconcategory }}"></i></td>
-                                    <td><button class="buttonfix"><i class="bi bi-pencil-square"></i> Change</button></td>
-                                    <td><button class="buttonfix"><i class="bi bi-trash"></i> Delete</button></td>
+                                    <td>{{ $cart->idproduct }}</td>
+                                    <td>{{ $cart->product->nameproduct }}</td>
+                                    <td>{{ $cart->id }}</td>
+                                    <td class="fixtd">{{ $cart->quatifier }}</td>
+                                    <td>{{ number_format($cart->quatifier * $cart->product->price, 2) }} $</td>
+                                    <td class="fixtd">{{ $cart->product->inventoryquantity }}</td>
+                                    <td>{{ $cart->updated_at }}</td>
+                                    <td>Waiting</td>
+                                    <td><button class="buttonfix"><i class="bi bi-check2"></i> Accept</button></td>
+                                    <td><button class="buttonfix"><i class="bi bi-trash"></i> Deny</button></td>
                                 </tr>
                                 @endforeach
                             </tbody>

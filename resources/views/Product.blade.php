@@ -86,7 +86,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Categories:</h6>
                         <a class="collapse-item" href="{{ route('admin.category') }}">List Categories</a>
-                       
+
                     </div>
                 </div>
             </li>
@@ -115,7 +115,7 @@
                 </div>
             </li>
 
-           
+
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -125,7 +125,7 @@
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
-            
+
 
         </ul>
         <!-- End of Sidebar -->
@@ -344,7 +344,10 @@
                         <h1 class="h3 mb-0 text-gray-800">Products</h1>
                         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off">+ Add</button>
+                        <input type="text" class="form-control" placeholder="Find with name" aria-label="Username"
+                            aria-describedby="addon-wrapping">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off">+
+                            Add</button>
                     </div>
 
                     <!-- Content Row -->
@@ -371,13 +374,13 @@
                                     <td>{{ $products->inventoryquantity }}</td>
                                     <td><img src="{{ $products->image }}" class="imgproduct"></td>
                                     <td>{{ $products->review }}</td>
-                                    <td><button class="buttonfix"><i class="bi bi-pencil-square"></i> Change</button></td>
+                                    <td><button class="buttonfix"><i class="bi bi-pencil-square"></i> Change</button>
+                                    </td>
                                     <td><button class="buttonfix"><i class="bi bi-trash"></i> Delete</button></td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                        
 
 
 
@@ -402,8 +405,9 @@
 
 
 
-                        
-                        
+
+
+
                     </div>
 
                 </div>

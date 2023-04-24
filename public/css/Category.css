@@ -11,3 +11,8 @@ td{
 .buttonfix:hover{
     color: rgb(2, 2, 137);
 }
+
+.form-control{
+    max-width: 40%;
+    min-width: 25%;
+}
