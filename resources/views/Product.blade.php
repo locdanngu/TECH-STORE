@@ -346,7 +346,8 @@
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
                         <input type="text" class="form-control" placeholder="Find with name" aria-label="Username"
                             aria-describedby="addon-wrapping">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off">+
+                            <button type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off"
+                            id="Popupadd" data-toggle="modal" data-target="#addModalproduct">+
                             Add</button>
                     </div>
 

@@ -347,7 +347,7 @@
                         <input type="text" class="form-control" placeholder="Find with name" aria-label="Username"
                             aria-describedby="addon-wrapping">
                         <button type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off"
-                            id="Popupadd" data-toggle="modal" data-target="#addModal">+
+                            id="Popupadd" data-toggle="modal" data-target="#addModalcategory">+
                             Add</button>
                     </div>
 
