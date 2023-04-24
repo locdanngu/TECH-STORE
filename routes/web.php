@@ -73,3 +73,6 @@ Route::post('/Admin/Deletecategory', [AdminController::class, 'deleteCategory'])
 Route::post('/Admin/Findcategory/{search?}', [AdminController::class, 'findCategory'])->middleware('admin')->name('admin.findcategory');  
 
 Route::post('/Admin/Addproduct', [AdminController::class, 'addProduct'])->middleware('admin')->name('admin.addproduct');  
+Route::post('/Admin/Updateproduct', [AdminController::class, 'updateProduct'])->middleware('admin')->name('admin.updateproduct');
+Route::post('/Admin/Deleteproduct', [AdminController::class, 'deleteProduct'])->middleware('admin')->name('admin.deleteproduct');  
+Route::post('/Admin/Findproduct/{search?}', [AdminController::class, 'findProduct'])->middleware('admin')->name('admin.findproduct');  

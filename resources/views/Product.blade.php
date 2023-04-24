@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -344,9 +344,9 @@
                         <h1 class="h3 mb-0 text-gray-800">Products</h1>
                         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
-                        <input type="text" class="form-control" placeholder="Find with name" aria-label="Username"
+                        <input type="text" class="form-control" placeholder="Find Product" aria-label="Username"
                             aria-describedby="addon-wrapping">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off"
+                        <button type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off"
                             id="Popupadd" data-toggle="modal" data-target="#addModalproduct">+
                             Add</button>
                     </div>
@@ -437,6 +437,17 @@
     @extends('layouts.Modalpopup')
 
     @extends('layouts.Linkadmin')
+    <script>
+    function previewImage(event) {
+        const preview = document.getElementById('preview');
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onload = function() {
+            preview.src = reader.result;
+        }
+        reader.readAsDataURL(file);
+    }
+    </script>
 </body>
 
 </html>

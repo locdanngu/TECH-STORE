@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
 use App\Models\Category;
+use Illuminate\Http\UploadedFile;
 use App\Models\Cart;
 use Illuminate\Http\Request;
 
@@ -84,7 +85,8 @@ class AdminController extends Controller
     {   
         $user = Auth::user();
         $products = Product::orderBy('idproduct', 'asc')->get();
-        return view('Product', ['user' => $user, 'products' => $products]);
+        $category = Category::orderBy('idcategory', 'asc')->get();
+        return view('Product', ['user' => $user, 'products' => $products, 'category' => $category]);
     }
 
     public function viewOrder()
@@ -159,4 +161,30 @@ class AdminController extends Controller
         }
         return response()->json(['html' => $html]);
     }
+
+
+
+    public function addProduct(Request $request)
+    {
+        $product = new Product;
+
+        $product->nameproduct = $request->input('nameproduct');
+        $product->price = $request->input('price');
+        $product->inventoryquantity = $request->input('quantity');
+        $product->idcategory = $request->input('idcategory');
+        $product->review = $request->input('review');
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $path = public_path('productimg/');
+            $image->move($path, $filename);
+            $product->image = '/productimg/' . $filename;
+        }
+
+        $product->save();
+
+        return redirect()->back();
+    }
+
 }

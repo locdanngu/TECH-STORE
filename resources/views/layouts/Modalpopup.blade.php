@@ -86,7 +86,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <button class="btn btn-primary">Save</button>
+                <button class="btn btn-primary">Add</button>
             </div>
         </form>
     </div>
@@ -201,7 +201,8 @@
 <div class="modal fade" id="addModalproduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <form method="POST" action="{{ route('admin.addproduct') }}" class="modal-content" enctype="multipart/form-data">
+            @csrf
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Add more Product?</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
@@ -209,12 +210,45 @@
                 </button>
             </div>
             <div class="modal-body">
-
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Name Product</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default" required name="nameproduct">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">price</span>
+                    <input type="number" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default" required name="price">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Quantity</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default" required name="quantity">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Category</span>
+                    <select style="width: 70%" name="idcategory">
+                        @foreach($category as $category)
+                        <option value="{{ $category->idcategory }}">{{ $category->idcategory }}. {{ $category->namecategory }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Image</span>
+                    <input class="form-control" type="file" id="formFile" accept="image/*" style="max-width:100%"
+                        onchange="previewImage(event)" name="image" required>
+                </div>
+                <img id="preview" src="" alt="Preview Image" style="max-width:30%;margin-bottom:1em">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Reiew</span>
+                    <textarea type="text" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default" required name="review"></textarea>
+                </div>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="#">Save</a>
+                <button class="btn btn-primary">Add</button>
             </div>
-        </div>
+        </form>
     </div>
 </div>

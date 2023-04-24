@@ -21,3 +21,13 @@ td {
     max-width: 40%;
     min-width: 25%;
 }
+
+.input-group>.form-control{
+    /* width: 100%; */
+    max-width: 100% !important;
+}
+
+.input-group>.input-group-text{
+    /* width: 100%; */
+    width: 30%;
+}
