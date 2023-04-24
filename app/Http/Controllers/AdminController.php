@@ -86,7 +86,8 @@ class AdminController extends Controller
         $user = Auth::user();
         $products = Product::orderBy('idproduct', 'asc')->get();
         $category = Category::orderBy('idcategory', 'asc')->get();
-        return view('Product', ['user' => $user, 'products' => $products, 'category' => $category]);
+        $category2 = Category::orderBy('idcategory', 'asc')->get();
+        return view('Product', ['user' => $user, 'products' => $products, 'category' => $category, 'category2' => $category2]);
     }
 
     public function viewOrder()
@@ -186,5 +187,28 @@ class AdminController extends Controller
 
         return redirect()->back();
     }
+
+    public function updateProduct(Request $request)
+    {
+        $product = Product::find($request->input('idproduct'));
+        $product->nameproduct = $request->input('nameproduct');
+        $product->price = $request->input('price');
+        $product->inventoryquantity = $request->input('quantity');
+        $product->idcategory = $request->input('idcategory');
+        $product->review = $request->input('review');
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $path = public_path('productimg/');
+            $image->move($path, $filename);
+            $product->image = '/productimg/' . $filename;
+        }
+
+        $product->save();
+
+        return redirect()->back();
+    }
+
 
 }

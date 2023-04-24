@@ -375,40 +375,26 @@
                                     <td>{{ $products->inventoryquantity }}</td>
                                     <td><img src="{{ $products->image }}" class="imgproduct"></td>
                                     <td>{{ $products->review }}</td>
-                                    <td><button class="buttonfix"><i class="bi bi-pencil-square"></i> Change</button>
+                                    <td><button class="buttonfix" data-toggle="modal" data-target="#updateModalproduct"
+                                            data-product-name="{{ $products->nameproduct }}"
+                                            data-product-id="{{ $products->idproduct }}"
+                                            data-product-price="{{ $products->price }}"
+                                            data-product-quantity="{{ $products->inventoryquantity }}"
+                                            data-product-review="{{ $products->review }}"><i
+                                                class="bi bi-pencil-square"></i> Change</button>
                                     </td>
-                                    <td><button class="buttonfix"><i class="bi bi-trash"></i> Delete</button></td>
+                                    <td><button class="buttonfix" data-toggle="modal" data-target="#deleteModalproduct"
+                                            data-product-name="{{ $products->nameproduct }}"
+                                            data-product-id="{{ $products->idproduct }}"
+                                            data-product-price="{{ $products->price }}"
+                                            data-product-quantity="{{ $products->inventoryquantity }}"
+                                            data-product-namecategory="{{ $products->category->namecategory }}"
+                                            data-product-review="{{ $products->review }}"><i class="bi bi-trash"></i>
+                                            Delete</button></td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     </div>
 
                 </div>
@@ -447,6 +433,52 @@
         }
         reader.readAsDataURL(file);
     }
+
+    function previewImage2(event) {
+        const preview = document.getElementById('preview2');
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onload = function() {
+            preview.src = reader.result;
+        }
+        reader.readAsDataURL(file);
+    }
+
+    $(document).ready(function() {
+        // Lấy giá trị data-category-id khi modal được hiển thị
+        $('#updateModalproduct').on('shown.bs.modal', function(event) {
+            var button = $(event.relatedTarget); // Nút "Change" được nhấn
+            var productName = button.data('product-name'); // Lấy giá trị data-category-id
+            var productId = button.data('product-id'); // Lấy giá trị data-category-id
+            var productPrice = button.data('product-price'); // Lấy giá trị data-category-id
+            var productQuantity = button.data('product-quantity'); // Lấy giá trị data-category-id
+            var productReview = button.data('product-review'); // Lấy giá trị data-category-id
+            var modal = $(this);
+            // Gán giá trị categoryId vào trường ẩn trong form
+            modal.find('input[name="nameproduct"]').val(productName);
+            modal.find('input[name="idproduct"]').val(productId);
+            modal.find('input[name="price"]').val(productPrice);
+            modal.find('input[name="quantity"]').val(productQuantity);
+            modal.find('textarea[name="review"]').val(productReview);
+        });
+
+        $('#deleteModalproduct').on('shown.bs.modal', function(event) {
+            var button = $(event.relatedTarget); // Nút "Change" được nhấn
+            var productName = button.data('product-name'); // Lấy giá trị data-category-id
+            var productId = button.data('product-id'); // Lấy giá trị data-category-id
+            var productPrice = button.data('product-price'); // Lấy giá trị data-category-id
+            var productNamecategory = button.data('product-namecategory'); // Lấy giá trị data-category-id
+            var productQuantity = button.data('product-quantity'); // Lấy giá trị data-category-id
+            var productReview = button.data('product-review'); // Lấy giá trị data-category-id
+            var modal = $(this);
+            modal.find('span[name="nameproduct"]').text(productName);
+            modal.find('input[name="idproduct"]').val(productId);
+            modal.find('span[name="price"]').text(productPrice);
+            modal.find('span[name="namecategory"]').text(productNamecategory);
+            modal.find('span[name="quantity"]').text(productQuantity);
+            modal.find('span[name="review"]').text(productReview);
+        });
+    });
     </script>
 </body>
 

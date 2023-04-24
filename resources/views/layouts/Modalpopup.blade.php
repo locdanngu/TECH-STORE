@@ -201,7 +201,8 @@
 <div class="modal fade" id="addModalproduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <form method="POST" action="{{ route('admin.addproduct') }}" class="modal-content" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('admin.addproduct') }}" class="modal-content"
+            enctype="multipart/form-data">
             @csrf
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Add more Product?</h5>
@@ -222,14 +223,15 @@
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Quantity</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input"
+                    <input type="number" class="form-control" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default" required name="quantity">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Category</span>
                     <select style="width: 70%" name="idcategory">
                         @foreach($category as $category)
-                        <option value="{{ $category->idcategory }}">{{ $category->idcategory }}. {{ $category->namecategory }}</option>
+                        <option value="{{ $category->idcategory }}">{{ $category->idcategory }}.
+                            {{ $category->namecategory }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -240,7 +242,7 @@
                 </div>
                 <img id="preview" src="" alt="Preview Image" style="max-width:30%;margin-bottom:1em">
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Reiew</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Review</span>
                     <textarea type="text" class="form-control" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default" required name="review"></textarea>
                 </div>
@@ -248,6 +250,111 @@
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                 <button class="btn btn-primary">Add</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- Update Modal product-->
+<div class="modal fade" id="updateModalproduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form method="POST" action="{{ route('admin.updateproduct') }}" class="modal-content"
+            enctype="multipart/form-data">
+            @csrf
+            <input type="hidden" name="idproduct" value="">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Change Product?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Name Product</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default" required name="nameproduct">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">price</span>
+                    <input type="number" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default" required name="price">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Quantity</span>
+                    <input type="number" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default" required name="quantity">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Category</span>
+                    <select style="width: 70%" name="idcategory">
+                        @foreach($category2 as $cat)
+                        <option value="{{ $cat->idcategory }}">{{ $cat->idcategory }}.{{ $cat->namecategory }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Image</span>
+                    <input class="form-control" type="file" id="formFile" accept="image/*" style="max-width:100%"
+                        onchange="previewImage2(event)" name="image" required>
+                </div>
+                <img id="preview2" src="" alt="Preview Image" style="max-width:30%;margin-bottom:1em">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Review</span>
+                    <textarea class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default" required name="review"
+                        style="height: 5em"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Delete Modal product-->
+<div class="modal fade" id="deleteModalproduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form method="POST" action="{{ route('admin.deleteproduct') }}" class="modal-content"
+            enctype="multipart/form-data">
+            @csrf
+            <input type="hidden" name="idproduct" value="">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Product?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Name Product</span>
+                    <span name="nameproduct" style="display: flex;align-items: center;margin-left: 2em;"></span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">price</span>
+                    <span name="price" style="display: flex;align-items: center;margin-left: 2em;"></span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Quantity</span>
+                    <span name="quantity" style="display: flex;align-items: center;margin-left: 2em;"></span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Category</span>
+                    <span name="namecategory" style="display: flex;align-items: center;margin-left: 2em;"></span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default" style="width:100%">Review</span>
+                    <span name="review" style="display: flex;align-items: center;margin-top:1em"></span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary">Delete</button>
             </div>
         </form>
     </div>
