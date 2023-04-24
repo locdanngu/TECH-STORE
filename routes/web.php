@@ -62,5 +62,7 @@ Route::get('/Admin', [AdminController::class, 'viewAdmin'])->middleware('admin')
 Route::post('/Loginadmin', [AdminController::class, 'loginAdmin'])->name('admin.login');        //xử lí đăng nhập admin
 Route::get('/Loginadmin', [AdminController::class, 'viewLoginAdmin'])->name('admin.loginpage');             //route form đăng nhập admin
 Route::get('/logoutadmin', [AdminController::class, 'logOutAdmin'])->name('logout.admin');
-
+Route::get('/Admin/Category', [AdminController::class, 'viewCategory'])->middleware('admin')->name('admin.category'); 
+Route::get('/Admin/Product', [AdminController::class, 'viewProduct'])->middleware('admin')->name('admin.product'); 
+Route::get('/Admin/Order', [AdminController::class, 'viewOrder'])->middleware('admin')->name('admin.order'); 
 

@@ -65,4 +65,26 @@ class AdminController extends Controller
         $request->session()->regenerateToken();
         return redirect('/Loginadmin');
     }
+
+
+
+
+    public function viewCategory()
+    {   
+        $user = Auth::user();
+        return view('Category', ['user' => $user]);
+    }
+
+
+    public function viewProduct()
+    {   
+        $user = Auth::user();
+        return view('Product', ['user' => $user]);
+    }
+
+    public function viewOrder()
+    {   
+        $user = Auth::user();
+        return view('Order', ['user' => $user]);
+    }
 }
