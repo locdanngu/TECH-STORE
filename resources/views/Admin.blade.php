@@ -110,7 +110,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Order User:</h6>
                         <a class="collapse-item" href="{{ route('admin.order') }}">Order List</a>
-                        
+                        <a class="collapse-item" href="{{ route('admin.history') }}">Shipping history</a>
                     </div>
                 </div>
             </li>

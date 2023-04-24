@@ -65,4 +65,5 @@ Route::get('/logoutadmin', [AdminController::class, 'logOutAdmin'])->name('logou
 Route::get('/Admin/Category', [AdminController::class, 'viewCategory'])->middleware('admin')->name('admin.category'); 
 Route::get('/Admin/Product', [AdminController::class, 'viewProduct'])->middleware('admin')->name('admin.product'); 
 Route::get('/Admin/Order', [AdminController::class, 'viewOrder'])->middleware('admin')->name('admin.order'); 
+Route::get('/Admin/History', [AdminController::class, 'viewHistory'])->middleware('admin')->name('admin.history'); 
 

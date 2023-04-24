@@ -1,3 +1,18 @@
-td{
+td {
     vertical-align: middle !important;
+}
+
+.buttonfix {
+    background-color: transparent;
+    border: 0;
+    color: blue;
+}
+
+.buttonfix:hover {
+    color: rgb(2, 2, 137);
+}
+
+.imgproduct {
+    height: 3em;
+    width: 3em;
 }

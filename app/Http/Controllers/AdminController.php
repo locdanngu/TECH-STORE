@@ -92,4 +92,10 @@ class AdminController extends Controller
         $user = Auth::user();
         return view('Order', ['user' => $user]);
     }
+
+    public function viewHistory()
+    {   
+        $user = Auth::user();
+        return view('History', ['user' => $user]);
+    }
 }

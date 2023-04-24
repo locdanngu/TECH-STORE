@@ -86,7 +86,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Categories:</h6>
                         <a class="collapse-item" href="{{ route('admin.category') }}">List Categories</a>
-                       
+                        <a class="collapse-item" href="{{ route('admin.history') }}">Shipping history</a>
                     </div>
                 </div>
             </li>
@@ -341,15 +341,36 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Order</h1>
                         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off">+ Add</button>
                     </div>
 
                     <!-- Content Row -->
                     <div class="row">
 
                         <!-- Earnings (Monthly) Card Example -->
+                        <table class="table table-striped">
+                            <thead>
+                                <th>Id Category</th>
+                                <th>Name Category</th>
+                                <th>Icon</th>
+                                <th></th>
+                                <th></th>
+                            </thead>
+                            <tbody>
+                                @foreach($category as $category)
+                                <tr>
+                                    <td>{{ $category->idcategory }}</td>
+                                    <td>{{ $category->namecategory }}</td>
+                                    <td><i class="{{ $category->iconcategory }}"></i></td>
+                                    <td><button class="buttonfix"><i class="bi bi-pencil-square"></i> Change</button></td>
+                                    <td><button class="buttonfix"><i class="bi bi-trash"></i> Delete</button></td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                         
 
 

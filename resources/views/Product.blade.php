@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <title>Admin Product</title>
 
     <!-- Custom fonts for this template-->
@@ -110,7 +110,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Order User:</h6>
                         <a class="collapse-item" href="{{ route('admin.order') }}">Order List</a>
-                        
+                        <a class="collapse-item" href="{{ route('admin.history') }}">Shipping history</a>
                     </div>
                 </div>
             </li>
@@ -341,15 +341,42 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Products</h1>
                         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off">+ Add</button>
                     </div>
 
                     <!-- Content Row -->
                     <div class="row">
 
                         <!-- Earnings (Monthly) Card Example -->
+                        <table class="table table-striped">
+                            <thead>
+                                <th>Id Product</th>
+                                <th>Name Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Image</th>
+                                <th>Review</th>
+                                <th></th>
+                                <th></th>
+                            </thead>
+                            <tbody>
+                                @foreach($products as $products)
+                                <tr>
+                                    <td>{{ $products->idproduct }}</td>
+                                    <td>{{ $products->nameproduct }}</td>
+                                    <td>{{ $products->price }}</td>
+                                    <td>{{ $products->inventoryquantity }}</td>
+                                    <td><img src="{{ $products->image }}" class="imgproduct"></td>
+                                    <td>{{ $products->review }}</td>
+                                    <td><button class="buttonfix"><i class="bi bi-pencil-square"></i> Change</button></td>
+                                    <td><button class="buttonfix"><i class="bi bi-trash"></i> Delete</button></td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                         
 
 
