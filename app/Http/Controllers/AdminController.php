@@ -102,4 +102,26 @@ class AdminController extends Controller
         $cart = Cart::where('status', 2)->orderBy('updated_at', 'asc')->get();
         return view('History', ['user' => $user, 'products' => $products, 'cart' => $cart]);
     }
+
+    public function addCategory(Request $request)
+    {   
+        $input = $request->all();
+        $category = Category::create([
+            'namecategory' => $input['namecategory'],
+            'iconcategory' => $input['device'],
+        ]);
+        return back();
+    }
+
+    public function updateCategory(Request $request)
+    {   
+        $input = $request->all();
+        // dd($input);
+        $category = Category::find($input['idcategory']);
+        $category->namecategory = $input['namecategory'];
+        $category->iconcategory = $input['device'];
+        // dd($category);
+        $category->save();
+        return back();
+    }
 }

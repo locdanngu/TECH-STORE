@@ -26,7 +26,7 @@
 <div class="modal fade" id="addModalcategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <form method="POST" action="" class="modal-content">
+        <form method="POST" action="{{ route('admin.addcategory') }}" class="modal-content">
             @csrf
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Add more Category?</h5>
@@ -38,50 +38,121 @@
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Name Category</span>
                     <input type="text" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default" required>
+                        aria-describedby="inputGroup-sizing-default" required name="namecategory">
                 </div>
                 <span>Choice Icon:</span>
                 <div class="allradio">
                     <div class="radio">
-                        <input type="radio" name="device" value="earbuds" required>
+                        <input type="radio" name="device" value="bi bi-earbuds" required>
                         <label for="earbuds"><i class="bi bi-earbuds"></i></label>
 
-                        <input type="radio" name="device" value="headphones" required>
+                        <input type="radio" name="device" value="bi bi-headphones" required>
                         <label for="headphones"><i class="bi bi-headphones"></i></label>
 
-                        <input type="radio" name="device" value="phone" required>
+                        <input type="radio" name="device" value="bi bi-phone" required>
                         <label for="phone"><i class="bi bi-phone"></i></label>
-                        
-                        <input type="radio" name="device" value="mic" required>
+
+                        <input type="radio" name="device" value="bi bi-mic" required>
                         <label for="phone"><i class="bi bi-mic"></i></label>
 
-                        <input type="radio" name="device" value="laptop" required>
+                        <input type="radio" name="device" value="bi bi-laptop" required>
                         <label for="phone"><i class="bi bi-laptop"></i></label>
 
-                        <input type="radio" name="device" value="tv" required>
+                        <input type="radio" name="device" value="bi bi-tv" required>
                         <label for="phone"><i class="bi bi-tv"></i></label>
 
-                        <input type="radio" name="device" value="controller" required>
+                        <input type="radio" name="device" value="bi bi-controller" required>
                         <label for="phone"><i class="bi bi-controller"></i></label>
 
-                        <input type="radio" name="device" value="display" required>
+                        <input type="radio" name="device" value="bi bi-display" required>
                         <label for="phone"><i class="bi bi-display"></i></label>
 
-                        <input type="radio" name="device" value="mouse" required>
+                        <input type="radio" name="device" value="bi bi-mouse-fill" required>
                         <label for="phone"><i class="bi bi-mouse-fill"></i></label>
 
-                        <input type="radio" name="device" value="keyboard" required>
+                        <input type="radio" name="device" value="bi bi-keyboard" required>
                         <label for="phone"><i class="bi bi-keyboard"></i></label>
 
-                        <input type="radio" name="device" value="usb" required>
+                        <input type="radio" name="device" value="bi bi-usb-plug" required>
                         <label for="phone"><i class="bi bi-usb-plug"></i></label>
 
-                        <input type="radio" name="device" value="pc" required>
+                        <input type="radio" name="device" value="bi bi-pc-display" required>
                         <label for="phone"><i class="bi bi-pc-display"></i></label>
 
-                        <input type="radio" name="device" value="camera" required>
+                        <input type="radio" name="device" value="bi bi-camera" required>
                         <label for="phone"><i class="bi bi-camera"></i></label>
-                    </div>    
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Update Modal category-->
+<div class="modal fade" id="updateModalcategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form method="POST" action="{{ route('admin.updatecategory') }}" class="modal-content">
+            @csrf
+            <input type="hidden" name="idcategory" value="">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Category?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Name Category</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default" required name="namecategory" value="">
+                </div>
+                <span>Choice Icon:</span>
+                <div class="allradio">
+                    <div class="radio">
+                        <input type="radio" name="device" value="bi bi-earbuds" required>
+                        <label for="earbuds"><i class="bi bi-earbuds"></i></label>
+
+                        <input type="radio" name="device" value="bi bi-headphones" required>
+                        <label for="headphones"><i class="bi bi-headphones"></i></label>
+
+                        <input type="radio" name="device" value="bi bi-phone" required>
+                        <label for="phone"><i class="bi bi-phone"></i></label>
+
+                        <input type="radio" name="device" value="bi bi-mic" required>
+                        <label for="phone"><i class="bi bi-mic"></i></label>
+
+                        <input type="radio" name="device" value="bi bi-laptop" required>
+                        <label for="phone"><i class="bi bi-laptop"></i></label>
+
+                        <input type="radio" name="device" value="bi bi-tv" required>
+                        <label for="phone"><i class="bi bi-tv"></i></label>
+
+                        <input type="radio" name="device" value="bi bi-controller" required>
+                        <label for="phone"><i class="bi bi-controller"></i></label>
+
+                        <input type="radio" name="device" value="bi bi-display" required>
+                        <label for="phone"><i class="bi bi-display"></i></label>
+
+                        <input type="radio" name="device" value="bi bi-mouse-fill" required>
+                        <label for="phone"><i class="bi bi-mouse-fill"></i></label>
+
+                        <input type="radio" name="device" value="bi bi-keyboard" required>
+                        <label for="phone"><i class="bi bi-keyboard"></i></label>
+
+                        <input type="radio" name="device" value="bi bi-usb-plug" required>
+                        <label for="phone"><i class="bi bi-usb-plug"></i></label>
+
+                        <input type="radio" name="device" value="bi bi-pc-display" required>
+                        <label for="phone"><i class="bi bi-pc-display"></i></label>
+
+                        <input type="radio" name="device" value="bi bi-camera" required>
+                        <label for="phone"><i class="bi bi-camera"></i></label>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">

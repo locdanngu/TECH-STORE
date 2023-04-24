@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -369,7 +369,9 @@
                                     <td>{{ $category->idcategory }}</td>
                                     <td>{{ $category->namecategory }}</td>
                                     <td><i class="{{ $category->iconcategory }}"></i></td>
-                                    <td><button class="buttonfix"><i class="bi bi-pencil-square"></i> Change</button>
+                                    <td><button class="buttonfix" data-toggle="modal" data-target="#updateModalcategory"
+                                            data-category-name="{{ $category->namecategory }}" data-category-id="{{ $category->idcategory }}"><i
+                                                class="bi bi-pencil-square"></i> Change</button>
                                     </td>
                                     <td><button class="buttonfix"><i class="bi bi-trash"></i> Delete</button></td>
                                 </tr>
@@ -430,6 +432,21 @@
     @extends('layouts.Modalpopup')
 
     @extends('layouts.Linkadmin')
+    <script>
+    $(document).ready(function() {
+        // Lấy giá trị data-category-id khi modal được hiển thị
+        $('#updateModalcategory').on('shown.bs.modal', function(event) {
+            var button = $(event.relatedTarget); // Nút "Change" được nhấn
+            var categoryName = button.data('category-name'); // Lấy giá trị data-category-id
+            var categoryId = button.data('category-id'); // Lấy giá trị data-category-id
+            var modal = $(this);
+            // Gán giá trị categoryId vào trường ẩn trong form
+            modal.find('input[name="namecategory"]').val(categoryName);
+            modal.find('input[name="idcategory"]').val(categoryId);
+        });
+    });
+    </script>
+
 </body>
 
 </html>
