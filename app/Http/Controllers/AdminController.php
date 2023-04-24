@@ -210,6 +210,15 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+    public function deleteProduct(Request $request)
+    {   
+        $input = $request->all();
+        $products = Product::find($input['idproduct']);
+        $products->delete();
+        // dd($category);
+        return back();
+    }
+
     public function findProduct(Request $request)
     {   
         $search = $request->input('search');
