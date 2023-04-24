@@ -77,7 +77,9 @@ class AdminController extends Controller
     {   
         $user = Auth::user();
         $category = Category::orderBy('idcategory', 'asc')->get();
-        return view('Category', ['user' => $user, 'category' => $category]);
+        $category2 = Category::orderBy('idcategory', 'asc')->get();
+        $category3 = Category::orderBy('idcategory', 'asc')->get();
+        return view('Category', ['user' => $user, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
     }
 
 
@@ -85,9 +87,9 @@ class AdminController extends Controller
     {   
         $user = Auth::user();
         $products = Product::orderBy('idproduct', 'asc')->get();
-        $category = Category::orderBy('idcategory', 'asc')->get();
         $category2 = Category::orderBy('idcategory', 'asc')->get();
-        return view('Product', ['user' => $user, 'products' => $products, 'category' => $category, 'category2' => $category2]);
+        $category3 = Category::orderBy('idcategory', 'asc')->get();
+        return view('Product', ['user' => $user, 'products' => $products, 'category2' => $category2, 'category3' => $category3]);
     }
 
     public function viewOrder()
@@ -95,7 +97,10 @@ class AdminController extends Controller
         $user = Auth::user();
         $products = Product::orderBy('price', 'asc')->get();
         $cart = Cart::where('status', 1)->orderBy('updated_at', 'asc')->get();
-        return view('Order', ['user' => $user, 'products' => $products, 'cart' => $cart]);
+        $category = Category::orderBy('idcategory', 'asc')->get();
+        $category2 = Category::orderBy('idcategory', 'asc')->get();
+        $category3 = Category::orderBy('idcategory', 'asc')->get();
+        return view('Order', ['user' => $user, 'products' => $products, 'cart' => $cart, 'category2' => $category2, 'category3' => $category3]);
     }
 
     public function viewHistory()
@@ -103,7 +108,10 @@ class AdminController extends Controller
         $user = Auth::user();
         $products = Product::orderBy('price', 'asc')->get();
         $cart = Cart::where('status', 2)->orderBy('updated_at', 'asc')->get();
-        return view('History', ['user' => $user, 'products' => $products, 'cart' => $cart]);
+        $category = Category::orderBy('idcategory', 'asc')->get();
+        $category2 = Category::orderBy('idcategory', 'asc')->get();
+        $category3 = Category::orderBy('idcategory', 'asc')->get();
+        return view('History', ['user' => $user, 'products' => $products, 'cart' => $cart, 'category2' => $category2, 'category3' => $category3]);
     }
 
     public function addCategory(Request $request)
