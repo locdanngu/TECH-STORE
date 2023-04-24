@@ -134,4 +134,29 @@ class AdminController extends Controller
         // dd($category);
         return back();
     }
+
+    public function findCategory(Request $request)
+    {   
+        $search = $request->input('search');
+        // $category = Category::all();
+        if(!$search || !is_string($search)){
+            // Nếu không có giá trị search hoặc không phải chuỗi thì trả về tất cả bản ghi
+            $category = Category::all();
+        } else {
+            // Nếu có giá trị search và là chuỗi thì truy vấn với điều kiện
+            $category = Category::where('namecategory', 'like', '%'.$search.'%')->get();
+        }
+        // dd($category);
+        $html = '';
+        foreach($category as $category) {
+            $html .= '<tr>';
+            $html .= '<td>' . $category->idcategory . '</td>';
+            $html .= '<td>' . $category->namecategory . '</td>';
+            $html .= '<td><i class="' . $category->iconcategory . '"></i></td>';
+            $html .= '<td><button class="buttonfix" data-toggle="modal" data-target="#updateModalcategory" data-category-name="' . $category->namecategory . '" data-category-id="' . $category->idcategory . '"><i class="bi bi-pencil-square"></i> Change</button></td>';
+            $html .= '<td><button class="buttonfix" data-toggle="modal" data-target="#deleteModalcategory" data-category-name="' . $category->namecategory . '" data-category-id="' . $category->idcategory . '"><i class="bi bi-trash"></i> Delete</button></td>';
+            $html .= '</tr>';
+        }
+        return response()->json(['html' => $html]);
+    }
 }

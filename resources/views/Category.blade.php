@@ -344,8 +344,8 @@
                         <h1 class="h3 mb-0 text-gray-800">Categories</h1>
                         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
-                        <input type="text" class="form-control" placeholder="Find with name" aria-label="Username"
-                            aria-describedby="addon-wrapping">
+                        <input type="text" class="form-control" placeholder="Find Category" aria-label="Username"
+                            aria-describedby="addon-wrapping" id="search">
                         <button type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off"
                             id="Popupadd" data-toggle="modal" data-target="#addModalcategory">+
                             Add</button>
@@ -363,7 +363,7 @@
                                 <th></th>
                                 <th></th>
                             </thead>
-                            <tbody>
+                            <tbody class="capnhat">
                                 @foreach($category as $category)
                                 <tr>
                                     <td>{{ $category->idcategory }}</td>
@@ -457,6 +457,24 @@
             modal.find('input[name="idcategory"]').val(categoryId);
             modal.find('span[name="namecategory"]').text(categoryName);
             modal.find('span[name="idcategory"]').text(categoryId);
+        });
+    });
+
+
+    $('#search').on('input', function() {
+        var search = $(this).val();
+        $.ajax({
+            type: 'POST',
+            url: '{{ route("admin.findcategory") }}',
+            data: {
+                _token: '{{ csrf_token() }}',
+                search: search
+            },
+            success: function(response) {
+                var html = response.html;
+                $('.capnhat').html(html);
+            },
+            error: function(xhr, status, error) {}
         });
     });
     </script>
