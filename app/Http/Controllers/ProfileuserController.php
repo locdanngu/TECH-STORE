@@ -11,13 +11,8 @@ class ProfileuserController extends Controller
 {
     public function showProfileuser()
     {
-        if (Auth::check() && Auth::user()->role === 'customer') {
-            $user = Auth::user();
-        return view('Profileuserpage', ['user' => $user]);
-
-        } else {
-            return redirect()->route('login.page')->withErrors(['error' => 'You need to log in first!']);
-        }
+        $user = Auth::user();
+        return view('Profileuserpage', ['user' => $user]);  
     }
 
     public function changeProfileuser(Request $request)
@@ -41,13 +36,8 @@ class ProfileuserController extends Controller
 
     public function viewChangePassWord()
     {
-        if (Auth::check() && Auth::user()->role === 'customer') {
-            $user = Auth::user();
+        $user = Auth::user();
         return view('Changepassword', ['user' => $user]);
-
-        } else {
-            return redirect()->route('login.page')->withErrors(['error' => 'You need to log in first!']);
-        }
     }
 
     public function changePassWord(Request $request)

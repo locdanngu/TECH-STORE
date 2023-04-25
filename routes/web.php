@@ -23,24 +23,24 @@ Route::get('/Forgotpage', function () {
     return view('Forgotpage');
 })->name('forgot.page');
 
-Route::get('/Profileuserpage', [ProfileuserController::class, 'showProfileuser'])->name('profileuser.page');        //view thông tin user
-Route::post('/Profileuserpage', [ProfileuserController::class, 'changeProfileuser'])->name('profileuser.update');   //thay đổi thông tin user
-Route::get('/Changepassword', [ProfileuserController::class, 'viewChangePassWord'])->name('changepassword.page');  //view đổi mk
-Route::post('/Changepassword', [ProfileuserController::class, 'changePassWord'])->name('changepassword.update');  //route thay mk
+Route::get('/Profileuserpage', [ProfileuserController::class, 'showProfileuser'])->middleware('user')->name('profileuser.page');        //view thông tin user
+Route::post('/Profileuserpage', [ProfileuserController::class, 'changeProfileuser'])->middleware('user')->name('profileuser.update');   //thay đổi thông tin user
+Route::get('/Changepassword', [ProfileuserController::class, 'viewChangePassWord'])->middleware('user')->name('changepassword.page');  //view đổi mk
+Route::post('/Changepassword', [ProfileuserController::class, 'changePassWord'])->middleware('user')->name('changepassword.update');  //route thay mk
 
 
-Route::get('/Cartuserpage', [CartController::class, 'viewCart'])->name('cart.page');     //view giỏ hàng
-Route::post('/Cartuserpage', [CartController::class, 'updateCart'])->name('cart.update');
-Route::get('/Cartuserpage/{idproduct}', [CartController::class, 'deleteCart'])->name('cart.delete');
-Route::get('/cart/add/{idproduct}', [CartController::class, 'add'])->name('cart.add');     
-Route::delete('/Cartuserpage/deleteall', [CartController::class, 'deleteAll'])->name('deleteall');
-Route::post('/Cartuserpage/pay', [CartController::class, 'pay'])->name('cart.pay');
+Route::get('/Cartuserpage', [CartController::class, 'viewCart'])->middleware('user')->name('cart.page');     //view giỏ hàng
+Route::post('/Cartuserpage', [CartController::class, 'updateCart'])->middleware('user')->name('cart.update');
+Route::get('/Cartuserpage/{idproduct}', [CartController::class, 'deleteCart'])->middleware('user')->name('cart.delete');
+Route::get('/cart/add/{idproduct}', [CartController::class, 'add'])->middleware('user')->name('cart.add');     
+Route::delete('/Cartuserpage/deleteall', [CartController::class, 'deleteAll'])->middleware('user')->name('deleteall');
+Route::post('/Cartuserpage/pay', [CartController::class, 'pay'])->middleware('user')->name('cart.pay');
 
 
-Route::get('/Mypurchasepage', [CartController::class, 'viewOrder'])->name('order.page');     //view lịch sử mua hàng
+Route::get('/Mypurchasepage', [CartController::class, 'viewOrder'])->middleware('user')->name('order.page');     //view lịch sử mua hàng
 
 
-Route::get('/Userpage', [ProductController::class, 'showData'])->name('user.page');             //route chuyển hướng sau khi đăng kí
+Route::get('/Userpage', [ProductController::class, 'showData'])->middleware('user')->name('user.page');             //route chuyển hướng sau khi đăng kí
 Route::post('/Userpage/{idcategory}/{idprice}/{search?}', [ProductController::class, 'ajaxRequest'])->name('product.ajaxRequest');  //ajax
 
 
@@ -53,9 +53,6 @@ Route::post('/register', [RegisterController::class, 'store'])->name('register')
 
 
 Route::get('/logout', [LogoutController::class, 'logOut'])->name('logout');         //route xử lí đăng xuất
-
-
-
 
 
 Route::get('/Admin', [AdminController::class, 'viewAdmin'])->middleware('admin')->name('admin.page');             //route chuyển hướng sau khi đăng nhập admin

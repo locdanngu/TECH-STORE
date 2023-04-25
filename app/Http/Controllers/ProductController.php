@@ -11,26 +11,21 @@ class ProductController extends Controller
 {
     public function showData()
     {
-        if (Auth::check() && Auth::user()->role === 'customer') {
-            $user = Auth::user();
-            // dd($user);
-            // Lấy danh sách sản phẩm từ cơ sở dữ liệu
-            $products = Product::orderBy('price', 'asc')->get();
-            $category = Category::all();
-            $notification = Notification::where('id', $user->id)
-                             ->orderBy('idnotification', 'desc')
-                             ->limit(5)
-                             ->get();
-            // $products = Product::orderBy('price', 'asc')->paginate(6);
-            // $category = Category::all();
+        $user = Auth::user();
+        // dd($user);
+        // Lấy danh sách sản phẩm từ cơ sở dữ liệu
+        $products = Product::orderBy('price', 'asc')->get();
+        $category = Category::all();
+        $notification = Notification::where('id', $user->id)
+                                    ->orderBy('idnotification', 'desc')
+                                    ->limit(5)
+                                    ->get();
+        // $products = Product::orderBy('price', 'asc')->paginate(6);
+        // $category = Category::all();
             
 
-            // Trả về view "Userpage.blade.php" với dữ liệu sản phẩm và thông tin người dùng
+        // Trả về view "Userpage.blade.php" với dữ liệu sản phẩm và thông tin người dùng
         return view('Userpage', ['user' => $user, 'products' => $products, 'category' => $category, 'notification' => $notification]);
-
-        } else {
-            return redirect()->route('login.page')->withErrors(['error' => 'You need to log in first!']);
-        }
     }
 
     public function ajaxRequest($idcategory,$idprice,$search = null)
