@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
+use App\Models\User;
 use App\Models\Category;
 use Illuminate\Http\UploadedFile;
 use App\Models\Cart;
@@ -22,7 +23,32 @@ class AdminController extends Controller
         $revenue = Revenue::whereYear('dayrevenue', $currentYear)
                         ->whereMonth('dayrevenue', $currentMonth)
                         ->first();
-        return view('Admin', ['user' => $user,'revenue' => $revenue,'currentMonth' => $currentMonth,'currentYear' => $currentYear ]);
+        $revenue2 = Revenue::whereYear('dayrevenue', $currentYear)->pluck('revenue')->toArray();
+        $revenueValues = json_encode($revenue2);
+        // dd($revenueValues);
+        $products = Product::orderBy('idproduct', 'asc')->get();
+        $countproduct = $products->count();
+        $category = Category::pluck('namecategory')->toArray();
+        $categoryvalue = "'" . implode("','", $category) . "'";
+        $products2 = Product::orderBy('idcategory', 'asc')->get();
+        $productCounts = $products2->groupBy('idcategory')->map(function ($products2) {
+            return $products2->count();
+        });
+        $array = json_decode($productCounts, true);
+        $result = '[' . implode(',', $array) . ']';
+        // dd($result);
+        // Kết quả sẽ là một associative array với key là idcategory và value là số lượng sản phẩm của từng idcategory
+        $countuser = User::where('role', 'customer')->get()->count();
+        // dd($categoryvalue);
+        return view('Admin', ['user' => $user,
+                              'revenue' => $revenue,
+                              'currentMonth' => $currentMonth,
+                              'currentYear' => $currentYear ,
+                              'revenueValues' => $revenueValues,
+                              'countproduct' => $countproduct,
+                              'categoryvalue' => $categoryvalue,
+                              'result' => $result,
+                              'countuser' => $countuser]);
     }
 
 

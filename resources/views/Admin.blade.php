@@ -414,8 +414,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Pending Requests</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                                Customer</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $countuser }}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -458,15 +458,15 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Categories({{$countproduct}})</h6>
 
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2">
+                                    <!-- <div class="chart-pie pt-4 pb-2">
                                         <canvas id="myPieChart"></canvas>
-                                    </div>
-                                    <div class="mt-4 text-center small">
+                                    </div> -->
+                                    <!-- <div class="mt-4 text-center small">
                                         <span class="mr-2">
                                             <i class="fas fa-circle text-primary"></i> Direct
                                         </span>
@@ -476,7 +476,12 @@
                                         <span class="mr-2">
                                             <i class="fas fa-circle text-info"></i> Referral
                                         </span>
+                                    </div> -->
+                                    <div>
+                                        <canvas id="myChart2"></canvas>
                                     </div>
+
+
                                 </div>
                             </div>
                         </div>
@@ -687,14 +692,14 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
     const ctx = document.getElementById('myChart');
-
+    const ctx2 = document.getElementById('myChart2');
     new Chart(ctx, {
         type: 'bar',
         data: {
             labels: ['Jan', 'Feb', 'Mar', 'April', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
             datasets: [{
                 label: 'Revenue of Year',
-                data: [65, 59, 80, 81, 56, 55, 40, 50, 20, 20, 30, 20],
+                data: <?php echo $revenueValues; ?>,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.8)',
                     'rgba(255, 159, 64, 0.7)',
@@ -738,6 +743,34 @@
                 }
             }
         }
+    });
+
+
+    new Chart(ctx2, {
+        type: 'doughnut',
+        data: {
+            labels: [
+                <?php echo $categoryvalue; ?>
+            ],
+            datasets: [{
+                label: 'Number Product of Categories',
+                data: <?php echo $result; ?>,
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 205, 86)',
+                    'rgb(4, 1, 235)',
+                    'rgb(5, 162, 25)',
+                    'rgb(4, 12, 25)',
+                    'rgb(74, 15, 205)',
+                    'rgb(54, 62, 235)',
+                    'rgb(54, 162, 23)',
+                    'rgb(4, 162, 3)',
+                ],
+                hoverOffset: 4
+            }]
+        },
+
     });
     </script>
 </body>
