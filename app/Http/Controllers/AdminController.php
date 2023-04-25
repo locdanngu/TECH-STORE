@@ -300,11 +300,16 @@ class AdminController extends Controller
         if($revenue) {
             // Ngày hiện tại đã có trong CSDL
             $revenue->revenue += $input['totalprice'];
+            $revenue->ordernumber += 1;
+            $revenue->orderproduct += $input['quatifier'];
+            
             $revenue->save();
         } else {
             $revenue = new Revenue;
             $revenue->dayrevenue = $currentDate ;
             $revenue->revenue = $input['totalprice'];
+            $revenue->ordernumber = 1;
+            $revenue->orderproduct += $input['quatifier'];
             $revenue->save();
         }
 
