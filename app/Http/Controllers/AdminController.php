@@ -286,4 +286,16 @@ class AdminController extends Controller
         $notification->save();
         return back();
     }
+
+    public function denyOrder(Request $request)
+    {   
+        $input = $request->all();
+        Cart::where('idcart', $input['idcart'])->update(['status' => 3]); 
+        $notification = new Notification;
+        $notification->id = $input['id'];
+        $notification->notification = 'Your order for product "' . $input['nameproduct'] . '" x' . $input['quatifier'] . ' is deny because "' . $input['reason'] . '"';
+        $notification->image = $input['image'];
+        $notification->save();
+        return back();
+    }
 }

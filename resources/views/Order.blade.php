@@ -369,12 +369,17 @@
                                     <td><button class="buttonfix" data-toggle="modal" data-target="#acceptModal"
                                             data-idcart="{{ $cart->idcart }}"
                                             data-nameproduct="{{ $cart->product->nameproduct }}"
-                                            data-quatifier="{{ $cart->quatifier }}"
-                                            data-id="{{ $cart->id }}"
+                                            data-quatifier="{{ $cart->quatifier }}" data-id="{{ $cart->id }}"
                                             data-image="{{ $cart->product->image }}"
                                             data-totalprice="{{ number_format($cart->quatifier * $cart->product->price, 2) }} $">
                                             <i class="bi bi-check2"></i> Accept</button></td>
-                                    <td><button class="buttonfix"><i class="bi bi-trash"></i> Deny</button></td>
+                                    <td><button class="buttonfix" data-toggle="modal" data-target="#denyModal"
+                                            data-idcart="{{ $cart->idcart }}"
+                                            data-nameproduct="{{ $cart->product->nameproduct }}"
+                                            data-quatifier="{{ $cart->quatifier }}" data-id="{{ $cart->id }}"
+                                            data-image="{{ $cart->product->image }}"
+                                            data-totalprice="{{ number_format($cart->quatifier * $cart->product->price, 2) }} $"><i
+                                                class="bi bi-trash"></i> Deny</button></td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -439,6 +444,27 @@
     $(document).ready(function() {
         // Lấy giá trị data-category-id khi modal được hiển thị
         $('#acceptModal').on('shown.bs.modal', function(event) {
+            var button = $(event.relatedTarget); // Nút "Change" được nhấn
+            var idCart = button.data('idcart'); // Lấy giá trị data-category-id
+            var nameProduct = button.data('nameproduct'); // Lấy giá trị data-category-id
+            var image = button.data('image'); // Lấy giá trị data-category-id
+            var id = button.data('id'); // Lấy giá trị data-category-id
+            var quatifier = button.data('quatifier'); // Lấy giá trị data-category-id
+            var totalPrice = button.data('totalprice'); // Lấy giá trị data-category-id
+            var modal = $(this);
+            // Gán giá trị categoryId vào trường ẩn trong form
+            modal.find('input[name="idcart"]').val(idCart);
+            modal.find('input[name="image"]').val(image);
+            modal.find('input[name="id"]').val(id);
+            modal.find('span[name="nameproduct"]').text(nameProduct);
+            modal.find('input[name="nameproduct"]').val(nameProduct);
+            modal.find('input[name="quatifier"]').val(quatifier);
+            modal.find('span[name="quatifier"]').text(quatifier);
+            modal.find('span[name="totalprice"]').text(totalPrice);
+        });
+
+
+        $('#denyModal').on('shown.bs.modal', function(event) {
             var button = $(event.relatedTarget); // Nút "Change" được nhấn
             var idCart = button.data('idcart'); // Lấy giá trị data-category-id
             var nameProduct = button.data('nameproduct'); // Lấy giá trị data-category-id

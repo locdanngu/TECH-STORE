@@ -78,3 +78,4 @@ Route::post('/Admin/Deleteproduct', [AdminController::class, 'deleteProduct'])->
 Route::post('/Admin/Findproduct/{search?}', [AdminController::class, 'findProduct'])->middleware('admin')->name('admin.findproduct');  
 
 Route::post('/Admin/Acceptorder', [AdminController::class, 'acceptOrder'])->middleware('admin')->name('admin.acceptorder');
+Route::post('/Admin/Denyorder', [AdminController::class, 'denyOrder'])->middleware('admin')->name('admin.denyorder');

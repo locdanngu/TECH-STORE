@@ -400,3 +400,48 @@
         </form>
     </div>
 </div>
+
+<!-- Deny Order Modal-->
+<div class="modal fade" id="denyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form class="modal-content" method="POST" action="{{ route('admin.denyorder') }}">
+            @csrf
+            <input type="hidden" name="idcart" value="">
+            <input type="hidden" name="image" value="">
+            <input type="hidden" name="id" value="">
+            <input type="hidden" name="nameproduct" value="">
+            <input type="hidden" name="quatifier" value="">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Deny deliver this order?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Name Product</span>
+                    <span name="nameproduct" style="display: flex;align-items: center;margin-left: 2em;"></span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Quantity</span>
+                    <span name="quatifier" style="display: flex;align-items: center;margin-left: 2em;"></span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Total Price</span>
+                    <span name="totalprice" style="display: flex;align-items: center;margin-left: 2em;"></span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Reason</span>
+                    <textarea class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default" required name="reason"
+                        style="height: 10em"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-danger">Deny</button>
+            </div>
+        </form>
+    </div>
+</div>
