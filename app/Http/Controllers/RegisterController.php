@@ -26,6 +26,7 @@ class RegisterController extends Controller
                 'email' => $input['email'],
                 'phone' => $input['phone'],
                 'name' => $input['name'],
+                'verifyemail' => 0,
                 'password' => Hash::make($input['password']),
                 'avatar' => '/images/avatar.png',
                 'role' => 'customer',

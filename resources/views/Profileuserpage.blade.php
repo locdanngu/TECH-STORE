@@ -39,32 +39,47 @@
                 <p class="fixtxt">Logout</p>
             </a>
         </div>
-        <form class="rightbody" action="{{ route('profileuser.update') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <img id="preview" src="{{ asset($user->avatar) }}" class="avataruser">
-            <div class="file-input-container">
-                <input type="file" id="myFileInput" class="file-input" accept="image/*" name="avatar">
-                <label for="myFileInput" class="file-input-label">Change image</label>
-            </div>
+        <div style="display:flex; flex-direction: column; width:80%">
+            @if($user->verifyemail == false)
+            <form style="display: flex; justify-content: center; padding-top:1em" method="POST" action="">
+                @csrf
+                <input type="hidden" value="{{ $user->email }}">
+                <button class="savebtn">Verify My Email</button>
+            </form>
+            @endif
+            <form class="rightbody" action="{{ route('profileuser.update') }}" method="POST"
+                enctype="multipart/form-data">
+                @csrf
+                <img id="preview" src="{{ asset($user->avatar) }}" class="avataruser">
+                <div class="file-input-container">
+                    <input type="file" id="myFileInput" class="file-input" accept="image/*" name="avatar">
+                    <label for="myFileInput" class="file-input-label">Change image</label>
+                </div>
+                @if($user->verifyemail == false)
+                <span style="color:red; margin-top:1em">Your email has not been confirmed yet.</span>
+                @else
+                <span style="color:green; margin-top:1em">Your have confirmed the email.</span>
+                @endif
+                <div class="phantuuser">
+                    <p class="namephantu">Email: </p>
+                    <p class="namephantu">{{ $user->email }}</p>
+                </div>
+                <div class="phantuuser">
+                    <p class="namephantu">Phone: </p>
+                    <input type="text" class="nhapttuser" value="{{ $user->phone }}" name="phone">
+                </div>
+                <div class="phantuuser">
+                    <p class="namephantu">Name: </p>
+                    <input type="text" class="nhapttuser" value="{{ $user->name }}" name="name">
+                </div>
+                <div class="phantuuser">
+                    <p class="namephantu fix">Name: </p>
+                    <input class="savebtn" type="submit" value="Save">
+                </div>
 
-            <div class="phantuuser">
-                <p class="namephantu">Email: </p>
-                <p class="namephantu">{{ $user->email }}</p>
-            </div>
-            <div class="phantuuser">
-                <p class="namephantu">Phone: </p>
-                <input type="text" class="nhapttuser" value="{{ $user->phone }}" name="phone">
-            </div>
-            <div class="phantuuser">
-                <p class="namephantu">Name: </p>
-                <input type="text" class="nhapttuser" value="{{ $user->name }}" name="name">
-            </div>
-            <div class="phantuuser">
-                <p class="namephantu fix">Name: </p>
-                <input class="savebtn" type="submit" value="Save">
-            </div>
+            </form>
+        </div>
 
-        </form>
     </div>
     @extends('layouts.Foot')
     <script>

@@ -30,9 +30,9 @@ p {
 .rightbody {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 100%;
     align-items: center;
-    padding: 4em;
+    padding: 1.5em;
 }
 
 
@@ -131,7 +131,7 @@ p {
 .phantuuser {
     display: flex;
     width: 50%;
-    margin: 2em 0 2em 0;
+    margin: 1.5em 0 1.5em 0;
     align-items: center;
     justify-content: space-between;
 }
