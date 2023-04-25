@@ -6,6 +6,8 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\UploadedFile;
 use App\Models\Cart;
+use Illuminate\Support\Carbon;
+use App\Models\Revenue;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 
@@ -290,6 +292,22 @@ class AdminController extends Controller
         // dd($input);
         // $cart = Cart::find($input['idcart']);
         Cart::where('idcart', $input['idcart'])->update(['status' => 2]); 
+        $currentDate = Carbon::now();
+        // dd($currentDate);
+
+        $revenue = Revenue::whereDate('dayrevenue', $currentDate->toDateString())->first();
+
+        if($revenue) {
+            // Ngày hiện tại đã có trong CSDL
+            $revenue->revenue += $input['totalprice'];
+            $revenue->save();
+        } else {
+            $revenue = new Revenue;
+            $revenue->dayrevenue = $currentDate ;
+            $revenue->revenue = $input['totalprice'];
+            $revenue->save();
+        }
+
         $notification = new Notification;
         $notification->id = $input['id'];
         $notification->notification = 'Your order for product "' . $input['nameproduct'] . '" x' . $input['quatifier'] . ' is on its way to you';

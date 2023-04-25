@@ -372,7 +372,7 @@
                                             data-nameproduct="{{ $cart->product->nameproduct }}"
                                             data-quatifier="{{ $cart->quatifier }}" data-id="{{ $cart->id }}"
                                             data-image="{{ $cart->product->image }}"
-                                            data-totalprice="{{ number_format($cart->quatifier * $cart->product->price, 2) }} $">
+                                            data-totalprice="{{ number_format($cart->quatifier * $cart->product->price, 2) }}">
                                             <i class="bi bi-check2"></i> Accept</button></td>
                                     <td><button class="buttonfix" data-toggle="modal" data-target="#denyModal"
                                             data-idcart="{{ $cart->idcart }}"
@@ -385,33 +385,6 @@
                                 @endforeach
                             </tbody>
                         </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     </div>
 
                 </div>
@@ -457,11 +430,12 @@
             modal.find('input[name="idcart"]').val(idCart);
             modal.find('input[name="image"]').val(image);
             modal.find('input[name="id"]').val(id);
+            modal.find('input[name="totalprice"]').val(totalPrice);
             modal.find('span[name="nameproduct"]').text(nameProduct);
             modal.find('input[name="nameproduct"]').val(nameProduct);
             modal.find('input[name="quatifier"]').val(quatifier);
             modal.find('span[name="quatifier"]').text(quatifier);
-            modal.find('span[name="totalprice"]').text(totalPrice);
+            modal.find('span[name="totalprice"]').text(totalPrice +' $');
         });
 
 
