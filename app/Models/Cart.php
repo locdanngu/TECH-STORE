@@ -10,10 +10,10 @@ class Cart extends Model
     use HasFactory;
 
     protected $table = 'cart';
-    protected $primaryKey = ['idproduct', 'id'];
+    protected $primaryKey = ['idcart'];
     public $incrementing = false;
     protected $keyType = 'string';
-    protected $fillable = ['quatifier', 'status'];
+    protected $fillable = ['idproduct', 'id','quatifier', 'status'];
     public $timestamps = true;
 
     public function product()

@@ -217,7 +217,7 @@
                         aria-describedby="inputGroup-sizing-default" required name="nameproduct">
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">price</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Price</span>
                     <input type="number" class="form-control" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default" required name="price">
                 </div>
@@ -277,7 +277,7 @@
                         aria-describedby="inputGroup-sizing-default" required name="nameproduct">
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">price</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Price</span>
                     <input type="number" class="form-control" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default" required name="price">
                 </div>
@@ -336,7 +336,7 @@
                     <span name="nameproduct" style="display: flex;align-items: center;margin-left: 2em;"></span>
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">price</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Price</span>
                     <span name="price" style="display: flex;align-items: center;margin-left: 2em;"></span>
                 </div>
                 <div class="input-group mb-3">
@@ -351,10 +351,47 @@
                     <span class="input-group-text" id="inputGroup-sizing-default" style="width:100%">Review</span>
                     <span name="review" style="display: flex;align-items: center;margin-top:1em"></span>
                 </div>
+                <span style="color:red">Warning, deleting will permanently erase the item information!</span>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                 <button class="btn btn-primary">Delete</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- Accept Order Modal-->
+<div class="modal fade" id="acceptModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form class="modal-content" method="POST" action="{{ route('admin.acceptorder') }}">
+            @csrf
+            <input type="hidden" name="idcart" value="">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to deliver this order?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Name Product</span>
+                    <span name="nameproduct" style="display: flex;align-items: center;margin-left: 2em;"></span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Quantity</span>
+                    <span name="quatifier" style="display: flex;align-items: center;margin-left: 2em;"></span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Total Price</span>
+                    <span name="totalprice" style="display: flex;align-items: center;margin-left: 2em;"></span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary">Accept</button>
             </div>
         </form>
     </div>

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -115,7 +115,7 @@
                 </div>
             </li>
 
-           
+
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -125,7 +125,7 @@
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
-            
+
 
         </ul>
         <!-- End of Sidebar -->
@@ -339,11 +339,13 @@
                         <!-- Earnings (Monthly) Card Example -->
                         <table class="table table-striped">
                             <thead>
+                                <th>Id Cart</th>
                                 <th>Id Product</th>
                                 <th>Name Product</th>
                                 <th>Id User</th>
+                                <th>Unit Price</th>
                                 <th>Quatifier</th>
-                                <th>Price</th>
+                                <th>Total Price</th>
                                 <th>Quantity</th>
                                 <th>Time</th>
                                 <th>Status</th>
@@ -353,21 +355,28 @@
                             <tbody>
                                 @foreach($cart as $cart)
                                 <tr>
+                                    <td>{{ $cart->idcart }}</td>
                                     <td>{{ $cart->idproduct }}</td>
                                     <td>{{ $cart->product->nameproduct }}</td>
                                     <td>{{ $cart->id }}</td>
+                                    <td class="fixtd2">{{ number_format($cart->product->price, 2) }} $</td>
                                     <td class="fixtd">{{ $cart->quatifier }}</td>
-                                    <td>{{ number_format($cart->quatifier * $cart->product->price, 2) }} $</td>
+                                    <td class="fixtd2">{{ number_format($cart->quatifier * $cart->product->price, 2) }}
+                                        $</td>
                                     <td class="fixtd">{{ $cart->product->inventoryquantity }}</td>
                                     <td>{{ $cart->updated_at }}</td>
                                     <td>Waiting</td>
-                                    <td><button class="buttonfix"><i class="bi bi-check2"></i> Accept</button></td>
+                                    <td><button class="buttonfix" data-toggle="modal" data-target="#acceptModal"
+                                            data-idcart="{{ $cart->idcart }}"
+                                            data-nameproduct="{{ $cart->product->nameproduct }}"
+                                            data-quatifier="{{ $cart->quatifier }}"
+                                            data-totalprice="{{ number_format($cart->quatifier * $cart->product->price, 2) }} $">
+                                            <i class="bi bi-check2"></i> Accept</button></td>
                                     <td><button class="buttonfix"><i class="bi bi-trash"></i> Deny</button></td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                        
 
 
 
@@ -392,8 +401,9 @@
 
 
 
-                        
-                        
+
+
+
                     </div>
 
                 </div>
@@ -422,6 +432,27 @@
     @extends('layouts.Modalpopup')
 
     @extends('layouts.Linkadmin')
+
+    <script>
+    $(document).ready(function() {
+        // Lấy giá trị data-category-id khi modal được hiển thị
+        $('#acceptModal').on('shown.bs.modal', function(event) {
+            var button = $(event.relatedTarget); // Nút "Change" được nhấn
+            var idCart = button.data('idcart'); // Lấy giá trị data-category-id
+            var nameProduct = button.data('nameproduct'); // Lấy giá trị data-category-id
+            var quatifier = button.data('quatifier'); // Lấy giá trị data-category-id
+            var totalPrice = button.data('totalprice'); // Lấy giá trị data-category-id
+            var modal = $(this);
+            // Gán giá trị categoryId vào trường ẩn trong form
+            modal.find('input[name="idcart"]').val(idCart);
+            modal.find('span[name="nameproduct"]').text(nameProduct);
+            modal.find('span[name="quatifier"]').text(quatifier);
+            modal.find('span[name="totalprice"]').text(totalPrice);
+        });
+
+
+    });
+    </script>
 </body>
 
 </html>

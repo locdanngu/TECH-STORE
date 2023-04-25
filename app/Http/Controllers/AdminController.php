@@ -270,4 +270,14 @@ class AdminController extends Controller
 
         return response()->json(['html' => $html]);
     }
+
+
+    public function acceptOrder(Request $request)
+    {   
+        $input = $request->all();
+        // dd($input);
+        // $cart = Cart::find($input['idcart']);
+        Cart::where('idcart', $input['idcart'])->update(['status' => 2]); 
+        return back();
+    }
 }
