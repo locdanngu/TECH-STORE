@@ -366,7 +366,7 @@
                                         $</td>
                                     <td class="fixtd">{{ $cart->product->inventoryquantity }}</td>
                                     <td>{{ $cart->updated_at }}</td>
-                                    <td>Waiting</td>
+                                    <td class="fixtd">Waiting</td>
                                     <td><button class="buttonfix" data-toggle="modal" data-target="#acceptModal"
                                             data-idcart="{{ $cart->idcart }}"
                                             data-nameproduct="{{ $cart->product->nameproduct }}"

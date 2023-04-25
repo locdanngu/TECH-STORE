@@ -347,8 +347,7 @@
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
                         <input type="text" class="form-control" placeholder="Find with name" aria-label="Username"
                             aria-describedby="addon-wrapping">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off" style="visibility: hidden">+
-                            Add</button>
+                        <a href="{{ route('admin.denyhistory') }}" class="btn btn-primary" data-bs-toggle="button">Deny History</a>
                     </div>
 
                     <!-- Content Row -->
@@ -375,12 +374,12 @@
                                     <td>{{ $cart->idproduct }}</td>
                                     <td>{{ $cart->product->nameproduct }}</td>
                                     <td>{{ $cart->id }}</td>
-                                    <td>{{ number_format($cart->product->price, 2) }} $</td>
+                                    <td class="fixtd2">{{ number_format($cart->product->price, 2) }} $</td>
                                     <td class="fixtd">{{ $cart->quatifier }}</td>
-                                    <td>{{ number_format($cart->quatifier * $cart->product->price, 2) }} $</td>
+                                    <td class="fixtd2">{{ number_format($cart->quatifier * $cart->product->price, 2) }} $</td>
                                     <td class="fixtd">{{ $cart->product->inventoryquantity }}</td>
                                     <td>{{ $cart->updated_at }}</td>
-                                    <td>Done</td>
+                                    <td class="fixtd">Done</td>
                                     <!-- <td><button class="buttonfix"><i class="bi bi-check2"></i> Accept</button></td>
                                     <td><button class="buttonfix"><i class="bi bi-trash"></i> Deny</button></td> -->
                                 </tr>
