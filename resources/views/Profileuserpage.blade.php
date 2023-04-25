@@ -41,9 +41,9 @@
         </div>
         <div style="display:flex; flex-direction: column; width:80%">
             @if($user->verifyemail == false)
-            <form style="display: flex; justify-content: center; padding-top:1em" method="GET" action="{{ route('verifyemail.user') }}">
+            <form style="display: flex; justify-content: center; padding-top:1em" method="POST" action="{{ route('verifyemail.user') }}">
                 @csrf
-                <input type="hidden" value="{{ $user->email }}">
+                <input type="hidden" value="{{ $user->email }}" name="email">
                 <button class="savebtn">Verify My Email</button>
             </form>
             @endif

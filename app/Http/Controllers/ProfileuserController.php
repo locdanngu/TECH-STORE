@@ -71,12 +71,12 @@ class ProfileuserController extends Controller
     }
 
 
-    public function verifyEmail()
+    public function verifyEmail(Request $request)
     {
         $name="TECHNOLOGY STORE";
-        Mail::send('Verifyemail', compact('name'), function($email) use($name){
+        Mail::send('Verifyemail', compact('name'), function($email) use($name,$request){
             $email->subject('Verify you email address');
-            $email->to('19t1021119@husc.edu.vn', 'What is up?');
+            $email->to($request->email, 'What is up?');
         });
         return back();
 
