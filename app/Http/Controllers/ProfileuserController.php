@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Cart;
 use Hash;
+use Mail;
 class ProfileuserController extends Controller
 {
     public function showProfileuser()
@@ -70,16 +71,16 @@ class ProfileuserController extends Controller
     }
 
 
-    // public function viewOrder()
-    // {
-    //     if (Auth::check()) {
-    //         $user = Auth::user();
-    //     return view('Orderpage', ['user' => $user]);
+    public function verifyEmail()
+    {
+        $name="TECHNOLOGY STORE";
+        Mail::send('Verifyemail', compact('name'), function($email) use($name){
+            $email->subject('Verify you email address');
+            $email->to('19t1021119@husc.edu.vn', 'What is up?');
+        });
+        return back();
 
-    //     } else {
-    //         return redirect()->route('login.page')->withErrors(['error' => 'You need to log in first!']);
-    //     }
-    // }
+    }
 
 
     
