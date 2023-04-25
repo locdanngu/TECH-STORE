@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\UploadedFile;
 use App\Models\Cart;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -278,6 +279,11 @@ class AdminController extends Controller
         // dd($input);
         // $cart = Cart::find($input['idcart']);
         Cart::where('idcart', $input['idcart'])->update(['status' => 2]); 
+        $notification = new Notification;
+        $notification->id = $input['id'];
+        $notification->notification = 'Your order for product "' . $input['nameproduct'] . '" x' . $input['quatifier'] . ' is on its way to you';
+        $notification->image = $input['image'];
+        $notification->save();
         return back();
     }
 }

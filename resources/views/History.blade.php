@@ -359,8 +359,9 @@
                                 <th>Id Product</th>
                                 <th>Name Product</th>
                                 <th>Id User</th>
+                                <th>Unit Price</th>
                                 <th>Quatifier</th>
-                                <th>Price</th>
+                                <th>Total Price</th>
                                 <th>Quantity</th>
                                 <th>Time</th>
                                 <th>Status</th>
@@ -373,6 +374,7 @@
                                     <td>{{ $cart->idproduct }}</td>
                                     <td>{{ $cart->product->nameproduct }}</td>
                                     <td>{{ $cart->id }}</td>
+                                    <td>{{ number_format($cart->product->price, 2) }} $</td>
                                     <td class="fixtd">{{ $cart->quatifier }}</td>
                                     <td>{{ number_format($cart->quatifier * $cart->product->price, 2) }} $</td>
                                     <td class="fixtd">{{ $cart->product->inventoryquantity }}</td>

@@ -369,6 +369,10 @@
         <form class="modal-content" method="POST" action="{{ route('admin.acceptorder') }}">
             @csrf
             <input type="hidden" name="idcart" value="">
+            <input type="hidden" name="image" value="">
+            <input type="hidden" name="id" value="">
+            <input type="hidden" name="nameproduct" value="">
+            <input type="hidden" name="quatifier" value="">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to deliver this order?</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
