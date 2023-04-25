@@ -2,14 +2,14 @@
 <html lang="en">
 
 <head>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <title>Admin Categories</title>
+    <title>Admin Deny History</title>
 
     <!-- Custom fonts for this template-->
     <!-- icon -->
@@ -21,7 +21,7 @@
     <!-- {{ asset('bootstrap/') }} -->
     <!-- Custom styles for this template-->
     <link href="{{ asset('bootstrap/css/sb-admin-2.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="/css/Category.css">
+    <link rel="stylesheet" href="/css/Order.css">
 </head>
 
 <body id="page-top">
@@ -342,13 +342,12 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Categories</h1>
+                        <h1 class="h3 mb-0 text-gray-800">History Deny</h1>
                         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
-                        <input type="text" class="form-control" placeholder="Find Category" aria-label="Username"
-                            aria-describedby="addon-wrapping" id="search">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off"
-                            id="Popupadd" data-toggle="modal" data-target="#addModalcategory">+
+                        <input type="text" class="form-control" placeholder="Find with name" aria-label="Username"
+                            aria-describedby="addon-wrapping">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off" style="visibility: hidden">+
                             Add</button>
                     </div>
 
@@ -358,31 +357,37 @@
                         <!-- Earnings (Monthly) Card Example -->
                         <table class="table table-striped">
                             <thead>
-                                <th>Id Category</th>
-                                <th>Name Category</th>
-                                <th>Icon</th>
-                                <th></th>
-                                <th></th>
+                                <th>Id Product</th>
+                                <th>Name Product</th>
+                                <th>Id User</th>
+                                <th>Unit Price</th>
+                                <th>Quatifier</th>
+                                <th>Total Price</th>
+                                <th>Quantity</th>
+                                <th>Time</th>
+                                <th>Status</th>
+                                <!-- <th></th>
+                                <th></th> -->
                             </thead>
-                            <tbody class="capnhat">
-                                @foreach($category as $category)
+                            <tbody>
+                                @foreach($cart as $cart)
                                 <tr>
-                                    <td>{{ $category->idcategory }}</td>
-                                    <td>{{ $category->namecategory }}</td>
-                                    <td><i class="{{ $category->iconcategory }}"></i></td>
-                                    <td><button class="buttonfix" data-toggle="modal" data-target="#updateModalcategory"
-                                            data-category-name="{{ $category->namecategory }}"
-                                            data-category-id="{{ $category->idcategory }}"><i
-                                                class="bi bi-pencil-square"></i> Change</button>
-                                    </td>
-                                    <td><button class="buttonfix" data-toggle="modal" data-target="#deleteModalcategory"
-                                            data-category-name="{{ $category->namecategory }}"
-                                            data-category-id="{{ $category->idcategory }}"><i class="bi bi-trash"></i>
-                                            Delete</button></td>
+                                    <td>{{ $cart->idproduct }}</td>
+                                    <td>{{ $cart->product->nameproduct }}</td>
+                                    <td>{{ $cart->id }}</td>
+                                    <td>{{ number_format($cart->product->price, 2) }} $</td>
+                                    <td class="fixtd">{{ $cart->quatifier }}</td>
+                                    <td>{{ number_format($cart->quatifier * $cart->product->price, 2) }} $</td>
+                                    <td class="fixtd">{{ $cart->product->inventoryquantity }}</td>
+                                    <td>{{ $cart->updated_at }}</td>
+                                    <td class="fixtd">Deny</td>
+                                    <!-- <td><button class="buttonfix"><i class="bi bi-check2"></i> Accept</button></td>
+                                    <td><button class="buttonfix"><i class="bi bi-trash"></i> Deny</button></td> -->
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
+
 
 
 
@@ -437,49 +442,6 @@
     @extends('layouts.Modalpopup')
 
     @extends('layouts.Linkadmin')
-    <script>
-    $(document).ready(function() {
-        // Lấy giá trị data-category-id khi modal được hiển thị
-        $('#updateModalcategory').on('shown.bs.modal', function(event) {
-            var button = $(event.relatedTarget); // Nút "Change" được nhấn
-            var categoryName = button.data('category-name'); // Lấy giá trị data-category-id
-            var categoryId = button.data('category-id'); // Lấy giá trị data-category-id
-            var modal = $(this);
-            // Gán giá trị categoryId vào trường ẩn trong form
-            modal.find('input[name="namecategory"]').val(categoryName);
-            modal.find('input[name="idcategory"]').val(categoryId);
-        });
-
-        $('#deleteModalcategory').on('shown.bs.modal', function(event) {
-            var button = $(event.relatedTarget); // Nút "Change" được nhấn
-            var categoryName = button.data('category-name'); // Lấy giá trị data-category-id
-            var categoryId = button.data('category-id'); // Lấy giá trị data-category-id
-            var modal = $(this);
-            modal.find('input[name="idcategory"]').val(categoryId);
-            modal.find('span[name="namecategory"]').text(categoryName);
-            modal.find('span[name="idcategory"]').text(categoryId);
-        });
-    });
-
-
-    $('#search').on('input', function() {
-        var search = $(this).val();
-        $.ajax({
-            type: 'POST',
-            url: '{{ route("admin.findcategory") }}',
-            data: {
-                _token: '{{ csrf_token() }}',
-                search: search
-            },
-            success: function(response) {
-                var html = response.html;
-                $('.capnhat').html(html);
-            },
-            error: function(xhr, status, error) {}
-        });
-    });
-    </script>
-
 </body>
 
 </html>

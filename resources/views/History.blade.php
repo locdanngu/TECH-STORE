@@ -111,6 +111,7 @@
                         <h6 class="collapse-header">Order User:</h6>
                         <a class="collapse-item" href="{{ route('admin.order') }}">Order List</a>
                         <a class="collapse-item" href="{{ route('admin.history') }}">Shipping history</a>
+                        <a class="collapse-item" href="{{ route('admin.denyhistory') }}">Deny history</a>
                     </div>
                 </div>
             </li>
@@ -341,7 +342,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">History</h1>
+                        <h1 class="h3 mb-0 text-gray-800">History Accept</h1>
                         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
                         <input type="text" class="form-control" placeholder="Find with name" aria-label="Username"

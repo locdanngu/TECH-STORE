@@ -66,6 +66,7 @@ Route::get('/Admin/Category', [AdminController::class, 'viewCategory'])->middlew
 Route::get('/Admin/Product', [AdminController::class, 'viewProduct'])->middleware('admin')->name('admin.product'); 
 Route::get('/Admin/Order', [AdminController::class, 'viewOrder'])->middleware('admin')->name('admin.order'); 
 Route::get('/Admin/History', [AdminController::class, 'viewHistory'])->middleware('admin')->name('admin.history'); 
+Route::get('/Admin/DenyOrder', [AdminController::class, 'viewDenyorder'])->middleware('admin')->name('admin.denyhistory'); 
 
 Route::post('/Admin/Addcategory', [AdminController::class, 'addCategory'])->middleware('admin')->name('admin.addcategory');  
 Route::post('/Admin/Updatecategory', [AdminController::class, 'updateCategory'])->middleware('admin')->name('admin.updatecategory');  
