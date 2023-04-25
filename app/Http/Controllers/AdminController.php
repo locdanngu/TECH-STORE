@@ -16,8 +16,15 @@ class AdminController extends Controller
     public function viewAdmin()
     {   
         $user = Auth::user();
-        return view('Admin', ['user' => $user]);
+        $currentDate = Carbon::now();
+        $currentMonth = $currentDate->month;
+        $currentYear = $currentDate->year;
+        $revenue = Revenue::whereYear('dayrevenue', $currentYear)
+                        ->whereMonth('dayrevenue', $currentMonth)
+                        ->first();
+        return view('Admin', ['user' => $user,'revenue' => $revenue,'currentMonth' => $currentMonth,'currentYear' => $currentYear ]);
     }
+
 
     public function viewLoginAdmin()
     {
