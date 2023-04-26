@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Support\Carbon;
 use App\Models\Cart;
 use Hash;
 use Mail;
@@ -73,12 +74,18 @@ class ProfileuserController extends Controller
 
     public function verifyEmail(Request $request)
     {
-        $name="TECHNOLOGY STORE";
-        Mail::send('Verifyemail', compact('name'), function($email) use($name,$request){
-            $email->subject('Verify you email address');
-            $email->to($request->email, 'What is up?');
+        $user = Auth::user();
+        $name = $user->name;
+        $random_number = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
+        $user->codeverifyemail = $random_number;
+        $user->codeverifyemailend = $user->codeverifyemailend = Carbon::now()->addMinutes(5);
+        $user->save();
+        $support = '19t1021119@husc.edu.vn';
+        Mail::send('Verifyemail', compact('name','support','random_number'), function($email) use($request, $name, $random_number,$support){
+            $email->subject('Verify you email address', $name,$support,$random_number);
+            $email->to($request->email);
         });
-        return back();
+        return view('Codeverifyemail', ['email' => $request->email, 'user' => $user]);
 
     }
 
