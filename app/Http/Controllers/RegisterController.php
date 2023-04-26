@@ -19,8 +19,11 @@ class RegisterController extends Controller
 
     public function store(Request $request){
         $input = $request->all();
+        $user = User::where('email', $input['email'])->first();
         if ($request->password !== $request->password2) {
             return redirect()->back()->withInput()->withErrors(['password' => 'The confirmation password does not match.']);
+        }else if($user){
+            return redirect()->back()->withInput()->withErrors(['email' => 'This email address is already registered.']);
         }else{
             // $sid = env('TWILIO_ACCOUNT_SID');
             // $token = env('TWILIO_AUTH_TOKEN');
@@ -49,12 +52,8 @@ class RegisterController extends Controller
                 'role' => 'customer',
                 'balance' => 0,
             ]);
-    
-            
-    
             // // Đăng nhập người dùng mới đăng ký
             Auth::login($user);
-    
             // Chuyển hướng sang trang Userpage, truyền thông tin người dùng qua biến user
             return redirect()->route('user.page');
             // return view('/Codesms', ['input' => $input, 'random_number' => $random_number]);

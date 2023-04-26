@@ -97,6 +97,7 @@ p {
     color: #8A8A8A;
     text-decoration: none;
     display: flex;
+    overflow: hidden;
     justify-content: left;
     cursor: pointer;
     width: 100%;
