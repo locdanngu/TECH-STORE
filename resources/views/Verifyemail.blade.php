@@ -1,7 +1,7 @@
 
-<div style="height:100%;width:100%">
+<div style="text-align:center">
 
-    <h3>Hi, {{ $name }}, </h3>
+    <h3>Hi, {{ $name }}. </h3>
 
     <h3> Your verification code is <span style="font-weight:bold;color:red">{{ $random_number }}</span></h3>
 

@@ -57,8 +57,7 @@
 
     </div>
     @extends('layouts.Foot')
-    <script>
-    </script>
+
 </body>
 
 </html>
