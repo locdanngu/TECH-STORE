@@ -27,6 +27,7 @@
         @csrf
         <label>Enter Code SMS(*): </label>
         <div>
+            <input type="hidden" name="random_number" value="{{ $random_number }}">
             <input type="hidden" name="email" value="{{ $input['email'] }}">
             <input type="hidden" name="phone" value="{{ $input['phone'] }}">
             <input type="hidden" name="name" value="{{ $input['name'] }}">
