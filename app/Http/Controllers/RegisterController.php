@@ -21,7 +21,7 @@ class RegisterController extends Controller
         if ($request->password !== $request->password2) {
             return redirect()->back()->withInput()->withErrors(['password' => 'The confirmation password does not match.']);
         }else{
-            
+            // dd($input);
             $user = User::create([
                 'email' => $input['email'],
                 'phone' => $input['phone'],
