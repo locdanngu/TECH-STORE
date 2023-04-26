@@ -18,7 +18,7 @@
             </div>
         </div>
     </nav>
-
+    
 
     @extends('layouts.Foot')
 </body>
