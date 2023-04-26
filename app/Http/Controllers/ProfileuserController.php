@@ -75,6 +75,7 @@ class ProfileuserController extends Controller
     public function verifyEmail(Request $request)
     {
         $user = Auth::user();
+        $useremail = $user->email;
         $name = $user->name;
         $random_number = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
         $user->codeverifyemail = $random_number;
@@ -85,10 +86,23 @@ class ProfileuserController extends Controller
             $email->subject('Verify you email address', $name,$support,$random_number);
             $email->to($request->email);
         });
-        return view('Codeverifyemail', ['email' => $request->email, 'user' => $user]);
-
+        return view('Codeverifyemail', ['useremail' => $useremail, 'user' => $user]);
     }
 
-
+    public function verifyEmailcode(Request $request)
+    {
+        $user = Auth::user();
+        $useremail = $user->email;
+        $endtime = Carbon::now();
+        $timecodeend = $user->codeverifyemailend;
+        if($user->codeverifyemail == $request->code && $timecodeend > $endtime){
+            $user->verifyemail = 1;
+            $user->email_verified_at = Carbon::now();
+            $user->save();
+            return view('Profileuserpage', ['user' => $user]);
+        }else{
+            return  view('Codeverifyemail', ['useremail' => $useremail, 'user' => $user])->withErrors(['error' => 'Code has expired or incorrect!']);
+        }
+    }
     
 }

@@ -33,7 +33,8 @@ Route::post('/Profileuserpage', [ProfileuserController::class, 'changeProfileuse
 Route::get('/Changepassword', [ProfileuserController::class, 'viewChangePassWord'])->middleware('user')->name('changepassword.page');  //view đổi mk
 Route::post('/Changepassword', [ProfileuserController::class, 'changePassWord'])->middleware('user')->name('changepassword.update');  //route thay mk
 Route::post('/Verifyemail', [ProfileuserController::class, 'verifyEmail'])->middleware('user')->name('verifyemail.user');
-// Route::get('/Verifyemail', [ProfileuserController::class, 'mail'])->middleware('user')->name('mail');
+Route::post('/Verifyemailcode', [ProfileuserController::class, 'verifyEmailcode'])->middleware('user')->name('verifyemailcode.user');
+
 
 Route::get('/Cartuserpage', [CartController::class, 'viewCart'])->middleware('user')->name('cart.page');     //view giỏ hàng
 Route::post('/Cartuserpage', [CartController::class, 'updateCart'])->middleware('user')->name('cart.update');

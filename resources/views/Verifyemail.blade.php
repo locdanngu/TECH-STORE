@@ -3,7 +3,7 @@
 
     <h3>Hi, {{ $name }}, </h3>
 
-    <h3> Your verification code is <span style="font-weight:bold">{{ $random_number }}</span></h3>
+    <h3> Your verification code is <span style="font-weight:bold;color:red">{{ $random_number }}</span></h3>
 
     <h3 style="color: red">Your code will expire in 5 minutes!</h3>
 

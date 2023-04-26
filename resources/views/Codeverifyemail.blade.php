@@ -39,17 +39,20 @@
                 <p class="fixtxt">Logout</p>
             </a>
         </div>
-        <div style="display:flex; flex-direction: column; width:80%">
-            <form method="POST" action="">
+        <div style="display:flex; flex-direction: column; width:80%;justify-content: center;align-items: center;">
+            <form method="POST" action="{{ route('verifyemailcode.user') }}">
                 @csrf
-                <input type="text"  maxlength="6" required placeholder="Code">
-                <input type="submit" value="Submit">
+                <input class="nhapttuser" type="text" maxlength="6" required placeholder="Verify Code" name="code">
+                <input class="savebtn" type="submit" value="Submit">
             </form>
-            <form method="POST" action="{{ route('verifyemail.user') }}">
+            <form method="POST" action="{{ route('verifyemail.user') }}" style="margin:2em 0 2em 0">
                 @csrf
-                <input type="hidden" value="{{ $email }}">
-                <input type="submit" value="Re-Send Code">
+                <input type="hidden" value="{{ $useremail }}" name="email">
+                <button class="savebtn" id="resend-btn" type="button">Re-Send Code</button>
             </form>
+            @error('error')
+            <p class="error" style="color:red">{{ $message }}</p>
+            @enderror
         </div>
 
     </div>
