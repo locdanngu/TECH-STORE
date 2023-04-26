@@ -59,11 +59,18 @@ class CartController extends Controller
                 'id' => $user->id,
                 'status' => 0
         ]);
-    
+        // dd($cartItem);
         // If the cart item already exists, increment its quantity
         if ($cartItem->exists) {
-            // $cartItem->quatifier++;
-            return redirect()->back()->withErrors(['fail' => 'Product is already in the cart']);
+            // $cartItem->quatifier = (int)$cartItem->quatifier + 1;
+            // // dd($cartItem);
+            // $cartItem->save();
+        Cart::where('id', $user->id)
+            ->where('idproduct', $idproduct)
+            ->where('status', 0)
+            ->update(['quatifier' => $cartItem->quatifier +1]);
+            // return redirect()->route('cart.page');
+            return redirect()->back()->withErrors(['fail' => 'Product added successfully!']);
         } else {
             $cartItem->quatifier = 1;
         }
