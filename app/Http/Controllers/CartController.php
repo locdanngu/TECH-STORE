@@ -96,24 +96,28 @@ class CartController extends Controller
     {
         $user = Auth::user();
         $totalPrice = $request->input('pay');
-
-        $cartItems = Cart::where('id', $user->id)->where('status', 0)->get();
-        // dd($cartItems);
-        foreach ($cartItems as $cartItem) {
-            $notification = new Notification;
-            $notification->id = $user->id;
-            $productName = Product::select('nameproduct')->where('idproduct', $cartItem->idproduct)->first()->nameproduct;
-            $image = Product::select('image')->where('idproduct', $cartItem->idproduct)->first()->image;
-            $notification->notification = 'Your order for product "' . $productName . '" x' . $cartItem->quatifier . ' is waiting for confirmation';
-            $notification->image = $image;
-            // dd($notification);
-            $notification->save();
+        if($totalPrice < $user->balance){
+            $cartItems = Cart::where('id', $user->id)->where('status', 0)->get();
+            // dd($cartItems);
+            foreach ($cartItems as $cartItem) {
+                $notification = new Notification;
+                $notification->id = $user->id;
+                $productName = Product::select('nameproduct')->where('idproduct', $cartItem->idproduct)->first()->nameproduct;
+                $image = Product::select('image')->where('idproduct', $cartItem->idproduct)->first()->image;
+                $notification->notification = 'Your order for product "' . $productName . '" x' . $cartItem->quatifier . ' is waiting for confirmation';
+                $notification->image = $image;
+                // dd($notification);
+                $notification->save();
+            }
+            Cart::where('id', $user->id)->where('status', 0)->update(['status' => 1]);
+            $user = User::findOrFail($user->id);
+            $user->balance -= $totalPrice;
+            $user->save();
+            return redirect()->route('order.page');
+        }else{
+            return redirect()->back()->withErrors(['fail' => 'You do not have enough money to pay.']);
         }
-        Cart::where('id', $user->id)->where('status', 0)->update(['status' => 1]);
-        $user = User::findOrFail($user->id);
-        $user->balance -= $totalPrice;
-        $user->save();
-        return redirect()->route('order.page');
+        
     }
 
     public function viewOrder()

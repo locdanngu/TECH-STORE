@@ -46,6 +46,9 @@
                     <i class="bi bi-eye-slash" id="eye1"></i>
                     <i class="bi bi-eye" id="eye2"></i>
                 </div>
+                @error('fail')
+                <p class="error" style="color:red">{{ $message }}</p>
+                @enderror
                 <a href="{{ route('user.page') }}" class="naptien2">More Product</a>
                 <button class="naptien">Recharge</button>
             </div>
@@ -125,19 +128,21 @@
         </div>
     </div>
     </div>
-    
+
     @extends('layouts.Foot')
     <script>
     $(document).ready(function() {
         var isHidden = true;
-        var balance = {{ $user->balance }};
+        var balance = {{$user->balance}};
         $("#eye2").show();
         $("#eye1").hide();
         $('#eye1, #eye2').click(function() {
             if (isHidden) {
                 $("#eye1").show();
                 $("#eye2").hide();
-                $('#balance').text(balance.toLocaleString('en-US', {minimumFractionDigits: 2}) + '$');
+                $('#balance').text(balance.toLocaleString('en-US', {
+                    minimumFractionDigits: 2
+                }) + '$');
                 isHidden = false;
             } else {
                 $("#eye2").show();
@@ -146,8 +151,8 @@
                 isHidden = true;
             }
         });
-    });                  //đề phòng trường hợp format lại HTML trong php
-    
+    }); 
+
     // $(document).ready(function() {
     //     var isHidden = true;
     //     var balance = {{ $user->balance }};
