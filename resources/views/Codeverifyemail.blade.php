@@ -48,7 +48,7 @@
             <form method="POST" action="{{ route('verifyemail.user') }}" style="margin:2em 0 2em 0">
                 @csrf
                 <input type="hidden" value="{{ $useremail }}" name="email">
-                <button class="savebtn" id="resend-btn" type="button">Re-Send Code</button>
+                <input class="savebtn" type="submit" value="Re-Send Code"></input>
             </form>
             @error('error')
             <p class="error" style="color:red">{{ $message }}</p>
