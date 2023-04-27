@@ -4,7 +4,7 @@
 <head>
     @extends('layouts.Link')
     <link rel="stylesheet" href="/css/Loginpage.css">
-    <title>Login Page</title>
+    <title>Submit Phone</title>
 </head>
 
 <body>

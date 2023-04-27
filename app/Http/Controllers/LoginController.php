@@ -24,10 +24,11 @@ class LoginController extends Controller
         // Kiểm tra tính hợp lệ của đầu vào
         $this->validate($request, ['email' => 'required|email',
                                 'password' => 'required|min:6']);
-        
+
+
         // Lấy thông tin đăng nhập từ đầu vào
         $credentials = $request->only('email', 'password');
-        
+
 
         // Thực hiện đăng nhập và kiểm tra tính hợp lệ
         if (Auth::attempt($credentials, $request->remember)) {
