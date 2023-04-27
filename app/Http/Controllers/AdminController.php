@@ -161,6 +161,7 @@ class AdminController extends Controller
         $category3 = Category::orderBy('idcategory', 'asc')->get();
         return view('Denyorder', ['user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
     }
+    
 
     public function addCategory(Request $request)
     {   
@@ -364,5 +365,12 @@ class AdminController extends Controller
         $notification->image = $input['image'];
         $notification->save();
         return back();
+    }
+
+    public function viewProfile()
+    {   
+        $user = Auth::user();
+
+        return view('Profileadmin', ['user' => $user]);
     }
 }
