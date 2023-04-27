@@ -335,58 +335,62 @@
                     </div>
 
                     <!-- Content Row -->
-                    <div class="row">
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
+                            <div class="table-responsive">
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <table class="table table-striped">
-                            <thead>
-                                <th>Id Cart</th>
-                                <th>Id Product</th>
-                                <th>Name Product</th>
-                                <th>Id User</th>
-                                <th>Unit Price</th>
-                                <th>Quatifier</th>
-                                <th>Total Price</th>
-                                <th>Quantity</th>
-                                <th>Time</th>
-                                <th>Status</th>
-                                <th></th>
-                                <th></th>
-                            </thead>
-                            <tbody>
-                                @foreach($cart as $cart)
-                                <tr>
-                                    <td>{{ $cart->idcart }}</td>
-                                    <td>{{ $cart->idproduct }}</td>
-                                    <td>{{ $cart->product->nameproduct }}</td>
-                                    <td>{{ $cart->id }}</td>
-                                    <td class="fixtd2">{{ number_format($cart->product->price, 2) }} $</td>
-                                    <td class="fixtd">{{ $cart->quatifier }}</td>
-                                    <td class="fixtd2">{{ number_format($cart->quatifier * $cart->product->price, 2) }}
-                                        $</td>
-                                    <td class="fixtd">{{ $cart->product->inventoryquantity }}</td>
-                                    <td>{{ $cart->updated_at }}</td>
-                                    <td class="fixtd">Waiting</td>
-                                    <td><button class="buttonfix" data-toggle="modal" data-target="#acceptModal"
-                                            data-idcart="{{ $cart->idcart }}"
-                                            data-nameproduct="{{ $cart->product->nameproduct }}"
-                                            data-quatifier="{{ $cart->quatifier }}" data-id="{{ $cart->id }}"
-                                            data-image="{{ $cart->product->image }}"
-                                            data-totalprice="{{ number_format($cart->quatifier * $cart->product->price, 2) }}">
-                                            <i class="bi bi-check2"></i> Accept</button></td>
-                                    <td><button class="buttonfix" data-toggle="modal" data-target="#denyModal"
-                                            data-idcart="{{ $cart->idcart }}"
-                                            data-nameproduct="{{ $cart->product->nameproduct }}"
-                                            data-quatifier="{{ $cart->quatifier }}" data-id="{{ $cart->id }}"
-                                            data-image="{{ $cart->product->image }}"
-                                            data-totalprice="{{ number_format($cart->quatifier * $cart->product->price, 2) }} $"><i
-                                                class="bi bi-trash"></i> Deny</button></td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <th>Id Cart</th>
+                                        <th>Id Product</th>
+                                        <th>Name Product</th>
+                                        <th>Id User</th>
+                                        <th>Unit Price</th>
+                                        <th>Quatifier</th>
+                                        <th>Total Price</th>
+                                        <th>Quantity</th>
+                                        <th>Time</th>
+                                        <th>Status</th>
+                                        <th></th>
+                                        <th></th>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($cart as $cart)
+                                        <tr>
+                                            <td>{{ $cart->idcart }}</td>
+                                            <td>{{ $cart->idproduct }}</td>
+                                            <td>{{ $cart->product->nameproduct }}</td>
+                                            <td>{{ $cart->id }}</td>
+                                            <td class="fixtd2">{{ number_format($cart->product->price, 2) }} $</td>
+                                            <td class="fixtd">{{ $cart->quatifier }}</td>
+                                            <td class="fixtd2">
+                                                {{ number_format($cart->quatifier * $cart->product->price, 2) }}
+                                                $</td>
+                                            <td class="fixtd">{{ $cart->product->inventoryquantity }}</td>
+                                            <td>{{ $cart->updated_at }}</td>
+                                            <td class="fixtd">Waiting</td>
+                                            <td><button class="buttonfix" data-toggle="modal" data-target="#acceptModal"
+                                                    data-idcart="{{ $cart->idcart }}"
+                                                    data-nameproduct="{{ $cart->product->nameproduct }}"
+                                                    data-quatifier="{{ $cart->quatifier }}" data-id="{{ $cart->id }}"
+                                                    data-image="{{ $cart->product->image }}"
+                                                    data-totalprice="{{ number_format($cart->quatifier * $cart->product->price, 2) }}">
+                                                    <i class="bi bi-check2"></i> Accept</button></td>
+                                            <td><button class="buttonfix" data-toggle="modal" data-target="#denyModal"
+                                                    data-idcart="{{ $cart->idcart }}"
+                                                    data-nameproduct="{{ $cart->product->nameproduct }}"
+                                                    data-quatifier="{{ $cart->quatifier }}" data-id="{{ $cart->id }}"
+                                                    data-image="{{ $cart->product->image }}"
+                                                    data-totalprice="{{ number_format($cart->quatifier * $cart->product->price, 2) }} $"><i
+                                                        class="bi bi-trash"></i> Deny</button></td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
                     </div>
-
                 </div>
                 <!-- /.container-fluid -->
 
@@ -435,7 +439,7 @@
             modal.find('input[name="nameproduct"]').val(nameProduct);
             modal.find('input[name="quatifier"]').val(quatifier);
             modal.find('span[name="quatifier"]').text(quatifier);
-            modal.find('span[name="totalprice"]').text(totalPrice +' $');
+            modal.find('span[name="totalprice"]').text(totalPrice + ' $');
         });
 
 

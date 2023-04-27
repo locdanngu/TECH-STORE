@@ -347,75 +347,53 @@
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
                         <input type="text" class="form-control" placeholder="Find with name" aria-label="Username"
                             aria-describedby="addon-wrapping">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off" style="visibility: hidden">+
+                        <button type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off"
+                            style="visibility: hidden">+
                             Add</button>
                     </div>
 
                     <!-- Content Row -->
-                    <div class="row">
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
+                            <div class="table-responsive">
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <table class="table table-striped">
-                            <thead>
-                                <th>Id Product</th>
-                                <th>Name Product</th>
-                                <th>Id User</th>
-                                <th>Unit Price</th>
-                                <th>Quatifier</th>
-                                <th>Total Price</th>
-                                <th>Quantity</th>
-                                <th>Time</th>
-                                <th>Status</th>
-                                <!-- <th></th>
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <th>Id Product</th>
+                                        <th>Name Product</th>
+                                        <th>Id User</th>
+                                        <th>Unit Price</th>
+                                        <th>Quatifier</th>
+                                        <th>Total Price</th>
+                                        <th>Quantity</th>
+                                        <th>Time</th>
+                                        <th>Status</th>
+                                        <!-- <th></th>
                                 <th></th> -->
-                            </thead>
-                            <tbody>
-                                @foreach($cart as $cart)
-                                <tr>
-                                    <td>{{ $cart->idproduct }}</td>
-                                    <td>{{ $cart->product->nameproduct }}</td>
-                                    <td>{{ $cart->id }}</td>
-                                    <td class="fixtd2">{{ number_format($cart->product->price, 2) }} $</td>
-                                    <td class="fixtd">{{ $cart->quatifier }}</td>
-                                    <td class="fixtd2">{{ number_format($cart->quatifier * $cart->product->price, 2) }} $</td>
-                                    <td class="fixtd">{{ $cart->product->inventoryquantity }}</td>
-                                    <td>{{ $cart->updated_at }}</td>
-                                    <td class="fixtd">Deny</td>
-                                    <!-- <td><button class="buttonfix"><i class="bi bi-check2"></i> Accept</button></td>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($cart as $cart)
+                                        <tr>
+                                            <td>{{ $cart->idproduct }}</td>
+                                            <td>{{ $cart->product->nameproduct }}</td>
+                                            <td>{{ $cart->id }}</td>
+                                            <td class="fixtd2">{{ number_format($cart->product->price, 2) }} $</td>
+                                            <td class="fixtd">{{ $cart->quatifier }}</td>
+                                            <td class="fixtd2">
+                                                {{ number_format($cart->quatifier * $cart->product->price, 2) }} $</td>
+                                            <td class="fixtd">{{ $cart->product->inventoryquantity }}</td>
+                                            <td>{{ $cart->updated_at }}</td>
+                                            <td class="fixtd">Deny</td>
+                                            <!-- <td><button class="buttonfix"><i class="bi bi-check2"></i> Accept</button></td>
                                     <td><button class="buttonfix"><i class="bi bi-trash"></i> Deny</button></td> -->
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                            </div>
+                        </div>
                     </div>
-
                 </div>
                 <!-- /.container-fluid -->
 

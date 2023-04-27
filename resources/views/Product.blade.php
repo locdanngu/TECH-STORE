@@ -353,51 +353,57 @@
                     </div>
 
                     <!-- Content Row -->
-                    <div class="row">
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
+                            <div class="table-responsive">
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <table class="table table-striped">
-                            <thead>
-                                <th>Id Product</th>
-                                <th>Name Product</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th>Image</th>
-                                <th>Review</th>
-                                <th></th>
-                                <th></th>
-                            </thead>
-                            <tbody class="capnhat">
-                                @foreach($products as $products)
-                                <tr>
-                                    <td>{{ $products->idproduct }}</td>
-                                    <td>{{ $products->nameproduct }}</td>
-                                    <td>{{ $products->price }}</td>
-                                    <td>{{ $products->inventoryquantity }}</td>
-                                    <td><img src="{{ $products->image }}" class="imgproduct"></td>
-                                    <td>{{ $products->review }}</td>
-                                    <td><button class="buttonfix" data-toggle="modal" data-target="#updateModalproduct"
-                                            data-product-name="{{ $products->nameproduct }}"
-                                            data-product-id="{{ $products->idproduct }}"
-                                            data-product-price="{{ $products->price }}"
-                                            data-product-quantity="{{ $products->inventoryquantity }}"
-                                            data-product-review="{{ $products->review }}"><i
-                                                class="bi bi-pencil-square"></i> Change</button>
-                                    </td>
-                                    <td><button class="buttonfix" data-toggle="modal" data-target="#deleteModalproduct"
-                                            data-product-name="{{ $products->nameproduct }}"
-                                            data-product-id="{{ $products->idproduct }}"
-                                            data-product-price="{{ $products->price }}"
-                                            data-product-quantity="{{ $products->inventoryquantity }}"
-                                            data-product-namecategory="{{ $products->category->namecategory }}"
-                                            data-product-review="{{ $products->review }}"><i class="bi bi-trash"></i>
-                                            Delete</button></td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <th>Id Product</th>
+                                        <th>Name Product</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Image</th>
+                                        <th>Review</th>
+                                        <th></th>
+                                        <th></th>
+                                    </thead>
+                                    <tbody class="capnhat">
+                                        @foreach($products as $products)
+                                        <tr>
+                                            <td>{{ $products->idproduct }}</td>
+                                            <td>{{ $products->nameproduct }}</td>
+                                            <td>{{ $products->price }}</td>
+                                            <td>{{ $products->inventoryquantity }}</td>
+                                            <td><img src="{{ $products->image }}" class="imgproduct"></td>
+                                            <td>{{ $products->review }}</td>
+                                            <td><button class="buttonfix" data-toggle="modal"
+                                                    data-target="#updateModalproduct"
+                                                    data-product-name="{{ $products->nameproduct }}"
+                                                    data-product-id="{{ $products->idproduct }}"
+                                                    data-product-price="{{ $products->price }}"
+                                                    data-product-quantity="{{ $products->inventoryquantity }}"
+                                                    data-product-review="{{ $products->review }}"><i
+                                                        class="bi bi-pencil-square"></i> Change</button>
+                                            </td>
+                                            <td><button class="buttonfix" data-toggle="modal"
+                                                    data-target="#deleteModalproduct"
+                                                    data-product-name="{{ $products->nameproduct }}"
+                                                    data-product-id="{{ $products->idproduct }}"
+                                                    data-product-price="{{ $products->price }}"
+                                                    data-product-quantity="{{ $products->inventoryquantity }}"
+                                                    data-product-namecategory="{{ $products->category->namecategory }}"
+                                                    data-product-review="{{ $products->review }}"><i
+                                                        class="bi bi-trash"></i>
+                                                    Delete</button></td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
                     </div>
-
                 </div>
                 <!-- /.container-fluid -->
 
@@ -468,7 +474,8 @@
             var productName = button.data('product-name'); // Lấy giá trị data-category-id
             var productId = button.data('product-id'); // Lấy giá trị data-category-id
             var productPrice = button.data('product-price'); // Lấy giá trị data-category-id
-            var productNamecategory = button.data('product-namecategory'); // Lấy giá trị data-category-id
+            var productNamecategory = button.data(
+            'product-namecategory'); // Lấy giá trị data-category-id
             var productQuantity = button.data('product-quantity'); // Lấy giá trị data-category-id
             var productReview = button.data('product-review'); // Lấy giá trị data-category-id
             var modal = $(this);
