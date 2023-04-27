@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -22,6 +22,46 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('bootstrap/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="/css/Order.css">
+    <style>
+    .file-input-container {
+        margin-top: 2em;
+        width: 10em;
+        position: relative;
+        overflow: hidden;
+        /* Độ rộng của nút input file */
+        border-radius: .5em;
+    }
+
+    .file-input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .file-input-label {
+        display: block;
+        width: 100%;
+        border-radius: .5em;
+        padding: 10px;
+        background-color: #8A8A8A;
+        /* Màu nền của nút */
+        color: #fff;
+        /* Màu chữ của nút */
+        text-align: center;
+        cursor: pointer;
+    }
+
+    @media only screen and (max-width: 480px) {
+        .card-body{
+            width: 100% !important;
+        }
+
+    }
+    </style>
 </head>
 
 <body id="page-top">
@@ -356,10 +396,15 @@
                     <div class="card shadow mb-4">
                         <div class="card-body">
                             <form method="POST" action="" class="table-responsive flex-column"
-                                style="align-items: center;display: flex;">
+                                style="align-items: center;display: flex;" enctype="multipart/form-data">
                                 @csrf
-                                <img class="img-profile rounded-circle" src="{{ $user->avatar }}" style="width:15%">
-                                
+                                <img id="preview" class="img-profile rounded-circle" src="{{ $user->avatar }}"
+                                    style="width:15%">
+                                <div class="file-input-container">
+                                    <input type="file" id="myFileInput" class="file-input" accept="image/*"
+                                        name="avatar">
+                                    <label for="myFileInput" class="file-input-label">Change image</label>
+                                </div>
                                 <div class="card-body justify-content-between d-flex" style="width:30%">
                                     <span>Email:</span>
                                     <span>{{ $user->email }}</span>
@@ -388,17 +433,6 @@
                         </div>
                     </div>
 
-
-
-
-
-
-
-
-
-
-
-
                 </div>
                 <!-- /.container-fluid -->
 
@@ -425,6 +459,21 @@
     @extends('layouts.Modalpopup')
 
     @extends('layouts.Linkadmin')
+    <script>
+    function previewFile(input) {
+        var file = $("input[type=file]").get(0).files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                $("#preview").attr("src", reader.result);
+            }
+            reader.readAsDataURL(file);
+        }
+    }
+    $("input[type=file]").change(function() {
+        previewFile(this);
+    });
+    </script>
 </body>
 
 </html>
