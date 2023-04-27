@@ -374,7 +374,10 @@
         <!-- End of Content Wrapper -->
 
     </div>
+    <!-- End of Page Wrapper -->
 
+    <!-- Scroll to Top Button-->
+    @extends('layouts.Modalpopup')
 
     @extends('layouts.Linkadmin')
 </body>
