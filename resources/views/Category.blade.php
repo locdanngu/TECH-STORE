@@ -353,9 +353,9 @@
                     </div>
 
                     <!-- Content Row -->
+                    
                     <div class="row">
 
-                        <!-- Earnings (Monthly) Card Example -->
                         <table class="table table-striped">
                             <thead>
                                 <th>Id Category</th>
@@ -383,31 +383,6 @@
                                 @endforeach
                             </tbody>
                         </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                     </div>
 
