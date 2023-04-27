@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 
 // use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
-
+use Laravel\Socialite\Facades\Socialite;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -84,3 +84,16 @@ Route::post('/Admin/Findproduct/{search?}', [AdminController::class, 'findProduc
 
 Route::post('/Admin/Acceptorder', [AdminController::class, 'acceptOrder'])->middleware('admin')->name('admin.acceptorder');
 Route::post('/Admin/Denyorder', [AdminController::class, 'denyOrder'])->middleware('admin')->name('admin.denyorder');
+
+Route::get('/chinh-sach-rieng-tu', function () {
+    return '<h1>Chính sách riêng tư</h1>';
+});
+
+
+Route::get('auth/facebook', function (){
+    return Socialite::driver('facebook')->redirect();
+});
+
+Route::get('auth/facebook/callback', function (){
+    return 'Callback login Facebook';
+});
