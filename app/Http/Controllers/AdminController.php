@@ -386,8 +386,8 @@ class AdminController extends Controller
         if ($request->hasFile('avatar')) {
             $avatar = $request->file('avatar');
             $avatarName = time() . '_' . $avatar->getClientOriginalName();
-            $avatar->move(public_path('avatars'), $avatarName);
-            $user->avatar = 'avatars/' . $avatarName;
+            $avatar->move(public_path('avatarsadmin'), $avatarName);
+            $user->avatar = 'avatarsadmin/' . $avatarName;
         } else {
             $user->avatar = $user->avatar;
         }
