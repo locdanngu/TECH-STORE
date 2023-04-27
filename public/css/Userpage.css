@@ -36,7 +36,7 @@ p {
     justify-content: space-between;
 }
 
-.bi-cart {
+.bi-cart,.bi-chat {
     color: #FFFFFF;
     margin-right: 2em;
     margin-left: 2em;
@@ -50,7 +50,6 @@ p {
 
 .bi-arrow-bar-right {
     cursor: pointer;
-    margin-right: 2em;
     margin-left: 2em;
     visibility: hidden;
 }
@@ -126,6 +125,7 @@ p {
 
 .btnlink {
     transition: 0.5s ease;
+    margin-right: 2em;
 }
 
 .btnlink:hover {

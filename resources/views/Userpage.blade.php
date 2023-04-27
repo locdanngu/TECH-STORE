@@ -47,6 +47,7 @@
                 </div>
                 <div class="righthead">
                     <i class="bi bi-arrow-bar-right"></i>
+                    <a href="{{ route('user.message') }}" class="btnlink"><i class="bi bi-chat"></i></a>
                     <div class="dropdown">
                         <button class="btn" type="button" data-bs-toggle="dropdown">
                             <i class="bi bi-bell"></i>
@@ -58,7 +59,6 @@
                                 <span style="font-weight: 500">{{ $notification->notification }}</span>
                             </li>
                         @endforeach
-                            
                         </ul>
                     </div>
                     <!-- <a href="" class="btnlink"><i class="bi bi-bell"></i></a> -->
@@ -198,6 +198,9 @@
         $(".bi-arrow-bar-right").css({
             "visibility": "visible",
         });
+        $(".bi-chat").css({
+            "margin-right": "0",
+        });
     });
 
     $(".bi-arrow-bar-right").on("click", function() {
@@ -211,6 +214,9 @@
         });
         $(".bi-arrow-bar-right").css({
             "visibility": "",
+        });
+        $(".bi-chat").css({
+            "margin-right": "",
         });
 
         setTimeout(function() {
