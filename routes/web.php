@@ -101,9 +101,6 @@ Route::post('/Admin/Denyorder', [AdminController::class, 'denyOrder'])->middlewa
 
 
 
-
-
-
 // Route::get('/chinh-sach-rieng-tu', function () {
 //     return '<h1>Chính sách riêng tư</h1>';
 // });
