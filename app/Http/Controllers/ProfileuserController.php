@@ -110,17 +110,22 @@ class ProfileuserController extends Controller
     {
         $user = User::where('email', $request->email)->first();
         if ($user) {
-            $random_number = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
-            $user->codechangepass = $random_number;
-            $user->timechangepassend = Carbon::now()->addMinutes(5);
-            $user->save();
-            // dd($user['email']);
-            Mail::send('Changepassemail', compact('random_number'), function($email) use($random_number, $request){
-                $email->subject('Change Your Password',$random_number);
-                $email->to($request->email);
-            });
-            // dd($user);
-            return view('Codechangepass', ['useremail' => $user['email']]);
+            if($user->verifyemail == 1){
+                $random_number = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
+                $user->codechangepass = $random_number;
+                $user->timechangepassend = Carbon::now()->addMinutes(5);
+                $user->save();
+                // dd($user['email']);
+                Mail::send('Changepassemail', compact('random_number'), function($email) use($random_number, $request){
+                    $email->subject('Change Your Password',$random_number);
+                    $email->to($request->email);
+                });
+                // dd($user);
+                return view('Codechangepass', ['useremail' => $user['email']]);
+            }else{
+                return back()->withErrors(['error' => 'This email account has not been verified!']);
+            }
+            
         } else {
             return back()->withErrors(['error' => 'This email has not been registered for an account!']);
         }
