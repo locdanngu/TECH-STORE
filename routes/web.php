@@ -74,6 +74,7 @@ Route::get('/Admin/Order', [AdminController::class, 'viewOrder'])->middleware('a
 Route::get('/Admin/History', [AdminController::class, 'viewHistory'])->middleware('admin')->name('admin.history'); 
 Route::get('/Admin/DenyOrder', [AdminController::class, 'viewDenyorder'])->middleware('admin')->name('admin.denyhistory'); 
 Route::get('/Admin/Profile', [AdminController::class, 'viewProfile'])->middleware('admin')->name('admin.profile'); 
+Route::post('/Admin/Profile', [AdminController::class, 'changeProfile'])->middleware('admin')->name('admin.changeprofile'); 
 
 Route::post('/Admin/Addcategory', [AdminController::class, 'addCategory'])->middleware('admin')->name('admin.addcategory');  
 Route::post('/Admin/Updatecategory', [AdminController::class, 'updateCategory'])->middleware('admin')->name('admin.updatecategory');  

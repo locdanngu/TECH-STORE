@@ -395,11 +395,11 @@
                     <!-- Content Row -->
                     <div class="card shadow mb-4">
                         <div class="card-body">
-                            <form method="POST" action="" class="table-responsive flex-column"
+                            <form method="POST" action="{{ route('admin.changeprofile') }}" class="table-responsive flex-column"
                                 style="align-items: center;display: flex;" enctype="multipart/form-data">
                                 @csrf
                                 <img id="preview" class="img-profile rounded-circle" src="{{ $user->avatar }}"
-                                    style="width:15%">
+                                    style="width:15%;">
                                 <div class="file-input-container">
                                     <input type="file" id="myFileInput" class="file-input" accept="image/*"
                                         name="avatar">
@@ -413,13 +413,13 @@
                                     style="width:30%">
                                     <span>Name:</span>
                                     <input type="text" value="{{ $user->name }}" class="form-control"
-                                        style="text-align: right;width:80%;max-width:80%">
+                                        style="text-align: right;width:80%;max-width:80%" name="name">
                                 </div>
                                 <div class="card-body justify-content-between d-flex align-items-center"
                                     style="width:30%">
                                     <span>Phone:</span>
                                     <input type="text" value="{{ $user->phone }}" class="form-control"
-                                        style="text-align: right;width:80%;max-width:80%">
+                                        style="text-align: right;width:80%;max-width:80%" name="phone">
                                 </div>
                                 <div class="card-body d-flex justify-content-end" style="width:30%">
                                     <button class="btn btn-success btn-icon-split align-self-end">

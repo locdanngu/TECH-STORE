@@ -377,4 +377,26 @@ class AdminController extends Controller
         $category3 = Category::orderBy('idcategory', 'asc')->get();
         return view('Profileadmin', ['user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
     }
+
+    public function changeProfile(Request $request)
+    {   
+        $user = Auth::user();
+        $user->name = $request->input('name');
+        $user->phone = $request->input('phone');
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            $avatarName = time() . '_' . $avatar->getClientOriginalName();
+            $avatar->move(public_path('avatars'), $avatarName);
+            $user->avatar = 'avatars/' . $avatarName;
+        } else {
+            $user->avatar = $user->avatar;
+        }
+        $user->save();
+        $products = Product::orderBy('price', 'asc')->get();
+        $cart = Cart::where('status', 3)->orderBy('updated_at', 'asc')->get();
+        $category = Category::orderBy('idcategory', 'asc')->get();
+        $category2 = Category::orderBy('idcategory', 'asc')->get();
+        $category3 = Category::orderBy('idcategory', 'asc')->get();
+        return view('Profileadmin', ['user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
+    }
 }
