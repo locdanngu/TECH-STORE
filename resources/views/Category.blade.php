@@ -353,39 +353,44 @@
                     </div>
 
                     <!-- Content Row -->
-                    
-                    <div class="row">
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
+                            <div class="table-responsive">
 
-                        <table class="table table-striped">
-                            <thead>
-                                <th>Id Category</th>
-                                <th>Name Category</th>
-                                <th>Icon</th>
-                                <th></th>
-                                <th></th>
-                            </thead>
-                            <tbody class="capnhat">
-                                @foreach($category as $category)
-                                <tr>
-                                    <td>{{ $category->idcategory }}</td>
-                                    <td>{{ $category->namecategory }}</td>
-                                    <td><i class="{{ $category->iconcategory }}"></i></td>
-                                    <td><button class="buttonfix" data-toggle="modal" data-target="#updateModalcategory"
-                                            data-category-name="{{ $category->namecategory }}"
-                                            data-category-id="{{ $category->idcategory }}"><i
-                                                class="bi bi-pencil-square"></i> Change</button>
-                                    </td>
-                                    <td><button class="buttonfix" data-toggle="modal" data-target="#deleteModalcategory"
-                                            data-category-name="{{ $category->namecategory }}"
-                                            data-category-id="{{ $category->idcategory }}"><i class="bi bi-trash"></i>
-                                            Delete</button></td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <th>Id Category</th>
+                                        <th>Name Category</th>
+                                        <th>Icon</th>
+                                        <th></th>
+                                        <th></th>
+                                    </thead>
+                                    <tbody class="capnhat">
+                                        @foreach($category as $category)
+                                        <tr>
+                                            <td>{{ $category->idcategory }}</td>
+                                            <td>{{ $category->namecategory }}</td>
+                                            <td><i class="{{ $category->iconcategory }}"></i></td>
+                                            <td><button class="buttonfix" data-toggle="modal"
+                                                    data-target="#updateModalcategory"
+                                                    data-category-name="{{ $category->namecategory }}"
+                                                    data-category-id="{{ $category->idcategory }}"><i
+                                                        class="bi bi-pencil-square"></i> Change</button>
+                                            </td>
+                                            <td><button class="buttonfix" data-toggle="modal"
+                                                    data-target="#deleteModalcategory"
+                                                    data-category-name="{{ $category->namecategory }}"
+                                                    data-category-id="{{ $category->idcategory }}"><i
+                                                        class="bi bi-trash"></i>
+                                                    Delete</button></td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
 
+                            </div>
+                        </div>
                     </div>
-
                 </div>
                 <!-- /.container-fluid -->
 
