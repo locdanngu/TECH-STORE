@@ -353,7 +353,27 @@
                     </div>
 
                     <!-- Content Row -->
-                    
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
+                            <div class="table-responsive" style="justify-content: center;display: flex;">
+                                <img class="img-profile rounded-circle" src="{{ $user->avatar }}" style="width:25vh">
+                                
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
                 </div>
                 <!-- /.container-fluid -->
 
