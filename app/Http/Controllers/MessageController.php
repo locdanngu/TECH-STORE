@@ -10,6 +10,7 @@ class MessageController extends Controller
     public function viewMessuser()
     {   
         $user = Auth::user();
-        return view('Messagesuser', ['user' => $user]);
+        $useradmin = User::where('role', 'admin')->get();
+        return view('Messagesuser', ['user' => $user, 'useradmin' => $useradmin]);
     }
 }
