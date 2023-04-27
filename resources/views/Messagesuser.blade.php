@@ -5,7 +5,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     @extends('layouts.Link')
     <link rel="stylesheet" href="/css/Profileuserpage.css">
-    <title>Profile User Page</title>
+    <title>Chat With Admin</title>
 </head>
 
 <body>
