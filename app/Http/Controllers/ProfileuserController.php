@@ -28,7 +28,7 @@ class ProfileuserController extends Controller
             $avatar = $request->file('avatar');
             $avatarName = time() . '_' . $avatar->getClientOriginalName();
             $avatar->move(public_path('avatars'), $avatarName);
-            $user->avatar = 'avatars/' . $avatarName;
+            $user->avatar = '/avatars/' . $avatarName;
         } else {
             $user->avatar = $user->avatar;
         }
