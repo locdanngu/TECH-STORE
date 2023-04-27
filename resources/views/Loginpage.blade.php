@@ -27,6 +27,9 @@
         <input type="text" required class="inputbox1" name="email" value="{{ old('email') }}">
         <label>Password(*): </label>
         <input type="password" required class="inputbox1" name="password">
+        @error('success')
+        <p class="error">{{ $message }}</p>
+        @enderror
         @error('email')
         <p class="error">{{ $message }}</p>
         @enderror

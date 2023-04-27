@@ -23,7 +23,7 @@
     <div style="display:flex">
 
     </div>
-    <form method="POST" action="" class="box1">
+    <form method="POST" action="{{ route('findemail.user') }}" class="box1">
         @csrf
         <label>Enter Email(*): </label>
         <div>

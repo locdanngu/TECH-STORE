@@ -12,7 +12,7 @@
 
 
         <h4>If you have any questions or need assistance, please don't hesitate to contact us at <span
-                style="font-weight:bold">{{ $support }}</span>. Our support team is always ready to help.</h4>
+                style="font-weight:bold">tranvanloc96lhp@gmail.com</span>. Our support team is always ready to help.</h4>
 
         <h4>Again, welcome to The TECHNOLOGY STORE, where you can find the latest and greatest technology products. We
             look forward to serving you!</h4>

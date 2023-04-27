@@ -34,6 +34,8 @@ Route::get('/Changepassword', [ProfileuserController::class, 'viewChangePassWord
 Route::post('/Changepassword', [ProfileuserController::class, 'changePassWord'])->middleware('user')->name('changepassword.update');  //route thay mk
 Route::post('/Verifyemail', [ProfileuserController::class, 'verifyEmail'])->middleware('user')->name('verifyemail.user');
 Route::post('/Verifyemailcode', [ProfileuserController::class, 'verifyEmailcode'])->middleware('user')->name('verifyemailcode.user');
+Route::post('/Findemail', [ProfileuserController::class, 'findEmail'])->name('findemail.user');
+Route::post('/Findemailchangepassword', [ProfileuserController::class, 'findEmailchangepassword'])->name('findemailchangepassword.user');
 
 
 Route::get('/Cartuserpage', [CartController::class, 'viewCart'])->middleware('user')->name('cart.page');     //view giỏ hàng
