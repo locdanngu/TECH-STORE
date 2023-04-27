@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <link type="image/png" sizes="16x16" rel="icon" href="/images/avatar.png">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

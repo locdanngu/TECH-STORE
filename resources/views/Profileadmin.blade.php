@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <link type="image/png" sizes="16x16" rel="icon" href="/images/avatar.png">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -56,8 +57,15 @@
     }
 
     @media only screen and (max-width: 480px) {
-        .card-body{
+        .card-body {
             width: 100% !important;
+        }
+
+    }
+
+    @media only screen and (min-width: 481px) and (max-width: 1024px) {
+        .card-body {
+            width: 90% !important;
         }
 
     }
@@ -395,8 +403,9 @@
                     <!-- Content Row -->
                     <div class="card shadow mb-4">
                         <div class="card-body">
-                            <form method="POST" action="{{ route('admin.changeprofile') }}" class="table-responsive flex-column"
-                                style="align-items: center;display: flex;" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('admin.changeprofile') }}"
+                                class="table-responsive flex-column" style="align-items: center;display: flex;"
+                                enctype="multipart/form-data">
                                 @csrf
                                 <img id="preview" class="img-profile rounded-circle" src="{{ $user->avatar }}"
                                     style="width:15%;">

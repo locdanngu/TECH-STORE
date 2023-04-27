@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-
+    <link type="image/png" sizes="16x16" rel="icon" href="/images/avatar.png">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -488,136 +488,139 @@
                     </div>
 
                     <!-- Content Row -->
-                    
-            <!-- End of Main Content -->
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Technology Store 2021</span>
+                    <!-- End of Main Content -->
+
+                    <!-- Footer -->
+                    <footer class="sticky-footer bg-white">
+                        <div class="container my-auto">
+                            <div class="copyright text-center my-auto">
+                                <span>Copyright &copy; Technology Store 2021</span>
+                            </div>
+                        </div>
+                    </footer>
+                    <!-- End of Footer -->
+
+                </div>
+                <!-- End of Content Wrapper -->
+
+            </div>
+            <!-- End of Page Wrapper -->
+
+            <!-- Scroll to Top Button-->
+            <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fas fa-angle-up"></i>
+            </a>
+
+            <!-- Logout Modal-->
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">Select "Logout" below if you are ready to end your current session.
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <a class="btn btn-primary" href="{{ route('logout.admin') }}">Logout</a>
+                        </div>
                     </div>
                 </div>
-            </footer>
-            <!-- End of Footer -->
-
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="{{ route('logout.admin') }}">Logout</a>
-                </div>
             </div>
-        </div>
-    </div>
 
-    @extends('layouts.Linkadmin')
+            @extends('layouts.Linkadmin')
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-    const ctx = document.getElementById('myChart');
-    const ctx2 = document.getElementById('myChart2');
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Jan', 'Feb', 'Mar', 'April', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-            datasets: [{
-                label: 'Revenue of Year',
-                data: <?php echo $revenueValues; ?>,
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(255, 159, 64, 0.7)',
-                    'rgba(255, 205, 86, 0.7)',
-                    'rgba(75, 192, 192, 0.7)',
-                    'rgba(54, 162, 235, 0.7)',
-                    'rgba(153, 102, 255, 0.7)',
-                    'rgba(255, 102, 86, 0.7)',
-                    'rgba(255, 205, 86, 0.7)',
-                    'rgba(255, 25, 86, 0.7)',
-                    'rgba(25, 5, 86, 0.7)',
-                    'rgba(255, 205, 90, 0.7)',
-                    'rgba(201, 203, 207, 0.7)'
-                ],
-                borderColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 159, 64)',
-                    'rgb(255, 205, 86)',
-                    'rgb(75, 192, 192)',
-                    'rgb(54, 162, 235)',
-                    'rgb(153, 102, 255)',
-                    'rgb(201, 203, 207)',
-                    'rgb(153, 102, 255)',
-                    'rgb(153, 102, 255)',
-                    'rgb(153, 102, 255)',
-                    'rgb(153, 102, 255)',
-                    'rgb(153, 102, 255)',
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        callback: function(value, index, values) {
-                            return '$' + value;
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script>
+            const ctx = document.getElementById('myChart');
+            const ctx2 = document.getElementById('myChart2');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'April', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov',
+                        'Dec'
+                    ],
+                    datasets: [{
+                        label: 'Revenue of Year',
+                        data: <?php echo $revenueValues; ?>,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.8)',
+                            'rgba(255, 159, 64, 0.7)',
+                            'rgba(255, 205, 86, 0.7)',
+                            'rgba(75, 192, 192, 0.7)',
+                            'rgba(54, 162, 235, 0.7)',
+                            'rgba(153, 102, 255, 0.7)',
+                            'rgba(255, 102, 86, 0.7)',
+                            'rgba(255, 205, 86, 0.7)',
+                            'rgba(255, 25, 86, 0.7)',
+                            'rgba(25, 5, 86, 0.7)',
+                            'rgba(255, 205, 90, 0.7)',
+                            'rgba(201, 203, 207, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgb(255, 99, 132)',
+                            'rgb(255, 159, 64)',
+                            'rgb(255, 205, 86)',
+                            'rgb(75, 192, 192)',
+                            'rgb(54, 162, 235)',
+                            'rgb(153, 102, 255)',
+                            'rgb(201, 203, 207)',
+                            'rgb(153, 102, 255)',
+                            'rgb(153, 102, 255)',
+                            'rgb(153, 102, 255)',
+                            'rgb(153, 102, 255)',
+                            'rgb(153, 102, 255)',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value, index, values) {
+                                    return '$' + value;
+                                }
+                            }
                         }
                     }
                 }
-            }
-        }
-    });
+            });
 
 
-    new Chart(ctx2, {
-        type: 'doughnut',
-        data: {
-            labels: [
-                <?php echo $categoryvalue; ?>
-            ],
-            datasets: [{
-                label: 'Number Product of Categories',
-                data: <?php echo $result; ?>,
-                backgroundColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(54, 162, 235)',
-                    'rgb(255, 205, 86)',
-                    'rgb(4, 1, 235)',
-                    'rgb(5, 162, 25)',
-                    'rgb(4, 12, 25)',
-                    'rgb(74, 15, 205)',
-                    'rgb(54, 62, 235)',
-                    'rgb(54, 162, 23)',
-                    'rgb(4, 162, 3)',
-                ],
-                hoverOffset: 4
-            }]
-        },
+            new Chart(ctx2, {
+                type: 'doughnut',
+                data: {
+                    labels: [
+                        <?php echo $categoryvalue; ?>
+                    ],
+                    datasets: [{
+                        label: 'Number Product of Categories',
+                        data: <?php echo $result; ?>,
+                        backgroundColor: [
+                            'rgb(255, 99, 132)',
+                            'rgb(54, 162, 235)',
+                            'rgb(255, 205, 86)',
+                            'rgb(4, 1, 235)',
+                            'rgb(5, 162, 25)',
+                            'rgb(4, 12, 25)',
+                            'rgb(74, 15, 205)',
+                            'rgb(54, 62, 235)',
+                            'rgb(54, 162, 23)',
+                            'rgb(4, 162, 3)',
+                        ],
+                        hoverOffset: 4
+                    }]
+                },
 
-    });
-    </script>
+            });
+            </script>
 </body>
 
 </html>

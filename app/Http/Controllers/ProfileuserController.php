@@ -33,7 +33,7 @@ class ProfileuserController extends Controller
             $user->avatar = $user->avatar;
         }
         $user->save();
-        return view('Profileuserpage', ['user' => $user]);
+        return redirect()->route('profileuser.page');
     }
 
 

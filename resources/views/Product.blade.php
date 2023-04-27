@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <link type="image/png" sizes="16x16" rel="icon" href="/images/avatar.png">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -475,7 +476,7 @@
             var productId = button.data('product-id'); // Lấy giá trị data-category-id
             var productPrice = button.data('product-price'); // Lấy giá trị data-category-id
             var productNamecategory = button.data(
-            'product-namecategory'); // Lấy giá trị data-category-id
+                'product-namecategory'); // Lấy giá trị data-category-id
             var productQuantity = button.data('product-quantity'); // Lấy giá trị data-category-id
             var productReview = button.data('product-review'); // Lấy giá trị data-category-id
             var modal = $(this);
