@@ -87,7 +87,7 @@ Route::post('/Admin/Findproduct/{search?}', [AdminController::class, 'findProduc
 Route::post('/Admin/Acceptorder', [AdminController::class, 'acceptOrder'])->middleware('admin')->name('admin.acceptorder');
 Route::post('/Admin/Denyorder', [AdminController::class, 'denyOrder'])->middleware('admin')->name('admin.denyorder');
 
-
+Route::get('/Messagesuser', [MessageController::class, 'viewMessuser'])->middleware('user')->name('user.message');
 
 
 

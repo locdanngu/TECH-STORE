@@ -7,5 +7,9 @@ use Illuminate\Http\Request;
 
 class MessageController extends Controller
 {
-    
+    public function viewMessuser()
+    {   
+        $user = Auth::user();
+        return view('Messagesuser', ['user' => $user]);
+    }
 }
