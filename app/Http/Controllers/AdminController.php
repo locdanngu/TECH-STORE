@@ -370,7 +370,11 @@ class AdminController extends Controller
     public function viewProfile()
     {   
         $user = Auth::user();
-
-        return view('Profileadmin', ['user' => $user]);
+        $products = Product::orderBy('price', 'asc')->get();
+        $cart = Cart::where('status', 3)->orderBy('updated_at', 'asc')->get();
+        $category = Category::orderBy('idcategory', 'asc')->get();
+        $category2 = Category::orderBy('idcategory', 'asc')->get();
+        $category3 = Category::orderBy('idcategory', 'asc')->get();
+        return view('Profileadmin', ['user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
     }
 }
