@@ -75,6 +75,7 @@ Route::get('/Admin/History', [AdminController::class, 'viewHistory'])->middlewar
 Route::get('/Admin/DenyOrder', [AdminController::class, 'viewDenyorder'])->middleware('admin')->name('admin.denyhistory'); 
 Route::get('/Admin/Profile', [AdminController::class, 'viewProfile'])->middleware('admin')->name('admin.profile'); 
 Route::get('/Admin/Setting', [AdminController::class, 'viewsetting'])->middleware('admin')->name('admin.setting'); 
+Route::get('/Admin/ActivityLog', [AdminController::class, 'viewActivity'])->middleware('admin')->name('admin.activity'); 
 Route::post('/Admin/Profile', [AdminController::class, 'changeProfile'])->middleware('admin')->name('admin.changeprofile'); 
 Route::post('/Admin/Verifyemail', [AdminController::class, 'verifyEmail'])->middleware('admin')->name('verifyemail.admin');
 Route::post('/Admin/Verifyemailcode', [AdminController::class, 'verifyEmailcode'])->middleware('admin')->name('verifyemailcode.admin');

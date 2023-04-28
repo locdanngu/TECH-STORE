@@ -411,6 +411,18 @@ class AdminController extends Controller
         return view('Settingadmin', ['user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
     }
 
+    public function viewActivity()
+    {   
+        $user = Auth::user();
+        $users = User::orderBy('id', 'asc')->where('role', 'customer')->get();
+        $products = Product::orderBy('price', 'asc')->get();
+        $cart = Cart::where('status', 3)->orderBy('updated_at', 'asc')->get();
+        $category = Category::orderBy('idcategory', 'asc')->get();
+        $category2 = Category::orderBy('idcategory', 'asc')->get();
+        $category3 = Category::orderBy('idcategory', 'asc')->get();
+        return view('Activitylog', ['users' => $users,'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
+    }
+
     public function verifyEmail(Request $request)
     {
         $user = Auth::user();
