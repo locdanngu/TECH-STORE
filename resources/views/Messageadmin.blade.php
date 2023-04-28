@@ -326,8 +326,36 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    
-                   
+                    @foreach ($messages as $message)
+                    @if($message->sender_id == $user->id)
+                    <!-- // Tin nhắn đã gửi -->
+                    <span>You: {{$message->message}}</span>
+                    <span>Send at: {{$message->created_at}}</span>
+                    <span>To: {{ $message->receiver->name }}</span>
+
+                    <br>
+                    @else
+                    <!-- // Tin nhắn đã nhận -->
+                    <div class="d-flex flex-column">
+                        <span>{{ $message->sender->name }}</span>
+                        <div class="d-flex align-items-center">
+                            <img src="{{ $message->sender->avatar }}" width="50" style="border-radius:50%" class="mr-2">
+                            <div class="d-flex flex-column">
+                                <span
+                                    style="background-color: #3A3B3CD1; color: #FFFFFF;padding: .25em .75em; border-radius: 3em;width: fit-content">
+                                    {{$message->message}}</span>
+                                <span style="font-size:0.75em; margin-top:.5em"> (Send at:
+                                    {{$message->created_at}})</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <br>
+                    @endif
+                    @endforeach
+
 
                     <!-- Content Row -->
 
@@ -378,7 +406,7 @@
             @extends('layouts.Linkadmin')
 
             <script>
-            
+
             </script>
 </body>
 
