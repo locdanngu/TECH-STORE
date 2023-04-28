@@ -331,12 +331,20 @@
                             <div class="table-responsive">
                                 @foreach ($messages as $message)
                                 @if($message->sender_id == $user->id)
-                                <!-- // Tin nhắn đã gửi -->
-                                <span>You: {{$message->message}}</span>
-                                <span>Send at: {{$message->created_at}}</span>
-                                <span>To: {{ $message->receiver->name }}</span>
-
-                                <br>
+                                <div class="d-flex flex-column align-items-end">
+                                    <!-- <span>{{ $message->sender->name }}</span> -->
+                                    <div class="d-flex align-items-center">
+                                        <div class="d-flex flex-column align-items-end">
+                                            <span
+                                                style="background-color: #3A3B3CD1; color: #FFFFFF;padding: .25em .75em; border-radius: 3em;width: fit-content">
+                                                {{$message->message}}</span>
+                                            <span style="font-size:0.75em; margin-top:.5em"> (Send at:
+                                                {{$message->created_at}})</span>
+                                        </div>
+                                        <img src="{{ $message->receiver->avatar }}" width="50" style="border-radius:50%"
+                                            class="ml-2">
+                                    </div>
+                                </div>
                                 @else
                                 <!-- // Tin nhắn đã nhận -->
                                 <div class="d-flex flex-column">
@@ -351,11 +359,8 @@
                                             <span style="font-size:0.75em; margin-top:.5em"> (Send at:
                                                 {{$message->created_at}})</span>
                                         </div>
-
                                     </div>
-
                                 </div>
-
                                 <br>
                                 @endif
                                 @endforeach

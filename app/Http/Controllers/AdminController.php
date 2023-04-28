@@ -42,10 +42,12 @@ class AdminController extends Controller
         // dd($result);
         // Kết quả sẽ là một associative array với key là idcategory và value là số lượng sản phẩm của từng idcategory
         $countuser = User::where('role', 'customer')->get()->count();
-
-
-        // dd($messages);
-
+        $messages = Message::select('sender_id')
+                    ->where('receiver_id', $user->id)
+                    ->distinct('sender_id')
+                    ->orderBy('created_at', 'asc')
+                    ->take(5)
+                    ->get();
         return view('Admin', ['user' => $user,
                               'revenue' => $revenue,
                               'currentMonth' => $currentMonth,
@@ -54,7 +56,8 @@ class AdminController extends Controller
                               'countproduct' => $countproduct,
                               'categoryvalue' => $categoryvalue,
                               'result' => $result,
-                              'countuser' => $countuser]);
+                              'countuser' => $countuser,
+                              'messages' => $messages,]);
     }
 
 
@@ -418,13 +421,19 @@ class AdminController extends Controller
     public function viewMessage()
     {   
         $user = Auth::user();
+        $usersend = 46;
         $products = Product::orderBy('price', 'asc')->get();
         $cart = Cart::where('status', 2)->orderBy('updated_at', 'asc')->get();
         $category = Category::orderBy('idcategory', 'asc')->get();
         $category2 = Category::orderBy('idcategory', 'asc')->get();
         $category3 = Category::orderBy('idcategory', 'asc')->get();
-        $messages = $user->messages_received()->with('sender')->union($user->messages_sent()->with('receiver'))->take(5)->orderBy('created_at', 'asc')->get();
-        return view('Messageadmin', ['messages' => $messages,'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
+        $messages = $user->messages_received()->with('sender')
+                        ->union($user->messages_sent()->with('receiver'))
+                        ->where('sender_id', $usersend)
+                        ->take(5)
+                        ->orderBy('created_at', 'asc')
+                        ->get();
+         return view('Messageadmin', ['messages' => $messages,'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
     }
 
     public function viewActivity()
