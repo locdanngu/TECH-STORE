@@ -11,5 +11,13 @@ class Message extends Model
     protected $primaryKey = 'idmess'; // Tên trường khóa chính
     protected $fillable = ['sender_id','receiver_id','message','read']; // Các trường trong bảng có thể được gán giá trị
 
-    
+    public function sender()
+    {
+        return $this->belongsTo(User::class, 'sender_id');
+    }
+
+    public function receiver()
+    {
+        return $this->belongsTo(User::class, 'receiver_id');
+    }
 }
