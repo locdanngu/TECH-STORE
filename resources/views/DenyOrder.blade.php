@@ -345,8 +345,7 @@
                         <h1 class="h3 mb-0 text-gray-800">History Deny</h1>
                         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
-                        <input type="text" class="form-control" placeholder="Find with name" aria-label="Username"
-                            aria-describedby="addon-wrapping">
+
                         <button type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off"
                             style="visibility: hidden">+
                             Add</button>
