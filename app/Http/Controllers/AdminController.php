@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Message;
 use Illuminate\Http\UploadedFile;
 use App\Models\Cart;
 use Illuminate\Support\Carbon;
@@ -41,7 +42,10 @@ class AdminController extends Controller
         // dd($result);
         // Kết quả sẽ là một associative array với key là idcategory và value là số lượng sản phẩm của từng idcategory
         $countuser = User::where('role', 'customer')->get()->count();
-        // dd($categoryvalue);
+
+        $messages = $user->messages_received()->with('sender')->union($user->messages_sent()->with('receiver'))->orderBy('created_at', 'asc')->get();
+        // dd($messages);
+
         return view('Admin', ['user' => $user,
                               'revenue' => $revenue,
                               'currentMonth' => $currentMonth,
@@ -485,4 +489,6 @@ class AdminController extends Controller
         return redirect()->back()->withErrors(['success' => 'Password changed successfully!']);
         
     }
+
+   
 }
