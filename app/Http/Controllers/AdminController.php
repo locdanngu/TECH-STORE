@@ -48,6 +48,16 @@ class AdminController extends Controller
                     ->orderBy('created_at', 'asc')
                     ->take(5)
                     ->get();
+                    // Lấy ra mảng các sender_id từ collection $messages
+        $messages = Message::whereIn('sender_id', $messages->pluck('sender_id'))
+                    ->where('receiver_id', $user->id)
+                    ->select('sender_id', 'message', 'created_at')
+                    ->whereIn('created_at', function($query) {
+                        $query->selectRaw('MIN(created_at)')
+                            ->from('messages')
+                            ->groupBy('sender_id');
+                    })
+                    ->get();
         return view('Admin', ['user' => $user,
                               'revenue' => $revenue,
                               'currentMonth' => $currentMonth,

@@ -243,12 +243,14 @@
                                     <input type="hidden" value="{{ $message->sender_id }}" name="sender_id">
                                     <button style="background-color: transparent; border:0" class="d-flex">
                                         <div class="dropdown-list-image mr-3">
-                                            <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
+                                            <img class="rounded-circle" src="{{ $message->sender->avatar }}" alt="...">
                                             <div class="status-indicator bg-success"></div>
                                         </div>
                                         <div class="font-weight-bold">
-                                            <div class="text-truncate"> $message->user </div>
-                                            <div class="small text-gray-500">Emily Fowler · 58m</div>
+                                            <div class="text-truncate">{{ $message->message }}</div>
+                                            <div class="small text-gray-500">{{ $message->sender->name }} ·
+                                                {{ \Carbon\Carbon::now()->diffForHumans($message->created_at, true) }}
+                                            </div>
                                         </div>
                                     </button>
 
