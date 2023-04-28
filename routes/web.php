@@ -76,6 +76,8 @@ Route::get('/Admin/DenyOrder', [AdminController::class, 'viewDenyorder'])->middl
 Route::get('/Admin/Profile', [AdminController::class, 'viewProfile'])->middleware('admin')->name('admin.profile'); 
 Route::get('/Admin/Setting', [AdminController::class, 'viewsetting'])->middleware('admin')->name('admin.setting'); 
 Route::post('/Admin/Profile', [AdminController::class, 'changeProfile'])->middleware('admin')->name('admin.changeprofile'); 
+Route::post('/Admin/Verifyemail', [AdminController::class, 'verifyEmail'])->middleware('admin')->name('verifyemail.admin');
+Route::post('/Admin/Changepassword', [AdminController::class, 'changePassWord'])->middleware('admin')->name('changepassword.admin');
 
 Route::post('/Admin/Addcategory', [AdminController::class, 'addCategory'])->middleware('admin')->name('admin.addcategory');  
 Route::post('/Admin/Updatecategory', [AdminController::class, 'updateCategory'])->middleware('admin')->name('admin.updatecategory');  

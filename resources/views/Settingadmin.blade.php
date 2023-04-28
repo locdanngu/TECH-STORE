@@ -3,13 +3,14 @@
 
 <head>
     <link type="image/png" sizes="16x16" rel="icon" href="/images/avatar.png">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>Admin Page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <title>Admin Setting Password</title>
 
     <!-- Custom fonts for this template-->
     <!-- icon -->
@@ -21,7 +22,54 @@
     <!-- {{ asset('bootstrap/') }} -->
     <!-- Custom styles for this template-->
     <link href="{{ asset('bootstrap/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="/css/Order.css">
+    <style>
+    .file-input-container {
+        margin-top: 2em;
+        width: 10em;
+        position: relative;
+        overflow: hidden;
+        /* Độ rộng của nút input file */
+        border-radius: .5em;
+    }
 
+    .file-input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .file-input-label {
+        display: block;
+        width: 100%;
+        border-radius: .5em;
+        padding: 10px;
+        background-color: #8A8A8A;
+        /* Màu nền của nút */
+        color: #fff;
+        /* Màu chữ của nút */
+        text-align: center;
+        cursor: pointer;
+    }
+
+    @media only screen and (max-width: 480px) {
+        .card-body {
+            width: 100% !important;
+        }
+
+    }
+
+    @media only screen and (min-width: 481px) and (max-width: 1024px) {
+        .card-body {
+            width: 90% !important;
+        }
+
+    }
+    </style>
 </head>
 
 <body id="page-top">
@@ -144,6 +192,20 @@
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
+
+                    <!-- Topbar Search -->
+                    <!-- <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form> -->
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -298,11 +360,11 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="{{ route('admin.profile') }}">
+                                <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
-                                <a class="dropdown-item" href="{{ route('admin.setting') }}">
+                                <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Settings
                                 </a>
@@ -328,299 +390,122 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Setting Password</h1>
                         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
+                        <input type="hidden" class="form-control" placeholder="Find with name" aria-label="Username"
+                            aria-describedby="addon-wrapping">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off"
+                            style="visibility: hidden">+
+                            Add</button>
                     </div>
 
                     <!-- Content Row -->
-                    <div class="row">
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Revenue ({{$currentYear }}/{{ $currentMonth}})</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${{ $revenue->revenue}}
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
+                            @if($user->verifyemail == false)
+                            <form style="display: flex; justify-content: center; padding-top:1em" method="POST"
+                                action="{{ route('verifyemail.admin') }}">
+                                @csrf
+                                <div class="d-flex flex-column">
+                                    <span class="mb-3">Your email has not been confirmed yet.</span>
+                                    <input type="hidden" value="{{ $user->email }}" name="email">
+                                    <button class="btn btn-warning btn-icon-split">
+                                        <span class="text">Verify Your Email</span>
+                                    </button>
                                 </div>
+                            </form>
+                            @else
+                            <div class="d-flex justify-content-center">
+                                <span class="mb-3">Your email has been confirmed.</span>
                             </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Total products sold ({{$currentYear }}/{{ $currentMonth}})</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                {{ $revenue->orderproduct}}</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
+                            @endif
+                            <form method="POST" action="{{ route('changepassword.admin') }}"
+                                class="table-responsive flex-column" style="align-items: center;display: flex;">
+                                @csrf
+                                <div class="card-body justify-content-between d-flex" style="width:50%">
+                                    <span>Email:</span>
+                                    <span>{{ $user->email }}</span>
                                 </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total
-                                                Total Orders sold ({{$currentYear }}/{{ $currentMonth}})
-                                            </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                        {{ $revenue->ordernumber}}</div>
-                                                </div>
-                                                <!-- <div class="col">
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
-                                                </div> -->
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
+                                <div class="card-body justify-content-between d-flex align-items-center"
+                                    style="width:50%">
+                                    <span>Old Password:</span>
+                                    <input type="password" value="" class="form-control"
+                                        style="text-align: right;width:50%;max-width:80%" name="oldpassword">
                                 </div>
-                            </div>
-                        </div>
-
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Customer</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $countuser }}</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fa fa-user fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
+                                <div class="card-body justify-content-between d-flex align-items-center"
+                                    style="width:50%">
+                                    <span>New Password:</span>
+                                    <input type="password" value="" class="form-control"
+                                        style="text-align: right;width:50%;max-width:80%" name="newpassword">
                                 </div>
-                            </div>
+                                <div class="card-body justify-content-between d-flex align-items-center"
+                                    style="width:50%">
+                                    <span>Re-enter password:</span>
+                                    <input type="password" value="" class="form-control"
+                                        style="text-align: right;width:50%;max-width:80%" name="newpassword2">
+                                </div>
+                                @error('oldpassword')
+                                <div class="card-body d-flex justify-content-end" style="width:50%">
+                                    <span class=" align-self-end" style="color:red">{{ $message }}</span>
+                                </div>
+                                @enderror
+                                @error('oldnewpassword')
+                                <div class="card-body d-flex justify-content-end" style="width:50%">
+                                    <span class=" align-self-end" style="color:red">{{ $message }}</span>
+                                </div>
+                                @enderror
+                                @error('newpassword')
+                                <div class="card-body d-flex justify-content-end" style="width:50%">
+                                    <span class=" align-self-end" style="color:red">{{ $message }}</span>
+                                </div>
+                                @enderror
+                                @error('success')
+                                <div class="card-body d-flex justify-content-end" style="width:50%">
+                                    <span class=" align-self-end" style="color:red">{{ $message }}</span>
+                                </div>
+                                @enderror
+                                <div class="card-body d-flex justify-content-end" style="width:50%">
+                                    <button class="btn btn-success btn-icon-split align-self-end">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-check"></i>
+                                        </span>
+                                        <span class="text">Save</span>
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
-
-                    <!-- Content Row -->
-
-                    <div class="row">
-
-                        <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Revenue Overview({{$currentYear }})
-                                    </h6>
-
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <!-- <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
-                                    </div> -->
-                                    <div>
-                                        <canvas id="myChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Categories({{$countproduct}})</h6>
-
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <!-- <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
-                                    </div> -->
-                                    <!-- <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Direct
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Referral
-                                        </span>
-                                    </div> -->
-                                    <div>
-                                        <canvas id="myChart2"></canvas>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Content Row -->
-
-                    <!-- End of Main Content -->
-
-                    <!-- Footer -->
-                    <footer class="sticky-footer bg-white">
-                        <div class="container my-auto">
-                            <div class="copyright text-center my-auto">
-                                <span>Copyright &copy; Technology Store 2021</span>
-                            </div>
-                        </div>
-                    </footer>
-                    <!-- End of Footer -->
 
                 </div>
-                <!-- End of Content Wrapper -->
+                <!-- /.container-fluid -->
 
             </div>
-            <!-- End of Page Wrapper -->
+            <!-- End of Main Content -->
 
-            <!-- Scroll to Top Button-->
-            <a class="scroll-to-top rounded" href="#page-top">
-                <i class="fas fa-angle-up"></i>
-            </a>
-
-            <!-- Logout Modal-->
-            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">Select "Logout" below if you are ready to end your current session.
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                            <a class="btn btn-primary" href="{{ route('logout.admin') }}">Logout</a>
-                        </div>
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Technology Store 2021</span>
                     </div>
                 </div>
-            </div>
+            </footer>
+            <!-- End of Footer -->
 
-            @extends('layouts.Linkadmin')
+        </div>
+        <!-- End of Content Wrapper -->
 
-            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-            <script>
-            const ctx = document.getElementById('myChart');
-            const ctx2 = document.getElementById('myChart2');
-            new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'April', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov',
-                        'Dec'
-                    ],
-                    datasets: [{
-                        label: 'Revenue of Year',
-                        data: <?php echo $revenueValues; ?>,
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.8)',
-                            'rgba(255, 159, 64, 0.7)',
-                            'rgba(255, 205, 86, 0.7)',
-                            'rgba(75, 192, 192, 0.7)',
-                            'rgba(54, 162, 235, 0.7)',
-                            'rgba(153, 102, 255, 0.7)',
-                            'rgba(255, 102, 86, 0.7)',
-                            'rgba(255, 205, 86, 0.7)',
-                            'rgba(255, 25, 86, 0.7)',
-                            'rgba(25, 5, 86, 0.7)',
-                            'rgba(255, 205, 90, 0.7)',
-                            'rgba(201, 203, 207, 0.7)'
-                        ],
-                        borderColor: [
-                            'rgb(255, 99, 132)',
-                            'rgb(255, 159, 64)',
-                            'rgb(255, 205, 86)',
-                            'rgb(75, 192, 192)',
-                            'rgb(54, 162, 235)',
-                            'rgb(153, 102, 255)',
-                            'rgb(201, 203, 207)',
-                            'rgb(153, 102, 255)',
-                            'rgb(153, 102, 255)',
-                            'rgb(153, 102, 255)',
-                            'rgb(153, 102, 255)',
-                            'rgb(153, 102, 255)',
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                callback: function(value, index, values) {
-                                    return '$' + value;
-                                }
-                            }
-                        }
-                    }
-                }
-            });
+    </div>
+    <!-- End of Page Wrapper -->
 
+    <!-- Scroll to Top Button-->
+    @extends('layouts.Modalpopup')
 
-            new Chart(ctx2, {
-                type: 'doughnut',
-                data: {
-                    labels: [
-                        <?php echo $categoryvalue; ?>
-                    ],
-                    datasets: [{
-                        label: 'Number Product of Categories',
-                        data: <?php echo $result; ?>,
-                        backgroundColor: [
-                            'rgb(255, 99, 132)',
-                            'rgb(54, 162, 235)',
-                            'rgb(255, 205, 86)',
-                            'rgb(4, 1, 235)',
-                            'rgb(5, 162, 25)',
-                            'rgb(4, 12, 25)',
-                            'rgb(74, 15, 205)',
-                            'rgb(54, 62, 235)',
-                            'rgb(54, 162, 23)',
-                            'rgb(4, 162, 3)',
-                        ],
-                        hoverOffset: 4
-                    }]
-                },
+    @extends('layouts.Linkadmin')
+    <script>
 
-            });
-            </script>
+    </script>
 </body>
 
 </html>

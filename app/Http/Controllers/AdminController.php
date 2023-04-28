@@ -8,6 +8,8 @@ use App\Models\Category;
 use Illuminate\Http\UploadedFile;
 use App\Models\Cart;
 use Illuminate\Support\Carbon;
+use Hash;
+use Mail;
 use App\Models\Revenue;
 use App\Models\Notification;
 use Illuminate\Http\Request;
@@ -396,5 +398,62 @@ class AdminController extends Controller
         $category2 = Category::orderBy('idcategory', 'asc')->get();
         $category3 = Category::orderBy('idcategory', 'asc')->get();
         return redirect()->route('admin.profile');
+    }
+
+    public function viewSetting()
+    {   
+        $user = Auth::user();
+        $products = Product::orderBy('price', 'asc')->get();
+        $cart = Cart::where('status', 3)->orderBy('updated_at', 'asc')->get();
+        $category = Category::orderBy('idcategory', 'asc')->get();
+        $category2 = Category::orderBy('idcategory', 'asc')->get();
+        $category3 = Category::orderBy('idcategory', 'asc')->get();
+        return view('Settingadmin', ['user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
+    }
+
+    public function verifyEmail(Request $request)
+    {
+        $user = Auth::user();
+        $useremail = $user->email;
+        $name = $user->name;
+        $random_number = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
+        $user->codeverifyemail = $random_number;
+        $user->codeverifyemailend = Carbon::now()->addMinutes(5);
+        $user->save();
+        Mail::send('Verifyemail', compact('name','random_number'), function($email) use($request, $name, $random_number){
+            $email->subject('Verify you email address', $name,$support,$random_number);
+            $email->to($request->email);
+        });
+        return view('Codeverifyemailadmin', ['useremail' => $useremail, 'user' => $user]);
+    }
+
+
+    public function changePassWord(Request $request)
+    {
+        $input = $request->all();
+        $user = Auth::user();
+
+        // if ($request->newpassword && !preg_match('/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,18}$/', $request->newpassword)) {
+        //     return redirect()->back()->withErrors(['unsuccess' => 'The new password must contain at least one lowercase letter, one uppercase letter, one number, and be between 6 to 18 characters long. Please try again!']);
+        // }   Kiểm tra định dạng mật khẩu
+        
+
+        if(!Hash::check($request->oldpassword, $user->password)) {
+            return redirect()->back()->withErrors(['oldpassword' => 'The old password is incorrect. Please try again!']);
+            
+        }
+        
+        if($request->oldpassword == $request->newpassword) {
+            return redirect()->back()->withErrors(['oldnewpassword' => 'The old password cannot be the same as the new password. Please try again!']);
+        }
+        
+        if($request->newpassword !== $request->newpassword2){
+            return redirect()->back()->withErrors(['newpassword' => 'The new passwords do not match. Please try again!']);
+        }
+        
+        $user->password = Hash::make($request->newpassword);
+        $user->save();
+        return redirect()->back()->withErrors(['success' => 'Password changed successfully!']);
+        
     }
 }
