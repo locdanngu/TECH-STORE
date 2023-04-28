@@ -423,7 +423,7 @@ class AdminController extends Controller
         $category = Category::orderBy('idcategory', 'asc')->get();
         $category2 = Category::orderBy('idcategory', 'asc')->get();
         $category3 = Category::orderBy('idcategory', 'asc')->get();
-        $messages = $user->messages_received()->with('sender')->union($user->messages_sent()->with('receiver'))->orderBy('created_at', 'asc')->get();
+        $messages = $user->messages_received()->with('sender')->union($user->messages_sent()->with('receiver'))->take(5)->orderBy('created_at', 'asc')->get();
         return view('Messageadmin', ['messages' => $messages,'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
     }
 
