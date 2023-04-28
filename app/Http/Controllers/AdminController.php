@@ -421,10 +421,33 @@ class AdminController extends Controller
         $user->codeverifyemailend = Carbon::now()->addMinutes(5);
         $user->save();
         Mail::send('Verifyemail', compact('name','random_number'), function($email) use($request, $name, $random_number){
-            $email->subject('Verify you email address', $name,$support,$random_number);
+            $email->subject('Verify you email address', $name,$random_number);
             $email->to($request->email);
         });
-        return view('Codeverifyemailadmin', ['useremail' => $useremail, 'user' => $user]);
+        $category = Category::orderBy('idcategory', 'asc')->get();
+        $category2 = Category::orderBy('idcategory', 'asc')->get();
+        $category3 = Category::orderBy('idcategory', 'asc')->get();
+        return view('Codeverifyemailadmin', ['useremail' => $useremail, 'user' => $user, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
+    }
+
+
+    public function verifyEmailcode(Request $request)
+    {
+        $user = Auth::user();
+        $useremail = $user->email;
+        $endtime = Carbon::now();
+        $timecodeend = $user->codeverifyemailend;
+        if($user->codeverifyemail == $request->code && $timecodeend > $endtime){
+            $user->verifyemail = 1;
+            $user->email_verified_at = Carbon::now();
+            $user->save();
+            return redirect()->route('admin.setting');
+        }else{
+            $category = Category::orderBy('idcategory', 'asc')->get();
+            $category2 = Category::orderBy('idcategory', 'asc')->get();
+            $category3 = Category::orderBy('idcategory', 'asc')->get();
+            return view('Codeverifyemailadmin', ['useremail' => $useremail, 'user' => $user, 'category' => $category, 'category2' => $category2, 'category3' => $category3])->withErrors(['error' => 'Code has expired or incorrect!']);
+        }
     }
 
 
@@ -432,12 +455,6 @@ class AdminController extends Controller
     {
         $input = $request->all();
         $user = Auth::user();
-
-        // if ($request->newpassword && !preg_match('/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,18}$/', $request->newpassword)) {
-        //     return redirect()->back()->withErrors(['unsuccess' => 'The new password must contain at least one lowercase letter, one uppercase letter, one number, and be between 6 to 18 characters long. Please try again!']);
-        // }   Kiểm tra định dạng mật khẩu
-        
-
         if(!Hash::check($request->oldpassword, $user->password)) {
             return redirect()->back()->withErrors(['oldpassword' => 'The old password is incorrect. Please try again!']);
             

@@ -83,7 +83,7 @@ class ProfileuserController extends Controller
         $user->codeverifyemailend = Carbon::now()->addMinutes(5);
         $user->save();
         Mail::send('Verifyemail', compact('name','random_number'), function($email) use($request, $name, $random_number){
-            $email->subject('Verify you email address', $name,$support,$random_number);
+            $email->subject('Verify you email address', $name,$random_number);
             $email->to($request->email);
         });
         return view('Codeverifyemail', ['useremail' => $useremail, 'user' => $user]);
