@@ -561,7 +561,8 @@ class AdminController extends Controller
     public function reloadMessage(Request $request)
     {   
        
-        
+        $html = 'a';
+        return response()->json(['html' => $html]);
 
 
 
@@ -569,7 +570,6 @@ class AdminController extends Controller
 
 
 
-        
 
     }
 

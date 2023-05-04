@@ -434,9 +434,8 @@
                     sender_id: inputVal
                 },
                 success: function(response) {
-                    // Nếu thành công, tải lại nội dung của phần tử message-container
-                    $('#tailai').load(window.location.href +
-                        ' #tailai');
+                    var html = response.html;
+                    $('#tailai').html(html);
 
                 },
                 error: function(xhr, status, error) {
