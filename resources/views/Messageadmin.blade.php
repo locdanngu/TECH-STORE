@@ -328,7 +328,7 @@
 
                     <div class="card shadow mb-4">
                         <div class="card-body">
-                            <div class="table-responsive" style="height:550px">
+                            <div class="table-responsive" style="height:590px">
                                 <div class="d-flex align-items-center">
                                     <img src="{{ $usersendmessage->avatar }}" width="50" style="border-radius:50%"
                                         class="mr-2">
@@ -373,7 +373,15 @@
                                     @endif
                                     @endforeach
                                 </div>
-
+                                <form method="POST" action="" class="d-flex align-items-center justify-content-between"
+                                    style="padding:0 2em;   ">
+                                    @csrf
+                                    <textarea
+                                        style="width:93%;padding:0 0.5em;border-radius:5px;border:1px solid black;resize: none;height:3em !important"
+                                        oninput="autoGrow(this)"></textarea>
+                                    <button type="button" class="btn btn-primary"
+                                        style="height:3em !important">Send</button>
+                                </form>
 
                             </div>
                         </div>
@@ -427,8 +435,13 @@
             @extends('layouts.Linkadmin')
 
             <script>
-                var messageContainer = document.getElementById("message-container");
-                messageContainer.scrollTop = messageContainer.scrollHeight;
+            var messageContainer = document.getElementById("message-container");
+            messageContainer.scrollTop = messageContainer.scrollHeight;
+
+            function autoGrow(element) {
+                element.style.height = "3em";
+                element.style.height = (element.scrollHeight) + "px";
+            }
             </script>
 </body>
 
