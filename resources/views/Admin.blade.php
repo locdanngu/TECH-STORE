@@ -248,9 +248,15 @@
                                         </div>
                                         <div class="font-weight-bold">
                                             <div class="text-truncate">{{ $message->message }}</div>
+                                            @if($message->sender_id == $user->id)
+                                            <div class="small text-gray-500">Your ·
+                                                {{ \Carbon\Carbon::now()->diffForHumans($message->created_at, true) }}
+                                            </div>
+                                            @else
                                             <div class="small text-gray-500">{{ $message->sender->name }} ·
                                                 {{ \Carbon\Carbon::now()->diffForHumans($message->created_at, true) }}
                                             </div>
+                                            @endif
                                         </div>
                                     </button>
 

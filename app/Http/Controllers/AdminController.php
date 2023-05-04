@@ -59,26 +59,46 @@ class AdminController extends Controller
         // dd($result);
         // Kết quả sẽ là một associative array với key là idcategory và value là số lượng sản phẩm của từng idcategory
         $countuser = User::where('role', 'customer')->get()->count();
-        $messages = Message::select('sender_id')
+        // $messages = Message::select('sender_id')
+        //             ->where('receiver_id', $user->id)
+        //             ->distinct('sender_id')
+        //             ->orderBy('created_at', 'asc')
+        //             ->take(5)
+        //             ->get();
+                    // Lấy ra mảng các sender_id từ collection $messages
+        // $messages2 = Message::whereIn('sender_id', $messages->pluck('sender_id'))
+        //             ->where('receiver_id', $user->id)
+        //             ->select('sender_id', 'message', 'created_at')
+        //             ->whereIn('created_at', function($query) {
+        //                 $query->selectRaw('MAX(created_at)')
+        //                     ->from('messages')
+        //                     ->groupBy('sender_id');
+        //             })
+        //             ->orderBy('created_at', 'desc')
+        //             ->get();
+        
+        $sender_ids = Message::select('sender_id')
                     ->where('receiver_id', $user->id)
                     ->distinct('sender_id')
                     ->orderBy('created_at', 'asc')
                     ->take(5)
-                    ->get();
-                    // Lấy ra mảng các sender_id từ collection $messages
-        $messages2 = Message::whereIn('sender_id', $messages->pluck('sender_id'))
-                    ->where('receiver_id', $user->id)
-                    ->select('sender_id', 'message', 'created_at')
-                    ->whereIn('created_at', function($query) {
-                        $query->selectRaw('MAX(created_at)')
-                            ->from('messages')
-                            ->groupBy('sender_id');
-                    })
-                    ->orderBy('created_at', 'desc')
-                    ->get();
+                    ->pluck('sender_id');
 
-        
-        
+        $latest_messages = [];
+
+        foreach ($sender_ids as $sender_id) {
+            $latest_message = Message::where(function($query) use ($user, $sender_id) {
+                                    $query->where('sender_id', $user->id)
+                                        ->where('receiver_id', $sender_id);
+                                })
+                                ->orWhere(function($query) use ($user, $sender_id) {
+                                    $query->where('sender_id', $sender_id)
+                                        ->where('receiver_id', $user->id);
+                                })
+                                ->orderBy('created_at', 'desc')
+                                ->first();
+            $latest_messages[] = $latest_message;
+        }
 
         return view('Admin', ['user' => $user,
                               'revenue' => $revenue,
@@ -89,7 +109,7 @@ class AdminController extends Controller
                               'categoryvalue' => $categoryvalue,
                               'result' => $result,
                               'countuser' => $countuser,
-                              'messages' => $messages2,]);
+                              'messages' => $latest_messages,]);
     }
 
 
