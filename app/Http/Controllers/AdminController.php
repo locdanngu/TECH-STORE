@@ -23,6 +23,23 @@ class AdminController extends Controller
         $currentDate = Carbon::now();
         $currentMonth = $currentDate->month;
         $currentYear = $currentDate->year;
+        
+        //tự tạo trong csdl 1 tháng nếu qua tháng
+        if (Revenue::whereMonth('dayrevenue', $currentMonth)->exists()) {
+            // Tháng hiện tại tồn tại trong cơ sở dữ liệu
+            // $newmonth = Revenue::where('month', $currentMonth)->get();
+            // Tiếp tục xử lý với $newmonth
+        } else {
+            $createrevenue = Revenue::create([
+                'dayrevenue' => $currentDate,
+                'revenue' => 0,
+                'ordernumber' => 0,
+                'orderproduct' => 0,
+            ]);
+            // Tháng hiện tại không tồn tại trong cơ sở dữ liệu
+            // Xử lý tình huống này theo yêu cầu của bạn
+        }
+
         $revenue = Revenue::whereYear('dayrevenue', $currentYear)
                         ->whereMonth('dayrevenue', $currentMonth)
                         ->first();
@@ -58,6 +75,10 @@ class AdminController extends Controller
                             ->groupBy('sender_id');
                     })
                     ->get();
+
+        
+        
+
         return view('Admin', ['user' => $user,
                               'revenue' => $revenue,
                               'currentMonth' => $currentMonth,
