@@ -328,42 +328,52 @@
 
                     <div class="card shadow mb-4">
                         <div class="card-body">
-                            <div class="table-responsive">
-                                @foreach ($messages as $message)
-                                @if($message->sender_id == $user->id)
-                                <div class="d-flex flex-column align-items-end">
-                                    <!-- <span>{{ $message->sender->name }}</span> -->
-                                    <div class="d-flex align-items-center">
-                                        <div class="d-flex flex-column align-items-end">
-                                            <span
-                                                style="background-color: #3A3B3CD1; color: #FFFFFF;padding: .25em .75em; border-radius: 3em;width: fit-content">
-                                                {{$message->message}}</span>
-                                            <span style="font-size:0.75em; margin-top:.5em"> (Send at:
-                                                {{$message->created_at}})</span>
-                                        </div>
-                                        <img src="{{ $user->avatar }}" width="50" style="border-radius:50%"
-                                            class="ml-2">
-                                    </div>
+                            <div class="table-responsive" style="height:550px">
+                                <div class="d-flex align-items-center">
+                                    <img src="{{ $usersendmessage->avatar }}" width="50" style="border-radius:50%"
+                                        class="mr-2">
+                                    <span class="font-weight-bold">{{ $usersendmessage->name }}</span>
                                 </div>
-                                @else
-                                <!-- // Tin nhắn đã nhận -->
-                                <div class="d-flex flex-column">
-                                    <span>{{ $message->sender->name }}</span>
-                                    <div class="d-flex align-items-center">
-                                        <img src="{{ $message->sender->avatar }}" width="50" style="border-radius:50%"
-                                            class="mr-2">
-                                        <div class="d-flex flex-column">
-                                            <span
-                                                style="background-color: #3A3B3CD1; color: #FFFFFF;padding: .25em .75em; border-radius: 3em;width: fit-content">
-                                                {{$message->message}}</span>
-                                            <span style="font-size:0.75em; margin-top:.5em"> (Send at:
-                                                {{$message->created_at}})</span>
+                                <hr>
+                                <div id="message-container" style="max-height: 450px; overflow-x: scroll;padding:0 2em">
+                                    @foreach ($messages as $message)
+                                    @if($message->sender_id == $user->id)
+                                    <div class="d-flex flex-column align-items-end">
+                                        <!-- <span>{{ $message->sender->name }}</span> -->
+                                        <div class="d-flex align-items-center">
+                                            <div class="d-flex flex-column align-items-end">
+                                                <span
+                                                    style="background-color: #3A3B3CD1; color: #FFFFFF;padding: .25em .75em; border-radius: 3em;width: fit-content">
+                                                    {{$message->message}}</span>
+                                                <span style="font-size:0.75em; margin-top:.5em"> (Send at:
+                                                    {{$message->created_at}})</span>
+                                            </div>
+                                            <img src="{{ $user->avatar }}" width="50" style="border-radius:50%"
+                                                class="ml-2">
                                         </div>
                                     </div>
+                                    <br>
+                                    @else
+                                    <!-- // Tin nhắn đã nhận -->
+                                    <div class="d-flex flex-column">
+                                        <!-- <span>{{ $message->sender->name }}</span> -->
+                                        <div class="d-flex align-items-center">
+                                            <img src="{{ $message->sender->avatar }}" width="50"
+                                                style="border-radius:50%" class="mr-2">
+                                            <div class="d-flex flex-column">
+                                                <span
+                                                    style="background-color: #3A3B3CD1; color: #FFFFFF;padding: .25em .75em; border-radius: 3em;width: fit-content">
+                                                    {{$message->message}}</span>
+                                                <span style="font-size:0.75em; margin-top:.5em"> (Send at:
+                                                    {{$message->created_at}})</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    @endif
+                                    @endforeach
                                 </div>
-                                <br>
-                                @endif
-                                @endforeach
+
 
                             </div>
                         </div>
@@ -417,7 +427,8 @@
             @extends('layouts.Linkadmin')
 
             <script>
-
+                var messageContainer = document.getElementById("message-container");
+                messageContainer.scrollTop = messageContainer.scrollHeight;
             </script>
 </body>
 

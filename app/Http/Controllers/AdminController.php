@@ -458,6 +458,7 @@ class AdminController extends Controller
         $category = Category::orderBy('idcategory', 'asc')->get();
         $category2 = Category::orderBy('idcategory', 'asc')->get();
         $category3 = Category::orderBy('idcategory', 'asc')->get();
+        $usersendmessage = User::where('id', $usersend)->first();
         $messages = $user->messages_received()
                 ->with('sender')
                 // ->where('sender_id', $usersend)
@@ -470,11 +471,11 @@ class AdminController extends Controller
                           ->where('receiver_id', $usersend);
                 })
                 ->orderBy('created_at', 'asc')
-                ->take(5)
+                ->take(20)
                 ->get();
 
                         
-         return view('Messageadmin', ['messages' => $messages,'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
+         return view('Messageadmin', ['usersendmessage' => $usersendmessage,'messages' => $messages,'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
     }
 
     public function viewActivity()
