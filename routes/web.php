@@ -77,6 +77,9 @@ Route::get('/Admin/Profile', [AdminController::class, 'viewProfile'])->middlewar
 Route::get('/Admin/Setting', [AdminController::class, 'viewsetting'])->middleware('admin')->name('admin.setting'); 
 Route::get('/Admin/Message', [AdminController::class, 'viewMessage2'])->middleware('admin')->name('admin.message2'); 
 Route::post('/Admin/Message', [AdminController::class, 'viewMessage'])->middleware('admin')->name('admin.message'); 
+
+Route::post('/Admin/AddMessage', [AdminController::class, 'addMessage'])->middleware('admin')->name('admin.addmessage'); 
+
 Route::get('/Admin/ActivityLog', [AdminController::class, 'viewActivity'])->middleware('admin')->name('admin.activity'); 
 Route::post('/Admin/Profile', [AdminController::class, 'changeProfile'])->middleware('admin')->name('admin.changeprofile'); 
 Route::post('/Admin/Verifyemail', [AdminController::class, 'verifyEmail'])->middleware('admin')->name('verifyemail.admin');

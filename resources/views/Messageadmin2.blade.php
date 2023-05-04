@@ -374,9 +374,9 @@
                                     @endforeach
                                 </div>
                                 <form method="POST" action="" class="d-flex align-items-center justify-content-between"
-                                    style="padding:0 2em;   ">
+                                    style="padding:0 2em;">
                                     @csrf
-                                    <textarea
+                                    <textarea name="messagecontent"
                                         style="width:93%;padding:0 0.5em;border-radius:5px;border:1px solid black;resize: none;height:3em !important"
                                         oninput="autoGrow(this)"></textarea>
                                     <button type="button" class="btn btn-primary"

@@ -495,8 +495,8 @@ class AdminController extends Controller
                 ->orderBy('created_at', 'asc')
                 ->take(20)
                 ->get();        
-        return redirect()->route('admin.message2')->with(['usersendmessage' => $usersendmessage, 'messages' => $messages, 'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
-        // return view('Messageadmin', ['usersendmessage' => $usersendmessage,'messages' => $messages,'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
+        // return redirect()->route('admin.message2')->with(['usersendmessage' => $usersendmessage, 'messages' => $messages, 'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
+        return view('Messageadmin', ['usersendmessage' => $usersendmessage,'messages' => $messages,'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
     }
 
     public function viewMessage2(Request $request)
@@ -531,6 +531,17 @@ class AdminController extends Controller
                 ->take(20)
                 ->get();           
         return view('Messageadmin2', ['usersendmessage' => $usersendmessage,'messages' => $messages,'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
+    }
+
+    public function addMessage(Request $request)
+    {   
+        $user = Auth::user();
+        $message = Message::create([
+            'sender_id' => $user->id,
+            'receiver_id' => $request->input('sender_id'),
+            'message' => $request->input('messagecontent'),
+            'read' => 0,
+        ]);
     }
 
     public function viewActivity()

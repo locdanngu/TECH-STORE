@@ -3,6 +3,7 @@
 
 <head>
     <link type="image/png" sizes="16x16" rel="icon" href="/images/avatar.png">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -335,11 +336,11 @@
                                     <span class="font-weight-bold">{{ $usersendmessage->name }}</span>
                                 </div>
                                 <hr>
-                                <div id="message-container" style="max-height:450px;height: 450px; overflow-x: scroll;padding:0 2em">
+                                <div id="message-container" class="capnhat"
+                                    style="max-height:450px;height: 450px; overflow-x: scroll;padding:0 2em">
                                     @foreach ($messages as $message)
                                     @if($message->sender_id == $user->id)
                                     <div class="d-flex flex-column align-items-end">
-                                        <!-- <span>{{ $message->sender->name }}</span> -->
                                         <div class="d-flex align-items-center">
                                             <div class="d-flex flex-column align-items-end">
                                                 <span
@@ -354,10 +355,10 @@
                                     </div>
                                     <br>
                                     @else
-                                    <!-- // Tin nhắn đã nhận -->
                                     <div class="d-flex flex-column">
-                                        <!-- <span>{{ $message->sender->name }}</span> -->
                                         <div class="d-flex align-items-center">
+                                            <input type="hidden" value="{{ $message->sender->id }}" name="sender_id"
+                                                class="sender_id"></input>
                                             <img src="{{ $message->sender->avatar }}" width="50"
                                                 style="border-radius:50%" class="mr-2">
                                             <div class="d-flex flex-column">
@@ -373,15 +374,14 @@
                                     @endif
                                     @endforeach
                                 </div>
-                                <form method="POST" action="" class="d-flex align-items-center justify-content-between"
+                                <div class="d-flex align-items-center justify-content-between"
                                     style="padding:0 2em;   ">
-                                    @csrf
-                                    <textarea
+                                    <textarea name="messagecontent"
                                         style="width:93%;padding:0 0.5em;border-radius:5px;border:1px solid black;resize: none;height:3em !important"
                                         oninput="autoGrow(this)"></textarea>
-                                    <button type="button" class="btn btn-primary"
+                                    <button type="button" class="btn btn-primary" id="buttonsend"
                                         style="height:3em !important">Send</button>
-                                </form>
+                                </div>
 
                             </div>
                         </div>
@@ -431,18 +431,67 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    @extends('layouts.Linkadmin')
 
-            @extends('layouts.Linkadmin')
+    <script>
+    $(document).ready(function() {
+        // Đăng ký sự kiện click cho nút
+        $('#buttonsend').click(function() {
+            // Thực hiện ajax request để gửi tin nhắn
+            $.ajax({
+                type: 'POST',
+                url: '{{ route("admin.addmessage") }}',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    messagecontent: $('textarea[name="messagecontent"]').val(),
+                    sender_id: $('.sender_id').val(),
+                },
+                success: function(response) {
+                    // Nếu thành công, tải lại nội dung của phần tử message-container
+                    $('#message-container').load(window.location.href + ' #message-container');
+                    $('textarea[name="messagecontent"]').val('');
+                },
+                error: function(xhr, status, error) {
+                    // Xử lý lỗi nếu cần
+                }
+            });
+        });
+    });
 
-            <script>
-            var messageContainer = document.getElementById("message-container");
-            messageContainer.scrollTop = messageContainer.scrollHeight;
+    $('textarea[name="messagecontent"]').keypress(function(event) {
+        if (event.which == 13) { // 13 là mã ASCII của phím Enter
+            event.preventDefault();
+            var content = $(this).val();
+            $.ajax({
+                type: 'POST',
+                url: '{{ route("admin.addmessage") }}',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    messagecontent: $('textarea[name="messagecontent"]').val(),
+                    sender_id: $('.sender_id').val(),
+                },
+                success: function(response) {
+                    // Nếu thành công, tải lại nội dung của phần tử message-container
+                    $('#message-container').load(window.location.href + ' #message-container');
+                    $('textarea[name="messagecontent"]').val('');
+                },
+                error: function(xhr, status, error) {
+                    // Xử lý lỗi nếu cần
+                }
+            });
+        }
+    });
 
-            function autoGrow(element) {
-                element.style.height = "3em";
-                element.style.height = (element.scrollHeight) + "px";
-            }
-            </script>
+    var messageContainer = document.getElementById("message-container");
+    messageContainer.scrollTop = messageContainer.scrollHeight;
+
+    function autoGrow(element) {
+        element.style.height = "3em";
+        element.style.height = (element.scrollHeight) + "px";
+    }
+    </script>
 </body>
 
 </html>
