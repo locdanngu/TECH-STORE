@@ -331,7 +331,7 @@
                         <div class="card-body">
                             <div class="table-responsive" style="height:590px">
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ $usersendmessage->avatar }}" width="50" style="border-radius:50%"
+                                    <img src="{{ $usersendmessage->avatar }}" width="50" height="50" style="border-radius:50%"
                                         class="mr-2">
                                     <span class="font-weight-bold">{{ $usersendmessage->name }}</span>
                                 </div>
@@ -349,7 +349,7 @@
                                                 <span style="font-size:0.75em; margin-top:.5em"> (Send at:
                                                     {{$message->created_at}})</span>
                                             </div>
-                                            <img src="{{ $user->avatar }}" width="50" style="border-radius:50%"
+                                            <img src="{{ $user->avatar }}" width="50" height="50" style="border-radius:50%"
                                                 class="ml-2">
                                         </div>
                                     </div>
@@ -359,7 +359,7 @@
                                         <div class="d-flex align-items-center">
                                             <input type="hidden" value="{{ $message->sender->id }}" name="sender_id"
                                                 class="sender_id"></input>
-                                            <img src="{{ $message->sender->avatar }}" width="50"
+                                            <img src="{{ $message->sender->avatar }}" width="50" height="50"
                                                 style="border-radius:50%" class="mr-2">
                                             <div class="d-flex flex-column">
                                                 <span
