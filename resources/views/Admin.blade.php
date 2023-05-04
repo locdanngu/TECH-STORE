@@ -270,7 +270,7 @@
                                     @endif
                                 </div>
                                 @endforeach
-                                <a class="dropdown-item text-center small text-gray-500" href="{{ route('admin.message2') }}">Read More Messages</a>
+                                <a class="dropdown-item text-center small text-gray-500" href="{{ route('admin.message') }}">Read More Messages</a>
                             </div>
                         </li>
 
