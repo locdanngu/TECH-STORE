@@ -343,9 +343,9 @@
                                     <div class="d-flex flex-column align-items-end">
                                         <div class="d-flex align-items-center">
                                             <div class="d-flex flex-column align-items-end">
-                                                <span
-                                                    style="background-color: #3A3B3CD1; color: #FFFFFF;padding: .25em .75em; border-radius: 3em;width: fit-content">
-                                                    {{$message->message}}</span>
+                                                <p
+                                                    style="background-color: #3A3B3CD1; color: #FFFFFF;padding: .25em .75em; border-radius: 1em;max-width: 500px;display: inline-block; word-wrap: break-word;">
+                                                    {{$message->message}}</p>
                                                 <span style="font-size:0.75em; margin-top:.5em"> (Send at:
                                                     {{$message->created_at}})</span>
                                             </div>
@@ -362,9 +362,9 @@
                                             <img src="{{ $message->sender->avatar }}" width="50"
                                                 style="border-radius:50%" class="mr-2">
                                             <div class="d-flex flex-column">
-                                                <span
-                                                    style="background-color: #3A3B3CD1; color: #FFFFFF;padding: .25em .75em; border-radius: 3em;width: fit-content">
-                                                    {{$message->message}}</span>
+                                                <p
+                                                    style="background-color: #3A3B3CD1; color: #FFFFFF;padding: .25em .75em; border-radius: 1em;max-width: 500px;display: inline-block; word-wrap: break-word;">
+                                                    {{$message->message}}</p>
                                                 <span style="font-size:0.75em; margin-top:.5em"> (Send at:
                                                     {{$message->created_at}})</span>
                                             </div>
@@ -450,8 +450,10 @@
                 },
                 success: function(response) {
                     // Nếu thành công, tải lại nội dung của phần tử message-container
-                    $('#message-container').load(window.location.href + ' #message-container');
+                    $('#message-container').load(window.location.href +
+                        ' #message-container');
                     $('textarea[name="messagecontent"]').val('');
+                    $('textarea[name="messagecontent"]').css('height', '3em');
                 },
                 error: function(xhr, status, error) {
                     // Xử lý lỗi nếu cần
@@ -476,6 +478,7 @@
                     // Nếu thành công, tải lại nội dung của phần tử message-container
                     $('#message-container').load(window.location.href + ' #message-container');
                     $('textarea[name="messagecontent"]').val('');
+                    $('textarea[name="messagecontent"]').css('height', '3em');
                 },
                 error: function(xhr, status, error) {
                     // Xử lý lỗi nếu cần
@@ -484,8 +487,9 @@
         }
     });
 
-    var messageContainer = document.getElementById("message-container");
-    messageContainer.scrollTop = messageContainer.scrollHeight;
+    var messageContainer = $("#message-container");
+    messageContainer.scrollTop(messageContainer[0].scrollHeight);
+
 
     function autoGrow(element) {
         element.style.height = "3em";

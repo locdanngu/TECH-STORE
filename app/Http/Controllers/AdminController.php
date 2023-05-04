@@ -483,7 +483,6 @@ class AdminController extends Controller
         $usersendmessage = User::where('id', $usersend)->first();
         $messages = $user->messages_received()
                 ->with('sender')
-                // ->where('sender_id', $usersend)
                 ->Where(function ($query) use ($user, $usersend) {
                     $query->where('sender_id', $usersend)
                           ->where('receiver_id',  $user->id);
@@ -492,9 +491,11 @@ class AdminController extends Controller
                     $query->where('sender_id', $user->id)
                           ->where('receiver_id', $usersend);
                 })
-                ->orderBy('created_at', 'asc')
-                ->take(20)
-                ->get();        
+                ->latest()
+                ->take(50)
+                ->get()
+                ->reverse();
+      
         // return redirect()->route('admin.message2')->with(['usersendmessage' => $usersendmessage, 'messages' => $messages, 'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
         return view('Messageadmin', ['usersendmessage' => $usersendmessage,'messages' => $messages,'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
     }
