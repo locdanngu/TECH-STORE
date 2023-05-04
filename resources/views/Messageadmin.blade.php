@@ -22,7 +22,11 @@
     <!-- {{ asset('bootstrap/') }} -->
     <!-- Custom styles for this template-->
     <link href="{{ asset('bootstrap/css/sb-admin-2.min.css') }}" rel="stylesheet">
-
+    <style>
+        .nav-item.active{
+            background-color: cornflowerblue;
+        }
+    </style>
 </head>
 
 <body id="page-top">
@@ -391,6 +395,8 @@
     <script>
     $(document).ready(function() {
         // Đăng ký sự kiện click cho nút
+        $(".nav-item").eq(0).addClass("active");
+
         $('#buttonsend').click(function() {
             // Thực hiện ajax request để gửi tin nhắn
             $.ajax({
@@ -413,6 +419,12 @@
                 }
             });
         });
+
+        $('.nav-item').on("click", function() {
+            $(".nav-item").removeClass("active");
+            $(this).addClass("active");
+        });
+
     });
 
     $('textarea[name="messagecontent"]').keypress(function(event) {
