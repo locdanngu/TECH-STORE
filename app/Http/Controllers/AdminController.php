@@ -74,6 +74,7 @@ class AdminController extends Controller
                             ->from('messages')
                             ->groupBy('sender_id');
                     })
+                    ->orderBy('created_at', 'desc')
                     ->get();
 
         
@@ -449,10 +450,11 @@ class AdminController extends Controller
         return view('Settingadmin', ['user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
     }
 
-    public function viewMessage()
+    public function viewMessage(Request $request)
     {   
         $user = Auth::user();
-        $usersend = 46;
+        $usersend = $request['sender_id'];
+        // dd($usersend);
         $products = Product::orderBy('price', 'asc')->get();
         $cart = Cart::where('status', 2)->orderBy('updated_at', 'asc')->get();
         $category = Category::orderBy('idcategory', 'asc')->get();

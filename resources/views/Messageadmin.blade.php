@@ -335,7 +335,7 @@
                                     <span class="font-weight-bold">{{ $usersendmessage->name }}</span>
                                 </div>
                                 <hr>
-                                <div id="message-container" style="max-height: 450px; overflow-x: scroll;padding:0 2em">
+                                <div id="message-container" style="max-height:450px;height: 450px; overflow-x: scroll;padding:0 2em">
                                     @foreach ($messages as $message)
                                     @if($message->sender_id == $user->id)
                                     <div class="d-flex flex-column align-items-end">

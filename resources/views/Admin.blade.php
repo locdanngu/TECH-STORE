@@ -238,7 +238,7 @@
                                     Message Center
                                 </h6>
                                 @foreach($messages as $message)
-                                <form class="dropdown-item d-flex align-items-center" method="POST" action="">
+                                <form class="dropdown-item d-flex align-items-center" method="POST" action="{{ route('admin.message') }}">
                                     @csrf
                                     <input type="hidden" value="{{ $message->sender_id }}" name="sender_id">
                                     <button style="background-color: transparent; border:0" class="d-flex">
