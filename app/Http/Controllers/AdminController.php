@@ -494,10 +494,43 @@ class AdminController extends Controller
                 })
                 ->orderBy('created_at', 'asc')
                 ->take(20)
-                ->get();
+                ->get();        
+        return redirect()->route('admin.message2')->with(['usersendmessage' => $usersendmessage, 'messages' => $messages, 'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
+        // return view('Messageadmin', ['usersendmessage' => $usersendmessage,'messages' => $messages,'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
+    }
 
-                        
-         return view('Messageadmin', ['usersendmessage' => $usersendmessage,'messages' => $messages,'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
+    public function viewMessage2(Request $request)
+    {   
+        $user = Auth::user();
+        $messages = Message::orderby('created_at', 'desc')->first();
+        if($user->id != $messages['sender_id']){
+            $usersend = $messages['sender_id'];
+        }else{
+            $usersend = $messages['receiver_id'];
+        }
+        // $usersend = $request['sender_id'];
+        // // dd($usersend);
+        $products = Product::orderBy('price', 'asc')->get();
+        $cart = Cart::where('status', 2)->orderBy('updated_at', 'asc')->get();
+        $category = Category::orderBy('idcategory', 'asc')->get();
+        $category2 = Category::orderBy('idcategory', 'asc')->get();
+        $category3 = Category::orderBy('idcategory', 'asc')->get();
+        $usersendmessage = User::where('id', $usersend)->first();
+        $messages = $user->messages_received()
+                ->with('sender')
+                // ->where('sender_id', $usersend)
+                ->Where(function ($query) use ($user, $usersend) {
+                    $query->where('sender_id', $usersend)
+                          ->where('receiver_id',  $user->id);
+                })
+                ->orWhere(function ($query) use ($user, $usersend) {
+                    $query->where('sender_id', $user->id)
+                          ->where('receiver_id', $usersend);
+                })
+                ->orderBy('created_at', 'asc')
+                ->take(20)
+                ->get();           
+        return view('Messageadmin2', ['usersendmessage' => $usersendmessage,'messages' => $messages,'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
     }
 
     public function viewActivity()

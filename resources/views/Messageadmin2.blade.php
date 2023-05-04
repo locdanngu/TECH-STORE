@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin Page</title>
+    <title>Admin Message</title>
 
     <!-- Custom fonts for this template-->
     <!-- icon -->
@@ -237,41 +237,52 @@
                                 <h6 class="dropdown-header">
                                     Message Center
                                 </h6>
-                                @foreach($messages as $message)
-                                <form class="dropdown-item d-flex align-items-center" method="POST" action="{{ route('admin.message') }}">
-                                    @csrf
-                                    @if($message->sender_id == $user->id)
-                                    <input type="hidden" value="{{ $message->receiver_id }}" name="sender_id">
-                                    <button style="background-color: transparent; border:0" class="d-flex">
-                                        <div class="dropdown-list-image mr-3">
-                                            <img class="rounded-circle" src="{{ $message->receiver->avatar }}" alt="...">
-                                            <div class="status-indicator bg-success"></div>
-                                        </div>
-                                        <div class="font-weight-bold">
-                                            <div class="text-truncate" style="text-align: left;">{{ $message->message }}</div>
-                                            <div class="small text-gray-500">Your ·
-                                                {{ \Carbon\Carbon::now()->diffForHumans($message->created_at, true) }}
-                                            </div>
-                                        </div>
-                                    </button>
-                                    @else
-                                    <input type="hidden" value="{{ $message->sender_id }}" name="sender_id">
-                                    <button style="background-color: transparent; border:0" class="d-flex">
-                                        <div class="dropdown-list-image mr-3">
-                                            <img class="rounded-circle" src="{{ $message->sender->avatar }}" alt="...">
-                                            <div class="status-indicator bg-success"></div>
-                                        </div>
-                                        <div class="font-weight-bold">
-                                            <div class="text-truncate" style="text-align: left;">{{ $message->message }}</div>
-                                            <div class="small text-gray-500">{{ $message->sender->name }} ·
-                                                {{ \Carbon\Carbon::now()->diffForHumans($message->created_at, true) }}
-                                            </div>
-                                        </div>
-                                    </button>
-                                    @endif
-                                </form>
-                                @endforeach
-                                <a class="dropdown-item text-center small text-gray-500" href="{{ route('admin.message2') }}">Read More Messages</a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
+                                        <div class="status-indicator bg-success"></div>
+                                    </div>
+                                    <div class="font-weight-bold">
+                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
+                                            problem I've been having.</div>
+                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
+                                        <div class="status-indicator"></div>
+                                    </div>
+                                    <div>
+                                        <div class="text-truncate">I have the photos that you ordered last month, how
+                                            would you like them sent to you?</div>
+                                        <div class="small text-gray-500">Jae Chun · 1d</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
+                                        <div class="status-indicator bg-warning"></div>
+                                    </div>
+                                    <div>
+                                        <div class="text-truncate">Last month's report looks great, I am very happy with
+                                            the progress so far, keep up the good work!</div>
+                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
+                                            alt="...">
+                                        <div class="status-indicator bg-success"></div>
+                                    </div>
+                                    <div>
+                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
+                                            told me that people say this to all dogs, even if they aren't good...</div>
+                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
                             </div>
                         </li>
 
@@ -315,167 +326,66 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
-                    </div>
-
-                    <!-- Content Row -->
-                    <div class="row">
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Revenue ({{$currentYear }}/{{ $currentMonth}})</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${{ $revenue->revenue}}
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
+                            <div class="table-responsive" style="height:590px">
+                                <div class="d-flex align-items-center">
+                                    <img src="{{ $usersendmessage->avatar }}" width="50" style="border-radius:50%"
+                                        class="mr-2">
+                                    <span class="font-weight-bold">{{ $usersendmessage->name }}</span>
+                                </div>
+                                <hr>
+                                <div id="message-container" style="max-height:450px;height: 450px; overflow-x: scroll;padding:0 2em">
+                                    @foreach ($messages as $message)
+                                    @if($message->sender_id == $user->id)
+                                    <div class="d-flex flex-column align-items-end">
+                                        <!-- <span>{{ $message->sender->name }}</span> -->
+                                        <div class="d-flex align-items-center">
+                                            <div class="d-flex flex-column align-items-end">
+                                                <span
+                                                    style="background-color: #3A3B3CD1; color: #FFFFFF;padding: .25em .75em; border-radius: 3em;width: fit-content">
+                                                    {{$message->message}}</span>
+                                                <span style="font-size:0.75em; margin-top:.5em"> (Send at:
+                                                    {{$message->created_at}})</span>
+                                            </div>
+                                            <img src="{{ $user->avatar }}" width="50" style="border-radius:50%"
+                                                class="ml-2">
+                                        </div>
+                                    </div>
+                                    <br>
+                                    @else
+                                    <!-- // Tin nhắn đã nhận -->
+                                    <div class="d-flex flex-column">
+                                        <!-- <span>{{ $message->sender->name }}</span> -->
+                                        <div class="d-flex align-items-center">
+                                            <img src="{{ $message->sender->avatar }}" width="50"
+                                                style="border-radius:50%" class="mr-2">
+                                            <div class="d-flex flex-column">
+                                                <span
+                                                    style="background-color: #3A3B3CD1; color: #FFFFFF;padding: .25em .75em; border-radius: 3em;width: fit-content">
+                                                    {{$message->message}}</span>
+                                                <span style="font-size:0.75em; margin-top:.5em"> (Send at:
+                                                    {{$message->created_at}})</span>
                                             </div>
                                         </div>
-                                        <div class="col-auto">
-
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                        </div>
                                     </div>
+                                    <br>
+                                    @endif
+                                    @endforeach
                                 </div>
-                            </div>
-                        </div>
+                                <form method="POST" action="" class="d-flex align-items-center justify-content-between"
+                                    style="padding:0 2em;   ">
+                                    @csrf
+                                    <textarea
+                                        style="width:93%;padding:0 0.5em;border-radius:5px;border:1px solid black;resize: none;height:3em !important"
+                                        oninput="autoGrow(this)"></textarea>
+                                    <button type="button" class="btn btn-primary"
+                                        style="height:3em !important">Send</button>
+                                </form>
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Total products sold ({{$currentYear }}/{{ $currentMonth}})</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                {{ $revenue->orderproduct}}</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total
-                                                Total Orders sold ({{$currentYear }}/{{ $currentMonth}})
-                                            </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                        {{ $revenue->ordernumber}}</div>
-                                                </div>
-                                                <!-- <div class="col">
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
-                                                </div> -->
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Customer</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $countuser }}</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fa fa-user fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Content Row -->
-
-                    <div class="row">
-
-                        <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Revenue Overview({{$currentYear }})
-                                    </h6>
-
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <!-- <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
-                                    </div> -->
-                                    <div>
-                                        <canvas id="myChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Categories({{$countproduct}})</h6>
-
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <!-- <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
-                                    </div> -->
-                                    <!-- <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Direct
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Referral
-                                        </span>
-                                    </div> -->
-                                    <div>
-                                        <canvas id="myChart2"></canvas>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- Content Row -->
 
                     <!-- End of Main Content -->
@@ -524,91 +434,14 @@
 
             @extends('layouts.Linkadmin')
 
-            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             <script>
-            const ctx = document.getElementById('myChart');
-            const ctx2 = document.getElementById('myChart2');
-            new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'April', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov',
-                        'Dec'
-                    ],
-                    datasets: [{
-                        label: 'Revenue of Year',
-                        data: <?php echo $revenueValues; ?>,
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.8)',
-                            'rgba(255, 159, 64, 0.7)',
-                            'rgba(255, 205, 86, 0.7)',
-                            'rgba(75, 192, 192, 0.7)',
-                            'rgba(54, 162, 235, 0.7)',
-                            'rgba(153, 102, 255, 0.7)',
-                            'rgba(255, 102, 86, 0.7)',
-                            'rgba(255, 205, 86, 0.7)',
-                            'rgba(255, 25, 86, 0.7)',
-                            'rgba(25, 5, 86, 0.7)',
-                            'rgba(255, 205, 90, 0.7)',
-                            'rgba(201, 203, 207, 0.7)'
-                        ],
-                        borderColor: [
-                            'rgb(255, 99, 132)',
-                            'rgb(255, 159, 64)',
-                            'rgb(255, 205, 86)',
-                            'rgb(75, 192, 192)',
-                            'rgb(54, 162, 235)',
-                            'rgb(153, 102, 255)',
-                            'rgb(201, 203, 207)',
-                            'rgb(153, 102, 255)',
-                            'rgb(153, 102, 255)',
-                            'rgb(153, 102, 255)',
-                            'rgb(153, 102, 255)',
-                            'rgb(153, 102, 255)',
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                callback: function(value, index, values) {
-                                    return '$' + value;
-                                }
-                            }
-                        }
-                    }
-                }
-            });
+            var messageContainer = document.getElementById("message-container");
+            messageContainer.scrollTop = messageContainer.scrollHeight;
 
-
-            new Chart(ctx2, {
-                type: 'doughnut',
-                data: {
-                    labels: [
-                        <?php echo $categoryvalue; ?>
-                    ],
-                    datasets: [{
-                        label: 'Number Product of Categories',
-                        data: <?php echo $result; ?>,
-                        backgroundColor: [
-                            'rgb(255, 99, 132)',
-                            'rgb(54, 162, 235)',
-                            'rgb(255, 205, 86)',
-                            'rgb(4, 1, 235)',
-                            'rgb(5, 162, 25)',
-                            'rgb(4, 12, 25)',
-                            'rgb(74, 15, 205)',
-                            'rgb(54, 62, 235)',
-                            'rgb(54, 162, 23)',
-                            'rgb(4, 162, 3)',
-                        ],
-                        hoverOffset: 4
-                    }]
-                },
-
-            });
+            function autoGrow(element) {
+                element.style.height = "3em";
+                element.style.height = (element.scrollHeight) + "px";
+            }
             </script>
 </body>
 
