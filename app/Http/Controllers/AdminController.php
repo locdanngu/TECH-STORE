@@ -80,7 +80,7 @@ class AdminController extends Controller
         $sender_ids = Message::select('sender_id')
                     ->where('receiver_id', $user->id)
                     ->distinct('sender_id')
-                    ->orderBy('created_at', 'asc')
+                    ->orderBy('created_at', 'desc')
                     ->take(5)
                     ->pluck('sender_id');
 
@@ -530,8 +530,32 @@ class AdminController extends Controller
                 })
                 ->orderBy('created_at', 'asc')
                 ->take(20)
-                ->get();           
-        return view('Messageadmin', ['usersendmessage' => $usersendmessage,'messages' => $messages,'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
+                ->get();   
+                
+        $sender_ids = Message::select('sender_id')
+                    ->where('receiver_id', $user->id)
+                    ->distinct('sender_id')
+                    ->orderBy('created_at', 'desc')
+                    ->take(5)
+                    ->pluck('sender_id');
+
+        $latest_messages = [];
+
+        foreach ($sender_ids as $sender_id) {
+            $latest_message = Message::where(function($query) use ($user, $sender_id) {
+                                    $query->where('sender_id', $user->id)
+                                        ->where('receiver_id', $sender_id);
+                                })
+                                ->orWhere(function($query) use ($user, $sender_id) {
+                                    $query->where('sender_id', $sender_id)
+                                        ->where('receiver_id', $user->id);
+                                })
+                                ->orderBy('created_at', 'desc')
+                                ->first();
+            $latest_messages[] = $latest_message;
+        }
+
+        return view('Messageadmin', ['latest_messages' => $latest_messages,'usersendmessage' => $usersendmessage,'messages' => $messages,'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
     }
 
     public function addMessage(Request $request)

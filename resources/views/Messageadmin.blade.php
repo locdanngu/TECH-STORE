@@ -45,87 +45,40 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
+            @foreach($latest_messages as $message)
+            @if($message->sender_id == $user->id)
             <li class="nav-item active">
-                <a class="nav-link" href="{{ route('admin.page') }}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                About Store
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fa fa-product-hunt" aria-hidden="true"></i>
-                    <span>Products</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Products:</h6>
-                        <a class="collapse-item" href="{{ route('admin.product') }}">List Product</a>
-                        <!-- <a class="collapse-item" href="cards.html">Cards</a> -->
+                <div class="nav-link d-flex align-items-center">
+                    <img class="rounded-circle mr-2" src="{{ $message->receiver->avatar }}" alt="..." height="50"
+                        width="50">
+                    <div class="d-flex flex-column">
+                        <span style="color: black;font-weight:800">{{ $message->receiver->name }}</span>
+                        <span>{{ $message->message }}</span>
+                        <span>Your - {{ \Carbon\Carbon::now()->diffForHumans($message->created_at, true) }}</span>
                     </div>
                 </div>
             </li>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fa fa-list" aria-hidden="true"></i>
-                    <span>Categories</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Categories:</h6>
-                        <a class="collapse-item" href="{{ route('admin.category') }}">List Categories</a>
-
+            @else
+            <li class="nav-item active">
+                <div class="nav-link d-flex align-items-center">
+                    <img class="rounded-circle mr-2" src="{{ $message->sender->avatar }}" alt="..." height="50"
+                        width="50">
+                    <div class="d-flex flex-column">
+                        <span style="color: black;font-weight:800">{{ $message->sender->name }}</span>
+                        <span>{{ $message->message }}</span>
+                        <span>{{ substr($message->sender->name, strrpos($message->sender->name, ' ') + 1) }}
+                            - {{ \Carbon\Carbon::now()->diffForHumans($message->created_at, true) }}</span>
                     </div>
                 </div>
             </li>
+            @endif
+            @endforeach
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                About User
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Order</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Order User:</h6>
-                        <a class="collapse-item" href="{{ route('admin.order') }}">Order List</a>
-                        <a class="collapse-item" href="{{ route('admin.history') }}">Shipping history</a>
-                        <a class="collapse-item" href="{{ route('admin.denyhistory') }}">Deny history</a>
-                    </div>
-                </div>
-            </li>
 
 
 
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
 
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
 
 
 
@@ -331,8 +284,8 @@
                         <div class="card-body">
                             <div class="table-responsive" style="height:590px">
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ $usersendmessage->avatar }}" width="50" height="50" style="border-radius:50%"
-                                        class="mr-2">
+                                    <img src="{{ $usersendmessage->avatar }}" width="50" height="50"
+                                        style="border-radius:50%" class="mr-2">
                                     <span class="font-weight-bold">{{ $usersendmessage->name }}</span>
                                 </div>
                                 <hr>
@@ -349,8 +302,8 @@
                                                 <span style="font-size:0.75em; margin-top:.5em"> (Send at:
                                                     {{$message->created_at}})</span>
                                             </div>
-                                            <img src="{{ $user->avatar }}" width="50" height="50" style="border-radius:50%"
-                                                class="ml-2">
+                                            <img src="{{ $user->avatar }}" width="50" height="50"
+                                                style="border-radius:50%" class="ml-2">
                                         </div>
                                     </div>
                                     <br>
