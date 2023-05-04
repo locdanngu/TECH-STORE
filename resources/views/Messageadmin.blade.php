@@ -341,7 +341,7 @@
                                             <span style="font-size:0.75em; margin-top:.5em"> (Send at:
                                                 {{$message->created_at}})</span>
                                         </div>
-                                        <img src="{{ $message->receiver->avatar }}" width="50" style="border-radius:50%"
+                                        <img src="{{ $user->avatar }}" width="50" style="border-radius:50%"
                                             class="ml-2">
                                     </div>
                                 </div>

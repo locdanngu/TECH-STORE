@@ -23,9 +23,9 @@ Route::get('/Forgotpage', function () {
     return view('Forgotpage');
 })->name('forgot.page');
 
-Route::get('/a', function () {
-    return view('Verifyemail');
-})->name('a');
+// Route::get('/a', function () {
+//     return view('Verifyemail');
+// })->name('a');
 
 
 Route::get('/Profileuserpage', [ProfileuserController::class, 'showProfileuser'])->middleware('user')->name('profileuser.page');        //view thông tin user

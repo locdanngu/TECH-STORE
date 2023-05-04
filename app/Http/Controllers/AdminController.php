@@ -23,7 +23,7 @@ class AdminController extends Controller
         $currentDate = Carbon::now();
         $currentMonth = $currentDate->month;
         $currentYear = $currentDate->year;
-        
+
         //tự tạo trong csdl 1 tháng nếu qua tháng
         if (Revenue::whereMonth('dayrevenue', $currentMonth)->exists()) {
             // Tháng hiện tại tồn tại trong cơ sở dữ liệu
@@ -458,12 +458,22 @@ class AdminController extends Controller
         $category = Category::orderBy('idcategory', 'asc')->get();
         $category2 = Category::orderBy('idcategory', 'asc')->get();
         $category3 = Category::orderBy('idcategory', 'asc')->get();
-        $messages = $user->messages_received()->with('sender')
-                        ->union($user->messages_sent()->with('receiver'))
-                        ->where('sender_id', $usersend)
-                        ->take(5)
-                        ->orderBy('created_at', 'asc')
-                        ->get();
+        $messages = $user->messages_received()
+                ->with('sender')
+                // ->where('sender_id', $usersend)
+                ->Where(function ($query) use ($user, $usersend) {
+                    $query->where('sender_id', $usersend)
+                          ->where('receiver_id',  $user->id);
+                })
+                ->orWhere(function ($query) use ($user, $usersend) {
+                    $query->where('sender_id', $user->id)
+                          ->where('receiver_id', $usersend);
+                })
+                ->orderBy('created_at', 'asc')
+                ->take(5)
+                ->get();
+
+                        
          return view('Messageadmin', ['messages' => $messages,'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
     }
 
