@@ -496,8 +496,8 @@ class AdminController extends Controller
                 ->get()
                 ->reverse();
       
-        // return redirect()->route('admin.message2')->with(['usersendmessage' => $usersendmessage, 'messages' => $messages, 'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
-        return view('Messageadmin', ['usersendmessage' => $usersendmessage,'messages' => $messages,'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
+        return redirect()->route('admin.message2')->with(['usersendmessage' => $usersendmessage, 'messages' => $messages, 'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
+        // return view('Messageadmin', ['usersendmessage' => $usersendmessage,'messages' => $messages,'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
     }
 
     public function viewMessage2(Request $request)
