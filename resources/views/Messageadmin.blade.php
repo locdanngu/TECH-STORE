@@ -47,7 +47,7 @@
             <!-- Nav Item - Dashboard -->
             @foreach($latest_messages as $message)
             @if($message->sender_id == $user->id)
-            <li class="nav-item active">
+            <li class="nav-item">
                 <div class="nav-link d-flex align-items-center">
                     <img class="rounded-circle mr-2" src="{{ $message->receiver->avatar }}" alt="..." height="50"
                         width="50">
@@ -59,7 +59,7 @@
                 </div>
             </li>
             @else
-            <li class="nav-item active">
+            <li class="nav-item">
                 <div class="nav-link d-flex align-items-center">
                     <img class="rounded-circle mr-2" src="{{ $message->sender->avatar }}" alt="..." height="50"
                         width="50">
