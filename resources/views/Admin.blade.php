@@ -240,6 +240,21 @@
                                 @foreach($messages as $message)
                                 <form class="dropdown-item d-flex align-items-center" method="POST" action="{{ route('admin.message') }}">
                                     @csrf
+                                    @if($message->sender_id == $user->id)
+                                    <input type="hidden" value="{{ $message->receiver_id }}" name="sender_id">
+                                    <button style="background-color: transparent; border:0" class="d-flex">
+                                        <div class="dropdown-list-image mr-3">
+                                            <img class="rounded-circle" src="{{ $message->receiver->avatar }}" alt="...">
+                                            <div class="status-indicator bg-success"></div>
+                                        </div>
+                                        <div class="font-weight-bold">
+                                            <div class="text-truncate" style="text-align: left;">{{ $message->message }}</div>
+                                            <div class="small text-gray-500">Your ·
+                                                {{ \Carbon\Carbon::now()->diffForHumans($message->created_at, true) }}
+                                            </div>
+                                        </div>
+                                    </button>
+                                    @else
                                     <input type="hidden" value="{{ $message->sender_id }}" name="sender_id">
                                     <button style="background-color: transparent; border:0" class="d-flex">
                                         <div class="dropdown-list-image mr-3">
@@ -247,19 +262,13 @@
                                             <div class="status-indicator bg-success"></div>
                                         </div>
                                         <div class="font-weight-bold">
-                                            <div class="text-truncate">{{ $message->message }}</div>
-                                            @if($message->sender_id == $user->id)
-                                            <div class="small text-gray-500">Your ·
-                                                {{ \Carbon\Carbon::now()->diffForHumans($message->created_at, true) }}
-                                            </div>
-                                            @else
+                                            <div class="text-truncate" style="text-align: left;">{{ $message->message }}</div>
                                             <div class="small text-gray-500">{{ $message->sender->name }} ·
                                                 {{ \Carbon\Carbon::now()->diffForHumans($message->created_at, true) }}
                                             </div>
-                                            @endif
                                         </div>
                                     </button>
-
+                                    @endif
                                 </form>
                                 @endforeach
                                 <!-- <a class="dropdown-item text-center small text-gray-500" href="{{ route('admin.message') }}">Read More Messages</a> -->
