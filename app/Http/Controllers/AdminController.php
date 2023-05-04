@@ -66,11 +66,11 @@ class AdminController extends Controller
                     ->take(5)
                     ->get();
                     // Lấy ra mảng các sender_id từ collection $messages
-        $messages = Message::whereIn('sender_id', $messages->pluck('sender_id'))
+        $messages2 = Message::whereIn('sender_id', $messages->pluck('sender_id'))
                     ->where('receiver_id', $user->id)
                     ->select('sender_id', 'message', 'created_at')
                     ->whereIn('created_at', function($query) {
-                        $query->selectRaw('MIN(created_at)')
+                        $query->selectRaw('MAX(created_at)')
                             ->from('messages')
                             ->groupBy('sender_id');
                     })
@@ -88,7 +88,7 @@ class AdminController extends Controller
                               'categoryvalue' => $categoryvalue,
                               'result' => $result,
                               'countuser' => $countuser,
-                              'messages' => $messages,]);
+                              'messages' => $messages2,]);
     }
 
 
