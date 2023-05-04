@@ -76,6 +76,8 @@ Route::get('/Admin/DenyOrder', [AdminController::class, 'viewDenyorder'])->middl
 Route::get('/Admin/Profile', [AdminController::class, 'viewProfile'])->middleware('admin')->name('admin.profile'); 
 Route::get('/Admin/Setting', [AdminController::class, 'viewsetting'])->middleware('admin')->name('admin.setting'); 
 Route::get('/Admin/Message', [AdminController::class, 'viewMessage'])->middleware('admin')->name('admin.message'); 
+
+Route::post('/Admin/ReloadMessage', [AdminController::class, 'reloadMessage'])->middleware('admin')->name('admin.reloadmessage'); 
 // Route::post('/Admin/Message', [AdminController::class, 'viewMessage'])->middleware('admin')->name('admin.message'); 
 
 Route::post('/Admin/AddMessage', [AdminController::class, 'addMessage'])->middleware('admin')->name('admin.addmessage'); 

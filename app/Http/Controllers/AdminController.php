@@ -558,6 +558,21 @@ class AdminController extends Controller
         return view('Messageadmin', ['latest_messages' => $latest_messages,'usersendmessage' => $usersendmessage,'messages' => $messages,'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
     }
 
+    public function reloadMessage(Request $request)
+    {   
+       
+        
+
+
+
+
+
+
+
+        
+
+    }
+
     public function addMessage(Request $request)
     {   
         $user = Auth::user();

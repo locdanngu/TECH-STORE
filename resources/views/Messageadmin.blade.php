@@ -23,9 +23,9 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('bootstrap/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <style>
-        .nav-item.active{
-            background-color: cornflowerblue;
-        }
+    .nav-item.active {
+        background-color: cornflowerblue;
+    }
     </style>
 </head>
 
@@ -53,6 +53,7 @@
             @if($message->sender_id == $user->id)
             <li class="nav-item">
                 <div class="nav-link d-flex align-items-center">
+                    <input type="hidden" value="{{ $message->receiver->id }}">
                     <img class="rounded-circle mr-2" src="{{ $message->receiver->avatar }}" alt="..." height="50"
                         width="50">
                     <div class="d-flex flex-column">
@@ -65,6 +66,7 @@
             @else
             <li class="nav-item">
                 <div class="nav-link d-flex align-items-center">
+                    <input type="hidden" value="{{ $message->sender->id }}">
                     <img class="rounded-circle mr-2" src="{{ $message->sender->avatar }}" alt="..." height="50"
                         width="50">
                     <div class="d-flex flex-column">
@@ -286,7 +288,7 @@
 
                     <div class="card shadow mb-4">
                         <div class="card-body">
-                            <div class="table-responsive" style="height:590px">
+                            <div class="table-responsive" style="height:590px" id="tailai">
                                 <div class="d-flex align-items-center">
                                     <img src="{{ $usersendmessage->avatar }}" width="50" height="50"
                                         style="border-radius:50%" class="mr-2">
@@ -294,7 +296,7 @@
                                 </div>
                                 <hr>
                                 <div id="message-container" class="capnhat"
-                                    style="max-height:450px;height: 450px; overflow-x: scroll;padding:0 2em">
+                                    style="max-height:450px;height: 450px; overflow-x: auto;padding:0 2em">
                                     @foreach ($messages as $message)
                                     @if($message->sender_id == $user->id)
                                     <div class="d-flex flex-column align-items-end">
@@ -423,6 +425,24 @@
         $('.nav-item').on("click", function() {
             $(".nav-item").removeClass("active");
             $(this).addClass("active");
+            var inputVal = $(this).find('input').val();
+            $.ajax({
+                type: 'POST',
+                url: '{{ route("admin.reloadmessage") }}',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    sender_id: inputVal
+                },
+                success: function(response) {
+                    // Nếu thành công, tải lại nội dung của phần tử message-container
+                    $('#tailai').load(window.location.href +
+                        ' #tailai');
+
+                },
+                error: function(xhr, status, error) {
+                    // Xử lý lỗi nếu cần
+                }
+            });
         });
 
     });
