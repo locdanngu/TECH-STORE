@@ -27,15 +27,6 @@
         background-color: cornflowerblue;
     }
 
-    .fixtext {
-        width: 93%;
-        padding: 0 0.5em;
-        border-radius: 5px;
-        border: 1px solid black;
-        resize: none;
-        height: 3em !important;
-    }
-
     .fiximg {
         border-radius: 50%;
         width: 50px;
@@ -51,13 +42,6 @@
         display: inline-block;
         word-wrap: break-word;
         width: fit-content;
-    }
-
-    .capnhat {
-        max-height: 450px;
-        height: 450px;
-        overflow-x: auto;
-        padding: 0 2em;
     }
     </style>
 </head>
@@ -82,36 +66,39 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            @foreach($latest_messages as $message)
-            @if($message->sender_id == $user->id)
-            <li class="nav-item">
-                <div class="nav-link d-flex align-items-center">
-                    <input type="hidden" value="{{ $message->receiver->id }}">
-                    <img class="rounded-circle mr-2" src="{{ $message->receiver->avatar }}" alt="..." height="50"
-                        width="50">
-                    <div class="d-flex flex-column">
-                        <span style="color: black;font-weight:800">{{ $message->receiver->name }}</span>
-                        <span>{{ $message->message }}</span>
-                        <span>Your - {{ \Carbon\Carbon::now()->diffForHumans($message->created_at, true) }}</span>
+            <div id="reset">
+                @foreach($latest_messages as $message)
+                @if($message->sender_id == $user->id)
+                <li class="nav-item">
+                    <div class="nav-link d-flex align-items-center">
+                        <input type="hidden" value="{{ $message->receiver->id }}">
+                        <img class="rounded-circle mr-2" src="{{ $message->receiver->avatar }}" alt="..." height="50"
+                            width="50">
+                        <div class="d-flex flex-column">
+                            <span style="color: black;font-weight:800">{{ $message->receiver->name }}</span>
+                            <span>{{ $message->message }}</span>
+                            <span>Your - {{ \Carbon\Carbon::now()->diffForHumans($message->created_at, true) }}</span>
+                        </div>
                     </div>
-                </div>
-            </li>
-            @else
-            <li class="nav-item">
-                <div class="nav-link d-flex align-items-center">
-                    <input type="hidden" value="{{ $message->sender->id }}">
-                    <img class="rounded-circle mr-2" src="{{ $message->sender->avatar }}" alt="..." height="50"
-                        width="50">
-                    <div class="d-flex flex-column">
-                        <span style="color: black;font-weight:800">{{ $message->sender->name }}</span>
-                        <span>{{ $message->message }}</span>
-                        <span>{{ substr($message->sender->name, strrpos($message->sender->name, ' ') + 1) }}
-                            - {{ \Carbon\Carbon::now()->diffForHumans($message->created_at, true) }}</span>
+                </li>
+                @else
+                <li class="nav-item">
+                    <div class="nav-link d-flex align-items-center">
+                        <input type="hidden" value="{{ $message->sender->id }}">
+                        <img class="rounded-circle mr-2" src="{{ $message->sender->avatar }}" alt="..." height="50"
+                            width="50">
+                        <div class="d-flex flex-column">
+                            <span style="color: black;font-weight:800">{{ $message->sender->name }}</span>
+                            <span>{{ $message->message }}</span>
+                            <span>{{ substr($message->sender->name, strrpos($message->sender->name, ' ') + 1) }}
+                                - {{ \Carbon\Carbon::now()->diffForHumans($message->created_at, true) }}</span>
+                        </div>
                     </div>
-                </div>
-            </li>
-            @endif
-            @endforeach
+                </li>
+                @endif
+                @endforeach
+            </div>
+
 
 
 
@@ -327,13 +314,16 @@
                                     <span class="font-weight-bold">{{ $usersendmessage->name }}</span>
                                 </div>
                                 <hr>
-                                <div id="message-container" class="capnhat">
+                                <div id="message-container"
+                                    style="max-height: 450px;height: 450px;overflow-x: auto;padding: 0 2em;"
+                                    class="capnhat">
                                     @foreach ($messages as $message)
                                     @if($message->sender_id == $user->id)
                                     <div class="d-flex flex-column align-items-end">
                                         <div class="d-flex align-items-center">
                                             <div class="d-flex flex-column align-items-end">
-                                                <span class="fixspan">
+                                                <span
+                                                    style="background-color: #3A3B3CD1;color: #FFFFFF;padding: .25em .75em;border-radius: 1em;max-width: 500px;display: inline-block;word-wrap: break-word;width: fit-content;">
                                                     {{$message->message}}</span>
                                                 <span style="font-size:0.75em; margin-top:.5em"> (Send at:
                                                     {{$message->created_at}})</span>
@@ -349,7 +339,8 @@
                                                 class="sender_id"></input>
                                             <img src="{{ $message->sender->avatar }}" class="mr-2 fiximg">
                                             <div class="d-flex flex-column">
-                                                <span class="fixspan">
+                                                <span
+                                                    style="background-color: #3A3B3CD1;color: #FFFFFF;padding: .25em .75em;border-radius: 1em;max-width: 500px;display: inline-block;word-wrap: break-word;width: fit-content;">
                                                     {{$message->message}}</span>
                                                 <span style="font-size:0.75em; margin-top:.5em"> (Send at:
                                                     {{$message->created_at}})</span>
@@ -361,7 +352,9 @@
                                     @endforeach
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between" style="padding:0 2em;">
-                                    <textarea name="messagecontent" class="fixtext" oninput="autoGrow(this)"></textarea>
+                                    <textarea name="messagecontent"
+                                        style="width: 93%;padding: 0 0.5em;border-radius: 5px;border: 1px solid black;resize: none;height: 3em !important;"
+                                        oninput="autoGrow(this)"></textarea>
                                     <button type="button" class="btn btn-primary" id="buttonsend"
                                         style="height:3em">Send</button>
                                 </div>
@@ -445,6 +438,8 @@
                     // Nếu thành công, tải lại nội dung của phần tử message-container
                     $('#message-container').load(window.location.href +
                         ' #message-container');
+                    $('#reset').load(window.location.href +
+                        ' #reset');
                     $('textarea[name="messagecontent"]').val('');
                     $('textarea[name="messagecontent"]').css('height', '3em');
                 },
@@ -468,6 +463,41 @@
                 success: function(response) {
                     var html = response.html;
                     $('#tailai').html(html);
+                    $('#buttonsend').click(function() {
+                        // Thực hiện ajax request để gửi tin nhắn
+                        $.ajax({
+                            type: 'POST',
+                            url: '{{ route("admin.addmessage") }}',
+                            data: {
+                                _token: '{{ csrf_token() }}',
+                                messagecontent: $(
+                                        'textarea[name="messagecontent"]')
+                                    .val(),
+                                sender_id: $('.sender_id').val(),
+                            },
+                            success: function(response) {
+                                // Nếu thành công, tải lại nội dung của phần tử message-container
+                                $('#message-container').load(window
+                                    .location.href +
+                                    ' #message-container');
+                                $('textarea[name="messagecontent"]')
+                                    .val('');
+                                $('textarea[name="messagecontent"]')
+                                    .css('height', '3em');
+                            },
+                            error: function(xhr, status, error) {
+                                // Xử lý lỗi nếu cần
+                            }
+                        });
+                    });
+
+                    var messageContainer = $("#message-container");
+                    messageContainer.scrollTop(messageContainer[0].scrollHeight);
+
+                    function autoGrow(element) {
+                        element.style.height = "3em";
+                        element.style.height = (element.scrollHeight) + "px";
+                    }
                 },
                 error: function(xhr, status, error) {
                     // Xử lý lỗi nếu cần
@@ -492,6 +522,8 @@
                 success: function(response) {
                     // Nếu thành công, tải lại nội dung của phần tử message-container
                     $('#message-container').load(window.location.href + ' #message-container');
+                    $('#reset').load(window.location.href +
+                        ' #reset');
                     $('textarea[name="messagecontent"]').val('');
                     $('textarea[name="messagecontent"]').css('height', '3em');
                 },

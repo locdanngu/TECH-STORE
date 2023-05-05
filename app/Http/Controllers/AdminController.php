@@ -557,14 +557,14 @@ class AdminController extends Controller
                 <span class="font-weight-bold">'. $usersendmessage->name .'</span>
             </div>
             <hr>
-            <div id="message-container" class="capnhat">';
+            <div id="message-container" style="max-height: 450px;height: 450px;overflow-x: auto;padding: 0 2em;" class="capnhat">';
             
         foreach ($messages as $message) {
             if($message->sender_id == $user->id) {
                 $html .= '<div class="d-flex flex-column align-items-end">
                                 <div class="d-flex align-items-center">
                                     <div class="d-flex flex-column align-items-end">
-                                        <span class="fixspan">'. $message->message .'</span>
+                                        <span style="background-color: #3A3B3CD1;color: #FFFFFF;padding: .25em .75em;border-radius: 1em;max-width: 500px;display: inline-block;word-wrap: break-word;width: fit-content;">'. $message->message .'</span>
                                         <span style="font-size:0.75em; margin-top:.5em"> (Send at: '. $message->created_at .')</span>
                                     </div>
                                     <img src="'. $user->avatar .'" class="ml-2 fiximg">
@@ -577,7 +577,7 @@ class AdminController extends Controller
                                     <input type="hidden" value="'. $message->sender->id .'" name="sender_id" class="sender_id"></input>
                                     <img src="'. $message->sender->avatar .'" class="mr-2 fiximg">
                                     <div class="d-flex flex-column">
-                                        <span class="fixspan">'. $message->message .'</span>
+                                        <span style="background-color: #3A3B3CD1;color: #FFFFFF;padding: .25em .75em;border-radius: 1em;max-width: 500px;display: inline-block;word-wrap: break-word;width: fit-content;">'. $message->message .'</span>
                                         <span style="font-size:0.75em; margin-top:.5em"> (Send at: '. $message->created_at .')</span>
                                     </div>
                                 </div>
@@ -587,7 +587,7 @@ class AdminController extends Controller
         }
         $html .= '</div>';
         $html .= '<div class="d-flex align-items-center justify-content-between" style="padding:0 2em;">
-                        <textarea name="messagecontent" class="fixtext" oninput="autoGrow(this)"></textarea>
+                        <textarea name="messagecontent" style="width: 93%;padding: 0 0.5em;border-radius: 5px;border: 1px solid black;resize: none;height: 3em !important;" oninput="autoGrow(this)"></textarea>
                         <button type="button" class="btn btn-primary" id="buttonsend" style="height:3em">Send</button>
                     </div>';
 
