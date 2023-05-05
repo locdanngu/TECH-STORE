@@ -69,7 +69,7 @@
             <div id="reset">
                 @foreach($latest_messages as $message)
                 @if($message->sender_id == $user->id)
-                <li class="nav-item">
+                <li class="nav-item user">
                     <div class="nav-link d-flex align-items-center">
                         <input type="hidden" value="{{ $message->receiver->id }}">
                         <img class="rounded-circle mr-2" src="{{ $message->receiver->avatar }}" alt="..." height="50"
@@ -82,7 +82,7 @@
                     </div>
                 </li>
                 @else
-                <li class="nav-item">
+                <li class="nav-item user">
                     <div class="nav-link d-flex align-items-center">
                         <input type="hidden" value="{{ $message->sender->id }}">
                         <img class="rounded-circle mr-2" src="{{ $message->sender->avatar }}" alt="..." height="50"
@@ -311,6 +311,8 @@
                             <div class="table-responsive" style="height:590px" id="tailai">
                                 <div class="d-flex align-items-center">
                                     <img src="{{ $usersendmessage->avatar }}" class="mr-2 fiximg">
+                                    <input type="hidden" value="{{ $usersendmessage->id }}" name="sender_id"
+                                                class="sender_id"></input>
                                     <span class="font-weight-bold">{{ $usersendmessage->name }}</span>
                                 </div>
                                 <hr>
@@ -335,8 +337,6 @@
                                     @else
                                     <div class="d-flex flex-column">
                                         <div class="d-flex align-items-center">
-                                            <input type="hidden" value="{{ $message->sender->id }}" name="sender_id"
-                                                class="sender_id"></input>
                                             <img src="{{ $message->sender->avatar }}" class="mr-2 fiximg">
                                             <div class="d-flex flex-column">
                                                 <span
@@ -422,7 +422,7 @@
 
     $(document).ready(function() {
         // Đăng ký sự kiện click cho nút
-        $(".nav-item").eq(0).addClass("active");
+        $(".nav-item.user").eq(0).addClass("active");
 
         $('#buttonsend').click(function() {
             // Thực hiện ajax request để gửi tin nhắn
@@ -443,7 +443,7 @@
                                 $('textarea[name="messagecontent"]').val('');
                                 $('textarea[name="messagecontent"]').css(
                                     'height', '3em');
-                                $(".nav-item").eq(0).addClass("active");
+                                $(".nav-item.user").eq(0).addClass("active");
                             });
                         });
                 },
@@ -453,8 +453,8 @@
             });
         });
 
-        $('.nav-item').on("click", function() {
-            $(".nav-item").removeClass("active");
+        $('.nav-item.user').on("click", function() {
+            $(".nav-item.user").removeClass("active");
             $(this).addClass("active");
             var inputVal = $(this).find('input').val();
             $.ajax({
@@ -486,7 +486,7 @@
                                             $('textarea[name="messagecontent"]').val('');
                                             $('textarea[name="messagecontent"]').css(
                                                 'height', '3em');
-                                            $(".nav-item").eq(0).addClass("active");
+                                            $(".nav-item.user").eq(0).addClass("active");
                                         });
                                     });
                             },
@@ -512,32 +512,32 @@
 
     });
 
-    $('textarea[name="messagecontent"]').keypress(function(event) {
-        if (event.which == 13) { // 13 là mã ASCII của phím Enter
-            event.preventDefault();
-            var content = $(this).val();
-            $.ajax({
-                type: 'POST',
-                url: '{{ route("admin.addmessage") }}',
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    messagecontent: $('textarea[name="messagecontent"]').val(),
-                    sender_id: $('.sender_id').val(),
-                },
-                success: function(response) {
-                    // Nếu thành công, tải lại nội dung của phần tử message-container
-                    $('#message-container').load(window.location.href + ' #message-container');
-                    $('#reset').load(window.location.href +
-                        ' #reset');
-                    $('textarea[name="messagecontent"]').val('');
-                    $('textarea[name="messagecontent"]').css('height', '3em');
-                },
-                error: function(xhr, status, error) {
-                    // Xử lý lỗi nếu cần
-                }
-            });
-        }
-    });
+    // $('textarea[name="messagecontent"]').keypress(function(event) {
+    //     if (event.which == 13) { // 13 là mã ASCII của phím Enter
+    //         event.preventDefault();
+    //         var content = $(this).val();
+    //         $.ajax({
+    //             type: 'POST',
+    //             url: '{{ route("admin.addmessage") }}',
+    //             data: {
+    //                 _token: '{{ csrf_token() }}',
+    //                 messagecontent: $('textarea[name="messagecontent"]').val(),
+    //                 sender_id: $('.sender_id').val(),
+    //             },
+    //             success: function(response) {
+    //                 // Nếu thành công, tải lại nội dung của phần tử message-container
+    //                 $('#message-container').load(window.location.href + ' #message-container');
+    //                 $('#reset').load(window.location.href +
+    //                     ' #reset');
+    //                 $('textarea[name="messagecontent"]').val('');
+    //                 $('textarea[name="messagecontent"]').css('height', '3em');
+    //             },
+    //             error: function(xhr, status, error) {
+    //                 // Xử lý lỗi nếu cần
+    //             }
+    //         });
+    //     }
+    // });
     </script>
 </body>
 

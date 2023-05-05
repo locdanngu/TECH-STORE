@@ -485,9 +485,10 @@ class AdminController extends Controller
                     $query->where('sender_id', $user->id)
                           ->where('receiver_id', $usersend);
                 })
-                ->orderBy('created_at', 'asc')
+                ->latest('created_at')
                 ->take(20)
-                ->get();   
+                ->get()
+                ->reverse();  
                 
         $sender_ids = Message::select('sender_id')
                     ->where('receiver_id', $user->id)
@@ -521,7 +522,7 @@ class AdminController extends Controller
     {   
         $sender_id = $request['sender_id'];
         // $messages = Message::orderby('created_at', 'desc')->first();
-        $usersendmessage = User::select('name', 'avatar')->where('id', $sender_id)->first();
+        $usersendmessage = User::select('id','name', 'avatar')->where('id', $sender_id)->first();
         $usersend = $request['sender_id'];;
         $user = Auth::user();
         $messages = $user->messages_received()
@@ -535,13 +536,16 @@ class AdminController extends Controller
                     $query->where('sender_id', $user->id)
                           ->where('receiver_id', $usersend);
                 })
-                ->orderBy('created_at', 'asc')
+                ->latest('created_at')
                 ->take(20)
-                ->get();   
+                ->get()
+                ->reverse();     
 
 
         $html = '<div class="d-flex align-items-center">
                 <img src="'. $usersendmessage->avatar .'" class="mr-2 fiximg">
+                <input type="hidden" value="'. $usersendmessage->id .'" name="sender_id"
+                                                class="sender_id"></input>
                 <span class="font-weight-bold">'. $usersendmessage->name .'</span>
             </div>
             <hr>
@@ -562,7 +566,6 @@ class AdminController extends Controller
             } else {
                 $html .= '<div class="d-flex flex-column">
                                 <div class="d-flex align-items-center">
-                                    <input type="hidden" value="'. $message->sender->id .'" name="sender_id" class="sender_id"></input>
                                     <img src="'. $message->sender->avatar .'" class="mr-2 fiximg">
                                     <div class="d-flex flex-column">
                                         <span style="background-color: #3A3B3CD1;color: #FFFFFF;padding: .25em .75em;border-radius: 1em;max-width: 500px;display: inline-block;word-wrap: break-word;width: fit-content;">'. $message->message .'</span>
