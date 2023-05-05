@@ -552,12 +552,51 @@ class AdminController extends Controller
                 ->get();   
 
 
-        
+        $html = '<div class="d-flex align-items-center">
+                <img src="'. $usersendmessage->avatar .'" class="mr-2 fiximg">
+                <span class="font-weight-bold">'. $usersendmessage->name .'</span>
+            </div>
+            <hr>
+            <div id="message-container" class="capnhat">';
+            
+        foreach ($messages as $message) {
+            if($message->sender_id == $user->id) {
+                $html .= '<div class="d-flex flex-column align-items-end">
+                                <div class="d-flex align-items-center">
+                                    <div class="d-flex flex-column align-items-end">
+                                        <span class="fixspan">'. $message->message .'</span>
+                                        <span style="font-size:0.75em; margin-top:.5em"> (Send at: '. $message->created_at .')</span>
+                                    </div>
+                                    <img src="'. $user->avatar .'" class="ml-2 fiximg">
+                                </div>
+                            </div>
+                            <br>';
+            } else {
+                $html .= '<div class="d-flex flex-column">
+                                <div class="d-flex align-items-center">
+                                    <input type="hidden" value="'. $message->sender->id .'" name="sender_id" class="sender_id"></input>
+                                    <img src="'. $message->sender->avatar .'" class="mr-2 fiximg">
+                                    <div class="d-flex flex-column">
+                                        <span class="fixspan">'. $message->message .'</span>
+                                        <span style="font-size:0.75em; margin-top:.5em"> (Send at: '. $message->created_at .')</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>';
+            }
+        }
+        $html .= '</div>';
+        $html .= '<div class="d-flex align-items-center justify-content-between" style="padding:0 2em;">
+                        <textarea name="messagecontent" class="fixtext" oninput="autoGrow(this)"></textarea>
+                        <button type="button" class="btn btn-primary" id="buttonsend" style="height:3em">Send</button>
+                    </div>';
 
-        return response()->json([
-            'usersendmessage' => $usersendmessage,
-            'messages' => $messages
-        ]);
+
+        return response()->json(['html' => $html]);
+        // return response()->json([
+        //     'usersendmessage' => $usersendmessage,
+        //     'messages' => $messages
+        // ]);
 
 
 

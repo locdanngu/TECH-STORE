@@ -50,7 +50,14 @@
         max-width: 500px;
         display: inline-block;
         word-wrap: break-word;
-        width: fit-content
+        width: fit-content;
+    }
+
+    .capnhat {
+        max-height: 450px;
+        height: 450px;
+        overflow-x: auto;
+        padding: 0 2em;
     }
     </style>
 </head>
@@ -316,13 +323,11 @@
                         <div class="card-body">
                             <div class="table-responsive" style="height:590px" id="tailai">
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ $usersendmessage->avatar }}" width="50" height="50"
-                                        style="border-radius:50%" class="mr-2">
+                                    <img src="{{ $usersendmessage->avatar }}" class="mr-2 fiximg">
                                     <span class="font-weight-bold">{{ $usersendmessage->name }}</span>
                                 </div>
                                 <hr>
-                                <div id="message-container" class="capnhat"
-                                    style="max-height:450px;height: 450px; overflow-x: auto;padding:0 2em">
+                                <div id="message-container" class="capnhat">
                                     @foreach ($messages as $message)
                                     @if($message->sender_id == $user->id)
                                     <div class="d-flex flex-column align-items-end">
@@ -414,6 +419,14 @@
     @extends('layouts.Linkadmin')
 
     <script>
+    var messageContainer = $("#message-container");
+    messageContainer.scrollTop(messageContainer[0].scrollHeight);
+
+    function autoGrow(element) {
+        element.style.height = "3em";
+        element.style.height = (element.scrollHeight) + "px";
+    }
+
     $(document).ready(function() {
         // Đăng ký sự kiện click cho nút
         $(".nav-item").eq(0).addClass("active");
@@ -453,9 +466,8 @@
                     sender_id: inputVal
                 },
                 success: function(response) {
-                    var usersendmessage = response.usersendmessage;
-                    var messages = response.messages;
-                    $('#tailai').load(window.location.href + ' #tailai');
+                    var html = response.html;
+                    $('#tailai').html(html);
                 },
                 error: function(xhr, status, error) {
                     // Xử lý lỗi nếu cần
@@ -489,15 +501,6 @@
             });
         }
     });
-
-    var messageContainer = $("#message-container");
-    messageContainer.scrollTop(messageContainer[0].scrollHeight);
-
-
-    function autoGrow(element) {
-        element.style.height = "3em";
-        element.style.height = (element.scrollHeight) + "px";
-    }
     </script>
 </body>
 
