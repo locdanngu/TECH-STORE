@@ -59,28 +59,11 @@ class AdminController extends Controller
         // dd($result);
         // Kết quả sẽ là một associative array với key là idcategory và value là số lượng sản phẩm của từng idcategory
         $countuser = User::where('role', 'customer')->get()->count();
-        // $messages = Message::select('sender_id')
-        //             ->where('receiver_id', $user->id)
-        //             ->distinct('sender_id')
-        //             ->orderBy('created_at', 'asc')
-        //             ->take(5)
-        //             ->get();
-                    // Lấy ra mảng các sender_id từ collection $messages
-        // $messages2 = Message::whereIn('sender_id', $messages->pluck('sender_id'))
-        //             ->where('receiver_id', $user->id)
-        //             ->select('sender_id', 'message', 'created_at')
-        //             ->whereIn('created_at', function($query) {
-        //                 $query->selectRaw('MAX(created_at)')
-        //                     ->from('messages')
-        //                     ->groupBy('sender_id');
-        //             })
-        //             ->orderBy('created_at', 'desc')
-        //             ->get();
         
         $sender_ids = Message::select('sender_id')
                     ->where('receiver_id', $user->id)
                     ->distinct('sender_id')
-                    ->orderBy('created_at', 'desc')
+                    ->orderBy('created_at', 'asc')
                     ->take(5)
                     ->pluck('sender_id');
 
@@ -474,7 +457,7 @@ class AdminController extends Controller
     {   
         $user = Auth::user();
         $messages = Message::orderby('created_at', 'desc')->first();
-        
+        // dd($messages);
         if($user->id != $messages['sender_id']){
             $usersend = $messages['sender_id'];
         }else{
@@ -506,8 +489,7 @@ class AdminController extends Controller
         $sender_ids = Message::select('sender_id')
                     ->where('receiver_id', $user->id)
                     ->distinct('sender_id')
-                    ->orderBy('created_at', 'desc')
-                    ->take(5)
+                    ->orderBy('created_at', 'asc')
                     ->pluck('sender_id');
 
         $latest_messages = [];
