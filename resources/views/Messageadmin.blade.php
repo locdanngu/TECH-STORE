@@ -74,9 +74,9 @@
                         <input type="hidden" value="{{ $message->receiver->id }}" name="sender_id">
                         <img class="rounded-circle mr-2" src="{{ $message->receiver->avatar }}" alt="..." height="50"
                             width="50">
-                        <div class="d-flex flex-column">
+                        <div class="d-flex flex-column w-75">
                             <span style="color: black;font-weight:800">{{ $message->receiver->name }}</span>
-                            <span>{{ $message->message }}</span>
+                            <span style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 100%;">{{ $message->message }}</span>
                             <span>Your - {{ \Carbon\Carbon::now()->diffForHumans($message->created_at, true) }}</span>
                         </div>
                     </div>
@@ -87,9 +87,9 @@
                         <input type="hidden" value="{{ $message->sender->id }}" name="sender_id">
                         <img class="rounded-circle mr-2" src="{{ $message->sender->avatar }}" alt="..." height="50"
                             width="50">
-                        <div class="d-flex flex-column">
+                        <div class="d-flex flex-column w-75">
                             <span style="color: black;font-weight:800">{{ $message->sender->name }}</span>
-                            <span>{{ $message->message }}</span>
+                            <span style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 100%;">{{ $message->message }}</span>
                             <span>{{ substr($message->sender->name, strrpos($message->sender->name, ' ') + 1) }}
                                 - {{ \Carbon\Carbon::now()->diffForHumans($message->created_at, true) }}</span>
                         </div>
@@ -312,7 +312,7 @@
                                 <div class="d-flex align-items-center">
                                     <img src="{{ $usersendmessage->avatar }}" class="mr-2 fiximg">
                                     <input type="hidden" value="{{ $usersendmessage->id }}" name="sender_id"
-                                                class="sender_id"></input>
+                                        class="sender_id"></input>
                                     <span class="font-weight-bold">{{ $usersendmessage->name }}</span>
                                 </div>
                                 <hr>
@@ -439,12 +439,12 @@
                         ' #message-container',
                         function() {
                             $('#reset').load(window.location.href + ' #reset',
-                            function() {
-                                $('textarea[name="messagecontent"]').val('');
-                                $('textarea[name="messagecontent"]').css(
-                                    'height', '3em');
-                                $(".nav-item.user").eq(0).addClass("active");
-                            });
+                                function() {
+                                    $('textarea[name="messagecontent"]').val('');
+                                    $('textarea[name="messagecontent"]').css(
+                                        'height', '3em');
+                                    $(".nav-item.user").eq(0).addClass("active");
+                                });
                         });
                 },
                 error: function(xhr, status, error) {
@@ -474,20 +474,32 @@
                             url: '{{ route("admin.addmessage") }}',
                             data: {
                                 _token: '{{ csrf_token() }}',
-                                messagecontent: $('textarea[name="messagecontent"]').val(),
+                                messagecontent: $(
+                                        'textarea[name="messagecontent"]')
+                                    .val(),
                                 sender_id: $('.sender_id').val(),
                             },
                             success: function(response) {
-                                $('#message-container').load(window.location.href +
+                                $('#message-container').load(window
+                                    .location.href +
                                     ' #message-container',
                                     function() {
-                                        $('#reset').load(window.location.href + ' #reset',
-                                        function() {
-                                            $('textarea[name="messagecontent"]').val('');
-                                            $('textarea[name="messagecontent"]').css(
-                                                'height', '3em');
-                                            $(".nav-item.user").eq(0).addClass("active");
-                                        });
+                                        $('#reset').load(window
+                                            .location.href +
+                                            ' #reset',
+                                            function() {
+                                                $('textarea[name="messagecontent"]')
+                                                    .val('');
+                                                $('textarea[name="messagecontent"]')
+                                                    .css(
+                                                        'height',
+                                                        '3em');
+                                                $(".nav-item.user")
+                                                    .eq(0)
+                                                    .addClass(
+                                                        "active"
+                                                        );
+                                            });
                                     });
                             },
                             error: function(xhr, status, error) {
