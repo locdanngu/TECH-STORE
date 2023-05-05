@@ -82,6 +82,9 @@ class AdminController extends Controller
                                 ->first();
             $latest_messages[] = $latest_message;
         }
+        usort($latest_messages, function($a, $b) {
+            return  strtotime($b->created_at) - strtotime($a->created_at) ;
+        });
 
         return view('Admin', ['user' => $user,
                               'revenue' => $revenue,
@@ -507,6 +510,9 @@ class AdminController extends Controller
                                 ->first();
             $latest_messages[] = $latest_message;
         }
+        usort($latest_messages, function($a, $b) {
+            return  strtotime($b->created_at) - strtotime($a->created_at) ;
+        });
 
         return view('Messageadmin', ['latest_messages' => $latest_messages,'usersendmessage' => $usersendmessage,'messages' => $messages,'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
     }

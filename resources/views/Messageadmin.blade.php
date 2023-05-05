@@ -435,13 +435,17 @@
                     sender_id: $('.sender_id').val(),
                 },
                 success: function(response) {
-                    // Nếu thành công, tải lại nội dung của phần tử message-container
                     $('#message-container').load(window.location.href +
-                        ' #message-container');
-                    $('#reset').load(window.location.href +
-                        ' #reset');
-                    $('textarea[name="messagecontent"]').val('');
-                    $('textarea[name="messagecontent"]').css('height', '3em');
+                        ' #message-container',
+                        function() {
+                            $('#reset').load(window.location.href + ' #reset',
+                            function() {
+                                $('textarea[name="messagecontent"]').val('');
+                                $('textarea[name="messagecontent"]').css(
+                                    'height', '3em');
+                                $(".nav-item").eq(0).addClass("active");
+                            });
+                        });
                 },
                 error: function(xhr, status, error) {
                     // Xử lý lỗi nếu cần
@@ -470,20 +474,21 @@
                             url: '{{ route("admin.addmessage") }}',
                             data: {
                                 _token: '{{ csrf_token() }}',
-                                messagecontent: $(
-                                        'textarea[name="messagecontent"]')
-                                    .val(),
+                                messagecontent: $('textarea[name="messagecontent"]').val(),
                                 sender_id: $('.sender_id').val(),
                             },
                             success: function(response) {
-                                // Nếu thành công, tải lại nội dung của phần tử message-container
-                                $('#message-container').load(window
-                                    .location.href +
-                                    ' #message-container');
-                                $('textarea[name="messagecontent"]')
-                                    .val('');
-                                $('textarea[name="messagecontent"]')
-                                    .css('height', '3em');
+                                $('#message-container').load(window.location.href +
+                                    ' #message-container',
+                                    function() {
+                                        $('#reset').load(window.location.href + ' #reset',
+                                        function() {
+                                            $('textarea[name="messagecontent"]').val('');
+                                            $('textarea[name="messagecontent"]').css(
+                                                'height', '3em');
+                                            $(".nav-item").eq(0).addClass("active");
+                                        });
+                                    });
                             },
                             error: function(xhr, status, error) {
                                 // Xử lý lỗi nếu cần
