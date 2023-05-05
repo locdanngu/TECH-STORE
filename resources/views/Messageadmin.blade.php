@@ -71,7 +71,7 @@
                 @if($message->sender_id == $user->id)
                 <li class="nav-item user">
                     <div class="nav-link d-flex align-items-center">
-                        <input type="hidden" value="{{ $message->receiver->id }}">
+                        <input type="hidden" value="{{ $message->receiver->id }}" name="sender_id">
                         <img class="rounded-circle mr-2" src="{{ $message->receiver->avatar }}" alt="..." height="50"
                             width="50">
                         <div class="d-flex flex-column">
@@ -84,7 +84,7 @@
                 @else
                 <li class="nav-item user">
                     <div class="nav-link d-flex align-items-center">
-                        <input type="hidden" value="{{ $message->sender->id }}">
+                        <input type="hidden" value="{{ $message->sender->id }}" name="sender_id">
                         <img class="rounded-circle mr-2" src="{{ $message->sender->avatar }}" alt="..." height="50"
                             width="50">
                         <div class="d-flex flex-column">
