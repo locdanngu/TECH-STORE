@@ -775,5 +775,38 @@ class AdminController extends Controller
         
     }
 
+    public function findUserOrEmail(Request $request)
+    {   
+        $search = $request->input('search');
+        // $category = Category::all();
+        if(!$search || !is_string($search)){
+            // Nếu không có giá trị search hoặc không phải chuỗi thì trả về tất cả bản ghi
+            $users = User::orderBy('id', 'asc')->where('role', 'customer')->get();
+        } else {
+            // Nếu có giá trị search và là chuỗi thì truy vấn với điều kiện
+            $users = User::orderBy('id', 'asc')->where('role', 'customer')->where(function($query) use ($search) {
+                                                                                $query->where('name', 'like', '%'.$search.'%')
+                                                                                    ->orWhere('email', 'like', '%'.$search.'%')
+                                                                                    ->orWhere('phone', 'like', '%'.$search.'%');
+                                                                                })->get();
+        }
+        // dd($category);
+        $html = '';
+
+        foreach($users as $user) {
+            $html .= '<tr>';
+            $html .= '<td>' . $user->id . '</td>';
+            $html .= '<td>' . $user->name . '</td>';
+            $html .= '<td>' . $user->email . '</td>';
+            $html .= '<td>' . $user->verifyemail . '</td>';
+            $html .= '<td>' . $user->phone . '</td>';
+            $html .= '<td><img src="' . $user->avatar . '" width="50"></td>';
+            $html .= '<td>' . $user->balance . ' $</td>';
+            $html .= '</tr>';
+        }
+
+        return response()->json(['html' => $html]);
+    }
+
    
 }
