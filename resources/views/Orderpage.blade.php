@@ -37,7 +37,7 @@
             <a class="linkus" href="{{ route('logout') }}">
                 <i class="bi bi-box-arrow-in-left"></i>
                 <p class="fixtxt">Logout</p>
-            </a>    
+            </a>
         </div>
         <div class="rightbody">
             <!-- <div class="headright">
@@ -76,7 +76,9 @@
                         <td class="fixcenter">{{ $cart_item->price }}</td>
                         <td class="fixcenter">{{ $cart_item->quatifier }}</td>
                         <td class="fixcenter">{{ number_format($cart_item->quatifier * $cart_item->price, 2) }}</td>
-                        <td class="fixcenter">{{ $cart_item->status == 1 ? 'Waiting' : ($cart_item->nameproduct == 2 ? 'Accept' : 'Finish') }}</td>
+                        <td class="fixcenter" style="color:{{ $cart_item->status == 1 ? 'yellow' : ($cart_item->status == 2 ? '#0AD488' : '') }}">
+                            {{ $cart_item->status == 1 ? 'Waiting' : ($cart_item->status == 2 ? 'Finish' : '') }}
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
