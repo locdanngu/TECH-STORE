@@ -19,6 +19,16 @@
             </a>
             <hr style="border:1px solid #FFFFFF; width:100%">
 
+            @foreach($useradmin as $useradmin)
+            <div class="linkus" href="#" style="height:5em">
+                <input type="hidden" value="{{ $useradmin->id }}">
+                <img src="{{ $useradmin->avatar }}" style="width:50px; height:50px;border-radius:50%">
+                <p class="fixtxt">{{ $useradmin->name }}</p>
+            </div>
+
+            @endforeach
+
+
         </div>
         <div style="display:flex; flex-direction: column; width:80%">
 

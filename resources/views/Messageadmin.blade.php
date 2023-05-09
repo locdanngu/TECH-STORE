@@ -170,7 +170,7 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
+                    @if(!empty($usersendmessage))
                     <div class="card shadow mb-4">
                         <div class="card-body">
                             <div class="table-responsive" style="height:590px" id="tailai">
@@ -227,6 +227,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                     <!-- Content Row -->
 
                     <!-- End of Main Content -->
