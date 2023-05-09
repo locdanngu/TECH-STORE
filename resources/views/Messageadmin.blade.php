@@ -453,45 +453,11 @@
             });
         }
 
-
-
-
-        // $('#buttonsend').click(function() {
-        //     // Thực hiện ajax request để gửi tin nhắn
-        //     $.ajax({
-        //         type: 'POST',
-        //         url: '{{ route("admin.addmessage") }}',
-        //         data: {
-        //             _token: '{{ csrf_token() }}',
-        //             messagecontent: $('textarea[name="messagecontent"]').val(),
-        //             sender_id: $('.sender_id').val(),
-        //         },
-        //         success: function(response) {
-        //             $('#message-container').load(window.location.href +
-        //                 ' #message-container',
-        //                 function() {
-        //                     $('#reset').load(window.location.href + ' #reset',
-        //                         function() {
-        //                             $('textarea[name="messagecontent"]').val('');
-        //                             $('textarea[name="messagecontent"]').css(
-        //                                 'height', '3em');
-        //                             $(".nav-item.user").eq(0).addClass("active");
-        //                         });
-        //                 });
-        //         },
-        //         error: function(xhr, status, error) {
-        //             // Xử lý lỗi nếu cần
-        //         }
-        //     });
-        // });
-
-
         $('#buttonsend').click(function() {
             sendMessage();
         });
 
-
-        $('.nav-item.user').on("click", function() {
+        function handleUserClick() {
             $(".nav-item.user").removeClass("active");
             $(this).addClass("active");
             var inputVal = $(this).find('input').val();
@@ -508,13 +474,17 @@
                     $('#buttonsend').click(function() {
                         sendMessage();
                     });
-
+                    $('#message-container').scrollTop($('#message-container')[0].scrollHeight);
                 },
                 error: function(xhr, status, error) {
                     // Xử lý lỗi nếu cần
                 }
             });
-        });
+        }
+
+        $('.nav-item.user').on("click", handleUserClick);
+
+
 
     });
 
