@@ -298,24 +298,30 @@
                     sender_id: $('.sender_id').val(),
                 },
                 success: function(response) {
-                    $('#message-container').load(window.location.href + ' #message-container',
-                        function() {
-                            $('#reset').load(window.location.href + ' #reset', function() {
-                                $('#ajaxboxmess').load(window.location.href +
-                                    ' #ajaxboxmess',
-                                    function() {
-                                        $('textarea[name="messagecontent"]').val(
-                                        '');
-                                        $('textarea[name="messagecontent"]').css(
-                                            'height',
-                                            '3em');
-                                        $(".nav-item.user").eq(0).addClass(
-                                        "active");
-                                        $('.nav-item.user').on("click",
-                                            handleUserClick);
-                                    });
+
+                    $('#reset').load(window.location.href + ' #reset', function() {
+                        $('#ajaxboxmess').load(window.location.href +
+                            ' #ajaxboxmess',
+                            function() {
+                                $('textarea[name="messagecontent"]').val(
+                                    '');
+                                $('textarea[name="messagecontent"]').css(
+                                    'height',
+                                    '3em');
+                                $(".nav-item.user").eq(0).addClass(
+                                    "active");
+                                $.get('/Admin/Message', function(data) {
+                                    var messageContent = $(data).find(
+                                        '#message-container').html();
+                                    $('#message-container').html(
+                                    messageContent);
+                                });
+
+                                $('.nav-item.user').on("click",
+                                    handleUserClick);
                             });
-                        });
+                    });
+
                 },
                 error: function(xhr, status, error) {
                     // Xử lý lỗi nếu cần
