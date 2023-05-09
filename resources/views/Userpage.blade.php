@@ -54,15 +54,29 @@
                             <i class="bi bi-bell"></i>
                         </button>
                         <ul class="dropdown-menu">
+                            @if(empty($notification))
+                            <li class="dropdown-item dropdown-item-ignore-close" style="justify-content:center">
+                                <span>Nothing Here!</span>
+                            </li>
+                            @else
                             @foreach($notification as $notification)
                             <li class="dropdown-item dropdown-item-ignore-close">
                                 <img src="{{ $notification->image }}" class="noti">
-                                <span
-                                    style="font-weight: 500;color:{{ $notification->status == 2 ? 'green' : ($notification->status == 1 ? 'orange' : 'red') }}">
-                                    {{ $notification->notification }}
-                                </span>
+                                <div style="display:flex;flex-direction:column">
+                                    <span
+                                        style="font-weight: 500;color:{{ $notification->status == 2 ? 'green' : ($notification->status == 1 ? 'orange' : 'red') }}">
+                                        {{ $notification->notification }}
+                                    </span>
+                                    <span style="font-weight: 400; font-size:10px;margin-top:.25em">{{ $notification->updated_at }}</span>
+                                </div>
                             </li>
                             @endforeach
+                            @endif
+                            <hr>
+                            <li class="dropdown-item dropdown-item-ignore-close"
+                                style="justify-content:center; height:2em !important">
+                                <a href="#" style="font-weight: 400">See more</a>
+                            </li>
                         </ul>
                     </div>
                     <!-- <a href="" class="btnlink"><i class="bi bi-bell"></i></a> -->

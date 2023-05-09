@@ -449,7 +449,7 @@ class AdminController extends Controller
 
         $notification = new Notification;
         $notification->id = $input['id'];
-        $notification->notification = 'Your order for product "' . $input['nameproduct'] . '" x' . $input['quatifier'] . ' is on its way to you';
+        $notification->notification = 'Your order for product "' . $input['nameproduct'] . '" x' . $input['quatifier'] . ' is "on its way to you"';
         $notification->image = $input['image'];
         $notification->status = 2;
         $notification->save();
