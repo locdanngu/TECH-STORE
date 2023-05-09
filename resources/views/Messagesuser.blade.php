@@ -38,8 +38,6 @@
         height: 50px;
         border-radius: 50%;
     }
-
-    
     </style>
 </head>
 
@@ -66,21 +64,8 @@
 
         </div>
         <div style="display:flex; flex-direction: column; width:80%;padding:2em" id="boxchat">
-            <span style="font-size:3em;color:white">Choice 1 admin your want to chat!</span>
-            <!-- <div class="boxmess" style="border: 1px solid white;">
-                <div style="padding:1em;display:flex;align-items:center">
-                    <img src="{{ $useradmin->avatar }}" class="img">
-                    <p class="fixtxt" style="color:White;font-weight:bold">{{ $useradmin->name }}</p>
-                </div>
-                <hr class="hr">
-                <div class="noidungchat">
-
-                </div>
-                <div style="display:flex;justify-content:space-between;padding:1em 1em">
-                    <textarea class="textarea"></textarea>
-                    <button class="sendbtn">Send</button>
-                </div>
-            </div> -->
+            <!-- <span style="font-size:3em;color:white">Choice 1 admin your want to chat!</span> -->
+            
         </div>
 
     </div>
