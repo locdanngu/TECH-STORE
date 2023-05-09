@@ -182,7 +182,8 @@
                                 </div>
                                 <hr>
                                 <div id="message-container"
-                                    style="max-height: 450px;height: 450px;overflow-x: auto;padding: 0 2em;">
+                                    style="max-height: 450px;height: 450px;overflow-x: auto;padding: 0 2em;"
+                                    class="capnhat">
                                     @foreach ($messages as $message)
                                     @if($message->sender_id == $user->id)
                                     <div class="d-flex flex-column align-items-end">
@@ -304,12 +305,12 @@
                                     ' #ajaxboxmess',
                                     function() {
                                         $('textarea[name="messagecontent"]').val(
-                                            '');
+                                        '');
                                         $('textarea[name="messagecontent"]').css(
                                             'height',
                                             '3em');
                                         $(".nav-item.user").eq(0).addClass(
-                                            "active");
+                                        "active");
                                         $('.nav-item.user').on("click",
                                             handleUserClick);
                                     });
