@@ -414,8 +414,7 @@
     @extends('layouts.Linkadmin')
 
     <script>
-    var messageContainer = $("#message-container");
-    messageContainer.scrollTop(messageContainer[0].scrollHeight);
+    $('#message-container').scrollTop($('#message-container')[0].scrollHeight);
 
     function autoGrow(element) {
         element.style.height = "3em";
@@ -443,7 +442,8 @@
                                 $('textarea[name="messagecontent"]').css('height',
                                     '3em');
                                 $(".nav-item.user").eq(0).addClass("active");
-                                $("#message-container").scrollTop($(document).height());
+                                $('#message-container').scrollTop($('#message-container')[0].scrollHeight);
+                                $('.nav-item.user').on("click", handleUserClick);
                             });
                         });
                 },
@@ -452,10 +452,6 @@
                 }
             });
         }
-
-        $('#buttonsend').click(function() {
-            sendMessage();
-        });
 
         function handleUserClick() {
             $(".nav-item.user").removeClass("active");
@@ -481,6 +477,10 @@
                 }
             });
         }
+
+        $('#buttonsend').click(function() {
+            sendMessage();
+        });
 
         $('.nav-item.user').on("click", handleUserClick);
 
