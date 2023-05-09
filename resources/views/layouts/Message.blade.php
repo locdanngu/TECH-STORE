@@ -11,7 +11,7 @@
         <h6 class="dropdown-header">
             Message Center
         </h6>
-        @foreach($messages as $message)
+        @foreach($lastmessages as $message)
         <div class="dropdown-item d-flex align-items-center">
             @if($message->sender_id == $user->id)
             <input type="hidden" value="{{ $message->receiver_id }}" name="sender_id">

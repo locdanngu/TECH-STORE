@@ -25,6 +25,11 @@ class AdminController extends Controller
                             ->orderBy('created_at', 'asc')
                             ->take(5)
                             ->pluck('sender_id');
+        $senderIdsCount = Message::select('sender_id')
+                            ->where('receiver_id', $user->id)
+                            ->distinct('sender_id')
+                            ->orderBy('created_at', 'asc')
+                            ->count();
 
         $latest_messages = [];
 
@@ -95,32 +100,12 @@ class AdminController extends Controller
         // dd($result);
         // Kết quả sẽ là một associative array với key là idcategory và value là số lượng sản phẩm của từng idcategory
         $countuser = User::where('role', 'customer')->get()->count();
-        
-        $sender_ids = Message::select('sender_id')
-                    ->where('receiver_id', $user->id)
-                    ->distinct('sender_id')
-                    ->orderBy('created_at', 'asc')
-                    ->take(5)
-                    ->pluck('sender_id');
 
-        $latest_messages = [];
+        $message_data = $this->messbox();
 
-        foreach ($sender_ids as $sender_id) {
-            $latest_message = Message::where(function($query) use ($user, $sender_id) {
-                                    $query->where('sender_id', $user->id)
-                                        ->where('receiver_id', $sender_id);
-                                })
-                                ->orWhere(function($query) use ($user, $sender_id) {
-                                    $query->where('sender_id', $sender_id)
-                                        ->where('receiver_id', $user->id);
-                                })
-                                ->orderBy('created_at', 'desc')
-                                ->first();
-            $latest_messages[] = $latest_message;
-        }
-        usort($latest_messages, function($a, $b) {
-            return  strtotime($b->created_at) - strtotime($a->created_at) ;
-        });
+        // Lấy giá trị từ mảng kết quả
+        $latest_messages = $message_data['latest_messages'];
+        $senderIdsCount = $message_data['senderIdsCount'];
 
         return view('Admin', ['user' => $user,
                               'revenue' => $revenue,
@@ -131,7 +116,8 @@ class AdminController extends Controller
                               'categoryvalue' => $categoryvalue,
                               'result' => $result,
                               'countuser' => $countuser,
-                              'messages' => $latest_messages,]);
+                              'senderIdsCount' => $senderIdsCount,
+                              'lastmessages' => $latest_messages,]);
     }
 
 
@@ -196,7 +182,13 @@ class AdminController extends Controller
         $category = Category::orderBy('idcategory', 'asc')->get();
         $category2 = Category::orderBy('idcategory', 'asc')->get();
         $category3 = Category::orderBy('idcategory', 'asc')->get();
-        return view('Category', ['user' => $user, 'category' => $category, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
+        $message_data = $this->messbox();
+
+        // Lấy giá trị từ mảng kết quả
+        $latest_messages = $message_data['latest_messages'];
+        $senderIdsCount = $message_data['senderIdsCount'];
+
+        return view('Category', ['senderIdsCount' => $senderIdsCount,'lastmessages' => $latest_messages,'user' => $user, 'category' => $category, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
     }
 
 
@@ -207,7 +199,13 @@ class AdminController extends Controller
         $category = Category::orderBy('idcategory', 'asc')->get();
         $category2 = Category::orderBy('idcategory', 'asc')->get();
         $category3 = Category::orderBy('idcategory', 'asc')->get();
-        return view('Product', ['user' => $user, 'products' => $products, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
+        $message_data = $this->messbox();
+
+        // Lấy giá trị từ mảng kết quả
+        $latest_messages = $message_data['latest_messages'];
+        $senderIdsCount = $message_data['senderIdsCount'];
+
+        return view('Product', ['senderIdsCount' => $senderIdsCount,'lastmessages' => $latest_messages,'user' => $user, 'products' => $products, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
     }
 
     public function viewOrder()
@@ -218,7 +216,13 @@ class AdminController extends Controller
         $category = Category::orderBy('idcategory', 'asc')->get();
         $category2 = Category::orderBy('idcategory', 'asc')->get();
         $category3 = Category::orderBy('idcategory', 'asc')->get();
-        return view('Order', ['user' => $user, 'products' => $products, 'cart' => $cart, 'category2' => $category2, 'category' => $category, 'category3' => $category3]);
+        $message_data = $this->messbox();
+
+        // Lấy giá trị từ mảng kết quả
+        $latest_messages = $message_data['latest_messages'];
+        $senderIdsCount = $message_data['senderIdsCount'];
+
+        return view('Order', ['senderIdsCount' => $senderIdsCount,'lastmessages' => $latest_messages,'user' => $user, 'products' => $products, 'cart' => $cart, 'category2' => $category2, 'category' => $category, 'category3' => $category3]);
     }
 
     public function viewHistory()
@@ -229,7 +233,13 @@ class AdminController extends Controller
         $category = Category::orderBy('idcategory', 'asc')->get();
         $category2 = Category::orderBy('idcategory', 'asc')->get();
         $category3 = Category::orderBy('idcategory', 'asc')->get();
-        return view('History', ['user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
+        $message_data = $this->messbox();
+
+        // Lấy giá trị từ mảng kết quả
+        $latest_messages = $message_data['latest_messages'];
+        $senderIdsCount = $message_data['senderIdsCount'];
+
+        return view('History', ['senderIdsCount' => $senderIdsCount,'lastmessages' => $latest_messages,'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
     }
 
     public function viewDenyorder()
@@ -240,7 +250,13 @@ class AdminController extends Controller
         $category = Category::orderBy('idcategory', 'asc')->get();
         $category2 = Category::orderBy('idcategory', 'asc')->get();
         $category3 = Category::orderBy('idcategory', 'asc')->get();
-        return view('Denyorder', ['user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
+        $message_data = $this->messbox();
+
+        // Lấy giá trị từ mảng kết quả
+        $latest_messages = $message_data['latest_messages'];
+        $senderIdsCount = $message_data['senderIdsCount'];
+
+        return view('Denyorder', ['senderIdsCount' => $senderIdsCount,'lastmessages' => $latest_messages,'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
     }
     
 
@@ -456,7 +472,13 @@ class AdminController extends Controller
         $category = Category::orderBy('idcategory', 'asc')->get();
         $category2 = Category::orderBy('idcategory', 'asc')->get();
         $category3 = Category::orderBy('idcategory', 'asc')->get();
-        return view('Profileadmin', ['user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
+        $message_data = $this->messbox();
+
+        // Lấy giá trị từ mảng kết quả
+        $latest_messages = $message_data['latest_messages'];
+        $senderIdsCount = $message_data['senderIdsCount'];
+
+        return view('Profileadmin', ['senderIdsCount' => $senderIdsCount,'lastmessages' => $latest_messages,'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
     }
 
     public function changeProfile(Request $request)
@@ -489,7 +511,13 @@ class AdminController extends Controller
         $category = Category::orderBy('idcategory', 'asc')->get();
         $category2 = Category::orderBy('idcategory', 'asc')->get();
         $category3 = Category::orderBy('idcategory', 'asc')->get();
-        return view('Settingadmin', ['user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
+        $message_data = $this->messbox();
+
+        // Lấy giá trị từ mảng kết quả
+        $latest_messages = $message_data['latest_messages'];
+        $senderIdsCount = $message_data['senderIdsCount'];
+
+        return view('Settingadmin', ['senderIdsCount' => $senderIdsCount,'lastmessages' => $latest_messages,'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
     }
 
     public function viewMessage(Request $request)
@@ -526,32 +554,39 @@ class AdminController extends Controller
                 ->get()
                 ->reverse();  
                 
-        $sender_ids = Message::select('sender_id')
-                    ->where('receiver_id', $user->id)
-                    ->distinct('sender_id')
-                    ->orderBy('created_at', 'asc')
-                    ->pluck('sender_id');
+        // $sender_ids = Message::select('sender_id')
+        //             ->where('receiver_id', $user->id)
+        //             ->distinct('sender_id')
+        //             ->orderBy('created_at', 'asc')
+        //             ->pluck('sender_id');
 
-        $latest_messages = [];
+        // $latest_messages = [];
 
-        foreach ($sender_ids as $sender_id) {
-            $latest_message = Message::where(function($query) use ($user, $sender_id) {
-                                    $query->where('sender_id', $user->id)
-                                        ->where('receiver_id', $sender_id);
-                                })
-                                ->orWhere(function($query) use ($user, $sender_id) {
-                                    $query->where('sender_id', $sender_id)
-                                        ->where('receiver_id', $user->id);
-                                })
-                                ->orderBy('created_at', 'desc')
-                                ->first();
-            $latest_messages[] = $latest_message;
-        }
-        usort($latest_messages, function($a, $b) {
-            return  strtotime($b->created_at) - strtotime($a->created_at) ;
-        });
+        // foreach ($sender_ids as $sender_id) {
+        //     $latest_message = Message::where(function($query) use ($user, $sender_id) {
+        //                             $query->where('sender_id', $user->id)
+        //                                 ->where('receiver_id', $sender_id);
+        //                         })
+        //                         ->orWhere(function($query) use ($user, $sender_id) {
+        //                             $query->where('sender_id', $sender_id)
+        //                                 ->where('receiver_id', $user->id);
+        //                         })
+        //                         ->orderBy('created_at', 'desc')
+        //                         ->first();
+        //     $latest_messages[] = $latest_message;
+        // }
+        // usort($latest_messages, function($a, $b) {
+        //     return  strtotime($b->created_at) - strtotime($a->created_at) ;
+        // });
 
-        return view('Messageadmin', ['latest_messages' => $latest_messages,'usersendmessage' => $usersendmessage,'messages' => $messages,'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
+        $message_data = $this->messbox();
+
+        // Lấy giá trị từ mảng kết quả
+        $latest_messages = $message_data['latest_messages'];
+        $senderIdsCount = $message_data['senderIdsCount'];
+
+
+        return view('Messageadmin', ['senderIdsCount' => $senderIdsCount,'lastmessages' => $latest_messages,'latest_messages' => $latest_messages,'usersendmessage' => $usersendmessage,'messages' => $messages,'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
     }
 
     public function reloadMessage(Request $request)
@@ -656,7 +691,13 @@ class AdminController extends Controller
         $category = Category::orderBy('idcategory', 'asc')->get();
         $category2 = Category::orderBy('idcategory', 'asc')->get();
         $category3 = Category::orderBy('idcategory', 'asc')->get();
-        return view('Activitylog', ['users' => $users,'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
+        $message_data = $this->messbox();
+
+        // Lấy giá trị từ mảng kết quả
+        $latest_messages = $message_data['latest_messages'];
+        $senderIdsCount = $message_data['senderIdsCount'];
+
+        return view('Activitylog', ['senderIdsCount' => $senderIdsCount,'lastmessages' => $latest_messages,'users' => $users,'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
     }
 
     public function verifyEmail(Request $request)
@@ -675,7 +716,13 @@ class AdminController extends Controller
         $category = Category::orderBy('idcategory', 'asc')->get();
         $category2 = Category::orderBy('idcategory', 'asc')->get();
         $category3 = Category::orderBy('idcategory', 'asc')->get();
-        return view('Codeverifyemailadmin', ['useremail' => $useremail, 'user' => $user, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
+        $message_data = $this->messbox();
+
+        // Lấy giá trị từ mảng kết quả
+        $latest_messages = $message_data['latest_messages'];
+        $senderIdsCount = $message_data['senderIdsCount'];
+
+        return view('Codeverifyemailadmin', ['senderIdsCount' => $senderIdsCount,'lastmessages' => $latest_messages,'useremail' => $useremail, 'user' => $user, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
     }
 
 
@@ -694,7 +741,13 @@ class AdminController extends Controller
             $category = Category::orderBy('idcategory', 'asc')->get();
             $category2 = Category::orderBy('idcategory', 'asc')->get();
             $category3 = Category::orderBy('idcategory', 'asc')->get();
-            return view('Codeverifyemailadmin', ['useremail' => $useremail, 'user' => $user, 'category' => $category, 'category2' => $category2, 'category3' => $category3])->withErrors(['error' => 'Code has expired or incorrect!']);
+            $message_data = $this->messbox();
+
+            // Lấy giá trị từ mảng kết quả
+            $latest_messages = $message_data['latest_messages'];
+            $senderIdsCount = $message_data['senderIdsCount'];
+
+            return view('Codeverifyemailadmin', ['senderIdsCount' => $senderIdsCount,'lastmessages' => $latest_messages,'useremail' => $useremail, 'user' => $user, 'category' => $category, 'category2' => $category2, 'category3' => $category3])->withErrors(['error' => 'Code has expired or incorrect!']);
         }
     }
 
