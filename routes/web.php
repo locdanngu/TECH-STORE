@@ -23,6 +23,8 @@ Route::get('/Forgotpage', function () {
     return view('Forgotpage');
 })->name('forgot.page');
 
+Route::get('/mess', [AdminController::class, 'viewmesscount'])->middleware('admin');
+
 // Route::get('/a', function () {
 //     return view('Verifyemail');
 // })->name('a');

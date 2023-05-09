@@ -17,6 +17,42 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+    public function messbox(){
+        $user = Auth::user();
+        $sender_ids = Message::select('sender_id')
+                            ->where('receiver_id', $user->id)
+                            ->distinct('sender_id')
+                            ->orderBy('created_at', 'asc')
+                            ->take(5)
+                            ->pluck('sender_id');
+
+        $latest_messages = [];
+
+        foreach ($sender_ids as $sender_id) {
+            $latest_message = Message::where(function($query) use ($user, $sender_id) {
+                                            $query->where('sender_id', $user->id)
+                                                ->where('receiver_id', $sender_id);
+                                        })
+                                        ->orWhere(function($query) use ($user, $sender_id) {
+                                            $query->where('sender_id', $sender_id)
+                                                ->where('receiver_id', $user->id);
+                                        })
+                                        ->orderBy('created_at', 'desc')
+                                        ->first();
+            $latest_messages[] = $latest_message;
+        }
+        usort($latest_messages, function($a, $b) {
+            return  strtotime($b->created_at) - strtotime($a->created_at) ;
+        });
+
+        $result = [
+            'latest_messages' => $latest_messages,
+            'senderIdsCount' => $senderIdsCount,
+        ];
+    
+        return $result;
+    }
+
     public function viewAdmin()
     {   
         $user = Auth::user();
