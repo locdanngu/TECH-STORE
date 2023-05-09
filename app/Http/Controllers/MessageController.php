@@ -19,8 +19,14 @@ class MessageController extends Controller
     {   
         $user = Auth::user();
         $useradmin = User::where('id', $request['sender_id'])->first();
-        $messages = Message::where('sender_id', $user->id)
-                            ->where('receiver_id', $useradmin->id)
+        $messages = Message::Where(function ($query) use ($user, $useradmin) {
+                                $query->where('sender_id', $user->id)
+                                      ->where('receiver_id', $useradmin->id);
+                            })
+                            ->orWhere(function ($query) use ($user, $useradmin) {
+                                $query->where('sender_id', $useradmin->id)
+                                      ->where('receiver_id', $user->id);
+                            })
                             ->latest('created_at')
                             ->take(20)
                             ->get()
