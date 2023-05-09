@@ -643,20 +643,6 @@ class AdminController extends Controller
 
 
         return response()->json(['html' => $html]);
-        // return response()->json([
-        //     'usersendmessage' => $usersendmessage,
-        //     'messages' => $messages
-        // ]);
-
-
-
-
-
-
-
-
-
-
     }
 
     public function addMessage(Request $request)
