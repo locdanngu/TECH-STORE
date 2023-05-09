@@ -76,7 +76,8 @@
                             width="50">
                         <div class="d-flex flex-column w-75">
                             <span style="color: black;font-weight:800">{{ $message->receiver->name }}</span>
-                            <span style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 100%;">{{ $message->message }}</span>
+                            <span
+                                style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 100%;">{{ $message->message }}</span>
                             <span>Your - {{ \Carbon\Carbon::now()->diffForHumans($message->created_at, true) }}</span>
                         </div>
                     </div>
@@ -89,7 +90,8 @@
                             width="50">
                         <div class="d-flex flex-column w-75">
                             <span style="color: black;font-weight:800">{{ $message->sender->name }}</span>
-                            <span style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 100%;">{{ $message->message }}</span>
+                            <span
+                                style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 100%;">{{ $message->message }}</span>
                             <span>{{ substr($message->sender->name, strrpos($message->sender->name, ' ') + 1) }}
                                 - {{ \Carbon\Carbon::now()->diffForHumans($message->created_at, true) }}</span>
                         </div>
@@ -424,8 +426,7 @@
         // Đăng ký sự kiện click cho nút
         $(".nav-item.user").eq(0).addClass("active");
 
-        $('#buttonsend').click(function() {
-            // Thực hiện ajax request để gửi tin nhắn
+        function sendMessage() {
             $.ajax({
                 type: 'POST',
                 url: '{{ route("admin.addmessage") }}',
@@ -435,23 +436,60 @@
                     sender_id: $('.sender_id').val(),
                 },
                 success: function(response) {
-                    $('#message-container').load(window.location.href +
-                        ' #message-container',
+                    $('#message-container').load(window.location.href + ' #message-container',
                         function() {
-                            $('#reset').load(window.location.href + ' #reset',
-                                function() {
-                                    $('textarea[name="messagecontent"]').val('');
-                                    $('textarea[name="messagecontent"]').css(
-                                        'height', '3em');
-                                    $(".nav-item.user").eq(0).addClass("active");
-                                });
+                            $('#reset').load(window.location.href + ' #reset', function() {
+                                $('textarea[name="messagecontent"]').val('');
+                                $('textarea[name="messagecontent"]').css('height',
+                                    '3em');
+                                $(".nav-item.user").eq(0).addClass("active");
+                                $("#message-container").scrollTop($(document).height());
+                            });
                         });
                 },
                 error: function(xhr, status, error) {
                     // Xử lý lỗi nếu cần
                 }
             });
+        }
+
+
+
+
+        // $('#buttonsend').click(function() {
+        //     // Thực hiện ajax request để gửi tin nhắn
+        //     $.ajax({
+        //         type: 'POST',
+        //         url: '{{ route("admin.addmessage") }}',
+        //         data: {
+        //             _token: '{{ csrf_token() }}',
+        //             messagecontent: $('textarea[name="messagecontent"]').val(),
+        //             sender_id: $('.sender_id').val(),
+        //         },
+        //         success: function(response) {
+        //             $('#message-container').load(window.location.href +
+        //                 ' #message-container',
+        //                 function() {
+        //                     $('#reset').load(window.location.href + ' #reset',
+        //                         function() {
+        //                             $('textarea[name="messagecontent"]').val('');
+        //                             $('textarea[name="messagecontent"]').css(
+        //                                 'height', '3em');
+        //                             $(".nav-item.user").eq(0).addClass("active");
+        //                         });
+        //                 });
+        //         },
+        //         error: function(xhr, status, error) {
+        //             // Xử lý lỗi nếu cần
+        //         }
+        //     });
+        // });
+
+
+        $('#buttonsend').click(function() {
+            sendMessage();
         });
+
 
         $('.nav-item.user').on("click", function() {
             $(".nav-item.user").removeClass("active");
@@ -468,53 +506,9 @@
                     var html = response.html;
                     $('#tailai').html(html);
                     $('#buttonsend').click(function() {
-                        // Thực hiện ajax request để gửi tin nhắn
-                        $.ajax({
-                            type: 'POST',
-                            url: '{{ route("admin.addmessage") }}',
-                            data: {
-                                _token: '{{ csrf_token() }}',
-                                messagecontent: $(
-                                        'textarea[name="messagecontent"]')
-                                    .val(),
-                                sender_id: $('.sender_id').val(),
-                            },
-                            success: function(response) {
-                                $('#message-container').load(window
-                                    .location.href +
-                                    ' #message-container',
-                                    function() {
-                                        $('#reset').load(window
-                                            .location.href +
-                                            ' #reset',
-                                            function() {
-                                                $('textarea[name="messagecontent"]')
-                                                    .val('');
-                                                $('textarea[name="messagecontent"]')
-                                                    .css(
-                                                        'height',
-                                                        '3em');
-                                                $(".nav-item.user")
-                                                    .eq(0)
-                                                    .addClass(
-                                                        "active"
-                                                        );
-                                            });
-                                    });
-                            },
-                            error: function(xhr, status, error) {
-                                // Xử lý lỗi nếu cần
-                            }
-                        });
+                        sendMessage();
                     });
 
-                    var messageContainer = $("#message-container");
-                    messageContainer.scrollTop(messageContainer[0].scrollHeight);
-
-                    function autoGrow(element) {
-                        element.style.height = "3em";
-                        element.style.height = (element.scrollHeight) + "px";
-                    }
                 },
                 error: function(xhr, status, error) {
                     // Xử lý lỗi nếu cần
