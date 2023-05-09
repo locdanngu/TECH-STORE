@@ -248,7 +248,7 @@
                                         </div>
                                         <div class="font-weight-bold">
                                             <div class="text-truncate" style="text-align: left;">{{ $message->message }}</div>
-                                            <div class="small text-gray-500">Your ·
+                                            <div class="small text-gray-500" style="text-align: left;">Your ·
                                                 {{ \Carbon\Carbon::now()->diffForHumans($message->created_at, true) }}
                                             </div>
                                         </div>
@@ -262,7 +262,7 @@
                                         </div>
                                         <div class="font-weight-bold">
                                             <div class="text-truncate" style="text-align: left;">{{ $message->message }}</div>
-                                            <div class="small text-gray-500">{{ $message->sender->name }} ·
+                                            <div class="small text-gray-500" style="text-align: left;">{{ $message->sender->name }} ·
                                                 {{ \Carbon\Carbon::now()->diffForHumans($message->created_at, true) }}
                                             </div>
                                         </div>
