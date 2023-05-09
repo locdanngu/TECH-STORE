@@ -64,8 +64,7 @@
 
         </div>
         <div style="display:flex; flex-direction: column; width:80%;padding:2em" id="boxchat">
-            <!-- <span style="font-size:3em;color:white">Choice 1 admin your want to chat!</span> -->
-            
+            <span style="font-size:3em;color:white">Choice 1 admin your want to chat!</span>
         </div>
 
     </div>
