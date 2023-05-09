@@ -23,12 +23,6 @@ Route::get('/Forgotpage', function () {
     return view('Forgotpage');
 })->name('forgot.page');
 
-Route::get('/mess', [AdminController::class, 'viewmesscount'])->middleware('admin');
-
-// Route::get('/a', function () {
-//     return view('Verifyemail');
-// })->name('a');
-
 
 Route::get('/Profileuserpage', [ProfileuserController::class, 'showProfileuser'])->middleware('user')->name('profileuser.page');        //view thông tin user
 Route::post('/Profileuserpage', [ProfileuserController::class, 'changeProfileuser'])->middleware('user')->name('profileuser.update');   //thay đổi thông tin user

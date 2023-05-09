@@ -129,7 +129,6 @@
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
                         @include('layouts.Message')
 
                         <div class="topbar-divider d-none d-sm-block"></div>
@@ -183,8 +182,7 @@
                                 </div>
                                 <hr>
                                 <div id="message-container"
-                                    style="max-height: 450px;height: 450px;overflow-x: auto;padding: 0 2em;"
-                                    class="capnhat">
+                                    style="max-height: 450px;height: 450px;overflow-x: auto;padding: 0 2em;">
                                     @foreach ($messages as $message)
                                     @if($message->sender_id == $user->id)
                                     <div class="d-flex flex-column align-items-end">
@@ -302,11 +300,19 @@
                     $('#message-container').load(window.location.href + ' #message-container',
                         function() {
                             $('#reset').load(window.location.href + ' #reset', function() {
-                                $('textarea[name="messagecontent"]').val('');
-                                $('textarea[name="messagecontent"]').css('height',
-                                    '3em');
-                                $(".nav-item.user").eq(0).addClass("active");
-                                $('.nav-item.user').on("click", handleUserClick);
+                                $('#ajaxboxmess').load(window.location.href +
+                                    ' #ajaxboxmess',
+                                    function() {
+                                        $('textarea[name="messagecontent"]').val(
+                                            '');
+                                        $('textarea[name="messagecontent"]').css(
+                                            'height',
+                                            '3em');
+                                        $(".nav-item.user").eq(0).addClass(
+                                            "active");
+                                        $('.nav-item.user').on("click",
+                                            handleUserClick);
+                                    });
                             });
                         });
                 },
