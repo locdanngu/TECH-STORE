@@ -442,7 +442,6 @@
                                 $('textarea[name="messagecontent"]').css('height',
                                     '3em');
                                 $(".nav-item.user").eq(0).addClass("active");
-                                $('#message-container').scrollTop($('#message-container')[0].scrollHeight);
                                 $('.nav-item.user').on("click", handleUserClick);
                             });
                         });
