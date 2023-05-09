@@ -448,6 +448,7 @@ class AdminController extends Controller
         $notification->id = $input['id'];
         $notification->notification = 'Your order for product "' . $input['nameproduct'] . '" x' . $input['quatifier'] . ' is on its way to you';
         $notification->image = $input['image'];
+        $notification->status = $input['2'];
         $notification->save();
         return back();
     }
@@ -460,6 +461,8 @@ class AdminController extends Controller
         $notification->id = $input['id'];
         $notification->notification = 'Your order for product "' . $input['nameproduct'] . '" x' . $input['quatifier'] . ' is deny because "' . $input['reason'] . '"';
         $notification->image = $input['image'];
+        $notification->status = $input['3'];
+        //1 watting //2 accept //3 deny
         $notification->save();
         return back();
     }

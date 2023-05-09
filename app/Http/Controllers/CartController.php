@@ -106,6 +106,7 @@ class CartController extends Controller
                 $image = Product::select('image')->where('idproduct', $cartItem->idproduct)->first()->image;
                 $notification->notification = 'Your order for product "' . $productName . '" x' . $cartItem->quatifier . ' is waiting for confirmation';
                 $notification->image = $image;
+                $notification->status = $input['1'];
                 // dd($notification);
                 $notification->save();
             }

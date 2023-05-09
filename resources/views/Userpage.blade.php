@@ -47,18 +47,22 @@
                 </div>
                 <div class="righthead">
                     <i class="bi bi-arrow-bar-right"></i>
-                    <a href="{{ route('user.message') }}" class="btnlink"><i class="bi bi-chat"></i></a>
+                    <a href="{{ route('user.message') }}" class="btnlink"><i class="bi bi-chat"
+                            style="margin-right:.5em !important"></i></a>
                     <div class="dropdown">
                         <button class="btn" type="button" data-bs-toggle="dropdown">
                             <i class="bi bi-bell"></i>
                         </button>
                         <ul class="dropdown-menu">
-                        @foreach($notification as $notification)
+                            @foreach($notification as $notification)
                             <li class="dropdown-item dropdown-item-ignore-close">
                                 <img src="{{ $notification->image }}" class="noti">
-                                <span style="font-weight: 500">{{ $notification->notification }}</span>
+                                <span
+                                    style="font-weight: 500;color:{{ $notification->status == 2 ? 'green' : ($notification->status == 1 ? 'orange' : 'red') }}">
+                                    {{ $notification->notification }}
+                                </span>
                             </li>
-                        @endforeach
+                            @endforeach
                         </ul>
                     </div>
                     <!-- <a href="" class="btnlink"><i class="bi bi-bell"></i></a> -->
@@ -216,7 +220,7 @@
             "visibility": "",
         });
         $(".bi-chat").css({
-            "margin-right": "",
+            "margin-right": ".5em",
         });
 
         setTimeout(function() {
