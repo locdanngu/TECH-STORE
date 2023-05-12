@@ -370,6 +370,7 @@
             @csrf
             <input type="hidden" name="idcart" value="">
             <input type="hidden" name="image" value="">
+            <input type="hidden" name="idproduct" value="">
             <input type="hidden" name="id" value="">
             <input type="hidden" name="nameproduct" value="">
             <input type="hidden" name="quatifier" value="">
@@ -381,6 +382,10 @@
                 </button>
             </div>
             <div class="modal-body">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Id Product</span>
+                    <span name="idproduct" style="display: flex;align-items: center;margin-left: 2em;"></span>
+                </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Name Product</span>
                     <span name="nameproduct" style="display: flex;align-items: center;margin-left: 2em;"></span>

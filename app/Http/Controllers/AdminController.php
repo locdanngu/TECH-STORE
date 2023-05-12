@@ -446,7 +446,16 @@ class AdminController extends Controller
             $revenue->orderproduct += $input['quatifier'];
             $revenue->save();
         }
-
+        $product = Product::where('idproduct', $input['idproduct'])->first();
+        
+        if ($product) {
+            $new_inventory_quantity = $product->inventoryquantity - $input['quatifier'];
+            if ($new_inventory_quantity < 0) {
+                $new_inventory_quantity = 0; // Đảm bảo không có số lượng âm
+            }
+            $product->update(['inventoryquantity' => $new_inventory_quantity]);
+        }
+        
         $notification = new Notification;
         $notification->id = $input['id'];
         $notification->notification = 'Your order for product "' . $input['nameproduct'] . '" x' . $input['quatifier'] . ' is "on its way to you"';
@@ -454,6 +463,7 @@ class AdminController extends Controller
         $notification->status = 2;
         $notification->save();
         return back();
+        // return view('Profileadmin', ['senderIdsCount' => $senderIdsCount,'lastmessages' => $latest_messages,'user' => $user, 'products' => $products, 'cart' => $cart, 'category' => $category, 'category2' => $category2, 'category3' => $category3]);
     }
 
     public function denyOrder(Request $request)

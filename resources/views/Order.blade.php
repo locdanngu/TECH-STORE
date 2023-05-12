@@ -237,6 +237,7 @@
                                             <td><button class="buttonfix" data-toggle="modal" data-target="#acceptModal"
                                                     data-idcart="{{ $cart->idcart }}"
                                                     data-nameproduct="{{ $cart->product->nameproduct }}"
+                                                    data-idproduct="{{ $cart->idproduct }}"
                                                     data-quatifier="{{ $cart->quatifier }}" data-id="{{ $cart->id }}"
                                                     data-image="{{ $cart->product->image }}"
                                                     data-totalprice="{{ number_format($cart->quatifier * $cart->product->price, 2) }}">
@@ -289,6 +290,7 @@
         $('#acceptModal').on('shown.bs.modal', function(event) {
             var button = $(event.relatedTarget); // Nút "Change" được nhấn
             var idCart = button.data('idcart'); // Lấy giá trị data-category-id
+            var idProduct = button.data('idproduct'); // Lấy giá trị data-category-id
             var nameProduct = button.data('nameproduct'); // Lấy giá trị data-category-id
             var image = button.data('image'); // Lấy giá trị data-category-id
             var id = button.data('id'); // Lấy giá trị data-category-id
@@ -302,6 +304,8 @@
             modal.find('input[name="totalprice"]').val(totalPrice);
             modal.find('span[name="nameproduct"]').text(nameProduct);
             modal.find('input[name="nameproduct"]').val(nameProduct);
+            modal.find('span[name="idproduct"]').text(idProduct);
+            modal.find('input[name="idproduct"]').val(idProduct);
             modal.find('input[name="quatifier"]').val(quatifier);
             modal.find('span[name="quatifier"]').text(quatifier);
             modal.find('span[name="totalprice"]').text(totalPrice + ' $');
