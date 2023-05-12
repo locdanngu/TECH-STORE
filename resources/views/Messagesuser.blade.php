@@ -83,6 +83,7 @@
                     sender_id: $('.sender_id').val(),
                 },
                 success: function(response) {
+                    var html = response.html;
                     $('#boxchat').html(html);
                     $('.noidungchat').scrollTop($('.noidungchat')[0].scrollHeight);
                     $('#buttonsend').click(function() {
