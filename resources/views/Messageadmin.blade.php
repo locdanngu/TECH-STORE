@@ -78,7 +78,8 @@
                             <span style="color: black;font-weight:800">{{ $message->receiver->name }}</span>
                             <span
                                 style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 100%;">{{ $message->message }}</span>
-                            <span>Your - {{ \Carbon\Carbon::now()->diffForHumans($message->created_at, true) }} ago</span>
+                            <span>Your - {{ \Carbon\Carbon::now()->diffForHumans($message->created_at, true) }}
+                                ago</span>
                         </div>
                     </div>
                 </li>
@@ -315,11 +316,16 @@
                                     var messageContent = $(data).find(
                                         '#message-container').html();
                                     $('#message-container').html(
-                                    messageContent);
+                                        messageContent);
                                 });
 
                                 $('.nav-item.user').on("click",
                                     handleUserClick);
+                                var containerHeight = $('#message-container').prop(
+                                    'scrollHeight');
+                                $('#message-container').scrollTop(containerHeight -
+                                200);
+
                             });
                     });
 
