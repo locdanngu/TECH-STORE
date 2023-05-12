@@ -70,7 +70,31 @@
     </div>
     @extends('layouts.Foot')
     <script>
+    // $('.noidungchat').scrollTop($('.noidungchat')[0].scrollHeight);
+
     $(document).ready(function() {
+        function sendMessage() {
+            $.ajax({
+                type: 'POST',
+                url: '{{ route("user.addmessage") }}',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    messagecontent: $('textarea[name="messagecontent"]').val(),
+                    sender_id: $('.sender_id').val(),
+                },
+                success: function(response) {
+                    $('#boxchat').html(html);
+                    $('.noidungchat').scrollTop($('.noidungchat')[0].scrollHeight);
+                    $('#buttonsend').click(function() {
+                        sendMessage();
+                    });
+                },
+                error: function(xhr, status, error) {
+                    // Xử lý lỗi nếu cần
+                }
+            });
+        }
+
         function choiceboxchat() {
             $(".linkus.boxchat").removeClass("active");
             $(this).addClass("active");
@@ -85,6 +109,10 @@
                 success: function(response) {
                     var html = response.html;
                     $('#boxchat').html(html);
+                    $('.noidungchat').scrollTop($('.noidungchat')[0].scrollHeight);
+                    $('#buttonsend').click(function() {
+                        sendMessage();
+                    });
                 },
                 error: function(xhr, status, error) {
                     // Xử lý lỗi nếu cần
@@ -92,7 +120,11 @@
             });
         }
 
+
+
         $('.linkus.boxchat').on("click", choiceboxchat);
+
+
     });
     </script>
 </body>

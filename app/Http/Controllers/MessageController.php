@@ -36,6 +36,8 @@ class MessageController extends Controller
                 <div style="padding:1em;display:flex;align-items:center">
                     <img src="' . $useradmin->avatar . '" class="img">
                     <p class="fixtxt" style="color:White;font-weight:bold">' . $useradmin->name . '</p>
+                    <input type="hidden" value="' .$useradmin->id. '" name="sender_id"
+                                        class="sender_id"></input>
                 </div>
                 <hr class="hr">
                 <div class="noidungchat" style="padding:2em;height:70vh;overflow-x: auto">';
@@ -68,5 +70,16 @@ class MessageController extends Controller
                     </div>';
 
         return response()->json(['html' => $html]);
+    }
+
+    public function addMessage(Request $request)
+    {   
+        $user = Auth::user();
+        $message = Message::create([
+            'sender_id' => $user->id,
+            'receiver_id' => $request->input('sender_id'),
+            'message' => $request->input('messagecontent'),
+            'read' => 0,
+        ]);
     }
 }

@@ -41,6 +41,7 @@ Route::get('/cart/add/{idproduct}', [CartController::class, 'add'])->middleware(
 Route::delete('/Cartuserpage/deleteall', [CartController::class, 'deleteAll'])->middleware('user')->name('deleteall');
 Route::post('/Cartuserpage/pay', [CartController::class, 'pay'])->middleware('user')->name('cart.pay');
 Route::post('/User/Message', [MessageController::class, 'messChatuser'])->middleware('user')->name('user.boxmessage'); 
+Route::post('/User/AddMessage', [MessageController::class, 'addMessage'])->middleware('user')->name('user.addmessage'); 
 
 Route::get('/Mypurchasepage', [CartController::class, 'viewOrder'])->middleware('user')->name('order.page');     //view lịch sử mua hàng
 
