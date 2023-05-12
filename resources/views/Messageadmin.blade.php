@@ -78,7 +78,7 @@
                             <span style="color: black;font-weight:800">{{ $message->receiver->name }}</span>
                             <span
                                 style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 100%;">{{ $message->message }}</span>
-                            <span>Your - {{ \Carbon\Carbon::now()->diffForHumans($message->created_at, true) }}</span>
+                            <span>Your - {{ \Carbon\Carbon::now()->diffForHumans($message->created_at, true) }} ago</span>
                         </div>
                     </div>
                 </li>
@@ -93,7 +93,7 @@
                             <span
                                 style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 100%;">{{ $message->message }}</span>
                             <span>{{ substr($message->sender->name, strrpos($message->sender->name, ' ') + 1) }}
-                                - {{ \Carbon\Carbon::now()->diffForHumans($message->created_at, true) }}</span>
+                                - {{ \Carbon\Carbon::now()->diffForHumans($message->created_at, true) }} ago</span>
                         </div>
                     </div>
                 </li>
