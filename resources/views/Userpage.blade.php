@@ -48,7 +48,7 @@
                 <div class="righthead">
                     <i class="bi bi-arrow-bar-right"></i>
                     <a href="{{ route('user.message') }}" class="btnlink"><i class="bi bi-chat"
-                            style="margin-right:.5em !important"></i></a>
+                            style=""></i></a>
                     <div class="dropdown">
                         <button class="btn" type="button" data-bs-toggle="dropdown">
                             <i class="bi bi-bell"></i>
@@ -81,7 +81,7 @@
                     </div>
                     <!-- <a href="" class="btnlink"><i class="bi bi-bell"></i></a> -->
                     <a href="{{ route('cart.page') }}" class="btnlink"><i class="bi bi-cart"></i></a>
-                    <img src="{{ $user->avatar }}" class="avataruser">
+                    <a href="{{ route('profileuser.page') }}"><img src="{{ $user->avatar }}" class="avataruser"></a>
                 </div>
 
             </div>
@@ -234,7 +234,7 @@
             "visibility": "",
         });
         $(".bi-chat").css({
-            "margin-right": ".5em",
+            "margin-right": "2em",
         });
 
         setTimeout(function() {

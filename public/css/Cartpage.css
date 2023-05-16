@@ -112,7 +112,7 @@ p {
     opacity: 0.7;
 }
 
-.error{
+.error {
     color: #ff0000;
 }
 
@@ -121,33 +121,33 @@ p {
     background-color: #3b3b3b;
 }
 
-.sotien{
+.sotien {
     display: flex;
     justify-content: space-between;
     width: 25%;
 }
 
-.txtblc{
+.txtblc {
     color: #FFFFFF;
 }
 
-.bi-eye-slash,.bi-eye{
+.bi-eye-slash, .bi-eye {
     color: #FFFFFF;
     cursor: pointer;
     /* transition: 0.5s ease; */
 }
 
-.bi-eye-slash{
+.bi-eye-slash {
     display: none;
 }
 
-.bi-eye-slash.active{
+.bi-eye-slash.active {
     display: block;
 }
 
 
 
-.headright{
+.headright {
     align-items: center;
     margin-bottom: 2em;
     display: flex;
@@ -155,7 +155,7 @@ p {
     justify-content: space-between;
 }
 
-.naptien{
+.naptien {
     border-radius: .25em;
     border: 0;
     background-color: #A100ED;
@@ -164,63 +164,66 @@ p {
     transition: 0.75s ease;
 }
 
-.naptien:hover{
+.naptien:hover {
     background-color: #2D2D2D;
     border: 0.5px solid #A100ED;
 }
 
-table{
+table {
     text-align: center;
-    
+
 }
 
-th,td{
+th, td {
     border-width: var(--bs-border-width) !important;
-  
+
 }
 
-.fixcenter{
+.fixcenter {
     vertical-align: middle;
-    
+
 }
 
-.fixmar{
+.fixmar {
     margin: 0 1em !important;
 }
 
-.fixflex{
+.fixflex {
     display: flex;
+    width: 100%;
+    justify-content: center;
+
 }
 
-.input-qty{
+.input-qty {
     width: 2em;
     font-size: 2em;
 }
 
-.imgsp{
-    width: 20em;
+.imgsp {
+    width: 10em;
 }
 
 
-.btnsave,.btnsave2{
-    
+.btnsave, .btnsave2 {
+
     color: #FFFFFF;
-    
-    
+
+
     text-decoration: none;
     font-weight: bold;
 }
 
-.btnsave:hover{
+.btnsave:hover {
     color: #A100ED;
     /* color: ; */
 }
 
-.space{
+.space {
     height: 2em;
 }
 
-.footright{
+.footright {
     background-color: #3b3b3b;
     display: flex;
     width: 100%;
@@ -233,26 +236,26 @@ th,td{
 }
 
 
-.pay{
+.pay {
     display: flex;
     align-items: center;
 }
 
-.txtsp{
+.txtsp {
     color: #FFFFFF;
     font-weight: bold;
     margin-right: 2em !important;
 
 }
 
-.btnpay{
+.btnpay {
     padding: 0.5em 1em 0.5em 1em;
     border: 0;
     border-radius: 0.25em;
     font-weight: bold;
 }
 
-.naptien2{
+.naptien2 {
     /* font-weight: 800; */
     color: #FFFFFF;
     text-decoration: none;
@@ -263,24 +266,24 @@ th,td{
     transition: 0.5s ease;
 }
 
-.naptien2:hover{
+.naptien2:hover {
     background-color: #A100ED;
     border: 0.5px solid #FFFFFF;
 
 }
 
-.btnsave3{
+.btnsave3 {
     background-color: transparent;
     color: #FFFFFF;
     font-weight: bold;
     border: 0;
 }
 
-.btnsave3:hover{
+.btnsave3:hover {
     color: #A100ED;
 }
 
-.smallavatar{
+.smallavatar {
     border-radius: 50%;
     width: 60%;
 }

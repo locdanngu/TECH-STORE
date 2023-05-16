@@ -24,8 +24,8 @@
         <p class="footbody">Specializes in quality electronics, ranging from phones and tablets to home appliances.
             Competitive prices, attentive service, and trustworthy reputation.</p>
         <div class="btn">
-            <button class="btn2">I'm new</button>
-            <button class="btn2">Watch more</button>
+            <a class="btn2" href="{{ route('signup.page') }}" style="text-decoration:none">I'm new</a>
+            <a class="btn2" href="{{ route('login.page') }}" style="text-decoration:none">Watch more</a>
         </div>
     </div>
 

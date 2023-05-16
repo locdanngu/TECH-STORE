@@ -119,6 +119,7 @@
             <div class="pay">
                 <p class="txtsp" id="cbxsl2">Product({{$total_product}}):</p>
                 <p class="txtsp">{{ number_format($total_price, 2) }}$</p>
+                @if($total_price)
                 <div style="display:flex; flex-direction:column;justify-content:space-between;height:6em">
                     <form action="{{ route('cart.pay') }}" method="POST">
                         @csrf
@@ -128,10 +129,10 @@
                     <form action="{{ route('user.pay') }}" method="POST">
                         @csrf
                         <input type="hidden" value="{{$total_price}}" name="amount">
-                        <button class="btnpay" type="submit" name="submit">Pay with PayPal</button>
+                        <button class="btnpay" type="submit" name="submit">Pay with <i class="bi bi-paypal"></i></button>
                     </form>
                 </div>
-
+                @endif
             </div>
         </div>
     </div>
