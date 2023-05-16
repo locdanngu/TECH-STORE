@@ -127,7 +127,7 @@ class CartController extends Controller
         $cart_items = Product::join('cart', 'product.idproduct', '=', 'cart.idproduct')
                         ->where('cart.id', $user->id)
                         ->where('status', '!=', 0)
-                        ->select('product.idproduct', 'product.nameproduct', 'product.price', 'cart.quatifier', 'product.image', 'cart.status')
+                        ->select('product.idproduct', 'product.nameproduct', 'product.price', 'cart.quatifier', 'product.image', 'cart.status','cart.created_at')
                         ->get();
         return view('Orderpage', ['user' => $user, 'cart_items' => $cart_items]);
         
