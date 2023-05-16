@@ -103,7 +103,13 @@ Route::get('/Messagesuser', [MessageController::class, 'viewMessuser'])->middlew
 
 
 
-
+// Route::get('payment', 'PaymentController@index');
+// Route::post('charge', 'PaymentController@charge');
+Route::post('pay', [PaymentController::class, 'pay'])->middleware('user')->name('user.pay');
+Route::get('success', [PaymentController::class, 'success'])->middleware('user')->name('user.successpay');
+Route::get('error', [PaymentController::class, 'error'])->middleware('user')->name('user.errorpay');
+// Route::get('success', 'PaymentController@success');
+// Route::get('error', 'PaymentController@error');
 
 
 

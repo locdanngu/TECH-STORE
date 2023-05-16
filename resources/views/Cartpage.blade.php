@@ -119,11 +119,19 @@
             <div class="pay">
                 <p class="txtsp" id="cbxsl2">Product({{$total_product}}):</p>
                 <p class="txtsp">{{ number_format($total_price, 2) }}$</p>
-                <form action="{{ route('cart.pay') }}" method="POST">
-                    @csrf
-                    <input type="hidden" value="{{$total_price}}" name="pay">
-                    <button class="btnpay" type="submit">Payment</button>
-                </form>
+                <div style="display:flex; flex-direction:column;justify-content:space-between;height:6em">
+                    <form action="{{ route('cart.pay') }}" method="POST">
+                        @csrf
+                        <input type="hidden" value="{{$total_price}}" name="pay">
+                        <button class="btnpay" type="submit">Payment</button>
+                    </form>
+                    <form action="{{ route('user.pay') }}" method="POST">
+                        @csrf
+                        <input type="hidden" value="{{$total_price}}" name="amount">
+                        <button class="btnpay" type="submit" name="submit">Pay with PayPal</button>
+                    </form>
+                </div>
+
             </div>
         </div>
     </div>
@@ -133,7 +141,7 @@
     <script>
     $(document).ready(function() {
         var isHidden = true;
-        var balance = {{$user->balance}};
+        var balance = {{$user -> balance}};
         $("#eye2").show();
         $("#eye1").hide();
         $('#eye1, #eye2').click(function() {
@@ -151,7 +159,7 @@
                 isHidden = true;
             }
         });
-    }); 
+    });
 
     // $(document).ready(function() {
     //     var isHidden = true;

@@ -108,7 +108,7 @@ class CartController extends Controller
                 $notification->image = $image;
                 $notification->status = 1;
                 // dd($notification);
-                $notification->save();
+                $notification->save();  
             }
             Cart::where('id', $user->id)->where('status', 0)->update(['status' => 1]);
             $user = User::findOrFail($user->id);
