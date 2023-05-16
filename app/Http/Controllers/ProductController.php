@@ -105,7 +105,7 @@ class ProductController extends Controller
                 $html .= '</div>';
                 $html .= '<div id="popup-' . $product->idproduct . '" class="popup">';
                 $html .= '<div class="popup-content">';
-                $html .= '<a href="' . route('cart.add', ['idproduct' => $product->idproduct]) . '" class="addtocart"><i class="bi bi-plus-circle"></i> Add to cart</a>';
+                $html .= '<a href="#" class="close-popup"><i class="bi bi-x-circle"></i> Close</a>';
                 $html .= '<p class="price">' . $product->nameproduct . '</p>';
                 $html .= '<img src="' . $product->image . '" class="imgsp2">';
                 $html .= '<p class="review">' . $product->review . '</p>';
