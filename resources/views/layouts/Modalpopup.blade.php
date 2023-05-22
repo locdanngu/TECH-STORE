@@ -40,7 +40,10 @@
                     <input type="text" class="form-control" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default" required name="namecategory">
                 </div>
-                <span>Choice Icon:</span>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default" style="width:100%">Choice Icon Bellow</span>
+                </div>
+                <!-- <span>Choice Icon:</span> -->
                 <div class="allradio">
                     <div class="radio">
                         <input type="radio" name="device" value="bi bi-earbuds" required>

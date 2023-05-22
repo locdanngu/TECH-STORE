@@ -237,7 +237,8 @@
                                             <td>{{ $category->idcategory }}</td>
                                             <td>{{ $category->namecategory }}</td>
                                             <td><i class="{{ $category->iconcategory }}"></i></td>
-                                            <td class="font-weight-bold" style="color:red">{{ $category->products_count }}</td>
+                                            <td class="font-weight-bold" style="color:red">
+                                                {{ $category->products_count }}</td>
                                             <td><button class="buttonfix" data-toggle="modal"
                                                     data-target="#updateModalcategory"
                                                     data-category-name="{{ $category->namecategory }}"
