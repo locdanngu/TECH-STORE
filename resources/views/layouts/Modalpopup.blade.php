@@ -258,7 +258,7 @@
                     <select style="width: 70%" name="idcategory">
                         @foreach($category2 as $category)
                         <option value="{{ $category->idcategory }}">{{ $category->idcategory }}.
-                            {{ $category->namecategory }}</option>
+                             {{ $category->namecategory }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -317,7 +317,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-default">Category</span>
                     <select style="width: 70%" name="idcategory">
                         @foreach($category3 as $cat)
-                        <option value="{{ $cat->idcategory }}">{{ $cat->idcategory }}.{{ $cat->namecategory }}</option>
+                        <option value="{{ $cat->idcategory }}">{{ $cat->idcategory }}. {{ $cat->namecategory }}</option>
                         @endforeach
                     </select>
                 </div>

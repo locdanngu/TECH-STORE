@@ -298,10 +298,10 @@ class AdminController extends Controller
         // $category = Category::all();
         if(!$search || !is_string($search)){
             // Nếu không có giá trị search hoặc không phải chuỗi thì trả về tất cả bản ghi
-            $category = Category::all();
+            $category = Category::withCount('products')->get();
         } else {
             // Nếu có giá trị search và là chuỗi thì truy vấn với điều kiện
-            $category = Category::where('namecategory', 'like', '%'.$search.'%')->get();
+            $category = Category::where('namecategory', 'like', '%'.$search.'%')->withCount('products')->get();
         }
         // dd($category);
         $html = '';
@@ -310,8 +310,13 @@ class AdminController extends Controller
             $html .= '<td>' . $category->idcategory . '</td>';
             $html .= '<td>' . $category->namecategory . '</td>';
             $html .= '<td><i class="' . $category->iconcategory . '"></i></td>';
+            $html .= '<td class="font-weight-bold" style="color:red">' . $category->products_count . '</td>';
             $html .= '<td><button class="buttonfix" data-toggle="modal" data-target="#updateModalcategory" data-category-name="' . $category->namecategory . '" data-category-id="' . $category->idcategory . '"><i class="bi bi-pencil-square"></i> Change</button></td>';
+            if($category->products_count == 0){
             $html .= '<td><button class="buttonfix" data-toggle="modal" data-target="#deleteModalcategory" data-category-name="' . $category->namecategory . '" data-category-id="' . $category->idcategory . '"><i class="bi bi-trash"></i> Delete</button></td>';
+            }else{
+                $html .= '<td></td>';
+            }
             $html .= '</tr>';
         }
         return response()->json(['html' => $html]);
@@ -390,8 +395,8 @@ class AdminController extends Controller
             $html .= '<tr>';
             $html .= '<td>' . $product->idproduct . '</td>';
             $html .= '<td>' . $product->nameproduct . '</td>';
-            $html .= '<td>' . $product->price . '</td>';
-            $html .= '<td>' . $product->inventoryquantity . '</td>';
+            $html .= '<td class="font-weight-bold" style="color:blue">' . $product->price . '$</td>';
+            $html .= '<td class="font-weight-bold" style="color:red">' . $product->inventoryquantity . '</td>';
             $html .= '<td><img src="' . $product->image . '" class="imgproduct"></td>';
             $html .= '<td>' . $product->review . '</td>';
             $html .= '<td><button class="buttonfix" data-toggle="modal" data-target="#updateModalproduct"
