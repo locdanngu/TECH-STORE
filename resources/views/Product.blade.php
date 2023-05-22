@@ -344,6 +344,7 @@
             var productQuantity = button.data('product-quantity'); // Lấy giá trị data-category-id
             var productReview = button.data('product-review'); // Lấy giá trị data-category-id
             var modal = $(this);
+            // modal.find('img[name="imgsp"]').attr('src', productimg); gắn src cho thẻ img
             modal.find('span[name="nameproduct"]').text(productName);
             modal.find('input[name="idproduct"]').val(productId);
             modal.find('span[name="price"]').text(productPrice);
