@@ -126,6 +126,7 @@ class CartController extends Controller
         $user = Auth::user();
         $cart_items = Product::join('cart', 'product.idproduct', '=', 'cart.idproduct')
                         ->where('cart.id', $user->id)
+                        ->orderby('cart.created_at', 'desc')
                         ->where('status', '!=', 0)
                         ->select('product.idproduct', 'product.nameproduct', 'product.price', 'cart.quatifier', 'product.image', 'cart.status','cart.created_at')
                         ->get();
