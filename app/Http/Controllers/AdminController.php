@@ -179,7 +179,7 @@ class AdminController extends Controller
     public function viewCategory()
     {   
         $user = Auth::user();
-        $category = Category::orderBy('idcategory', 'asc')->get();
+        $category = Category::orderBy('idcategory', 'asc')->withCount('products')->get();
         $category2 = Category::orderBy('idcategory', 'asc')->get();
         $category3 = Category::orderBy('idcategory', 'asc')->get();
         $message_data = $this->messbox();

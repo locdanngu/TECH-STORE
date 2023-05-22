@@ -238,8 +238,8 @@
                                         <tr>
                                             <td>{{ $products->idproduct }}</td>
                                             <td>{{ $products->nameproduct }}</td>
-                                            <td>{{ $products->price }}</td>
-                                            <td>{{ $products->inventoryquantity }}</td>
+                                            <td class="font-weight-bold" style="color:blue">{{ $products->price }}$</td>
+                                            <td class="font-weight-bold" style="color:red">{{ $products->inventoryquantity }}</td>
                                             <td><img src="{{ $products->image }}" class="imgproduct"></td>
                                             <td>{{ $products->review }}</td>
                                             <td><button class="buttonfix" data-toggle="modal"

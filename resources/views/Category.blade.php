@@ -227,6 +227,7 @@
                                         <th>Id Category</th>
                                         <th>Name Category</th>
                                         <th>Icon</th>
+                                        <th>Number Product</th>
                                         <th></th>
                                         <th></th>
                                     </thead>
@@ -236,18 +237,23 @@
                                             <td>{{ $category->idcategory }}</td>
                                             <td>{{ $category->namecategory }}</td>
                                             <td><i class="{{ $category->iconcategory }}"></i></td>
+                                            <td class="font-weight-bold" style="color:red">{{ $category->products_count }}</td>
                                             <td><button class="buttonfix" data-toggle="modal"
                                                     data-target="#updateModalcategory"
                                                     data-category-name="{{ $category->namecategory }}"
                                                     data-category-id="{{ $category->idcategory }}"><i
                                                         class="bi bi-pencil-square"></i> Change</button>
                                             </td>
+                                            @if($category->products_count == 0)
                                             <td><button class="buttonfix" data-toggle="modal"
                                                     data-target="#deleteModalcategory"
                                                     data-category-name="{{ $category->namecategory }}"
                                                     data-category-id="{{ $category->idcategory }}"><i
                                                         class="bi bi-trash"></i>
                                                     Delete</button></td>
+                                            @else
+                                            <td></td>
+                                            @endif
                                         </tr>
                                         @endforeach
                                     </tbody>

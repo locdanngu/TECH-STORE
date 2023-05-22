@@ -81,6 +81,18 @@
 
                         <input type="radio" name="device" value="bi bi-camera" required>
                         <label for="phone"><i class="bi bi-camera"></i></label>
+
+                        <input type="radio" name="device" value="bi bi-hammer" required>
+                        <label for="phone"><i class="bi bi-hammer"></i></label>
+
+                        <input type="radio" name="device" value="bi bi-router" required>
+                        <label for="phone"><i class="bi bi-router"></i></label>
+
+                        <input type="radio" name="device" value="bi bi-smartwatch" required>
+                        <label for="phone"><i class="bi bi-smartwatch"></i></label>
+
+                        <input type="radio" name="device" value="bi bi-speaker" required>
+                        <label for="phone"><i class="bi bi-speaker"></i></label>
                     </div>
                 </div>
             </div>
@@ -152,6 +164,18 @@
 
                         <input type="radio" name="device" value="bi bi-camera" required>
                         <label for="phone"><i class="bi bi-camera"></i></label>
+
+                        <input type="radio" name="device" value="bi bi-hammer" required>
+                        <label for="phone"><i class="bi bi-hammer"></i></label>
+
+                        <input type="radio" name="device" value="bi bi-router" required>
+                        <label for="phone"><i class="bi bi-router"></i></label>
+
+                        <input type="radio" name="device" value="bi bi-smartwatch" required>
+                        <label for="phone"><i class="bi bi-smartwatch"></i></label>
+
+                        <input type="radio" name="device" value="bi bi-speaker" required>
+                        <label for="phone"><i class="bi bi-speaker"></i></label>
                     </div>
                 </div>
             </div>
