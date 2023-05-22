@@ -75,7 +75,7 @@
                             <hr>
                             <li class="dropdown-item dropdown-item-ignore-close"
                                 style="justify-content:center; height:2em !important">
-                                <a href="#" style="font-weight: 400">See more</a>
+                                <a href="{{ route('order.page') }}" style="font-weight: 400">See more</a>
                             </li>
                         </ul>
                     </div>
