@@ -791,6 +791,17 @@ class AdminController extends Controller
             $html .= '<td>' . $user->phone . '</td>';
             $html .= '<td><img src="' . $user->avatar . '" width="50"></td>';
             $html .= '<td>' . $user->balance . ' $</td>';
+            if( $user->status == 0){
+                $html .= '<td><button class="buttonfix" data-toggle="modal" data-target="#lockModal"
+                data-iduser="' . $user->id . '" data-nameuser="' . $user->name . '"
+                data-email="' . $user->email . '" data-phone="' . $user->phone . '">
+                <i class="bi bi-lock-fill"></i> Lock</button></td>';
+            }else{
+                $html .= '<td><button class="buttonfix" data-toggle="modal" data-target="#unlockModal"
+                data-iduser="' . $user->id . '" data-nameuser="' . $user->name . '"
+                data-email="' . $user->email . '" data-phone="' . $user->phone . '">
+                <i class="bi bi-unlock-fill"></i> Lock</button></td>';
+            }
             $html .= '</tr>';
         }
 
