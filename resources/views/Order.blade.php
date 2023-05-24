@@ -248,7 +248,7 @@
                                                     data-quatifier="{{ $cart->quatifier }}" data-id="{{ $cart->id }}"
                                                     data-image="{{ $cart->product->image }}"
                                                     data-totalprice="{{ number_format($cart->quatifier * $cart->product->price, 2) }} $"><i
-                                                        class="bi bi-trash"></i> Deny</button></td>
+                                                        class="bi bi-x"></i> Deny</button></td>
                                         </tr>
                                         @endforeach
                                     </tbody>

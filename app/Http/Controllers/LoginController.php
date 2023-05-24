@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Cookie;                              //vào Cooki
 class LoginController extends Controller
 {
     public function loginform(Request $request){
-        if (Auth::check() && Auth::user()->role === 'customer') {
+        if (Auth::check() && Auth::user()->role === 'customer' && Auth::user()->status === 0) {
             return redirect()->route('user.page');
         }else{
             return view('Loginpage');
@@ -34,7 +34,7 @@ class LoginController extends Controller
         if (Auth::attempt($credentials, $request->remember)) {
             // Nếu đăng nhập thành công, kiểm tra vai trò của người dùng
             $user = Auth::user();
-            if ($user->role === 'customer') {
+            if ($user->role === 'customer' && $user->status === 0) {
                 // Chuyển hướng đến trang người dùng
                 if ($request->remember) {                  
                     auth()->user()->remember_token = Str::random(60);
@@ -42,7 +42,10 @@ class LoginController extends Controller
                     Cookie::queue('remember_token', auth()->user()->remember_token, 1440);
                 }
                 return redirect()->route('user.page');
-            } else {
+            }else if($user->role === 'customer' && $user->status === 1){
+                Auth::logout();
+                return redirect()->back()->withErrors(['email' => 'Your account has been locked. Contact us: tranvanloc96lhp@gmail.com']);
+            }else {
                 // Nếu vai trò không phải customer, đăng xuất và chuyển hướng đến trang đăng nhập với thông báo lỗi
                 Auth::logout();
                 return redirect()->back()->withErrors(['email' => 'Invalid email or password']);

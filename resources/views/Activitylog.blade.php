@@ -216,6 +216,7 @@
                                         <th>Phone</th>
                                         <th>Avatar</th>
                                         <th>Balance</th>
+                                        <th>Setting</th>
                                     </thead>
                                     <tbody class="capnhat">
                                         @foreach($users as $users)
@@ -227,6 +228,15 @@
                                             <td>{{ $users->phone }}</td>
                                             <td><img src="{{ $users->avatar }}" width="50"></td>
                                             <td>{{ $users->balance }} $</td>
+                                            @if( $users->status  == 0)
+                                            <td><button class="buttonfix" data-toggle="modal"
+                                                    data-target="#lockModal">
+                                                    <i class="bi bi-lock-fill"></i> Lock</button></td>
+                                            @else
+                                            <td><button class="buttonfix" data-toggle="modal"
+                                                    data-target="#unlockModal">
+                                                    <i class="bi bi-unlock-fill"></i> UnLock</button></td>
+                                            @endif
                                         </tr>
                                         @endforeach
                                     </tbody>

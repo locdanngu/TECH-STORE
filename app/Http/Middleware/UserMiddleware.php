@@ -15,7 +15,7 @@ class UserMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->role === 'customer') {
+        if (Auth::check() && Auth::user()->role === 'customer' && Auth::user()->status === 0) {
             return $next($request);
         } else {
             return redirect()->route('login.page')->withErrors(['error' => 'You need to log in first!']);
