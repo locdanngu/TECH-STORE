@@ -42,6 +42,7 @@ Route::delete('/Cartuserpage/deleteall', [CartController::class, 'deleteAll'])->
 Route::post('/Cartuserpage/pay', [CartController::class, 'pay'])->middleware('user')->name('cart.pay');
 Route::post('/User/Message', [MessageController::class, 'messChatuser'])->middleware('user')->name('user.boxmessage'); 
 Route::post('/User/AddMessage', [MessageController::class, 'addMessage'])->middleware('user')->name('user.addmessage'); 
+Route::get('/Messagesuser', [MessageController::class, 'viewMessuser'])->middleware('user')->name('user.message');
 
 Route::get('/Mypurchasepage', [CartController::class, 'viewOrder'])->middleware('user')->name('order.page');     //view lịch sử mua hàng
 
@@ -99,8 +100,9 @@ Route::post('/Admin/Findproduct/{search?}', [AdminController::class, 'findProduc
 Route::post('/Admin/Acceptorder', [AdminController::class, 'acceptOrder'])->middleware('admin')->name('admin.acceptorder');
 Route::post('/Admin/Denyorder', [AdminController::class, 'denyOrder'])->middleware('admin')->name('admin.denyorder');
 
-Route::get('/Messagesuser', [MessageController::class, 'viewMessuser'])->middleware('user')->name('user.message');
 
+Route::post('/Admin/Lock', [AdminController::class, 'lockAccount'])->middleware('admin')->name('admin.lockaccount');  
+Route::post('/Admin/UnLock', [AdminController::class, 'unLockAccount'])->middleware('admin')->name('admin.unlockaccount');  
 
 
 // Route::get('payment', 'PaymentController@index');

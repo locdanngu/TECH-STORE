@@ -797,5 +797,20 @@ class AdminController extends Controller
         return response()->json(['html' => $html]);
     }
 
-   
+    public function lockAccount(Request $request)
+    {
+        
+        $users = User::where('id', $request->iduser)->first();
+        $users-> status = 1;
+        $users->save();
+        return redirect()->back();
+    }
+
+    public function unLockAccount(Request $request)
+    {
+        $users = User::where('id', $request->iduser)->first();
+        $users-> status = 0;
+        $users->save();
+        return redirect()->back();
+    }
 }

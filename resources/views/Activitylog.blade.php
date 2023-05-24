@@ -228,13 +228,15 @@
                                             <td>{{ $users->phone }}</td>
                                             <td><img src="{{ $users->avatar }}" width="50"></td>
                                             <td>{{ $users->balance }} $</td>
-                                            @if( $users->status  == 0)
-                                            <td><button class="buttonfix" data-toggle="modal"
-                                                    data-target="#lockModal">
+                                            @if( $users->status == 0)
+                                            <td><button class="buttonfix" data-toggle="modal" data-target="#lockModal"
+                                                    data-iduser="{{ $users->id }}" data-nameuser="{{ $users->name }}"
+                                                    data-email="{{ $users->email }}" data-phone="{{ $users->phone }}">
                                                     <i class="bi bi-lock-fill"></i> Lock</button></td>
                                             @else
-                                            <td><button class="buttonfix" data-toggle="modal"
-                                                    data-target="#unlockModal">
+                                            <td><button class="buttonfix" data-toggle="modal" data-target="#unlockModal"
+                                                    data-iduser="{{ $users->id }}" data-nameuser="{{ $users->name }}"
+                                                    data-email="{{ $users->email }}" data-phone="{{ $users->phone }}">
                                                     <i class="bi bi-unlock-fill"></i> UnLock</button></td>
                                             @endif
                                         </tr>
@@ -287,6 +289,42 @@
             },
             error: function(xhr, status, error) {}
         });
+    });
+
+    $(document).ready(function() {
+        // Lấy giá trị data-category-id khi modal được hiển thị
+        $('#lockModal').on('shown.bs.modal', function(event) {
+            var button = $(event.relatedTarget); // Nút "Change" được nhấn
+            var iduser = button.data('iduser'); // Lấy giá trị data-category-id
+            var nameuser = button.data('nameuser'); // Lấy giá trị data-category-id
+            var email = button.data('email'); // Lấy giá trị data-category-id
+            var phone = button.data('phone'); // Lấy giá trị data-category-id
+            var modal = $(this);
+            // Gán giá trị categoryId vào trường ẩn trong form
+            modal.find('input[name="iduser"]').val(iduser);
+            modal.find('span[name="iduser"]').text(iduser);
+            modal.find('span[name="nameuser"]').text(nameuser);
+            modal.find('span[name="email"]').text(email);
+            modal.find('span[name="phone"]').text(phone);
+        });
+
+
+        $('#unlockModal').on('shown.bs.modal', function(event) {
+            var button = $(event.relatedTarget); // Nút "Change" được nhấn
+            var iduser = button.data('iduser'); // Lấy giá trị data-category-id
+            var nameuser = button.data('nameuser'); // Lấy giá trị data-category-id
+            var email = button.data('email'); // Lấy giá trị data-category-id
+            var phone = button.data('phone'); // Lấy giá trị data-category-id
+            var modal = $(this);
+            // Gán giá trị categoryId vào trường ẩn trong form
+            modal.find('input[name="iduser"]').val(iduser);
+            modal.find('span[name="iduser"]').text(iduser);
+            modal.find('span[name="nameuser"]').text(nameuser);
+            modal.find('span[name="email"]').text(email);
+            modal.find('span[name="phone"]').text(phone);
+        });
+
+
     });
     </script>
 

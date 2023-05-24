@@ -41,7 +41,8 @@
                         aria-describedby="inputGroup-sizing-default" required name="namecategory">
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default" style="width:100%">Choice Icon Bellow</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default" style="width:100%">Choice Icon
+                        Bellow</span>
                 </div>
                 <!-- <span>Choice Icon:</span> -->
                 <div class="allradio">
@@ -258,7 +259,7 @@
                     <select style="width: 70%" name="idcategory">
                         @foreach($category2 as $category)
                         <option value="{{ $category->idcategory }}">{{ $category->idcategory }}.
-                             {{ $category->namecategory }}</option>
+                            {{ $category->namecategory }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -476,5 +477,97 @@
                 <button class="btn btn-danger">Deny</button>
             </div>
         </form>
+    </div>
+</div>
+
+<!-- Lock modal -->
+<div class="modal fade" id="lockModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Lock This Account?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <form class="modal-content" method="POST" action="{{ route('admin.lockaccount') }}">
+                @csrf
+                <input type="hidden" name="iduser" value="">
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Id User</span>
+                        <span name="iduser" style="display: flex;align-items: center;margin-left: 2em;"></span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Name User</span>
+                        <span name="nameuser" style="display: flex;align-items: center;margin-left: 2em;"></span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Email</span>
+                        <span name="email" style="display: flex;align-items: center;margin-left: 2em;"></span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Phone</span>
+                        <span name="phone" style="display: flex;align-items: center;margin-left: 2em;"></span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Status Account</span>
+                        <span name="" style="display: flex;align-items: center;margin-left: 2em;">Normal</span>
+                    </div>
+                    <span style="color:red">Warning, If you do this, the user of this account won't be able to use
+                        it.</span>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-danger">Lock</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- unLock modal -->
+<div class="modal fade" id="unlockModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Unlock This Account?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <form class="modal-content" method="POST" action="{{ route('admin.unlockaccount') }}">
+                @csrf
+                <input type="hidden" name="iduser" value="">
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Id User</span>
+                        <span name="iduser" style="display: flex;align-items: center;margin-left: 2em;"></span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Name User</span>
+                        <span name="nameuser" style="display: flex;align-items: center;margin-left: 2em;"></span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Email</span>
+                        <span name="email" style="display: flex;align-items: center;margin-left: 2em;"></span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Phone</span>
+                        <span name="phone" style="display: flex;align-items: center;margin-left: 2em;"></span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Status Account</span>
+                        <span name="" style="display: flex;align-items: center;margin-left: 2em;">Lock</span>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary">Unlock</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
