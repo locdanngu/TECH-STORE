@@ -21,10 +21,19 @@
                 <i class="bi bi-person"></i>
                 <p class="fixtxt">{{ $user->email }}</p>
             </a>
+            <a class="linkus" href="{{ route('cart.page') }}" id="linkusmobile">
+                <i class="bi bi-cart"></i>
+                <p class="fixtxt">Cart</p>
+            </a>
+            <a class="linkus" href="{{ route('user.message') }}" id="linkusmobile">
+                <i class="bi bi-chat"></i>
+                <p class="fixtxt">Chat</p>
+            </a>
             <a class="linkus" href="{{ route('logout') }}">
                 <i class="bi bi-box-arrow-in-left"></i>
                 <p class="fixtxt">Logout</p>
             </a>
+            <hr style="border:1px solid white; width:100%" class="hrmobile">
             <p class="content">CATEGORY</p>
             <!-- Kiểm tra xem đã chọn category chưa , chưa thì active để đổi background color -->
             <div class="linkus active" data-url="0">
@@ -41,14 +50,14 @@
         </div>
         <div class="rightbody">
             <div class="headright">
-                <a href="{{ route('user.page') }}"><img src="/images/logo.png"></a>
+                <a href="{{ route('user.page') }}" id="logotable"><img src="/images/logo.png"></a>
                 <div class="lefthead">
                     <input class="search" type="text" placeholder="Search">
                 </div>
                 <div class="righthead">
                     <i class="bi bi-arrow-bar-right"></i>
                     <a href="{{ route('user.message') }}" class="btnlink"><i class="bi bi-chat"
-                            style=""></i></a>
+                            style="color: #FFFFFF;margin-right: 2em;margin-left: 2em;font-size: 1.5em;"></i></a>
                     <div class="dropdown">
                         <button class="btn" type="button" data-bs-toggle="dropdown">
                             <i class="bi bi-bell"></i>
@@ -63,24 +72,26 @@
                             <li class="dropdown-item dropdown-item-ignore-close">
                                 <img src="{{ $notification->image }}" class="noti">
                                 <div style="display:flex;flex-direction:column">
-                                    <span
+                                    <span class="notimobile"
                                         style="font-weight: 500;color:{{ $notification->status == 2 ? 'green' : ($notification->status == 1 ? 'orange' : 'red') }}">
                                         {{ $notification->notification }}
                                     </span>
-                                    <span style="font-weight: 400; font-size:10px;margin-top:.25em">{{ $notification->updated_at }}</span>
+                                    <span class="notimobile2"
+                                        style="font-weight: 400; font-size:10px;margin-top:.25em">{{ $notification->updated_at }}</span>
                                 </div>
                             </li>
                             @endforeach
                             @endif
-                            <hr>
+                            <!-- <hr>
                             <li class="dropdown-item dropdown-item-ignore-close"
                                 style="justify-content:center; height:2em !important">
                                 <a href="{{ route('order.page') }}" style="font-weight: 400">See more</a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                     <!-- <a href="" class="btnlink"><i class="bi bi-bell"></i></a> -->
-                    <a href="{{ route('cart.page') }}" class="btnlink"><i class="bi bi-cart"></i></a>
+                    <a href="{{ route('cart.page') }}" class="btnlink"><i class="bi bi-cart"
+                            style="color: #FFFFFF;margin-right: 2em;margin-left: 2em;font-size: 1.5em;"></i></a>
                     <a href="{{ route('profileuser.page') }}"><img src="{{ $user->avatar }}" class="avataruser"></a>
                 </div>
 
@@ -216,9 +227,11 @@
         $(".bi-arrow-bar-right").css({
             "visibility": "visible",
         });
-        $(".bi-chat").css({
-            "margin-right": "0",
-        });
+        if ($(window).width() > 768) {
+            $(".bi-chat").css({
+                "margin-right": "0"
+            });
+        }
     });
 
     $(".bi-arrow-bar-right").on("click", function() {
@@ -233,9 +246,11 @@
         $(".bi-arrow-bar-right").css({
             "visibility": "",
         });
-        $(".bi-chat").css({
-            "margin-right": "2em",
-        });
+        if ($(window).width() > 768) {
+            $(".bi-chat").css({
+                "margin-right": "0"
+            });
+        }
 
         setTimeout(function() {
             $(".leftbody, .linkus, .linkus2").css({
