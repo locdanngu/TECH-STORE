@@ -108,9 +108,11 @@ class ProfileuserController extends Controller
 
     public function findEmail(Request $request)
     {
+        // dd($request->email);
         $user = User::where('email', $request->email)->first();
+        // dd($user);
         if ($user) {
-            if($user->verifyemail == 1){
+            if($user->verifyemail == 1 && $user->role == 'customer'){
                 $random_number = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
                 $user->codechangepass = $random_number;
                 $user->timechangepassend = Carbon::now()->addMinutes(5);
@@ -122,6 +124,8 @@ class ProfileuserController extends Controller
                 });
                 // dd($user);
                 return view('Codechangepass', ['useremail' => $user['email']]);
+            }else if($user->role != 'customer'){
+                return back()->withErrors(['error' => 'This email is the property of an authorized person!']);
             }else{
                 return back()->withErrors(['error' => 'This email account has not been verified!']);
             }

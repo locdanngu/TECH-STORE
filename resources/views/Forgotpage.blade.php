@@ -27,11 +27,16 @@
         @csrf
         <label>Enter Email(*): </label>
         <div>
-            <input type="email" required class="inputbox1" name="email" placeholder="Email" style="width:75%;margin-right:2%">
+            <input type="email" required class="inputbox1" name="email" placeholder="Email"
+                style="width:75%;margin-right:2%">
             <button class="btnlogin" style="height:2.5em;width:20%">Submit</button>
         </div>
+        @error('error')
+        <p class="error">{{ $message }}</p>
+        @enderror
     </form>
     @extends('layouts.Foot')
+
 </body>
 
 </html>
