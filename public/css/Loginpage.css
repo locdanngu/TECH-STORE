@@ -174,3 +174,23 @@ label{
 .ckbx{
     cursor: pointer;
 }
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+    .box1{
+        padding: 0 10% 0 10%;
+    }
+
+    .tieudebox1{
+        font-size: 2.5em;
+    }
+
+    #footmobile{
+        display: none;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .box1{
+        padding: 0 20% 0 20%;
+    }
+}
