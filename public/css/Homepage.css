@@ -218,4 +218,37 @@ body {
 }
 
 
-@media screen and (min-width: 768px) and (max-width: 1024px) {}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .sample{
+        display: none;
+    }
+
+    .btn2{
+        display: none;
+    }
+
+    .btn3 {
+        color: #FFFFFF;
+        padding: 0.5em 2em 0.5em 2em;
+        border: 1px solid #ff0000;
+        background-color: transparent;
+        margin: 0.25em;
+        font-weight: bold;
+        border-radius: 0.25em;
+        transition: 0.75s ease-in;
+        display: block;
+    }
+    
+    .btn3:hover {
+        background-color: #FFFFFF;
+        color: #ff0000;
+    }
+
+    .footbody {
+        display: none;
+    }
+
+    .headbody, .bodybody {
+        font-size: 3em;
+    }
+}
