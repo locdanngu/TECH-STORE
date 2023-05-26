@@ -1,0 +1,273 @@
+p {
+    margin: 0 !important;
+}
+
+
+.body {
+    background-color: #242424;
+    display: flex;
+    /* height: 100em; */
+}
+
+.smallavatar{
+    border-radius: 50%;
+    width: 60%;
+}
+
+.leftbody {
+    width: 20%;
+    background-color: #2D2D2D;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.rightbody {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    padding: 1.5em;
+}
+
+
+.linkus {
+    color: #8A8A8A;
+    text-decoration: none;
+    display: flex;
+    justify-content: left;
+    cursor: pointer;
+    width: 100%;
+    align-items: center;
+    padding: 0 2em 0 2em;
+    margin-top: 1em;
+    height: 3em;
+    transition: 0.5s ease;
+}
+
+.linkus:hover {
+    background-color: #3b3b3b;
+}
+
+.fixtxt {
+    margin-left: 2em !important;
+
+
+}
+
+.content {
+    color: #FFFFFF;
+    font-size: 2em;
+    margin-top: 1em !important;
+}
+
+.btnlink {
+    transition: 0.5s ease;
+}
+
+.btnlink:hover {
+    opacity: 0.7;
+}
+
+.morefoot {
+    padding: 1em 10% 1em 10%;
+    border-top: 0.5px solid #CBCBCB;
+    background-color: #3b3b3b;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer {
+    width: 100%;
+    display: flex;
+    /* margin-top: 10em; */
+    background-color: #3b3b3b;
+    justify-content: space-between;
+    padding: 2em 10% 2em 10%;
+    border-top: 0.5px solid #CBCBCB;
+}
+
+.headfoot {
+    color: #FFFFFF;
+    font-size: 1.75em;
+    font-weight: 100;
+}
+
+.bodyfoot {
+    color: #FFFFFF;
+    font-weight: 100;
+    text-decoration: none;
+    display: flex;
+}
+
+.fix {
+    display: flex;
+}
+
+.bi.bi-facebook {
+    margin-right: 1em;
+}
+
+.bodyfoot.link:hover {
+    opacity: 0.7;
+}
+
+
+.linkus.active {
+    background-color: #3b3b3b;
+}
+
+.avataruser {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.phantuuser {
+    display: flex;
+    width: 50%;
+    margin: 1.5em 0 1.5em 0;
+    align-items: center;
+    justify-content: space-between;
+}
+.boxchat{
+    height: 5em;
+}
+
+.namephantu {
+    font-size: 1.5em;
+    color: #FFFFFF;
+
+}
+
+.nhapttuser {
+    border: 0;
+    border-radius: .25em;
+    padding-left: 1em;
+    height: 3em;
+    width: 70%;
+}
+
+.file-input-container {
+    margin-top: 2em;
+    width: 10em;
+    position: relative;
+    overflow: hidden;
+    /* Độ rộng của nút input file */
+    border-radius: .5em;
+}
+
+.file-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.file-input-label {
+    display: block;
+    width: 100%;
+    border-radius: .5em;
+    padding: 10px;
+    background-color: #8A8A8A;
+    /* Màu nền của nút */
+    color: #fff;
+    /* Màu chữ của nút */
+    text-align: center;
+    cursor: pointer;
+}
+
+.namephantu.fix{
+    visibility: hidden;
+}
+
+.savebtn{
+    color: #DA00FE;
+    border: 0.5px solid #DA00FE;
+    border-radius: .5em;
+    font-weight: bold;
+    /* background-color: #8A8A8A; */
+    padding: .5em 1em .5em 1em;
+    transition: 0.5s ease;
+}
+
+.savebtn:hover{
+    color: #FFFFFF;
+    background-color: #DA00FE;
+}
+
+#boxchat{
+    padding: 2em;
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+    .logomobile,.content{
+        display: none;
+    }
+
+    .linkus{
+        justify-content: center;
+    }
+
+    #footmobile{
+        display: none;
+    }
+
+    .namephantu{
+        font-size: 1em;
+    }
+
+    .phantuuser{
+        width: 90%;
+    }
+
+    #boxchat{
+        padding: 1em;
+    }
+
+    #hidemobile{
+        display: none;
+    }
+
+    .boxchat{
+        display: flex;
+        flex-direction: column;
+        height: fit-content;
+    }
+
+    #fixmobile{
+        font-size: 10px;
+        margin: 2px 0 0 0 !important;
+        
+    }
+
+    .leftbody{
+        padding: 0.5em;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .phantuuser{
+        width: 80%;
+    }
+
+    .logomobile{
+        display: none;
+    }
+
+    .linkus{
+        padding: 0 .5em 0 .5em;
+    }
+
+    .fixtxt{
+        margin-left: 1em !important;
+    }
+}

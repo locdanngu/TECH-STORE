@@ -63,7 +63,7 @@ class MessageController extends Controller
             }
         }
         $html .= '</div>
-                        <div style="display:flex;justify-content:space-between;padding:1em 1em">
+                        <div style="display:flex;justify-content:space-between;padding:0em 1em">
                             <textarea class="textarea" name="messagecontent"></textarea>
                             <button class="sendbtn" id="buttonsend">Send</button>
                         </div>
@@ -127,7 +127,7 @@ class MessageController extends Controller
             }
         }
         $html .= '</div>
-                        <div style="display:flex;justify-content:space-between;padding:1em 1em">
+                        <div style="display:flex;justify-content:space-between;padding:0em 1em">
                             <textarea class="textarea" name="messagecontent"></textarea>
                             <button class="sendbtn" id="buttonsend">Send</button>
                         </div>

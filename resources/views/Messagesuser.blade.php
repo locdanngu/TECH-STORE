@@ -4,7 +4,7 @@
 <head>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     @extends('layouts.Link')
-    <link rel="stylesheet" href="/css/Profileuserpage.css">
+    <link rel="stylesheet" href="/css/Messageuserpage.css">
     <title>Chat With Admin</title>
 
     <style>
@@ -45,25 +45,25 @@
     <div class="body">
         <div class="leftbody">
 
-            <a href="{{ route('user.page') }}"><img src="/images/logo.png"></a>
+            <a href="{{ route('user.page') }}" class="logomobile"><img src="/images/logo.png"></a>
             <a class="linkus" href="{{ route('user.page') }}">
                 <i class="bi bi-arrow-90deg-left"></i>
-                <p class="fixtxt">Back to shop</p>
+                <p class="fixtxt" id="hidemobile">Back to shop</p>
             </a>
             <hr style="border:1px solid #FFFFFF; width:100%">
 
             @foreach($useradmin as $useradmin)
-            <div class="linkus boxchat" href="#" style="height:5em">
+            <div class="linkus boxchat" href="#" style="">
                 <input type="hidden" value="{{ $useradmin->id }}" name="sender_id">
                 <img src="{{ $useradmin->avatar }}" style="width:50px; height:50px;border-radius:50%">
-                <p class="fixtxt">{{ $useradmin->name }}</p>
+                <p class="fixtxt" id="fixmobile">{{ $useradmin->name }}</p>
             </div>
 
             @endforeach
 
 
         </div>
-        <div style="display:flex; flex-direction: column; width:80%;padding:2em" id="boxchat">
+        <div style="display:flex; flex-direction: column; width:80%" id="boxchat">
             <span style="font-size:3em;color:white">Choice 1 admin your want to chat!</span>
         </div>
 

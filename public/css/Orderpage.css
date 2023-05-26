@@ -273,3 +273,90 @@ th,td{
     border-radius: 50%;
     width: 60%;
 }
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+    .logomobile,.content,.fixtxt{
+        display: none;
+    }
+
+    .linkus{
+        justify-content: center;
+    }
+
+    #footmobile{
+        display: none;
+    }
+
+    .namephantu{
+        font-size: 1em;
+    }
+
+    .phantuuser{
+        width: 90%;
+    }
+
+    .contentform{
+        font-size: 1.5em;
+    }
+
+    .rightbody{
+        padding: 1em;
+    }
+
+    .phantuuser{
+        width: 100%;
+    }
+
+    .txtblc{
+        font-size: 12px;
+    }
+
+    .imgsp{
+        width: 4em;
+    }
+
+    td,tr{
+        vertical-align: middle;
+        font-size: 9px;
+    }
+
+    .leftbody{
+        width: 15%;
+    }
+
+    .btnpay{
+        font-size: 12px;
+    }
+
+    .txtsp{
+        margin-right: .5em !important;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .phantuuser{
+        width: 80%;
+    }
+
+    .logomobile{
+        display: none;
+    }
+
+    .linkus{
+        padding: 0 .5em 0 .5em;
+    }
+
+    .fixtxt{
+        margin-left: 1em !important;
+    }
+
+    .phantuuser{
+        width: 90%;
+    }
+
+    td,tr{
+        vertical-align: middle;
+        font-size: 12px;
+    }
+
+}

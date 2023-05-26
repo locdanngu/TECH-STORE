@@ -11,7 +11,7 @@
 <body>
     <div class="body">
         <div class="leftbody">
-            <a href="{{ route('user.page') }}"><img src="/images/logo.png"></a>
+            <a href="{{ route('user.page') }}" class="logomobile"><img src="/images/logo.png"></a>
             <p class="content">USER</p>
             <img src=" {{ $user->avatar }}" class="smallavatar">
             <a class="linkus" href="{{ route('profileuser.page') }}">
