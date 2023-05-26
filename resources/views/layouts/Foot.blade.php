@@ -5,13 +5,13 @@
         <p class="bodyfoot">Phone: +84977481545</p>
         <p class="bodyfoot">Address: 110/17/1 Kim Long</p>
     </div>
-    <div class="foot">
+    <div class="foot" id="footmobile">
         <p class="headfoot">LINK</p>
         <a href="{{ route('login.page') }}" class="bodyfoot link">Watch more</a>
         <a href="{{ route('login.page') }}" class="bodyfoot link">Login page</a>
         <a href="{{ route('signup.page') }}" class="bodyfoot link">Register page</a>
     </div>
-    <div class="foot">
+    <div class="foot" id="footmobile">
         <p class="headfoot">POPULAR</p>
         <a href="#" class="bodyfoot link">Head Phone</a>
         <a href="#" class="bodyfoot link">Key Board</a>

@@ -26,6 +26,8 @@
         <div class="btn">
             <a class="btn2" href="{{ route('signup.page') }}" style="text-decoration:none">I'm new</a>
             <a class="btn2" href="{{ route('login.page') }}" style="text-decoration:none">Watch more</a>
+            <a class="btn3" href="{{ route('login.page') }}" style="text-decoration:none">Login</a>
+            <a class="btn3" href="{{ route('signup.page') }}" style="text-decoration:none">Sign Up</a>      
         </div>
     </div>
 
