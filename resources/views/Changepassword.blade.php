@@ -11,7 +11,7 @@
 <body>
     <div class="body">
         <div class="leftbody">
-            <a href="{{ route('user.page') }}"><img src="/images/logo.png"></a>
+            <a href="{{ route('user.page') }}" class="logomobile"><img src="/images/logo.png"></a>
             <p class="content">USER</p>
             <img src=" {{ $user->avatar }}" class="smallavatar">
             <a class="linkus" href="{{ route('profileuser.page') }}">
@@ -47,11 +47,11 @@
                 <input type="password" class="nhapttuser" name="oldpassword" required>
             </div>
             <div class="phantuuser">
-                <p class="namephantu">New Password: </p>
+                <p class="namephantu">New Pass: </p>
                 <input type="password" class="nhapttuser" name="newpassword" required>
             </div>
             <div class="phantuuser">
-                <p class="namephantu">Re-Enter Password: </p>
+                <p class="namephantu">Re-Enter Pass: </p>
                 <input type="password" class="nhapttuser" name="newpassword2" required>
             </div>
             @error('oldpassword')
