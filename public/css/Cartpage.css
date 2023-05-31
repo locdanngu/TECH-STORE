@@ -288,10 +288,33 @@ th, td {
     width: 60%;
 }
 
+.hrmobile{
+    display: none;
+}
+
 
 @media screen and (min-width: 320px) and (max-width: 768px) {
-    .logomobile,.content,.fixtxt{
+    .logomobile,.content,.fixtxt,.fixmar{
         display: none;
+    }
+
+    .fixflex{
+        flex-direction: column;
+    }
+
+    .footright{
+        width: fit-content;
+    }
+
+    .formmobile{
+        margin-right: 8px !important;
+    }
+
+    .hrmobile{
+        margin: .5em 0 !important;
+        width: 100%;
+        border: 1px solid white;
+        display: block;
     }
 
     .linkus{

@@ -97,12 +97,13 @@
                                 <div class="fixflex">
                                     <button class="btnsave3">Update</button>
                         </form>
+                        <hr class="hrmobile">
                         <p class="fixmar">|</p>
                         <a class="btnsave"
                             href="{{ route('cart.delete', ['idproduct' => $cart_item->idproduct]) }}">Delete</a>
-        </div>
-        </td>
-        </tr>
+                                </div>
+                            </td>
+                    </tr>
         @endforeach
         </tbody>
         </table>
@@ -111,7 +112,7 @@
                     <p class="txtsp" id="cbxsl">Select(0)</p>
                     <button class="btnpay">Deselect</button>
                 </div> -->
-            <form action="{{ route('deleteall') }}" method="POST">
+            <form action="{{ route('deleteall') }}" method="POST" class="formmobile">
                 @csrf
                 @method('DELETE')
                 <button class="btnpay">Delete All</button>
