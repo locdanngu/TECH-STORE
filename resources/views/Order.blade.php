@@ -215,7 +215,7 @@
                                         <th>Total Price</th>
                                         <th>Quantity</th>
                                         <th>Time</th>
-                                        <th>Status</th>
+                                        <!-- <th>Status</th> -->
                                         <th></th>
                                         <th></th>
                                     </thead>
@@ -233,7 +233,7 @@
                                                 $</td>
                                             <td class="fixtd">{{ $cart->product->inventoryquantity }}</td>
                                             <td>{{ $cart->updated_at }}</td>
-                                            <td class="fixtd">Waiting</td>
+                                            <!-- <td class="fixtd">Waiting</td> -->
                                             <td><button class="buttonfix" data-toggle="modal" data-target="#acceptModal"
                                                     data-idcart="{{ $cart->idcart }}"
                                                     data-nameproduct="{{ $cart->product->nameproduct }}"
@@ -247,7 +247,7 @@
                                                     data-nameproduct="{{ $cart->product->nameproduct }}"
                                                     data-quatifier="{{ $cart->quatifier }}" data-id="{{ $cart->id }}"
                                                     data-image="{{ $cart->product->image }}"
-                                                    data-totalprice="{{ number_format($cart->quatifier * $cart->product->price, 2) }} $"><i
+                                                    data-totalprice="{{ number_format($cart->quatifier * $cart->product->price, 2) }}"><i
                                                         class="bi bi-x"></i> Deny</button></td>
                                         </tr>
                                         @endforeach
@@ -329,7 +329,8 @@
             modal.find('input[name="nameproduct"]').val(nameProduct);
             modal.find('input[name="quatifier"]').val(quatifier);
             modal.find('span[name="quatifier"]').text(quatifier);
-            modal.find('span[name="totalprice"]').text(totalPrice);
+            modal.find('input[name="totalprice"]').val(totalPrice);
+            modal.find('span[name="totalprice"]').text(totalPrice + ' $');
         });
 
 

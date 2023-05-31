@@ -56,7 +56,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Sample</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Unit price</th>
+                        <!-- <th scope="col">Unit price</th> -->
                         <th scope="col">Quantity</th>
                         <th scope="col">Total price</th>
                         <th scope="col">Time Order</th>
@@ -74,7 +74,7 @@
                         <th scope="row" class="fixcenter">{{ $loop->iteration }}</th>
                         <td><img src="{{ $cart_item->image }}" class="imgsp"></td>
                         <td class="fixcenter">{{ $cart_item->nameproduct }}</td>
-                        <td class="fixcenter">{{ $cart_item->price }}</td>
+                        <!-- <td class="fixcenter">{{ $cart_item->price }}</td> -->
                         <td class="fixcenter">{{ $cart_item->quatifier }}</td>
                         <td class="fixcenter">{{ number_format($cart_item->quatifier * $cart_item->price, 2) }}</td>
                         <td class="fixcenter">{{ $cart_item->created_at }}</td>

@@ -251,7 +251,6 @@ class AdminController extends Controller
         $category2 = Category::orderBy('idcategory', 'asc')->get();
         $category3 = Category::orderBy('idcategory', 'asc')->get();
         $message_data = $this->messbox();
-
         // Lấy giá trị từ mảng kết quả
         $latest_messages = $message_data['latest_messages'];
         $senderIdsCount = $message_data['senderIdsCount'];
@@ -474,6 +473,9 @@ class AdminController extends Controller
     public function denyOrder(Request $request)
     {   
         $input = $request->all();
+        $balance = User::where('id', $input['id'])->first();
+        $balance->balance += $input['totalprice'];
+        $balance->save();
         Cart::where('idcart', $input['idcart'])->update(['status' => 3]); 
         $notification = new Notification;
         $notification->id = $input['id'];
@@ -482,6 +484,8 @@ class AdminController extends Controller
         $notification->status = 3;
         //1 watting //2 accept //3 deny
         $notification->save();
+
+        
         return back();
     }
 

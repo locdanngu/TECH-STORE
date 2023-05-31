@@ -446,6 +446,7 @@
             <input type="hidden" name="id" value="">
             <input type="hidden" name="nameproduct" value="">
             <input type="hidden" name="quatifier" value="">
+            <input type="hidden" name="totalprice" value="">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Deny deliver this order?</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
