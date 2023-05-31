@@ -80,6 +80,8 @@
                                         style="font-weight: 400; font-size:10px;margin-top:.25em">{{ $notification->updated_at }}</span>
                                 </div>
                             </li>
+                            <br>
+                            <!-- <hr style="border:.5px solid black;margin-bottom:0 !important"> -->
                             @endforeach
                             @endif
                             <!-- <hr>
