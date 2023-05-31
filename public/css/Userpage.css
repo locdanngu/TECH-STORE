@@ -50,7 +50,6 @@ p {
 
 .bi-arrow-bar-right {
     cursor: pointer;
-    margin-left: 2em;
     visibility: hidden;
 }
 
@@ -72,6 +71,8 @@ p {
 .righthead {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    width: 50%;
 }
 
 .search {
@@ -125,7 +126,6 @@ p {
 
 .btnlink {
     transition: 0.5s ease;
-    margin-right: 2em;
 }
 
 .btnlink:hover {

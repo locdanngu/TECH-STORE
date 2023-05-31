@@ -57,7 +57,7 @@
                 <div class="righthead">
                     <i class="bi bi-arrow-bar-right"></i>
                     <a href="{{ route('user.message') }}" class="btnlink"><i class="bi bi-chat"
-                            style="color: #FFFFFF;margin-right: 1.5em;margin-left: 2em;font-size: 1.5em;"></i></a>
+                            style="color: #FFFFFF;font-size: 1.5em;"></i></a>
                     <div class="dropdown">
                         <button class="btn" type="button" data-bs-toggle="dropdown">
                             <i class="bi bi-bell"></i>
@@ -91,7 +91,7 @@
                     </div>
                     <!-- <a href="" class="btnlink"><i class="bi bi-bell"></i></a> -->
                     <a href="{{ route('cart.page') }}" class="btnlink"><i class="bi bi-cart"
-                            style="color: #FFFFFF;margin-right: 2em;margin-left: 2em;font-size: 1.5em;"></i></a>
+                            style="color: #FFFFFF;font-size: 1.5em;"></i></a>
                     <a href="{{ route('profileuser.page') }}"><img src="{{ $user->avatar }}" class="avataruser"></a>
                 </div>
 
@@ -228,11 +228,11 @@
         $(".bi-arrow-bar-right").css({
             "visibility": "visible",
         });
-        if ($(window).width() > 768) {
-            $(".bi-chat").css({
-                "margin-right": "0"
-            });
-        }
+        // if ($(window).width() > 768) {
+        //     $(".bi-chat").css({
+        //         "margin-right": "0"
+        //     });
+        // }
     });
 
     $(".bi-arrow-bar-right").on("click", function() {
@@ -247,11 +247,11 @@
         $(".bi-arrow-bar-right").css({
             "visibility": "",
         });
-        if ($(window).width() > 768) {
-            $(".bi-chat").css({
-                "margin-right": "0"
-            });
-        }
+        // if ($(window).width() > 768) {
+        //     $(".bi-chat").css({
+        //         "margin-right": "0"
+        //     });
+        // }
 
         setTimeout(function() {
             $(".leftbody, .linkus, .linkus2").css({
