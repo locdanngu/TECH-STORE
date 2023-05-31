@@ -51,6 +51,7 @@ class RegisterController extends Controller
                 'avatar' => '/images/avatar.png',
                 'role' => 'customer',
                 'balance' => 0,
+                'status' => 0,
             ]);
             // // Đăng nhập người dùng mới đăng ký
             Auth::login($user);
