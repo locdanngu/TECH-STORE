@@ -234,6 +234,7 @@
                                             <td class="fixtd">{{ $cart->product->inventoryquantity }}</td>
                                             <td>{{ $cart->updated_at }}</td>
                                             <!-- <td class="fixtd">Waiting</td> -->
+                                            @if($cart->quatifier < $cart->product->inventoryquantity)
                                             <td><button class="buttonfix" data-toggle="modal" data-target="#acceptModal"
                                                     data-idcart="{{ $cart->idcart }}"
                                                     data-nameproduct="{{ $cart->product->nameproduct }}"
@@ -242,6 +243,9 @@
                                                     data-image="{{ $cart->product->image }}"
                                                     data-totalprice="{{ number_format($cart->quatifier * $cart->product->price, 2) }}">
                                                     <i class="bi bi-check2"></i> Accept</button></td>
+                                            @else
+                                            <td></td>
+                                            @endif
                                             <td><button class="buttonfix" data-toggle="modal" data-target="#denyModal"
                                                     data-idcart="{{ $cart->idcart }}"
                                                     data-nameproduct="{{ $cart->product->nameproduct }}"
