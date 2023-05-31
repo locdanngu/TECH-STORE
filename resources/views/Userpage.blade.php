@@ -133,6 +133,7 @@
             </div>
         </div>
     </div>
+    <button id="back-to-top" title="Back to Top"><i class="bi bi-arrow-bar-up"></i></button>
 
 
     @extends('layouts.Foot')
@@ -279,6 +280,21 @@
         if ($(event.target).is('.popup, .close-popup') && !$(event.target).closest('.popup-content').length) {
             $('.popup').fadeOut();
         }
+    });
+
+    $(document).ready(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 20) {
+                $('#back-to-top').fadeIn();
+            } else {
+                $('#back-to-top').fadeOut();
+            }
+        });
+
+        $('#back-to-top').click(function() {
+            $('html, body').animate({scrollTop : 0}, 500);
+            return false;
+        });
     });
     </script>
 </body>
