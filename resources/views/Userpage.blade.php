@@ -57,7 +57,7 @@
                 <div class="righthead">
                     <i class="bi bi-arrow-bar-right"></i>
                     <a href="{{ route('user.message') }}" class="btnlink"><i class="bi bi-chat"
-                            style="color: #FFFFFF;margin-right: 2em;margin-left: 2em;font-size: 1.5em;"></i></a>
+                            style="color: #FFFFFF;margin-right: 1.5em;margin-left: 2em;font-size: 1.5em;"></i></a>
                     <div class="dropdown">
                         <button class="btn" type="button" data-bs-toggle="dropdown">
                             <i class="bi bi-bell"></i>
