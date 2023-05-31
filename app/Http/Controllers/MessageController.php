@@ -45,8 +45,8 @@ class MessageController extends Controller
             if ($message->sender_id == $user->id) {
                 $html .= '<div style="display:flex;justify-content: end;">';
                 $html .= '<div style="display:flex;flex-direction:column;margin-right:1em">';
-                $html .= '<span style="color:white;border:1px solid white;padding:.5em;border-radius:1em">'.$message->message.'</span>';
-                $html .= '<span style="color:white;font-size:10px;align-self: end;">(Send at:'.$message->created_at.')</span>';
+                $html .= '<span class="cssmess" style="align-self: end;">'.$message->message.'</span>';
+                $html .= '<span class="csscrt2">(Send at:'.$message->created_at.')</span>';
                 $html .= '</div>';
                 $html .= '<img src="' .$user->avatar. '" class="img">';
                 $html .= '</div>';
@@ -55,8 +55,8 @@ class MessageController extends Controller
                 $html .= '<div style="display:flex">';
                 $html .= '<img src="'. $message->sender->avatar .'" class="img">';
                 $html .= '<div style="display:flex;flex-direction:column;margin-left:1em">';
-                $html .= '<span style="color:white;border:1px solid white;padding:.5em;border-radius:1em;width: fit-content;">'.$message->message.'</span>';
-                $html .= '<span style="color:white;font-size:10px">(Send at:'.$message->created_at.')</span>';
+                $html .= '<span class="cssmess">'.$message->message.'</span>';
+                $html .= '<span class="csscrt">(Send at:'.$message->created_at.')</span>';
                 $html .= '</div>';
                 $html .= '</div>';
                 $html .= '<br>';

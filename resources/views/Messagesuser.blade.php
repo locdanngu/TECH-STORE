@@ -33,11 +33,7 @@
         margin: 0 !important;
     }
 
-    .img {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-    }
+    
     </style>
 </head>
 

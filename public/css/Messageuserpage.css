@@ -9,7 +9,7 @@ p {
     /* height: 100em; */
 }
 
-.smallavatar{
+.smallavatar {
     border-radius: 50%;
     width: 60%;
 }
@@ -135,7 +135,8 @@ p {
     align-items: center;
     justify-content: space-between;
 }
-.boxchat{
+
+.boxchat {
     height: 5em;
 }
 
@@ -185,11 +186,11 @@ p {
     cursor: pointer;
 }
 
-.namephantu.fix{
+.namephantu.fix {
     visibility: hidden;
 }
 
-.savebtn{
+.savebtn {
     color: #DA00FE;
     border: 0.5px solid #DA00FE;
     border-radius: .5em;
@@ -199,75 +200,120 @@ p {
     transition: 0.5s ease;
 }
 
-.savebtn:hover{
+.savebtn:hover {
     color: #FFFFFF;
     background-color: #DA00FE;
 }
 
-#boxchat{
+#boxchat {
     padding: 2em;
 }
 
+.img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.cssmess {
+    color: white;
+    border: 1px solid white;
+    padding: .5em;
+    border-radius: 1em;
+    width: fit-content;
+}
+
+.csscrt {
+    color: white;
+    font-size: 10px;
+}
+
+.csscrt2 {
+    color: white;
+    font-size: 10px;
+    align-self: end;
+}
+
 @media screen and (min-width: 320px) and (max-width: 768px) {
-    .logomobile,.content{
+    .logomobile, .content {
         display: none;
     }
 
-    .linkus{
+    .img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .csscrt2 {
+        color: white;
+        font-size: 8px;
+        align-self: end;
+    }
+
+    .csscrt {
+        color: white;
+        font-size: 8px;
+    }
+
+    .cssmess {
+        font-size: .75em;
+    }
+
+    .linkus {
         justify-content: center;
     }
 
-    #footmobile{
+    #footmobile {
         display: none;
     }
 
-    .namephantu{
+    .namephantu {
         font-size: 1em;
     }
 
-    .phantuuser{
+    .phantuuser {
         width: 90%;
     }
 
-    #boxchat{
+    #boxchat {
         padding: 1em;
     }
 
-    #hidemobile{
+    #hidemobile {
         display: none;
     }
 
-    .boxchat{
+    .boxchat {
         display: flex;
         flex-direction: column;
         height: fit-content;
     }
 
-    #fixmobile{
+    #fixmobile {
         font-size: 10px;
         margin: 2px 0 0 0 !important;
-        
+
     }
 
-    .leftbody{
+    .leftbody {
         padding: 0.5em;
     }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
-    .phantuuser{
+    .phantuuser {
         width: 80%;
     }
 
-    .logomobile{
+    .logomobile {
         display: none;
     }
 
-    .linkus{
+    .linkus {
         padding: 0 .5em 0 .5em;
     }
 
-    .fixtxt{
+    .fixtxt {
         margin-left: 1em !important;
     }
 }
