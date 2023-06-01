@@ -311,10 +311,10 @@ class AdminController extends Controller
             $html .= '<td><i class="' . $category->iconcategory . '"></i></td>';
             $html .= '<td class="font-weight-bold" style="color:red">' . $category->products_count . '</td>';
             $html .= '<td><button class="buttonfix" data-toggle="modal" data-target="#updateModalcategory" data-category-name="' . $category->namecategory . '" data-category-id="' . $category->idcategory . '"><i class="bi bi-pencil-square"></i> Change</button></td>';
-            if($category->products_count == 0){
-            $html .= '<td><button class="buttonfix" data-toggle="modal" data-target="#deleteModalcategory" data-category-name="' . $category->namecategory . '" data-category-id="' . $category->idcategory . '"><i class="bi bi-trash"></i> Delete</button></td>';
+            if($category->products_count==0){
+                $html .= '<td><button class="buttonfix" data-toggle="modal" data-target="#deleteModalcategory" data-category-name="' . $category->namecategory . '" data-category-id="' . $category->idcategory . '" data-numberproduct="' .$category->products_count. '"><i class="bi bi-trash"></i> Delete</button></td>';
             }else{
-                $html .= '<td></td>';
+                $html .= '<td><button class="buttonfix" data-toggle="modal" data-target="#deleteModalcategory2" data-category-name="' . $category->namecategory . '" data-category-id="' . $category->idcategory . '" data-numberproduct="' .$category->products_count. '"><i class="bi bi-trash"></i> Delete</button></td>';
             }
             $html .= '</tr>';
         }

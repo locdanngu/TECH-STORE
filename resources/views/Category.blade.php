@@ -245,15 +245,22 @@
                                                     data-category-id="{{ $category->idcategory }}"><i
                                                         class="bi bi-pencil-square"></i> Change</button>
                                             </td>
-                                            @if($category->products_count == 0)
+                                            @if($category->products_count==0)
                                             <td><button class="buttonfix" data-toggle="modal"
                                                     data-target="#deleteModalcategory"
                                                     data-category-name="{{ $category->namecategory }}"
-                                                    data-category-id="{{ $category->idcategory }}"><i
+                                                    data-category-id="{{ $category->idcategory }}"
+                                                    data-numberproduct="{{ $category->products_count }}"><i
                                                         class="bi bi-trash"></i>
                                                     Delete</button></td>
                                             @else
-                                            <td></td>
+                                            <td><button class="buttonfix" data-toggle="modal"
+                                                    data-target="#deleteModalcategory2"
+                                                    data-category-name="{{ $category->namecategory }}"
+                                                    data-category-id="{{ $category->idcategory }}"
+                                                    data-numberproduct="{{ $category->products_count }}"><i
+                                                        class="bi bi-trash"></i>
+                                                    Delete</button></td>
                                             @endif
                                         </tr>
                                         @endforeach
@@ -306,10 +313,24 @@
             var button = $(event.relatedTarget); // Nút "Change" được nhấn
             var categoryName = button.data('category-name'); // Lấy giá trị data-category-id
             var categoryId = button.data('category-id'); // Lấy giá trị data-category-id
+            var numberproduct = button.data('numberproduct'); // Lấy giá trị data-category-id
             var modal = $(this);
             modal.find('input[name="idcategory"]').val(categoryId);
             modal.find('span[name="namecategory"]').text(categoryName);
             modal.find('span[name="idcategory"]').text(categoryId);
+            modal.find('span[name="numberproduct"]').text(numberproduct);
+        });
+
+        $('#deleteModalcategory2').on('shown.bs.modal', function(event) {
+            var button = $(event.relatedTarget); // Nút "Change" được nhấn
+            var categoryName = button.data('category-name'); // Lấy giá trị data-category-id
+            var categoryId = button.data('category-id'); // Lấy giá trị data-category-id
+            var numberproduct = button.data('numberproduct'); // Lấy giá trị data-category-id
+            var modal = $(this);
+            modal.find('input[name="idcategory"]').val(categoryId);
+            modal.find('span[name="namecategory"]').text(categoryName);
+            modal.find('span[name="idcategory"]').text(categoryId);
+            modal.find('span[name="numberproduct"]').text(numberproduct);
         });
     });
 
