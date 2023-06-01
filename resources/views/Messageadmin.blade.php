@@ -228,6 +228,12 @@
                             </div>
                         </div>
                     </div>
+                    @else
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
+                            <p class="font-weight-bold" style="font-size: 2em">You have no Message from any User</p>
+                        </div>
+                    </div>
                     @endif
                     <!-- Content Row -->
 

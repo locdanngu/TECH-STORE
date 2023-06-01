@@ -40,7 +40,7 @@
             </a>
         </div>
         <div style="display:flex; flex-direction: column; width:80%;justify-content: center;align-items: center;">
-            <form method="POST" action="{{ route('verifyemailcode.user') }}">
+            <form method="POST" action="{{ route('verifyemailcode.user') }}" style="display:flex">
                 @csrf
                 <input class="nhapttuser" type="text" maxlength="6" required placeholder="Verify Code" name="code">
                 <input class="savebtn" type="submit" value="Submit">
