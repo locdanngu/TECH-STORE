@@ -459,17 +459,72 @@
                     <span name="nameproduct" style="display: flex;align-items: center;margin-left: 2em;"></span>
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Quantity</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Re-Quantity</span>
                     <span name="quatifier" style="display: flex;align-items: center;margin-left: 2em;"></span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Quantity</span>
+                    <span name="quantity" style="display: flex;align-items: center;margin-left: 2em;font-weight:bold;color:red"></span>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Total Price</span>
                     <span name="totalprice" style="display: flex;align-items: center;margin-left: 2em;"></span>
                 </div>
+                <span style="color:red">Warning, You cannot approve if the quantity in stock is less than the requested quantity.</span>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                 <button class="btn btn-primary">Accept</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Can't Accept Order Modal-->
+<div class="modal fade" id="acceptModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form class="modal-content" method="POST" action="{{ route('admin.acceptorder') }}">
+            @csrf
+            <input type="hidden" name="idcart" value="">
+            <input type="hidden" name="image" value="">
+            <input type="hidden" name="idproduct" value="">
+            <input type="hidden" name="id" value="">
+            <input type="hidden" name="nameproduct" value="">
+            <input type="hidden" name="quatifier" value="">
+            <input type="hidden" name="totalprice" value="">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to deliver this order?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Id Product</span>
+                    <span name="idproduct" style="display: flex;align-items: center;margin-left: 2em;"></span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Name Product</span>
+                    <span name="nameproduct" style="display: flex;align-items: center;margin-left: 2em;"></span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Re-Quantity</span>
+                    <span name="quatifier" style="display: flex;align-items: center;margin-left: 2em;"></span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Quantity</span>
+                    <span name="quantity" style="display: flex;align-items: center;margin-left: 2em;font-weight:bold;color:red"></span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Total Price</span>
+                    <span name="totalprice" style="display: flex;align-items: center;margin-left: 2em;"></span>
+                </div>
+                <span style="color:red">Warning, You cannot approve if the quantity in stock is less than the requested quantity.</span>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary" style="cursor:not-allowed" disabled>Accept</button>
             </div>
         </form>
     </div>
