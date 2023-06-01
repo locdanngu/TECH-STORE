@@ -553,30 +553,27 @@ class AdminController extends Controller
         $check = Message::where('receiver_id', $user->id)->first();
 
         if(!empty($check)){
-            if(!empty($messages)){
-                if($user->id != $messages['sender_id']){
-                    $usersend = $messages['sender_id'];
-                }else{
-                    $usersend = $messages['receiver_id'];
-                }
-    
-                $usersendmessage = User::where('id', $usersend)->first();
-                $messages = $user->messages_received()
-                    ->with('sender')
-                    // ->where('sender_id', $usersend)
-                    ->Where(function ($query) use ($user, $usersend) {
-                        $query->where('sender_id', $usersend)
-                              ->where('receiver_id',  $user->id);
-                    })
-                    ->orWhere(function ($query) use ($user, $usersend) {
-                        $query->where('sender_id', $user->id)
-                              ->where('receiver_id', $usersend);
-                    })
-                    ->latest('created_at')
-                    ->take(20)
-                    ->get()
-                    ->reverse(); 
+            if($user->id != $messages['sender_id']){
+                $usersend = $messages['sender_id'];
+            }else{
+                $usersend = $messages['receiver_id'];
             }
+            $usersendmessage = User::where('id', $usersend)->first();
+            $messages = $user->messages_received()
+                ->with('sender')
+                // ->where('sender_id', $usersend)
+                ->Where(function ($query) use ($user, $usersend) {
+                    $query->where('sender_id', $usersend)
+                    ->where('receiver_id',  $user->id);
+                })
+                ->orWhere(function ($query) use ($user, $usersend) {
+                    $query->where('sender_id', $user->id)
+                    ->where('receiver_id', $usersend);
+                })
+            ->latest('created_at')
+            ->take(20)
+            ->get()
+            ->reverse(); 
         }else{
             $usersendmessage ='';
         }
