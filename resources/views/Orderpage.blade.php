@@ -78,8 +78,9 @@
                         <td class="fixcenter">{{ $cart_item->quatifier }}</td>
                         <td class="fixcenter">{{ number_format($cart_item->quatifier * $cart_item->price, 2) }}</td>
                         <td class="fixcenter">{{ $cart_item->created_at }}</td>
-                        <td class="fixcenter" style="color:{{ $cart_item->status == 1 ? 'yellow' : ($cart_item->status == 2 ? '#0AD488' : '') }}">
-                            {{ $cart_item->status == 1 ? 'Waiting' : ($cart_item->status == 2 ? 'Finish' : '') }}
+                        <td class="fixcenter"
+                            style="color:{{ $cart_item->status == 1 ? 'yellow' : ($cart_item->status == 2 ? '#0AD488' : ($cart_item->status == 3 ? 'red' : 'Unknown')) }}">
+                            {{ $cart_item->status == 1 ? 'Waiting' : ($cart_item->status == 2 ? 'Finish' : ($cart_item->status == 3 ? 'Deny' : 'Unknown')) }}
                         </td>
                     </tr>
                     @endforeach

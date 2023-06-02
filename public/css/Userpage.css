@@ -460,10 +460,18 @@ a {
         display: none;
     }
 
+    .righthead{
+        width: 30%;
+    }
+
     .monhang {
         width: 100%;
         margin-right: 0;
         margin-left: 0;
+    }
+
+    .review{
+        font-size: .75em;
     }
 
     #footmobile {
@@ -488,7 +496,7 @@ a {
     }
 
     .popup-content {
-        height: 95vh;
+        height: 100vh;
     }
 
     #linkusmobile {
