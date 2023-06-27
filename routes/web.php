@@ -15,9 +15,15 @@ use Laravel\Socialite\Facades\Socialite;
 |
 */
 
+
+
 Route::get('/', function () {
     return view('Homepage');
 })->name('home.page');
+
+Route::get('/logintest', function () {
+    return view('Test');
+})->name('test.page');
 
 Route::get('/Forgotpage', function () {
     return view('Forgotpage');
