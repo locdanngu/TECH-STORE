@@ -1,17 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <title>Pusher Test</title>
+  <script src="https://js.pusher.com/5.0/pusher.min.js"></script>
+  <script>
+
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('ea12aec9241c98d61eef', {
+      cluster: 'ap1',
+      forceTLS: true
+    });
+
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', function(data) {
+      alert(JSON.stringify(data));
+    });
+  </script>
 </head>
 <body>
-    <p>Trade - :</p>
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script>
-        Echo.channel('trades').listen('NewTrade', (e) => {
-            console.log(e);
-        });
-    </script>
+  <h1>Pusher Test</h1>
+  <p>
+    Try publishing an event to channel <code>my-channel</code>
+    with event name <code>my-event</code>.
+  </p>
 </body>
-</html>
