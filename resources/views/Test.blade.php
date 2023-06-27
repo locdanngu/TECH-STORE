@@ -7,5 +7,11 @@
 </head>
 <body>
     <p>Trade - :</p>
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        Echo.channel('trades').listen('NewTrade', (e) => {
+            console.log(e);
+        });
+    </script>
 </body>
 </html>
