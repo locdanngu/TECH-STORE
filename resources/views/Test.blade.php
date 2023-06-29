@@ -9,8 +9,8 @@
 <body>
     <h1>Pusher Test</h1>
     <p>
-        Try publishing an event to channel <code>my-channel</code>
-        with event name <code>my-event</code>.
+        Try publishing an event to channel <code>message</code>
+        with event name <code>message.sent</code>.
     </p>
 
     <div id="message-container"></div>
@@ -19,20 +19,17 @@
     <textarea id="input-textarea"></textarea>
     <button onclick="sendMessage()">Send</button>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/laravel-echo/1.12.1/echo.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/laravel-echo/1.12.1/echo.min.js" type="module"></script>
     <script>
-    const echo = new Echo({
-        broadcaster: 'pusher',
-        key: '{{ env('
-        PUSHER_APP_KEY ') }}',
-        cluster: '{{ env('
-        PUSHER_APP_CLUSTER ') }}',
-        // Thêm các cấu hình khác (nếu cần)
-    });
+        const pusher = new Pusher('{{ env('PUSHER_APP_KEY') }}', {
+            cluster: '{{ env('PUSHER_APP_CLUSTER') }}',
+            encrypted: true
+        });
 
-    echo.channel('message')
-        .listen('.message.sent', (event) => {
-            console.log('API message đã được gửi thành công!');
+        const channel = pusher.subscribe('message');
+        channel.bind('message.sent', function(data) {
+            const messageContainer = document.getElementById('message-container');
+            messageContainer.innerHTML = 'API message đã được gửi thành công!';
         });
     </script>
 </body>
