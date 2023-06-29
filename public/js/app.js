@@ -60,8 +60,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_1__["default"]({
   broadcaster: 'pusher',
-  key: /* unsupported import.meta.env.VITE_PUSHER_APP_KEY */ undefined.VITE_PUSHER_APP_KEY,
-  cluster: /* unsupported import.meta.env.VITE_PUSHER_APP_CLUSTER */ undefined.VITE_PUSHER_APP_CLUSTER,
+  key: /* unsupported import.meta.env.MIX_PUSHER_APP_KEY */ undefined.MIX_PUSHER_APP_KEY,
+  cluster: /* unsupported import.meta.env.MIX_PUSHER_APP_CLUSTER */ undefined.MIX_PUSHER_APP_CLUSTER,
   forceTLS: false,
   wsHost: window.location.hostname,
   wsPrt: 6001,

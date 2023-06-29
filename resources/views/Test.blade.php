@@ -7,29 +7,14 @@
 </head>
 
 <body>
-    <h1>Pusher Test</h1>
-    <p>
-        Try publishing an event to channel <code>message</code>
-        with event name <code>message.sent</code>.
-    </p>
-
-    <div id="message-container"></div>
+    <b>Trade:- </b>
+    <span id="trade-data"></span>
 
 
-    <textarea id="input-textarea"></textarea>
-    <button onclick="sendMessage()">Send</button>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/laravel-echo/1.12.1/echo.min.js" type="module"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     <script>
-        const pusher = new Pusher('{{ env('PUSHER_APP_KEY') }}', {
-            cluster: '{{ env('PUSHER_APP_CLUSTER') }}',
-            encrypted: true
-        });
-
-        const channel = pusher.subscribe('message');
-        channel.bind('message.sent', function(data) {
-            const messageContainer = document.getElementById('message-container');
-            messageContainer.innerHTML = 'API message đã được gửi thành công!';
+        Echo.channel('trades').listen('NewTrade', (e) => {
+            console.log(e);
         });
     </script>
 </body>
